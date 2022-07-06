@@ -25,6 +25,10 @@
         display: flex;
         line-height: 70px;
 
+        &.ama-selected {
+            background-color: var(--theme-disabled-bg-color);
+        }
+
         &-inputs {
             width: calc(100% - 180px - 16px - 120px);
             display: flex;
@@ -135,4 +139,10 @@
     width: 40px;
     height: 40px;
     display: inline-block;
+}
+
+.modelingsdk-json-schema-editor-definitions {
+    .modelingsdk-json-schema-editor-definitions-node:focus-within {
+        background: none;
+    }
 }

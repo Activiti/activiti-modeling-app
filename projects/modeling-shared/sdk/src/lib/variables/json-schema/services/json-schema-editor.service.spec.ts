@@ -15,19 +15,59 @@
  * limitations under the License.
  */
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { JSONSchemaInfoBasics } from '../../../api/types';
 import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
+import { PropertyTypeItem } from '../../properties-viewer/property-type-item/models';
 import { hierarchy } from '../mocks/json-schema-editor.mocks';
-import { JSONSchemaDefinition, TYPES } from '../models/model';
-
+import { JSONSchemaDefinition, JSONSchemaTypeDropdownDefinition, JSONTypePropertiesDefinition, TYPES } from '../models/model';
+import { DataModelCustomizer, DATA_MODEL_CUSTOMIZATION } from './data-model-customization';
+import { DefaultDataModelCustomizationService } from './default-data-model.customization.service';
 import { JsonSchemaEditorService } from './json-schema-editor.service';
+
+class CustomDataModelCustomizer extends DataModelCustomizer {
+
+    getDataModelType(): string {
+        return 'custom';
+    }
+
+    getTypeDropdownForNode(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaTypeDropdownDefinition {
+        return {
+            multiple: false,
+            groups: false,
+            options: []
+        };
+    }
+
+    getPropertiesDefinitionForType(schema: JSONSchemaInfoBasics, accessor: string[], type: string): JSONTypePropertiesDefinition {
+        return {
+            custom: {
+                id: type,
+                name: type,
+                type: 'string'
+            }
+        };
+    }
+
+    getProtectedAttributesByType(schema: JSONSchemaInfoBasics, accessor: string[], type: string) {
+        return ['number'];
+    }
+}
 
 describe('JsonSchemaEditorService', () => {
     let service: JsonSchemaEditorService;
+    let defaultCustomizer: DefaultDataModelCustomizationService;
+    let defaultCustomizerSpy: jasmine.Spy;
+    const customCustomizer = new CustomDataModelCustomizer();
+    let customCustomizerSpy: jasmine.Spy;
+    let modelingJSONSchemaService: ModelingJSONSchemaService;
+    let findCustomizerSpy: jasmine.Spy;
 
     beforeEach(() => {
+        customCustomizerSpy = spyOn(customCustomizer, 'getTypeDropdownForNode');
         TestBed.configureTestingModule({
             providers: [
                 {
@@ -35,18 +75,28 @@ describe('JsonSchemaEditorService', () => {
                     useValue: {
                         getPropertyTypeItems: () => of(hierarchy)
                     }
+                },
+                DefaultDataModelCustomizationService,
+                {
+                    provide: DATA_MODEL_CUSTOMIZATION,
+                    useValue: customCustomizer,
+                    multi: true
                 }
             ]
         });
         service = TestBed.inject(JsonSchemaEditorService);
+        modelingJSONSchemaService = TestBed.inject(ModelingJSONSchemaService);
+        defaultCustomizer = TestBed.inject(DefaultDataModelCustomizationService);
+        defaultCustomizerSpy = spyOn(defaultCustomizer, 'getTypeDropdownForNode');
+        findCustomizerSpy = spyOn<any>(service, 'findCustomizer').and.callThrough();
     });
 
     describe('getTypes', () => {
 
         describe('single type', () => {
             it('JSONSchemaTypes', () => {
-                TYPES.find(type => type.name === 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES')?.value.forEach(type => {
-                    expect(service.getTypes({ type })).toEqual([type]);
+                TYPES.groupOptions.find(type => type.name === 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES')?.value.forEach(type => {
+                    expect(service.getTypes({ type: type.id })).toEqual([type.id]);
                 });
             });
 
@@ -108,11 +158,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { $ref: '#/$defs/primitive/date' };
 
-            service.setType('date', true, value);
+            service.setType('date', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('date', false, value);
+            service.setType('date', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -121,11 +171,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { $ref: '#/$defs/primitive/datetime' };
 
-            service.setType('datetime', true, value);
+            service.setType('datetime', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('datetime', false, value);
+            service.setType('datetime', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -134,11 +184,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { $ref: '#/$defs/primitive/file' };
 
-            service.setType('file', true, value);
+            service.setType('file', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('file', false, value);
+            service.setType('file', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -147,11 +197,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { $ref: '#/$defs/primitive/folder' };
 
-            service.setType('folder', true, value);
+            service.setType('folder', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('folder', false, value);
+            service.setType('folder', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -160,11 +210,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { enum: [] };
 
-            service.setType('enum', true, value);
+            service.setType('enum', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('enum', false, value);
+            service.setType('enum', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -173,11 +223,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { $ref: '#/$defs' };
 
-            service.setType('ref', true, value);
+            service.setType('ref', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('ref', false, value);
+            service.setType('ref', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -186,11 +236,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { allOf: [] };
 
-            service.setType('allOf', true, value);
+            service.setType('allOf', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('allOf', false, value);
+            service.setType('allOf', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -199,11 +249,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { anyOf: [] };
 
-            service.setType('anyOf', true, value);
+            service.setType('anyOf', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('anyOf', false, value);
+            service.setType('anyOf', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -212,11 +262,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { oneOf: [] };
 
-            service.setType('oneOf', true, value);
+            service.setType('oneOf', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('oneOf', false, value);
+            service.setType('oneOf', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -225,11 +275,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { type: 'array', items: { type: 'string' } };
 
-            service.setType('array', true, value);
+            service.setType('array', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('array', false, value);
+            service.setType('array', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -238,11 +288,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { type: 'object', properties: {} };
 
-            service.setType('object', true, value);
+            service.setType('object', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('object', false, value);
+            service.setType('object', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -251,11 +301,11 @@ describe('JsonSchemaEditorService', () => {
             const value = {};
             const expectedValue = { type: 'string' };
 
-            service.setType('string', true, value);
+            service.setType('string', true, value, null, value, []);
 
             expect(value).toEqual(expectedValue);
 
-            service.setType('string', false, value);
+            service.setType('string', false, value, null, value, []);
 
             expect(value).toEqual({});
         });
@@ -286,6 +336,12 @@ describe('JsonSchemaEditorService', () => {
     });
 
     describe('advancedAttr', () => {
+        it('should call the find customizer', () => {
+            service.advancedAttr(null, { type: 'string' }, []);
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
         it('not basic type', () => {
             const value = {
                 $ref: '#/$defs/primitive/date',
@@ -293,7 +349,7 @@ describe('JsonSchemaEditorService', () => {
                 anyOf: [],
                 oneOf: []
             };
-            expect(service.advancedAttr(value)).toEqual({
+            expect(service.advancedAttr(null, value, [])).toEqual({
                 description: { id: 'description', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.DESCRIPTION', type: 'string' }
             });
         });
@@ -302,7 +358,7 @@ describe('JsonSchemaEditorService', () => {
             const value = {
                 enum: ['a', 'b', 'c']
             };
-            expect(service.advancedAttr(value)).toEqual({
+            expect(service.advancedAttr(null, value, [])).toEqual({
                 description: { id: 'description', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.DESCRIPTION', type: 'string' },
                 enum: { id: 'enum', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.ENUMERATED_VALUES', type: 'array', model: { type: 'object' } }
             });
@@ -342,7 +398,20 @@ describe('JsonSchemaEditorService', () => {
                 },
             };
 
-            expect(service.advancedAttr(value)).toEqual(expectedAttributes);
+            expect(service.advancedAttr(null, value, [])).toEqual(expectedAttributes);
+        });
+
+        it('should use the custom customizer for providing the attributes', () => {
+            const value = {
+                type: 'object'
+            };
+
+            const expectedAttributes = {
+                custom: { id: 'object', name: 'object', type: 'string' },
+                description: { id: 'description', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.DESCRIPTION', type: 'string' }
+            };
+
+            expect(service.advancedAttr('custom', value, [])).toEqual(expectedAttributes);
         });
 
     });
@@ -387,6 +456,178 @@ describe('JsonSchemaEditorService', () => {
             const result = await service.initHierarchy(definitions, []).pipe(take(1)).toPromise();
 
             expect(result).toEqual(expectedHierarchy);
+        });
+    });
+
+    describe('getTypeNames', () => {
+        it('should call default customizer when no providers', () => {
+            service = new JsonSchemaEditorService(modelingJSONSchemaService, null, defaultCustomizer);
+
+            service.getTypeNames('whatever', {}, []);
+
+            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
+        });
+
+        it('should call default customizer when no data model type is provided ', () => {
+            service.getTypeNames(undefined, {}, []);
+            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
+
+            service.getTypeNames(null, {}, []);
+            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
+        });
+
+        it('should call default customizer when no provider matches the data model type', () => {
+            service.getTypeNames('whatever', {}, []);
+
+            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
+        });
+
+        it('should call the registered customizer when provider matches the data model type', () => {
+            service.getTypeNames('custom', {}, []);
+
+            expect(customCustomizerSpy).toHaveBeenCalledWith({}, []);
+        });
+    });
+
+    describe('getProtectedAttributesForDataModelType', () => {
+        it('should call the find customizer', () => {
+            service.getProtectedAttributesForDataModelType(null, { type: 'string' }, []);
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
+        it('should call the customizer to retrieve the protected attributes', () => {
+            const spy = spyOn(defaultCustomizer, 'getProtectedAttributesByType').and.returnValue(['string']);
+
+            service.getProtectedAttributesForDataModelType(null, { type: 'string' }, []);
+
+            expect(spy).toHaveBeenCalledWith({ type: 'string' }, [], 'string');
+        });
+
+        it('should remove duplicates in the protected attributes', () => {
+            spyOn(defaultCustomizer, 'getProtectedAttributesByType').and.returnValue(['string', 'string']);
+
+            const result = service.getProtectedAttributesForDataModelType(null, { type: 'string' }, []);
+
+            expect(result).toEqual(['string']);
+        });
+    });
+
+    describe('getLabelsForDataModelType', () => {
+        it('should call the find customizer', () => {
+            service.getLabelsForDataModelType(null, {}, []);
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
+        it('should call the customizer to retrieve the labels and return them', () => {
+            const spy = spyOn(defaultCustomizer, 'getLabels').and.returnValue('mock');
+
+            const result = service.getLabelsForDataModelType(null, {}, []);
+
+            expect(spy).toHaveBeenCalledWith({}, []);
+            expect(result).toEqual('mock');
+        });
+    });
+
+    describe('addPropertyForDataModelType', () => {
+        it('should call the find customizer', () => {
+            service.addPropertyForDataModelType(null, {}, []);
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
+        it('should call the customizer to retrieve the new property', () => {
+            const spy = spyOn(defaultCustomizer, 'addProperty').and.returnValue('mock');
+
+            const result = service.addPropertyForDataModelType(null, {}, []);
+
+            expect(spy).toHaveBeenCalledWith({}, []);
+            expect(result).toEqual('mock');
+        });
+    });
+
+    describe('addItemForDataModelType', () => {
+        it('should call the find customizer', () => {
+            service.addItemForDataModelType(null, {}, []);
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
+        it('should call the customizer to retrieve the new array', () => {
+            const spy = spyOn(defaultCustomizer, 'addItem').and.returnValue('mock');
+
+            const result = service.addItemForDataModelType(null, {}, []);
+
+            expect(spy).toHaveBeenCalledWith({}, []);
+            expect(result).toEqual('mock');
+        });
+    });
+
+    describe('addDefinitionForDataModelType', () => {
+        it('should call the find customizer', () => {
+            service.addDefinitionForDataModelType(null, {}, []);
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
+        it('should call the customizer to retrieve the new definition', () => {
+            const spy = spyOn(defaultCustomizer, 'addDefinition').and.returnValue('mock');
+
+            const result = service.addDefinitionForDataModelType(null, {}, []);
+
+            expect(spy).toHaveBeenCalledWith({}, []);
+            expect(result).toEqual('mock');
+        });
+    });
+
+    describe('addChildForDataModelType', () => {
+        it('should call the find customizer', () => {
+            service.addChildForDataModelType(null, {}, [], '');
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
+        it('should call the customizer to retrieve the new definition', () => {
+            const spy = spyOn(defaultCustomizer, 'addChild').and.returnValue('mock');
+
+            const result = service.addChildForDataModelType(null, {}, [], '');
+
+            expect(spy).toHaveBeenCalledWith({}, [], '');
+            expect(result).toEqual('mock');
+        });
+    });
+
+    describe('filterHierarchyByDataModelType', () => {
+        it('should call the find customizer', async () => {
+            await service.filterHierarchyByDataModelType(null, {}, [], of([])).toPromise();
+
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
+        });
+
+        it('should call the customizer to retrieve the data models filter', async () => {
+            const spy = spyOn(defaultCustomizer, 'filterDataModelReferencesStartingWith').and.returnValue(['mock']);
+
+            await service.filterHierarchyByDataModelType(null, {}, [], of([])).toPromise();
+
+            expect(spy).toHaveBeenCalledWith({}, []);
+        });
+
+        it('should filter the items in the hierarchy which reference starts with the filters', async () => {
+            const item: PropertyTypeItem = {
+                displayName: 'mock',
+                iconName: 'mock',
+                isCustomIcon: true,
+                provider: 'mock',
+                value: {
+                    $ref: 'mock/path/to/definition'
+                }
+            };
+            spyOn(defaultCustomizer, 'filterDataModelReferencesStartingWith').and.returnValue(['mock']);
+
+            const result = await service.filterHierarchyByDataModelType(null, {}, [], of([item])).toPromise();
+
+            expect(result).toEqual([]);
         });
     });
 });

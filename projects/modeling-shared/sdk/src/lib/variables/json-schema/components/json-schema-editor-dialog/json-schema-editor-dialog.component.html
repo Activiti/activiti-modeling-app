@@ -1,69 +1,15 @@
 <h1 mat-dialog-title>{{'SDK.JSON_SCHEMA_EDITOR.ADVANCED_SETTINGS' | translate}}</h1>
 
 <mat-dialog-content class="modelingsdk-json-schema-advanced-settings">
-
-    <h3>{{'SDK.JSON_SCHEMA_EDITOR.BASIC_ATTRIBUTES' | translate}}</h3>
-
-    <div class="modelingsdk-json-schema-basic-attributes">
-        <div *ngFor="let item of typeAttributes| keyvalue" class="modelingsdk-json-schema-basic-attributes-item">
-            <div class="ama-modeled-object-input-label adf-property-label">
-                {{typeAttributes[item.key].name | translate}}
-            </div>
-            <modelingsdk-value-type-input [(ngModel)]="node[item.key]"
-                [placeholder]="typeAttributes[item.key].name | translate" [model]="typeAttributes[item.key].model"
-                [type]="typeAttributes[item.key].type"
-                [extendedProperties]="typeAttributes[item.key].type === 'enum' ? {nullSelectionAllowed: true} : null">
-            </modelingsdk-value-type-input>
-        </div>
-    </div>
-
-    <h3>
-        <span>{{'SDK.JSON_SCHEMA_EDITOR.CUSTOM_ATTRIBUTES' | translate}}</span>
-        <button matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.ADD_CUSTOM_ATTRIBUTE' | translate}}" mat-button mat-icon-button
-            color="primary" (click)="addCustomNode()" *ngIf="!addingCustomProperty"
-            class="modelingsdk-json-schema-custom-attributes-add-btn">
-            <mat-icon>add</mat-icon>
-        </button>
-    </h3>
-
-    <div class="modelingsdk-json-schema-custom-attributes">
-        <div *ngFor="let item of customAttributesKeys" class="modelingsdk-json-schema-custom-attributes-item">
-            <mat-form-field [floatLabel]="'auto'">
-                <mat-label>{{item}}</mat-label>
-                <input matInput [value]="node[item] | json" (blur)="changeCustomProperty(item,$event)"
-                    [placeholder]="item" />
-            </mat-form-field>
-            <div>
-                <button mat-button mat-icon-button type="link" (click)="deleteCustomNode(item)"
-                    matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.DELETE_CUSTOM_ATTRIBUTE' | translate}}">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </div>
-        <div class="modelingsdk-json-schema-custom-attributes-item-add" *ngIf="addingCustomProperty">
-            <mat-form-field >
-                <mat-label>{{'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTE_NAME' | translate}}</mat-label>
-                <input matInput slot="label" [(ngModel)]="addProp.key" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>{{'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTE_VALUE' | translate}}</mat-label>
-                <input matInput [(ngModel)]="addProp.value" />
-            </mat-form-field>
-            <div class="modelingsdk-json-schema-custom-attributes-item-add-actions">
-                <button mat-button mat-icon-button (click)="confirmAddCustomNode()"
-                    matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.CONFIRM_ATTRIBUTE_ADDITION' | translate}}">
-                    <mat-icon>check</mat-icon>
-                </button>
-                <button mat-button mat-icon-button (click)="initializeCustomProperty()"
-                    matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.CANCEL_ATTRIBUTE_ADDITION' | translate}}">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <h3>{{'SDK.JSON_SCHEMA_EDITOR.PREVIEW' | translate}}</h3>
-    <pre>{{previewNode()}}</pre>
+    <modelingsdk-json-schema-node-settings
+    [value]="this.data.value"
+    (changed)="onChange($event)"
+    [dataModelType]="this.data.dataModelType"
+    [allowCustomAttributes]="this.data.allowCustomAttributes"
+    [allowAttributesPreview]="this.data.allowAttributesPreview"
+    [schema]="this.data.schema"
+    [accessor]="this.data.accessor">
+    </modelingsdk-json-schema-node-settings>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

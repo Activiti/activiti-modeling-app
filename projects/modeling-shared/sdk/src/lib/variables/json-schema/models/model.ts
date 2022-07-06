@@ -24,12 +24,64 @@ import { numberTypeSpecificProperties } from './number';
 import { objectTypeSpecificProperties } from './object';
 import { stringTypeSpecificProperties } from './string';
 
-export const TYPES: { name: string; value: string[] }[] = [
-    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES', value: ['array', 'boolean', 'integer', 'object', 'number', 'string'] },
-    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.MODELING_APP', value: ['date', 'datetime', 'file', 'folder'] },
-    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.ENUMERATION', value: ['enum'] },
-    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.COMPOSITION', value: ['allOf', 'anyOf', 'oneOf', 'ref'] }
-];
+export const TYPES: JSONSchemaTypeDropdownDefinition = {
+    multiple: true,
+    groups: true,
+    groupOptions: [
+        {
+            name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES',
+            value: [
+                { label: 'array', id: 'array' },
+                { label: 'boolean', id: 'boolean' },
+                { label: 'integer', id: 'integer' },
+                { label: 'object', id: 'object' },
+                { label: 'number', id: 'number' },
+                { label: 'string', id: 'string' }
+            ]
+        },
+        {
+            name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.MODELING_APP',
+            value: [
+                { label: 'date', id: 'date' },
+                { label: 'datetime', id: 'datetime' },
+                { label: 'file', id: 'file' },
+                { label: 'folder', id: 'folder' }
+            ]
+        },
+        {
+            name:
+                'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.ENUMERATION',
+            value: [
+                { label: 'enum', id: 'enum' }
+            ]
+        },
+        {
+            name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.COMPOSITION',
+            value: [
+                { label: 'allOf', id: 'allOf' },
+                { label: 'anyOf', id: 'anyOf' },
+                { label: 'oneOf', id: 'oneOf' },
+                { label: 'ref', id: 'ref' }
+            ]
+        }
+    ]
+};
+
+export interface JSONSchemaTypeDropdownDefinition {
+    multiple: boolean,
+    groups: boolean,
+    groupOptions?: {
+        name: string;
+        value: {
+            label: string;
+            id: string;
+        }[]
+    }[];
+    options?: {
+        label: string;
+        id: string;
+    }[]
+}
 
 export const TYPE: { [key: string]: JSONTypePropertiesDefinition } = {
     object: objectTypeSpecificProperties,
@@ -58,10 +110,27 @@ export interface JSONTypePropertiesDefinition {
 
 export interface JSONSchemaEditorDialogData {
     value: JSONSchemaInfoBasics;
-    typeAttributes: JSONTypePropertiesDefinition;
+    dataModelType: string;
+    allowCustomAttributes: boolean;
+    allowAttributesPreview: boolean;
+    schema: JSONSchemaInfoBasics;
+    accessor: string[];
 }
 
 export interface ChildrenDeletedEvent {
     compositionType: string;
     index: number;
+}
+
+export interface JsonSchemaEditorLabels {
+    anyOf: string;
+    anyOfAddButton: string;
+    allOf: string;
+    allOfAddButton: string;
+    oneOf: string;
+    oneOfAddButton: string;
+    items: string;
+    propertyAddButton: string;
+    definitionAddButton: string;
+    root: string;
 }

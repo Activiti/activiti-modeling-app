@@ -93,11 +93,11 @@ describe('JsonSchemaEditorComponent', () => {
 
         fixture = TestBed.createComponent(JsonSchemaEditorComponent);
         component = fixture.componentInstance;
+
+        component.writeValue({ type: 'object' });
         fixture.detectChanges();
 
         dialog = TestBed.inject(MatDialog);
-
-        component.writeValue({ type: 'object' });
 
         mockSchema = deepCopy(mockJsonSchema);
         spyOn(component.changes, 'emit');
@@ -337,13 +337,11 @@ describe('JsonSchemaEditorComponent', () => {
             spyOn(dialog, 'open').and.returnValue({ afterClosed: () => of({}) } as any);
             const expectedArguments = {
                 data: {
-                    typeAttributes: {
-                        description: { id: 'description', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.DESCRIPTION', type: 'string' },
-                        additionalProperties: { id: 'additionalProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.ADDITIONAL_PROPERTIES', type: 'boolean' },
-                        maxProperties: { id: 'maxProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MAX_PROPERTIES', type: 'integer' },
-                        minProperties: { id: 'minProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MIN_PROPERTIES', type: 'integer' }
-                    },
-                    value: { type: 'object' }
+                    value: { type: 'object' },
+                    allowAttributesPreview: true,
+                    allowCustomAttributes: true,
+                    accessor: ['root'],
+                    schema: { type: 'object' }
                 },
                 minWidth: '520px'
             };

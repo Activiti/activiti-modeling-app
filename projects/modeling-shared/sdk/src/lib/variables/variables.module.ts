@@ -63,6 +63,8 @@ import { provideExpressionSyntaxHandler } from './expression-code-editor/service
 import { JuelExpressionSyntax } from './expression-code-editor/services/expression-language/juel-expression-syntax';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PropertiesViewerFolderInputComponent } from './properties-viewer/value-type-inputs/folder-input/folder-input.component';
+import { FocusInsideElementDirective } from './json-schema/components/json-schema-editor/focus-within.directive';
+import { JsonSchemaNodeSettingsComponent } from './json-schema/components/json-schema-node-settings/json-schema-node-settings.component';
 
 @NgModule({
     imports: [
@@ -109,7 +111,9 @@ import { PropertiesViewerFolderInputComponent } from './properties-viewer/value-
         ExpressionCodeEditorDialogComponent,
         ExpressionSimulatorComponent,
         VariableIconPipe,
-        PropertiesViewerFolderInputComponent
+        PropertiesViewerFolderInputComponent,
+        FocusInsideElementDirective,
+        JsonSchemaNodeSettingsComponent
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -133,6 +137,8 @@ import { PropertiesViewerFolderInputComponent } from './properties-viewer/value-
         JsonParsePipe,
         PropertyTypeSelectorSmartComponent,
         JsonSchemaEditorComponent,
+        JsonSchemaNodeSettingsComponent,
+        FocusInsideElementDirective,
         PropertiesViewerModeledObjectInputComponent,
         ExpressionCodeEditorComponent,
         InputErrorDirective

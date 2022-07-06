@@ -42,3 +42,6 @@ export * from './expression-code-editor/services/modeling-types.service';
 export * from './expression-code-editor/components/expression-code-editor/expression-code-editor.component';
 export * from './expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 export * from './expression-code-editor/services/expressions-editor.service';
+
+export * from './json-schema/services/data-model-customization';
+export * from './json-schema/models/model';

@@ -15,7 +15,8 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+/* eslint-disable max-lines */
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JSONSchemaInfoBasics } from '../../../api/types';
@@ -28,16 +29,24 @@ import {
     FILE_TYPE_REFERENCE,
     FOLDER_TYPE_REFERENCE,
     JSONSchemaDefinition,
+    JsonSchemaEditorLabels,
+    JSONSchemaTypeDropdownDefinition,
     JSONTypePropertiesDefinition,
     TYPE
 } from '../models/model';
+import { DATA_MODEL_CUSTOMIZATION, DataModelCustomizer } from './data-model-customization';
+import { DefaultDataModelCustomizationService } from './default-data-model.customization.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class JsonSchemaEditorService {
 
-    constructor(private modelingJSONSchemaService: ModelingJSONSchemaService) { }
+    constructor(
+        private modelingJSONSchemaService: ModelingJSONSchemaService,
+        @Optional() @Inject(DATA_MODEL_CUSTOMIZATION) private dataModelCustomizers: DataModelCustomizer[],
+        private defaultCustomizer: DefaultDataModelCustomizationService
+    ) { }
 
     getTypes(value: JSONSchemaInfoBasics): string[] {
         let types: string[] = [];
@@ -87,97 +96,97 @@ export class JsonSchemaEditorService {
         return types;
     }
 
-    setType(type: string, added: boolean, value: JSONSchemaInfoBasics) {
+    setType(type: string, added: boolean, value: JSONSchemaInfoBasics, dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]) {
         switch (type) {
-        case 'date':
-            if (added) {
-                value.$ref = DATE_TYPE_REFERENCE;
-            } else {
-                delete value.$ref;
-            }
-            break;
-        case 'datetime':
-            if (added) {
-                value.$ref = DATETIME_TYPE_REFERENCE;
-            } else {
-                delete value.$ref;
-            }
-            break;
-        case 'file':
-            if (added) {
-                value.$ref = FILE_TYPE_REFERENCE;
-            } else {
-                delete value.$ref;
-            }
-            break;
-        case 'folder':
-            if (added) {
-                value.$ref = FOLDER_TYPE_REFERENCE;
-            } else {
-                delete value.$ref;
-            }
-            break;
-        case 'enum':
-            if (added) {
-                value.enum = [];
-            } else {
-                delete value.enum;
-            }
-            break;
-        case 'ref':
-            if (added) {
-                value.$ref = '#/$defs';
-            } else {
-                delete value.$ref;
-            }
-            break;
-        case 'allOf':
-            if (added) {
-                value.allOf = [];
-            } else {
-                delete value.allOf;
-            }
-            break;
-        case 'anyOf':
-            if (added) {
-                value.anyOf = [];
-            } else {
-                delete value.anyOf;
-            }
-            break;
-        case 'oneOf':
-            if (added) {
-                value.oneOf = [];
-            } else {
-                delete value.oneOf;
-            }
-            break;
-        default:
-            if (added) {
-                this.addType(type, value);
-                if (type === 'array') {
-                    value.items = { type: 'string' };
+            case 'date':
+                if (added) {
+                    value.$ref = DATE_TYPE_REFERENCE;
+                } else {
+                    delete value.$ref;
                 }
-                if (type === 'object') {
-                    value.properties = {};
+                break;
+            case 'datetime':
+                if (added) {
+                    value.$ref = DATETIME_TYPE_REFERENCE;
+                } else {
+                    delete value.$ref;
                 }
-            } else {
-                this.removeType(type, value);
-                if (type === 'array') {
-                    delete value.items;
+                break;
+            case 'file':
+                if (added) {
+                    value.$ref = FILE_TYPE_REFERENCE;
+                } else {
+                    delete value.$ref;
                 }
-                if (type === 'object') {
-                    delete value.properties;
+                break;
+            case 'folder':
+                if (added) {
+                    value.$ref = FOLDER_TYPE_REFERENCE;
+                } else {
+                    delete value.$ref;
                 }
-            }
-            break;
+                break;
+            case 'enum':
+                if (added) {
+                    value.enum = [];
+                } else {
+                    delete value.enum;
+                }
+                break;
+            case 'ref':
+                if (added) {
+                    value.$ref = '#/$defs';
+                } else {
+                    delete value.$ref;
+                }
+                break;
+            case 'allOf':
+                if (added) {
+                    value.allOf = [];
+                } else {
+                    delete value.allOf;
+                }
+                break;
+            case 'anyOf':
+                if (added) {
+                    value.anyOf = [];
+                } else {
+                    delete value.anyOf;
+                }
+                break;
+            case 'oneOf':
+                if (added) {
+                    value.oneOf = [];
+                } else {
+                    delete value.oneOf;
+                }
+                break;
+            default:
+                if (added) {
+                    this.addType(type, value);
+                    if (type === 'array') {
+                        value.items = this.addItemForDataModelType(dataModelType, schema, accessor);
+                    }
+                    if (type === 'object') {
+                        value.properties = this.addPropertyForDataModelType(dataModelType, schema, accessor);
+                    }
+                } else {
+                    this.removeType(type, value);
+                    if (type === 'array') {
+                        delete value.items;
+                    }
+                    if (type === 'object') {
+                        delete value.properties;
+                    }
+                }
+                break;
         }
     }
 
     private addType(type: string, value: JSONSchemaInfoBasics) {
         if (value.type) {
             if (Array.isArray(value.type)) {
-                value.type.push(type);
+                (value.type as string[]).push(type);
             } else {
                 const newType: string[] = [];
                 newType.push(value.type);
@@ -191,7 +200,7 @@ export class JsonSchemaEditorService {
 
     private removeType(type: string, value: JSONSchemaInfoBasics) {
         if (Array.isArray(value.type)) {
-            const index = value.type.indexOf(type);
+            const index = (value.type as string[]).indexOf(type);
             if (index > -1) {
                 value.type.splice(index, 1);
             }
@@ -224,15 +233,15 @@ export class JsonSchemaEditorService {
     }
 
     private instanceOfJSONSchemaInfoBasics(object: any): object is JSONSchemaInfoBasics {
-        return 'type' in object || 'enum' in object || 'allOf' in object || 'anyOf' in object || 'oneOf' in object;
+        return typeof object === 'object' && ('type' in object || 'enum' in object || 'allOf' in object || 'anyOf' in object || 'oneOf' in object);
     }
 
-    advancedAttr(value: JSONSchemaInfoBasics): JSONTypePropertiesDefinition {
-        const types = this.getTypes(value);
+    advancedAttr(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JSONTypePropertiesDefinition {
+        const types = this.getTypes(this.getNodeFromSchemaAndAccessor(schema, accessor));
 
         const attributes: JSONTypePropertiesDefinition = {};
         types.forEach(type => {
-            const typeAttributes = TYPE[type];
+            const typeAttributes = this.findCustomizer(dataModelType).getPropertiesDefinitionForType(schema, accessor, type);
             Object.assign(attributes, typeAttributes);
         });
         return Object.assign(attributes, TYPE.description);
@@ -267,6 +276,77 @@ export class JsonSchemaEditorService {
             }));
     }
 
+    getTypeNames(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaTypeDropdownDefinition {
+        return this.findCustomizer(dataModelType).getTypeDropdownForNode(schema, accessor);
+    }
+
+    getProtectedAttributesForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): string[] {
+        const types = this.getTypes(this.getNodeFromSchemaAndAccessor(schema, accessor));
+
+        let attributes: string[] = [];
+        types.forEach(type => {
+            const protectedAttributes = this.findCustomizer(dataModelType).getProtectedAttributesByType(schema, accessor, type);
+            attributes = attributes.concat(protectedAttributes);
+        });
+
+        return [...new Set(attributes)];
+    }
+
+    getLabelsForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JsonSchemaEditorLabels {
+        return this.findCustomizer(dataModelType).getLabels(schema, accessor);
+    }
+
+    addPropertyForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
+        return this.findCustomizer(dataModelType).addProperty(schema, accessor);
+    }
+
+    addItemForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
+        return this.findCustomizer(dataModelType).addItem(schema, accessor);
+    }
+
+    addDefinitionForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
+        return this.findCustomizer(dataModelType).addDefinition(schema, accessor);
+    }
+
+    addChildForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[], type: string): JSONSchemaInfoBasics {
+        return this.findCustomizer(dataModelType).addChild(schema, accessor, type);
+    }
+
+    filterHierarchyByDataModelType(
+        dataModelType: string,
+        schema: JSONSchemaInfoBasics,
+        accessor: string[],
+        hierarchy: Observable<PropertyTypeItem[]>
+    ): Observable<PropertyTypeItem[]> {
+        return hierarchy.pipe(map(items => {
+            const customizedHierarchy = items.slice();
+            const filteredReferences = this.findCustomizer(dataModelType).filterDataModelReferencesStartingWith(schema, accessor);
+            this.filterReferencesStartingWith(customizedHierarchy, filteredReferences);
+            return customizedHierarchy;
+        }));
+    }
+
+    private getNodeFromSchemaAndAccessor(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
+        let value = { ...schema };
+
+        for (let index = 1; index < accessor.length; index++) {
+            value = { ...value[accessor[index]] };
+        }
+
+        return value;
+    }
+
+    private findCustomizer(dataModelType: string) {
+        if (this.dataModelCustomizers?.length > 0 && dataModelType) {
+            const dataModelCustomizer = this.dataModelCustomizers.find(customizer => customizer.getDataModelType() === dataModelType);
+            if (dataModelCustomizer) {
+                return dataModelCustomizer;
+            }
+
+        }
+        return this.defaultCustomizer;
+    }
+
     private removeFilteredReferences(hierarchy: PropertyTypeItem[], filteredReferences: string[]) {
         hierarchy.forEach(item => {
             if (item.value && item.value.$ref) {
@@ -278,5 +358,22 @@ export class JsonSchemaEditorService {
                 this.removeFilteredReferences(item.children, filteredReferences);
             }
         });
+    }
+
+    private filterReferencesStartingWith(hierarchy: PropertyTypeItem[], filteredReferences: string[]) {
+        if (filteredReferences && hierarchy) {
+            for (let referencesIndex = 0; referencesIndex < filteredReferences.length; referencesIndex++) {
+                const reference = filteredReferences[referencesIndex];
+
+                for (let hierarchyIndex = 0; hierarchyIndex < hierarchy.length; hierarchyIndex++) {
+                    const item = hierarchy[hierarchyIndex];
+                    if (item.value?.$ref && item.value.$ref.startsWith(reference)) {
+                        hierarchy.splice(hierarchyIndex, 1);
+                    } else if (item.children && item.children.length > 0) {
+                        this.filterReferencesStartingWith(item.children, filteredReferences);
+                    }
+                }
+            }
+        }
     }
 }

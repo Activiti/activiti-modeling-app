@@ -677,6 +677,7 @@ export interface JSONSchemaInfoBasics {
     exclusiveMinimum?: number;
     maximum?: number;
     exclusiveMaximum?: number;
+    [key: string]: any;
 }
 
 export interface JSONSchemaPropertyBasics {
