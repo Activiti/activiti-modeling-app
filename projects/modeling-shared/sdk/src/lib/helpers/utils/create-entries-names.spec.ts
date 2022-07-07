@@ -83,6 +83,21 @@ describe('Create entries names', () => {
         expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
     });
 
+    it('MODELER_NAME_REGEX should not allow string with more than 26 chars', () => {
+        const testString = 'a'.repeat(27);
+        expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('MODELER_NAME_REGEX should allow string with 26 chars', () => {
+        const testString = 'a'.repeat(26);
+        expect(MODELER_NAME_REGEX.test(testString)).toBe(true);
+    });
+
+    it('MODELER_NAME_REGEX should not allow string with uppercase', () => {
+        const testString = 'Test';
+        expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
+    });
+
     it('IDENTIFIER_REGEX should allow string starting with numeral', () => {
         const testString = '123-test';
         expect(IDENTIFIER_REGEX.test(testString)).toBe(true);
