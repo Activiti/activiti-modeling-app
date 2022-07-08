@@ -27,8 +27,7 @@ import {
     JSONSchemaDefinition,
     JSONSchemaEditorDialogData,
     JsonSchemaEditorLabels,
-    JSONSchemaTypeDropdownDefinition,
-    JSONTypePropertiesDefinition
+    JSONSchemaTypeDropdownDefinition
 } from '../../models/model';
 import { JsonSchemaEditorDialogComponent } from '../json-schema-editor-dialog/json-schema-editor-dialog.component';
 import { JsonSchemaEditorService } from '../../services/json-schema-editor.service';
@@ -38,6 +37,7 @@ import { Observable } from 'rxjs';
 import { MODELER_NAME_REGEX } from '../../../../helpers/utils/create-entries-names';
 import { TranslateService } from '@ngx-translate/core';
 const isEqual = require('lodash/isEqual');
+const cloneDeep = require('lodash/cloneDeep');
 
 @Component({
     selector: 'modelingsdk-json-schema-editor',
@@ -123,10 +123,10 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
             this.getDefinitionsInSchema();
         }
 
-        if (!this.schema) {
-            this.schema = { ...this.value };
+        if (!this.schema || this.depth === 0) {
+            this.schema = cloneDeep(this.value);
         }
-        if (!this.accessor) {
+        if (!this.accessor || this.depth === 0) {
             this.accessor = [this.key];
         }
         this.typeNames = this.jsonSchemaEditorService.getTypeNames(this.dataModelType, this.schema, this.accessor);
@@ -357,6 +357,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     }
 
     onChanges() {
+        this.updateSchema();
         this.onTouched(this.value);
         this.onChange(this.value);
         this.changes.emit(this.value);
@@ -377,19 +378,19 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
             minWidth: '520px'
         });
 
-        dialogRef.afterClosed().subscribe(
-            (result: {
-                node: JSONSchemaInfoBasics;
-                customAttributesDeleted: string[];
-                typeAttributes: JSONTypePropertiesDefinition
-            }) => {
-                if (result) {
-                    Object.assign(this.value, result.node);
-                    Object.keys(result.typeAttributes).filter(key => this.isNull((<any>result.node)[key])).forEach(key => delete (<any>this.value)[key]);
-                    result.customAttributesDeleted.forEach(key => delete (<any>this.value)[key]);
-                    this.onChanges();
-                }
-            });
+        dialogRef.afterClosed().subscribe((result: JSONSchemaInfoBasics) => {
+            if (result) {
+                this.value = result;
+                this.updateSchema();
+            }
+        });
+    }
+
+    private updateSchema() {
+        let node = this.jsonSchemaEditorService.getNodeFromSchemaAndAccessor(this.schema, this.accessor);
+        if (node) {
+            node = cloneDeep(this.value);
+        }
     }
 
     private isNull(ele: any): boolean {

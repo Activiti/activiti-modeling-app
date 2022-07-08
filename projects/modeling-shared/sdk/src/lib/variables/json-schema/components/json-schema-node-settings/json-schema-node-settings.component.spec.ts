@@ -46,8 +46,6 @@ describe('JsonSchemaNodeSettingsComponent', () => {
     let component: JsonSchemaNodeSettingsComponent;
     let fixture: ComponentFixture<JsonSchemaNodeSettingsComponent>;
 
-    const emptyAttributesNode = { description: null, maxProperties: null, minProperties: null };
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -100,8 +98,12 @@ describe('JsonSchemaNodeSettingsComponent', () => {
     });
 
     it('should initialize values', () => {
-        expect(component.node).toEqual({ ...emptyAttributesNode, customProp: 'customValue' });
         expect(component.customAttributesKeys).toEqual(['customProp']);
+        expect(component.typeAttributes).toEqual({
+            description: { name: 'Description', type: 'string' },
+            maxProperties: { name: 'Max. properties', type: 'integer' },
+            minProperties: { name: 'Min. properties', type: 'integer' }
+        });
     });
 
     it('addCustomNode', () => {
@@ -114,7 +116,7 @@ describe('JsonSchemaNodeSettingsComponent', () => {
     it('deleteCustomNode', () => {
         component.deleteCustomNode('customProp');
 
-        expect(component.node).toEqual(emptyAttributesNode);
+        expect(component.value).toEqual(mockJsonSchema);
         expect(component.customAttributesKeys).toEqual([]);
     });
 
@@ -122,7 +124,7 @@ describe('JsonSchemaNodeSettingsComponent', () => {
         it('null property', () => {
             component.confirmAddCustomNode();
 
-            expect(component.node).toEqual({ customProp: 'customValue' });
+            expect(component.value).toEqual({ ...mockJsonSchema, customProp: 'customValue' });
             expect(component.customAttributesKeys).toEqual(['customProp']);
             expect(component.addProp).toEqual({ key: '', value: '' });
         });
@@ -132,7 +134,7 @@ describe('JsonSchemaNodeSettingsComponent', () => {
 
             component.confirmAddCustomNode();
 
-            expect(component.node).toEqual({ customProp: 'customValue', newProperty: [1, 2, '3'] });
+            expect(component.value).toEqual({ ...mockJsonSchema, customProp: 'customValue', newProperty: [1, 2, '3'] });
             expect(component.customAttributesKeys).toEqual(['customProp', 'newProperty']);
             expect(component.addProp).toEqual({ key: '', value: '' });
         });
@@ -149,6 +151,6 @@ describe('JsonSchemaNodeSettingsComponent', () => {
     it('changeCustomProperty should parse the string as object', () => {
         component.changeCustomProperty('customProp', { target: { value: '[ 1, 2, "3"]' } });
 
-        expect(component.node).toEqual({ customProp: [1, 2, '3'] });
+        expect(component.value).toEqual({ ...mockJsonSchema, customProp: [1, 2, '3'] });
     });
 });

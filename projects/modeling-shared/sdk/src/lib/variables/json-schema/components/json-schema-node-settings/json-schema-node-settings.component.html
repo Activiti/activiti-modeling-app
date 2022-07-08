@@ -1,3 +1,4 @@
+<div modelingsdk-focus-element (focused)="onChange($event)">
 <h3>{{'SDK.JSON_SCHEMA_EDITOR.BASIC_ATTRIBUTES' | translate}}</h3>
 
 <div class="modelingsdk-json-schema-basic-attributes">
@@ -5,7 +6,7 @@
         <div class="ama-modeled-object-input-label adf-property-label">
             {{typeAttributes[item.key].name | translate}}
         </div>
-        <modelingsdk-value-type-input [(ngModel)]="node[item.key]" (onChange)="onChange()"
+        <modelingsdk-value-type-input [(ngModel)]="value[item.key]"
             [placeholder]="typeAttributes[item.key].name | translate" [model]="typeAttributes[item.key].model"
             [type]="typeAttributes[item.key].type"
             [extendedProperties]="typeAttributes[item.key].type === 'enum' ? {nullSelectionAllowed: true} : null">
@@ -26,7 +27,7 @@
     <div *ngFor="let item of customAttributesKeys" class="modelingsdk-json-schema-custom-attributes-item">
         <mat-form-field [floatLabel]="'auto'">
             <mat-label>{{item}}</mat-label>
-            <input matInput [value]="node[item] | json" (blur)="changeCustomProperty(item,$event)"
+            <input matInput [value]="value[item] | json" (blur)="changeCustomProperty(item,$event)"
                 [placeholder]="item" />
         </mat-form-field>
         <div>
@@ -60,3 +61,4 @@
 
 <h3 *ngIf="allowAttributesPreview">{{'SDK.JSON_SCHEMA_EDITOR.PREVIEW' | translate}}</h3>
 <pre *ngIf="allowAttributesPreview">{{previewNode()}}</pre>
+</div>

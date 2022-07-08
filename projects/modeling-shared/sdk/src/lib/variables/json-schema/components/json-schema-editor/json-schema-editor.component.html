@@ -154,7 +154,7 @@
                         [enableSettingsDialog]="enableSettingsDialog"
                         [dataModelType]="dataModelType"
                         (selected)="selectItem($event)"
-                        [accessor]="accessor.concat(['properties', properties[i].key])"
+                        [accessor]="accessor | accessor: 'properties': (properties[i].key)"
                         [nodeSelectedAccessor]="nodeSelectedAccessor"
                         [allowCustomAttributes]="allowCustomAttributes"
                         [schema]="schema">
@@ -171,7 +171,7 @@
                         [enableSettingsDialog]="enableSettingsDialog"
                         [dataModelType]="dataModelType"
                         (selected)="selectItem($event)"
-                        [accessor]="accessor.concat(['items'])"
+                        [accessor]="accessor | accessor: 'items'"
                         [nodeSelectedAccessor]="nodeSelectedAccessor"
                         [allowCustomAttributes]="allowCustomAttributes"
                         [schema]="schema">
@@ -188,7 +188,7 @@
                         [attr.data-automation-id]="'allOf_' + (depth+1) + '_' + i"
                         [enableSettingsDialog]="enableSettingsDialog"
                         (selected)="selectItem($event)"
-                        [accessor]="accessor.concat(['allOf',i])"
+                        [accessor]="accessor | accessor: 'allOf': i"
                         [nodeSelectedAccessor]="nodeSelectedAccessor"
                         [allowCustomAttributes]="allowCustomAttributes"
                         [schema]="schema">
@@ -206,7 +206,7 @@
                         [enableSettingsDialog]="enableSettingsDialog"
                         [dataModelType]="dataModelType"
                         (selected)="selectItem($event)"
-                        [accessor]="accessor.concat(['anyOf',i])"
+                        [accessor]="accessor | accessor: 'anyOf': i"
                         [nodeSelectedAccessor]="nodeSelectedAccessor"
                         [allowCustomAttributes]="allowCustomAttributes"
                         [schema]="schema">
@@ -224,7 +224,7 @@
                         [enableSettingsDialog]="enableSettingsDialog"
                         [dataModelType]="dataModelType"
                         (selected)="selectItem($event)"
-                        [accessor]="accessor.concat(['oneOf',i])"
+                        [accessor]="accessor | accessor: 'oneOf': i"
                         [nodeSelectedAccessor]="nodeSelectedAccessor"
                         [allowCustomAttributes]="allowCustomAttributes"
                         [schema]="schema">

@@ -19,7 +19,6 @@ import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } 
 import { JSONSchemaInfoBasics } from '../../../../api/types';
 import { JSONTypePropertiesDefinition } from '../../models/model';
 import { JsonSchemaEditorService } from '../../services/json-schema-editor.service';
-const isEqual = require('lodash/isEqual');
 
 @Component({
     selector: 'modelingsdk-json-schema-node-settings',
@@ -38,36 +37,42 @@ export class JsonSchemaNodeSettingsComponent implements OnChanges {
     @Input()
     allowAttributesPreview = true;
     @Input()
-    schema: JSONSchemaInfoBasics = {};
+    schema: JSONSchemaInfoBasics;
     @Input()
-    accessor: string[] = ['root'];
+    accessor: string[];
     @Output()
-    changed = new EventEmitter<{ node: JSONSchemaInfoBasics; customAttributesDeleted: string[], typeAttributes: JSONTypePropertiesDefinition }>();
+    changed = new EventEmitter<JSONSchemaInfoBasics>();
 
     typeAttributes: JSONTypePropertiesDefinition;
     private typeAttributesKeys: string[];
+    private protectedAttributes: string[];
     customAttributesKeys: string[] = [];
     private customAttributesDeleted = [];
 
     addingCustomProperty = false;
     addProp: { key: string; value: any } = { key: '', value: '' };
 
-    node: any;
+    private initialValue: string;
 
     constructor(private jsonSchemaEditorService: JsonSchemaEditorService) { }
 
     ngOnChanges(): void {
-        this.node = { ...this.value || {} };
+        if (!this.schema) {
+            this.schema = this.value;
+            this.accessor = ['root'];
+        }
+
         this.typeAttributes = this.jsonSchemaEditorService.advancedAttr(this.dataModelType, this.schema, this.accessor) || {};
-
-        this.jsonSchemaEditorService.getProtectedAttributesForDataModelType(this.dataModelType, this.schema, this.accessor).forEach(attribute => delete this.node[attribute]);
-
         this.typeAttributesKeys = Object.keys(this.typeAttributes);
+        this.cleanNullTypeAttributes(this.value);
 
-        this.typeAttributesKeys.forEach(attr => this.node[attr] = this.node[attr] || null);
+        this.initialValue = JSON.stringify(this.value);
 
-        Object.keys(this.node).forEach(key => {
-            if (this.typeAttributesKeys.indexOf(key) === -1) {
+        this.customAttributesKeys = [];
+        this.protectedAttributes = this.jsonSchemaEditorService.getProtectedAttributesForDataModelType(this.dataModelType, this.schema, this.accessor);
+
+        Object.keys(this.value).forEach(key => {
+            if (this.typeAttributesKeys.indexOf(key) === -1 && this.protectedAttributes.indexOf(key) === -1) {
                 this.customAttributesKeys.push(key);
             }
         });
@@ -81,7 +86,7 @@ export class JsonSchemaNodeSettingsComponent implements OnChanges {
 
     deleteCustomNode(item: string) {
         this.customAttributesKeys.splice(this.customAttributesKeys.indexOf(item), 1);
-        delete this.node[item];
+        delete this.value[item];
         this.customAttributesDeleted.push(item);
     }
 
@@ -94,7 +99,7 @@ export class JsonSchemaNodeSettingsComponent implements OnChanges {
             } catch (error) {
                 value = this.addProp.value;
             }
-            this.node[this.addProp.key] = value;
+            this.value[this.addProp.key] = value;
 
             const deletedIndex = this.customAttributesDeleted.indexOf(this.addProp.key);
             if (deletedIndex >= 0) {
@@ -102,7 +107,6 @@ export class JsonSchemaNodeSettingsComponent implements OnChanges {
             }
         }
         this.initializeCustomProperty();
-        this.onChange();
     }
 
     initializeCustomProperty() {
@@ -118,32 +122,23 @@ export class JsonSchemaNodeSettingsComponent implements OnChanges {
             value = event.target.value;
         }
 
-        this.node[key] = value;
-        this.onChange();
+        this.value[key] = value;
     }
 
-    onChange() {
-        if (!isEqual(this.node, this.getPreviousNodeStatus())) {
-            this.cleanNullTypeAttributes(this.node);
-
-            this.changed.emit({
-                node: this.node,
-                customAttributesDeleted: this.customAttributesDeleted,
-                typeAttributes: this.typeAttributes
-            });
+    onChange(focus: boolean) {
+        if (!focus) {
+            this.cleanNullTypeAttributes(this.value);
+            const currentValue = JSON.stringify(this.value);
+            if (currentValue !== this.initialValue) {
+                this.initialValue = currentValue;
+                this.changed.emit(this.value);
+            }
         }
     }
 
-    private getPreviousNodeStatus(): JSONSchemaInfoBasics {
-        const node = { ...this.value || {} };
-        this.jsonSchemaEditorService.getProtectedAttributesForDataModelType(this.dataModelType, this.schema, this.accessor).forEach(attribute => delete node[attribute]);
-        this.typeAttributesKeys.forEach(attr => this.node[attr] = node[attr] || null);
-        return node;
-    }
-
     previewNode() {
-        const node = Object.assign({}, this.node);
-
+        const node = Object.assign({}, this.value);
+        this.protectedAttributes.forEach(key => delete node[key]);
         this.cleanNullTypeAttributes(node);
 
         return JSON.stringify(node, null, 4);

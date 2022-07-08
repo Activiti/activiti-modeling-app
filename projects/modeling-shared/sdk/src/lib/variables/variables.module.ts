@@ -65,6 +65,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PropertiesViewerFolderInputComponent } from './properties-viewer/value-type-inputs/folder-input/folder-input.component';
 import { FocusInsideElementDirective } from './json-schema/components/json-schema-editor/focus-within.directive';
 import { JsonSchemaNodeSettingsComponent } from './json-schema/components/json-schema-node-settings/json-schema-node-settings.component';
+import { AccessorPipe } from './json-schema/components/json-schema-editor/accessor.pipe';
 
 @NgModule({
     imports: [
@@ -113,7 +114,8 @@ import { JsonSchemaNodeSettingsComponent } from './json-schema/components/json-s
         VariableIconPipe,
         PropertiesViewerFolderInputComponent,
         FocusInsideElementDirective,
-        JsonSchemaNodeSettingsComponent
+        JsonSchemaNodeSettingsComponent,
+        AccessorPipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),

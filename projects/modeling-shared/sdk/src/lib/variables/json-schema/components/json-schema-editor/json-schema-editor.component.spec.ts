@@ -42,6 +42,7 @@ import { IsAnyTypePipe } from '../../pipes/is-any-type-pipe/is-any-type.pipe';
 import { IsNotTypePipe } from '../../pipes/is-not-type-pipe/is-not-type.pipe';
 import { RequiredPipe } from '../../pipes/required-pipe/required.pipe';
 import { JsonSchemaEditorDialogComponent } from '../json-schema-editor-dialog/json-schema-editor-dialog.component';
+import { AccessorPipe } from './accessor.pipe';
 import { JsonSchemaEditorComponent } from './json-schema-editor.component';
 
 describe('JsonSchemaEditorComponent', () => {
@@ -59,7 +60,8 @@ describe('JsonSchemaEditorComponent', () => {
                 RequiredPipe,
                 IsAnyTypePipe,
                 IsNotTypePipe,
-                DisplayAddMenuPipe
+                DisplayAddMenuPipe,
+                AccessorPipe
             ],
             imports: [
                 CommonModule,

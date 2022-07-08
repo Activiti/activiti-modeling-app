@@ -326,7 +326,7 @@ export class JsonSchemaEditorService {
         }));
     }
 
-    private getNodeFromSchemaAndAccessor(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
+    getNodeFromSchemaAndAccessor(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
         let value = { ...schema };
 
         for (let index = 1; index < accessor.length; index++) {

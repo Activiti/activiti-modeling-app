@@ -27,14 +27,14 @@ import { JSONSchemaEditorDialogData } from '../../models/model';
 })
 export class JsonSchemaEditorDialogComponent {
 
-    changes: { node: JSONSchemaInfoBasics, customAttributesDeleted: string[] };
+    changes: JSONSchemaInfoBasics;
     constructor(
         private dialogRef: MatDialogRef<JsonSchemaEditorDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: JSONSchemaEditorDialogData
     ) {
     }
 
-    onChange(value: { node: JSONSchemaInfoBasics, customAttributesDeleted: string[] }) {
+    onChange(value: JSONSchemaInfoBasics) {
         this.changes = value;
     }
 
