@@ -26,6 +26,9 @@ import {
     FILE_API_TOKEN,
     FORM_API_TOKEN,
     FORM_WIDGET_API_TOKEN,
+    HXP_DOC_TYPE_API_TOKEN,
+    HXP_MIXIN_API_TOKEN,
+    HXP_SCHEMA_API_TOKEN,
     PROCESS_API_TOKEN,
     SCRIPT_API_TOKEN,
     TRIGGER_API_TOKEN,
@@ -48,6 +51,9 @@ import {
     DecisionTableContent,
     Form as FormType,
     FormContent,
+    HxPDocumentType,
+    HxPMixin,
+    HxPSchema,
     JSONSchemaInfoBasics,
     Process as ProcessType,
     ProcessContent,
@@ -75,6 +81,9 @@ export class ACMApi implements AmaApi {
         @Inject(TRIGGER_API_TOKEN) public trigger: ModelApiInterface<Trigger, TriggerContent>,
         @Inject(CONTENT_MODEL_API_TOKEN) public contentModel: ModelApiInterface<ContentModel, ContentModelXML>,
         @Inject(FORM_WIDGET_API_TOKEN) public  formWidget: ModelApiInterface<Widget, WidgetContent>,
-        @Inject(AUTHENTICATION_API_TOKEN) public  authentication: ModelApiInterface<Authentication, AuthenticationContent>
+        @Inject(AUTHENTICATION_API_TOKEN) public  authentication: ModelApiInterface<Authentication, AuthenticationContent>,
+        @Inject(HXP_DOC_TYPE_API_TOKEN) public hxpDocumentType: ModelApiInterface<HxPDocumentType, JSONSchemaInfoBasics>,
+        @Inject(HXP_MIXIN_API_TOKEN) public hxpMixin: ModelApiInterface<HxPMixin, JSONSchemaInfoBasics>,
+        @Inject(HXP_SCHEMA_API_TOKEN) public hxpSchema: ModelApiInterface<HxPSchema, JSONSchemaInfoBasics>
     ) {}
 }

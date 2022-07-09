@@ -15,20 +15,15 @@
  * limitations under the License.
  */
 
-export enum ContentType {
-    Model = 'MODEL',
-    Process = 'PROCESS',
-    Connector = 'CONNECTOR',
-    DecisionTable = 'DECISION',
-    Form = 'FORM',
-    Ui = 'UI',
-    File = 'FILE',
-    Script = 'SCRIPT',
-    Trigger = 'TRIGGER',
-    CustomFormWidget = 'CUSTOM-FORM-WIDGET',
-    Data = 'DATA',
-    Authentication = 'AUTHENTICATION',
-    HxPDocumentType = 'HXP_DOC_TYPE',
-    HxPMixin = 'HXP_MIXIN',
-    HxPSchema = 'HXP_SCHEMA'
+import { HxPMixin, JSONSchemaInfoBasics } from '../../../../api/types';
+
+export function extractHxpMixinData(property: string, content: JSONSchemaInfoBasics, metadata: HxPMixin) {
+    switch (property) {
+    case 'name':
+        return metadata.name;
+    case 'description':
+        return content.description;
+    default:
+        return null;
+    }
 }

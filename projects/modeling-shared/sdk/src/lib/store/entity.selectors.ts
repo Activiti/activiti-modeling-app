@@ -33,6 +33,9 @@ export const TRIGGERS_ENTITY_KEY = 'triggers';
 export const CONTENT_MODELS_ENTITY_KEY = 'projectModels';
 export const FORM_WIDGETS_ENTITY_KEY = 'formWidgets';
 export const AUTHENTICATIONS_ENTITY_KEY = 'authentications';
+export const HXP_DOC_TYPE_ENTITY_KEY = 'hxp-document-type';
+export const HXP_MIXIN_ENTITY_KEY = 'hxp-mixin';
+export const HXP_SCHEMA_ENTITY_KEY = 'hxp-schema';
 
 export interface ModelEntitiesState extends EntityState<Model>  {
     loading: boolean;

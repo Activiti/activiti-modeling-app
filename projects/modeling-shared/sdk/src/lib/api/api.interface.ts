@@ -41,7 +41,10 @@ import {
     UiContent,
     Widget,
     WidgetContent,
-    Authentication
+    Authentication,
+    HxPDocumentType,
+    HxPMixin,
+    HxPSchema
 } from './types';
 import { ModelSchemaApi } from './model-schema-api.interface';
 import { AuthenticationContent } from './authentication/authentication.interface';
@@ -59,6 +62,9 @@ export const TRIGGER_API_TOKEN = new InjectionToken<ModelApiInterface<Trigger, T
 export const CONTENT_MODEL_API_TOKEN = new InjectionToken<ModelApiInterface<ContentModel, ContentModelXML>>('content-model-api');
 export const FORM_WIDGET_API_TOKEN = new InjectionToken<ModelApiInterface<Widget, WidgetContent>>('form-widget-api');
 export const AUTHENTICATION_API_TOKEN = new InjectionToken<ModelApiInterface<Authentication, AuthenticationContent>>('authentication-api');
+export const HXP_DOC_TYPE_API_TOKEN = new InjectionToken<ModelApiInterface<HxPDocumentType, JSONSchemaInfoBasics>>('hxp-document-type-api');
+export const HXP_MIXIN_API_TOKEN = new InjectionToken<ModelApiInterface<HxPMixin, JSONSchemaInfoBasics>>('hxp-schema-api');
+export const HXP_SCHEMA_API_TOKEN = new InjectionToken<ModelApiInterface<HxPSchema, JSONSchemaInfoBasics>>('hxp-schema-api');
 
 @Injectable()
 export abstract class AmaApi {
@@ -75,4 +81,7 @@ export abstract class AmaApi {
     public contentModel: ModelApiInterface<ContentModel, ContentModelXML>;
     public formWidget: ModelApiInterface<Widget, WidgetContent>;
     public authentication: ModelApiInterface<Authentication, AuthenticationContent>;
+    public hxpDocumentType: ModelApiInterface<HxPDocumentType, JSONSchemaInfoBasics>;
+    public hxpMixin: ModelApiInterface<HxPMixin, JSONSchemaInfoBasics>;
+    public hxpSchema: ModelApiInterface<HxPSchema, JSONSchemaInfoBasics>;
 }

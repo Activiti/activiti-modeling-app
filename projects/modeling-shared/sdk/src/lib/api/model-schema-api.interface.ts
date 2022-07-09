@@ -27,7 +27,10 @@ export enum MODEL_SCHEMA_TYPE {
     TRIGGER = 'TRIGGER',
     CUSTOM_FORM_WIDGET = 'CUSTOM-FORM-WIDGET',
     DATA = 'DATA',
-    AUTHENTICATION = 'AUTHENTICATION'
+    AUTHENTICATION = 'AUTHENTICATION',
+    HXP_DOC_TYPE = 'HXP_DOC_TYPE',
+    HXP_MIXIN = 'HXP_MIXIN',
+    HXP_SCHEMA = 'HXP_SCHEMA',
 }
 
 export type JsonArray = Array<string|number|boolean|Date|Json|JsonArray>;

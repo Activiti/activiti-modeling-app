@@ -66,6 +66,9 @@
             "PROJECT_TITLE": "Projects",
             "CONTENT_MODEL_TITLE": "Content Models",
             "DATA_MODELS_TITLE": "Data Models",
+            "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+            "HXP_MIXINS_TITLE": "HxP Mixins",
+            "HXP_SCHEMAS_TITLE": "HxP Schemas",
             "ALL_PROJECTS": {
                 "HEADER_LABEL": "My projects",
                 "LABEL": "All projects",
@@ -102,6 +105,30 @@
                 "TOOLTIP": "Published data models",
                 "ACTIONS": {
                     "CREATE": "Create data model"
+                }
+            },
+            "HXP_DOC_TYPES": {
+                "HEADER_LABEL": "My HxP Document Types",
+                "LABEL": "Global HxP Document Types",
+                "TOOLTIP": "Published HxP Document Types",
+                "ACTIONS": {
+                    "CREATE": "Create HxP Document Type"
+                }
+            },
+            "HXP_MIXINS": {
+                "HEADER_LABEL": "My HxP Mixins",
+                "LABEL": "Global HxP Mixins",
+                "TOOLTIP": "Published HxP Mixins",
+                "ACTIONS": {
+                    "CREATE": "Create HxP Mixin"
+                }
+            },
+            "HXP_SCHEMAS": {
+                "HEADER_LABEL": "My HxP Schemas",
+                "LABEL": "Global HxP Schemas",
+                "TOOLTIP": "Published HxP Schemas",
+                "ACTIONS": {
+                    "CREATE": "Create HxP Schema"
                 }
             }
         },

@@ -37,6 +37,9 @@ export interface NavigationData {
     process: NavigableItem[];
     contentModels?: NavigableItem[];
     dataModels?: NavigableItem[];
+    hxpDocumentTypes?: NavigableItem[];
+    hxpMixins?: NavigableItem[];
+    hxpSchemas?: NavigableItem[];
 }
 
 @Component({

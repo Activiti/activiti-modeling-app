@@ -76,5 +76,65 @@
                 </ng-container>
             </ul>
         </div>
+        <div class="studio-main-navigation-section" *ngIf="navigation.hxpDocumentTypes?.length > 0">
+            <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.HXP_DOC_TYPES_TITLE' | translate}}</a>
+            <ul class="studio-main-navigation-menu">
+                <ng-container *ngFor="let item of navigation.hxpDocumentTypes">
+                    <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
+                        title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
+
+                        <button mat-icon-button mat-ripple [disableRipple]="true" [routerLink]="item.route.url"
+                            [color]="rla.isActive ? 'primary' : 'accent'"
+                            [title]="item.label | translate">
+                            <span [ngClass]="{
+                                'studio-main-navigation-menu-element-active': rla.isActive,
+                                'studio-main-navigation-menu-element': !rla.isActive
+                            }">{{ item.label | translate }}</span>
+                        </button>
+
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+        <div class="studio-main-navigation-section" *ngIf="navigation.hxpMixins?.length > 0">
+            <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.HXP_MIXINS_TITLE' | translate}}</a>
+            <ul class="studio-main-navigation-menu">
+                <ng-container *ngFor="let item of navigation.hxpMixins">
+                    <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
+                        title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
+
+                        <button mat-icon-button mat-ripple [disableRipple]="true" [routerLink]="item.route.url"
+                            [color]="rla.isActive ? 'primary' : 'accent'"
+                            [title]="item.label | translate">
+                            <span [ngClass]="{
+                                'studio-main-navigation-menu-element-active': rla.isActive,
+                                'studio-main-navigation-menu-element': !rla.isActive
+                            }">{{ item.label | translate }}</span>
+                        </button>
+
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+        <div class="studio-main-navigation-section" *ngIf="navigation.hxpSchemas?.length > 0">
+            <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.HXP_SCHEMAS_TITLE' | translate}}</a>
+            <ul class="studio-main-navigation-menu">
+                <ng-container *ngFor="let item of navigation.hxpSchemas">
+                    <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
+                        title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
+
+                        <button mat-icon-button mat-ripple [disableRipple]="true" [routerLink]="item.route.url"
+                            [color]="rla.isActive ? 'primary' : 'accent'"
+                            [title]="item.label | translate">
+                            <span [ngClass]="{
+                                'studio-main-navigation-menu-element-active': rla.isActive,
+                                'studio-main-navigation-menu-element': !rla.isActive
+                            }">{{ item.label | translate }}</span>
+                        </button>
+
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
     </div>
 </section>

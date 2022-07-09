@@ -33,7 +33,10 @@ import {
     CONTENT_MODEL_API_TOKEN,
     FORM_WIDGET_API_TOKEN,
     DATA_API_TOKEN,
-    AUTHENTICATION_API_TOKEN
+    AUTHENTICATION_API_TOKEN,
+    HXP_DOC_TYPE_API_TOKEN,
+    HXP_MIXIN_API_TOKEN,
+    HXP_SCHEMA_API_TOKEN
 } from '../../api/api.interface';
 import { UiApiVariation } from './model-variations/ui-api-variation';
 import { DecisionTableApiVariation } from './model-variations/decision-table-api-variations';
@@ -51,6 +54,9 @@ import { ModelContentApiVariation } from './model-variations/content-api-variati
 import { FormWidgetApiVariation } from './model-variations/form-widget-api-variation';
 import { DataApiVariation } from './model-variations/data-api-variation';
 import { AuthenticationApiVariation } from './model-variations/authentication-api-variation';
+import { HxPDocumentTypeApiVariation } from './model-variations/hxp-document-type-api-variation';
+import { HxPMixinApiVariation } from './model-variations/hxp-mixin-api-variation';
+import { HxPSchemaApiVariation } from './model-variations/hxp-schema-api-variation';
 
 export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ModelApi(modelVariation, requestApiHelper);
@@ -108,7 +114,16 @@ export class ACMApiModule {
                 { provide: DATA_API_TOKEN, useFactory: modelApiFactory, deps: [DataApiVariation, RequestApiHelper] },
 
                 AuthenticationApiVariation,
-                { provide: AUTHENTICATION_API_TOKEN, useFactory: modelApiFactory, deps: [AuthenticationApiVariation, RequestApiHelper] }
+                { provide: AUTHENTICATION_API_TOKEN, useFactory: modelApiFactory, deps: [AuthenticationApiVariation, RequestApiHelper] },
+
+                HxPDocumentTypeApiVariation,
+                { provide: HXP_DOC_TYPE_API_TOKEN, useFactory: modelApiFactory, deps: [HxPDocumentTypeApiVariation, RequestApiHelper] },
+
+                HxPMixinApiVariation,
+                { provide: HXP_MIXIN_API_TOKEN, useFactory: modelApiFactory, deps: [HxPMixinApiVariation, RequestApiHelper] },
+
+                HxPSchemaApiVariation,
+                { provide: HXP_SCHEMA_API_TOKEN, useFactory: modelApiFactory, deps: [HxPSchemaApiVariation, RequestApiHelper] },
             ]
         };
     }
