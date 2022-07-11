@@ -21,7 +21,10 @@ import { getEntitiesState, MODELS_ENTITY_KEY } from './entity.selectors';
 
 export const selectModelEntity = (modelId: string) => createSelector(selectModelsContainer(), state => state.entities[modelId]);
 export const selectModelsContainer = () => createSelector(getEntitiesState, (state: any) => state[MODELS_ENTITY_KEY]);
+export const selectModelsDraftContainer = () => createSelector(getEntitiesState, (state: any) => state[MODELS_ENTITY_KEY].draftEntities.entities);
 export const selectModelEntityContents = () => createSelector(selectModelsContainer(), state => state.entityContents);
+export const selectModelDraftEntityContents = () => createSelector(selectModelsContainer(), state => state.draftEntities.entityContents);
+export const selectModelDraftStateExists = (modelId: string) => createSelector(selectModelsContainer(), state => state.draftEntities.entityContents[modelId]);
 
 @Injectable({
     providedIn: 'root'
@@ -39,6 +42,29 @@ export class ModelSelectors {
         return createSelector(
             selectModelsContainer(),
             state => state.entities[modelId]
+        );
+    }
+
+    selectModelDraftContentById(modelId: string) {
+        return createSelector(
+            selectModelEntityContents(),
+            selectModelDraftEntityContents(),
+            (entityContents, draftEntityContents) => draftEntityContents[modelId] ?? entityContents[modelId]
+        );
+    }
+
+    selectModelDraftMetadataById(modelId: string) {
+        return createSelector(
+            selectModelsContainer(),
+            selectModelsDraftContainer(),
+            (state, draftState) => draftState[modelId] ?? state.entities[modelId]
+        );
+    }
+
+    selectModelDraftStateExists(modelId: string) {
+        return createSelector(
+            selectModelDraftStateExists(modelId),
+            (draftEntityContents) => draftEntityContents ? true : false
         );
     }
 }

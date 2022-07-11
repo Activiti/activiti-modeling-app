@@ -41,6 +41,10 @@ export interface ModelEntitiesState extends EntityState<Model>  {
     loading: boolean;
     loaded: boolean;
     entityContents: {[key: string]: any};
+    draftEntities: {
+        entities: {[id: string]: Model};
+        entityContents: {[key: string]: any};
+    };
 }
 
 export interface EntitiesState {

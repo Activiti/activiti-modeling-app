@@ -22,6 +22,10 @@ export interface ModelState extends EntityState<Model>  {
     loading: boolean;
     loaded: boolean;
     entityContents: {[key: string]: any};
+    draftEntities: {
+        entities: {[id: string]: Model};
+        entityContents: {[key: string]: any};
+    };
 }
 
 export const adapter = createEntityAdapter<Model>();
@@ -30,5 +34,9 @@ export const initialModelsEntitiesState = adapter.getInitialState<ModelState>({
     ...adapter.getInitialState(),
     loading: false,
     loaded: false,
-    entityContents: {}
+    entityContents: {},
+    draftEntities: {
+        entities: {},
+        entityContents: {}
+    }
 });
