@@ -24,9 +24,9 @@ import { TabManagerService } from './tab-manager.service';
 
 describe('TabManagerService', () => {
     let service: TabManagerService;
-    let entityService: TabManagerEntityService;
     const entitySubject = new BehaviorSubject<TabModel[]>([]);
     const fakeTabModel: TabModel = <TabModel> {id: 'id-1', title: 'new-name'};
+    const fakeTabModelDisturbance: TabModel = <TabModel> {id: 'id-2', title: 'new-name-2'};
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -34,7 +34,6 @@ describe('TabManagerService', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: TabManagerEntityService, useValue: {
-                        updateOneInCache: jest.fn(),
                         entities$: entitySubject
                     }
                 }
@@ -42,31 +41,32 @@ describe('TabManagerService', () => {
         });
 
         service = TestBed.inject(TabManagerService);
-        entityService = TestBed.inject(TabManagerEntityService);
     });
 
     it('should not update title when tab is not found in tabs registry', (done) => {
-        service.getTabs().subscribe(() => {
+        service.getTabs().subscribe((tabs) => {
             service.updateTabTitle('new-name', 'id-1');
-            expect(entityService.updateOneInCache).not.toHaveBeenCalled();
+            expect(tabs.length).toBe(0);
             done();
         });
     });
 
     it('should not update title when tab title has not been changed', (done) => {
         entitySubject.next([fakeTabModel]);
-        service.getTabs().subscribe(() => {
+        service.getTabs().subscribe((tabs) => {
             service.updateTabTitle('new-name', 'id-1');
-            expect(entityService.updateOneInCache).not.toHaveBeenCalled();
+            expect(tabs.length).toBe(1);
+            expect(tabs).toContainEqual(fakeTabModel);
             done();
         });
     });
 
     it('should update title when tab is found in tabs registry', (done) => {
-        entitySubject.next([fakeTabModel]);
-        service.getTabs().subscribe(() => {
+        entitySubject.next([fakeTabModel, fakeTabModelDisturbance]);
+        service.getTabs().subscribe((tabs) => {
             service.updateTabTitle('new-name-changed', 'id-1');
-            expect(entityService.updateOneInCache).toHaveBeenCalledWith({id: 'id-1', title: 'new-name-changed'});
+            expect(tabs[0].id).toBe('id-1');
+            expect(tabs[0].title).toBe('new-name-changed');
             done();
         });
     });

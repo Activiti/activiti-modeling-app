@@ -28,13 +28,13 @@ export class TabManagerService {
 
     private resetTabs = new Subject<void>();
     public resetTabs$ = this.resetTabs.asObservable();
-    private tabList: TabModel[];
+    private tabList: TabModel[] = [];
 
     constructor(private tabManagerEntityService: TabManagerEntityService) {
     }
 
     public removeTab(tab: TabModel) {
-        this.setNewActiveTab(tab, this.tabList);
+        this.setNewActiveTab(tab);
         this.tabManagerEntityService.removeOneFromCache(tab);
     }
 
@@ -65,10 +65,10 @@ export class TabManagerService {
             takeUntil(this.resetTabs$));
     }
 
-    private setNewActiveTab(tab: TabModel, openedTabs: TabModel[]) {
-        const currentOpenTabIndex = openedTabs.findIndex((openedTab) => openedTab.id === tab.id);
+    private setNewActiveTab(tab: TabModel) {
+        const currentOpenTabIndex = this.tabList.findIndex((openedTab) => openedTab.id === tab.id);
         if (currentOpenTabIndex - 1 !== -1) {
-            const nextActiveTab = openedTabs[currentOpenTabIndex - 1];
+            const nextActiveTab = this.tabList[currentOpenTabIndex - 1];
             nextActiveTab.active = true;
             this.tabManagerEntityService.updateOneInCache(tab);
         }
@@ -100,7 +100,7 @@ export class TabManagerService {
     updateTabTitle(newTitle: string, modelId: string | number) {
         const tab = this.tabList?.find(openTab => openTab.id === modelId);
         if (tab && tab.title.toLocaleLowerCase() !== newTitle.toLocaleLowerCase()) {
-            this.tabManagerEntityService.updateOneInCache({ id: modelId + '', title: newTitle });
+            tab.title = newTitle;
         }
     }
 
