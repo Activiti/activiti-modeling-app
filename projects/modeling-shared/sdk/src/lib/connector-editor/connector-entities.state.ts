@@ -22,6 +22,10 @@ export interface ConnectorEntitiesState extends EntityState<Connector>  {
     loading: boolean;
     loaded: boolean;
     entityContents: {[key: string]: ConnectorContent};
+    draftEntities: {
+        entities: {[id: string]: Connector};
+        entityContents: {[key: string]: ConnectorContent};
+    };
 }
 
 export const connectorEntityAdapter = createEntityAdapter<Connector>();
@@ -30,5 +34,9 @@ export const initialConnectorEntitiesState = connectorEntityAdapter.getInitialSt
     ...connectorEntityAdapter.getInitialState(),
     loading: false,
     loaded: false,
-    entityContents: {}
+    entityContents: {},
+    draftEntities: {
+        entities: {},
+        entityContents: {}
+    }
 });

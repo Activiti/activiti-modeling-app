@@ -92,7 +92,8 @@ import {
     GetConnectorsSuccessAction,
     GetConnectorSuccessAction,
     ValidateConnectorSuccessAction,
-    VALIDATE_CONNECTOR_SUCCESS} from './connector-editor.actions';
+    VALIDATE_CONNECTOR_SUCCESS,
+    DraftDeleteConnectorAction} from './connector-editor.actions';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 import { TranslationService } from '@alfresco/adf-core';
 
@@ -329,6 +330,7 @@ export class ConnectorEditorEffects {
         return this.connectorEditorService.update(connector.id, connector, content, projectId).pipe(
             switchMap(() => [
                 new SetApplicationLoadingStateAction(true),
+                new DraftDeleteConnectorAction(connector.id),
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
                 this.logFactory.logInfo(getConnectorLogInitiator(), 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED'),
                 new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED')

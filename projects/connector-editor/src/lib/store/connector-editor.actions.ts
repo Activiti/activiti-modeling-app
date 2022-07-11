@@ -106,6 +106,17 @@ export class UpdateConnectorFailedAction implements Action {
     constructor() {}
 }
 
+export const DRAFT_UPDATE_CONNECTOR_CONTENT = '[Connector] Draft Content update';
+export class DraftUpdateConnectorContentAction implements Action {
+    readonly type = DRAFT_UPDATE_CONNECTOR_CONTENT;
+    constructor(public connector: Update<Partial<ConnectorContent>>) {}
+}
+
+export const DRAFT_DELETE_CONNECTOR = '[Connector] Draft Delete';
+export class DraftDeleteConnectorAction implements Action {
+    readonly type = DRAFT_DELETE_CONNECTOR;
+    constructor(public modelId: string) {}
+}
 export const DELETE_CONNECTOR_ATTEMPT = '[Connector] Delete attempt';
 export class DeleteConnectorAttemptAction implements Action {
     readonly type = DELETE_CONNECTOR_ATTEMPT;

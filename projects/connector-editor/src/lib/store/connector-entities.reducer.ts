@@ -23,7 +23,8 @@ import {
     LEAVE_PROJECT,
     CreateConnectorSuccessAction,
     CREATE_CONNECTOR_SUCCESS,
-    SAVE_AS_PROJECT_ATTEMPT
+    SAVE_AS_PROJECT_ATTEMPT,
+    Connector
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Action } from '@ngrx/store';
 import {
@@ -35,7 +36,11 @@ import {
     GetConnectorsSuccessAction,
     DeleteConnectorSuccessAction,
     GetConnectorSuccessAction,
-    GET_CONNECTOR_SUCCESS
+    GET_CONNECTOR_SUCCESS,
+    DRAFT_UPDATE_CONNECTOR_CONTENT,
+    DRAFT_DELETE_CONNECTOR,
+    DraftUpdateConnectorContentAction,
+    DraftDeleteConnectorAction
 } from './connector-editor.actions';
 
 export function connectorEntitiesReducer(
@@ -60,6 +65,12 @@ export function connectorEntitiesReducer(
 
     case UPDATE_CONNECTOR_SUCCESS:
         return updateConnector(state, <UpdateConnectorSuccessAction>action);
+
+    case DRAFT_UPDATE_CONNECTOR_CONTENT:
+        return updateDraftConnector(state, <DraftUpdateConnectorContentAction> action);
+
+    case DRAFT_DELETE_CONNECTOR:
+        return deleteDraftConnector(state, <DraftDeleteConnectorAction> action);
 
     case GET_CONNECTOR_SUCCESS:
         return getConnectorSuccess(state, <GetConnectorSuccessAction>action);
@@ -127,4 +138,29 @@ function updateConnector(state: ConnectorEntitiesState, action: UpdateConnectorS
     };
     const { name, description, template } = action.connector.changes;
     return connectorEntityAdapter.updateOne({ ...action.connector, changes: { name, description, template } }, newState);
+}
+
+function updateDraftConnector(state: ConnectorEntitiesState, action: DraftUpdateConnectorContentAction): ConnectorEntitiesState {
+    const newState = {
+        ...state,
+        entityContents: {
+            ...state.entityContents,
+        }
+    };
+    newState.draftEntities.entityContents[action.connector.id] = <ConnectorContent> action.connector.changes ?? state.entityContents[action.connector.id];
+    const { name, description, template } = action.connector.changes ??  state.entities[action.connector.id];
+    newState.draftEntities.entities[action.connector.id] = {
+        ...<Connector>state.entities[action.connector.id],
+        ...{ name: name, description: description, template: template }
+    };
+
+    return connectorEntityAdapter.updateOne({id: <string>'', changes: {}}, newState);
+}
+
+function deleteDraftConnector(state: ConnectorEntitiesState, action: DraftDeleteConnectorAction): ConnectorEntitiesState {
+    const newState = { ...state, entityContents: { ...state.entityContents } };
+    delete newState.draftEntities.entityContents[action.modelId];
+    delete newState.draftEntities.entities[action.modelId];
+
+    return connectorEntityAdapter.updateOne({id: <string>'', changes: {}}, newState);
 }

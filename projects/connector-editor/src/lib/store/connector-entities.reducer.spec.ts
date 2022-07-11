@@ -25,7 +25,11 @@ import {
     DeleteConnectorSuccessAction,
     DELETE_CONNECTOR_SUCCESS,
     GET_CONNECTORS_ATTEMPT,
-    GetConnectorsAttemptAction
+    GetConnectorsAttemptAction,
+    DRAFT_UPDATE_CONNECTOR_CONTENT,
+    DRAFT_DELETE_CONNECTOR,
+    DraftUpdateConnectorContentAction,
+    DraftDeleteConnectorAction
 } from './connector-editor.actions';
 import {
     CONNECTOR,
@@ -119,6 +123,44 @@ describe('ConnectorEntitiesReducer', () => {
             template: 'slackConnector',
             description: 'desc2'
         });
+    });
+
+    it('should handle DRAFT_UPDATE_CONNECTOR_CONTENT', () => {
+        const connectors = [connector, { ...connector, id: 'mock-id2' }];
+        let action: any = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
+
+        const stateWithAddedConnectors = connectorEntitiesReducer(initialState, action);
+        const changes = {
+            id: connector.id,
+            changes: {
+                ...connector,
+                name: 'name2',
+                description: 'desc2',
+                template: 'slackConnector',
+                actions: []
+            }
+        };
+        action = <DraftUpdateConnectorContentAction> { type: DRAFT_UPDATE_CONNECTOR_CONTENT, connector: changes };
+
+        const newState = connectorEntitiesReducer(stateWithAddedConnectors, action);
+        expect(newState.draftEntities.entities[connector.id]).toEqual({
+            ...connector,
+            name: 'name2',
+            template: 'slackConnector',
+            description: 'desc2'
+        });
+    });
+
+    it('should handle DRAFT_DELETE_CONNECTOR', () => {
+        const connectors = [connector];
+        let action: any = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
+        let newState = connectorEntitiesReducer(initialState, action);
+
+        action = <DraftDeleteConnectorAction> { type: DRAFT_DELETE_CONNECTOR, modelId: 'mock-id' };
+        newState = connectorEntitiesReducer(newState, action);
+
+        expect(newState.draftEntities.entities).toEqual({});
+        expect(newState.draftEntities.entityContents).toEqual({});
     });
 
     describe('GET_CONNECTOR_SUCCESS', () => {

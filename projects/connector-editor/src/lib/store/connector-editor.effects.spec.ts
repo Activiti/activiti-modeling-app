@@ -40,7 +40,8 @@ import {
     ValidateConnectorAttemptAction,
     UpdateConnectorFailedAction,
     SaveAsConnectorAttemptAction,
-    OpenSaveAsConnectorAction} from './connector-editor.actions';
+    OpenSaveAsConnectorAction,
+    DraftDeleteConnectorAction} from './connector-editor.actions';
 import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 import {
     EntityDialogForm,
@@ -227,10 +228,11 @@ describe('ConnectorEditorEffects', () => {
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
             const expectedLogAction = logFactory.logInfo(getConnectorLogInitiator(), 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
-            const expected = cold('(bcdf)', {
+            const expected = cold('(bcdef)', {
                 b: new SetApplicationLoadingStateAction(true),
-                c: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload.modelContent }),
-                d: expectedLogAction,
+                c: new DraftDeleteConnectorAction(connector.id),
+                d: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload.modelContent }),
+                e: expectedLogAction,
                 f: new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             });
 
