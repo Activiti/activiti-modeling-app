@@ -67,7 +67,8 @@ import {
     SaveAsProcessAttemptAction,
     ProcessEntityDialogForm,
     ValidateProcessSuccessAction,
-    VALIDATE_PROCESS_SUCCESS
+    VALIDATE_PROCESS_SUCCESS,
+    DraftDeleteProcessAction
 } from './process-editor.actions';
 import {
     AmaState,
@@ -342,6 +343,7 @@ export class ProcessEditorEffects {
         ).pipe(
             switchMap((updateResponse) => [
                 new SetApplicationLoadingStateAction(true),
+                new DraftDeleteProcessAction(payload.modelId),
                 new UpdateProcessSuccessAction({
                     id: payload.modelId,
                     changes: {

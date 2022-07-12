@@ -153,6 +153,18 @@ export class UpdateProcessFailedAction implements Action {
     constructor() {}
 }
 
+export const DRAFT_UPDATE_PROCESS_CONTENT = '[Process] Draft Content update';
+export class DraftUpdateProcessContentAction implements Action {
+    readonly type = DRAFT_UPDATE_PROCESS_CONTENT;
+    constructor(public payload: Update<Partial<Process>>, public content: string) {}
+}
+
+export const DRAFT_DELETE_PROCESS = '[Process] Draft Delete';
+export class DraftDeleteProcessAction implements Action {
+    readonly type = DRAFT_DELETE_PROCESS;
+    constructor(public modelId: string) {}
+}
+
 export interface DownloadProcessPayload {
     id: string;
     name: string;
@@ -220,4 +232,6 @@ export type ProcessActions =
     | DeleteProcessExtensionAction
     | DeleteProcessSuccessAction
     | RemoveElementMappingAction
-    | UpdateServiceParametersAction;
+    | UpdateServiceParametersAction
+    | DraftUpdateProcessContentAction
+    | DraftDeleteProcessAction;

@@ -29,6 +29,8 @@ export const selectModelDraftEntityContentsByType = (modelType: string) => creat
     selectModelEntityContainerByType(modelType), state => state.draftEntities?.entityContents);
 export const selectModelDraftEntityContentByTypeAndModelId = (modelType: string, modelId: string) =>
     createSelector(selectModelEntityContainerByType(modelType), state => state.draftEntities?.entityContents[modelId]);
+export const selectModelDraftEntityByTypeAndModelId = (modelType: string, modelId: string) =>
+    createSelector(selectModelEntityContainerByType(modelType), state => state.draftEntities?.entities[modelId]);
 
 @Injectable({
     providedIn: 'root'
@@ -69,7 +71,8 @@ export class ModelEntitySelectors {
     selectModelDraftStateExists(modelId: string) {
         return createSelector(
             selectModelDraftEntityContentByTypeAndModelId(this.modelType, modelId),
-            (draftEntityContents) => draftEntityContents ? true : false
+            selectModelDraftEntityByTypeAndModelId(this.modelType, modelId),
+            (draftEntityContents, draftEntity) => (draftEntityContents || draftEntity) ? true : false
         );
     }
 }

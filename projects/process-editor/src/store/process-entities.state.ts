@@ -22,6 +22,10 @@ export interface ProcessEntitiesState extends EntityState<Process> {
     loading: boolean;
     loaded: boolean;
     entityContents: {[key: string]: ProcessContent};
+    draftEntities: {
+        entities: {[id: string]: Process};
+        entityContents: {[key: string]: ProcessContent};
+    };
 }
 
 export const processAdapter = createEntityAdapter<Process>();
@@ -30,5 +34,9 @@ export const initialProcessEntitiesState = processAdapter.getInitialState<Proces
     ...processAdapter.getInitialState(),
     loading: false,
     loaded: false,
-    entityContents: {}
+    entityContents: {},
+    draftEntities: {
+        entities: {},
+        entityContents: {}
+    }
 });

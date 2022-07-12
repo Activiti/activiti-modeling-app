@@ -107,7 +107,10 @@ describe('ProcessEditorComponent', () => {
                     provide: PROCESS_MODEL_ENTITY_SELECTORS,
                     useValue: {
                         selectModelContentById: jest.fn().mockImplementation(() => of()),
-                        selectModelMetadataById: jest.fn().mockImplementation(() => of())
+                        selectModelMetadataById: jest.fn().mockImplementation(() => of()),
+                        selectModelDraftContentById: jest.fn().mockImplementation(() => of()),
+                        selectModelDraftMetadataById: jest.fn().mockImplementation(() => of()),
+                        selectModelDraftStateExists: jest.fn().mockImplementation(() => of())
                     }
                 }
             ],

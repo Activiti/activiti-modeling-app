@@ -42,7 +42,8 @@ import {
     DeleteProcessExtensionAction,
     ValidateProcessPayload,
     OpenSaveAsProcessAction,
-    SaveAsProcessAttemptAction
+    SaveAsProcessAttemptAction,
+    DraftDeleteProcessAction
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
 import { mockProcessModel, validateError } from './process.mock';
@@ -257,16 +258,17 @@ describe('ProcessEditorEffects', () => {
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
             const expectedLogAction = logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_SAVED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
-
-            const expected = cold('(bcdef)', {
+            /* cspell: disable-next-line*/
+            const expected = cold('(bcdefg)', {
                 b: new SetApplicationLoadingStateAction(true),
-                c: new UpdateProcessSuccessAction({
+                c: new DraftDeleteProcessAction(mockProcessModel.id),
+                d: new UpdateProcessSuccessAction({
                     id: mockProcessModel.id,
                     changes: mockActionPayload.modelMetadata
                 }, mockActionPayload.modelContent),
-                d: new SetAppDirtyStateAction(false),
-                e: expectedLogAction,
-                f: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')
+                e: new SetAppDirtyStateAction(false),
+                f: expectedLogAction,
+                g: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);

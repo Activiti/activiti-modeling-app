@@ -17,7 +17,7 @@
 
 import { Component, OnInit, ViewEncapsulation, Inject, OnDestroy, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map, take, tap, switchMap, catchError, shareReplay } from 'rxjs/operators';
+import { filter, map, take, tap, switchMap, catchError, shareReplay, takeUntil } from 'rxjs/operators';
 import { Observable, of, Subject, concat, zip, merge } from 'rxjs';
 import {
     selectProcessLoading,
@@ -47,6 +47,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
     ChangeProcessModelContextAction,
+    DraftUpdateProcessContentAction,
     UpdateProcessAttemptAction,
     UpdateProcessExtensionsAction,
 } from '../../store/process-editor.actions';
@@ -100,6 +101,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     processFileUri: string;
     extensionsLanguageType = 'json';
     processesLanguageType = 'xml';
+    onDestroy$ = new Subject<boolean>();
 
     constructor(
         private store: Store<AmaState>,
@@ -113,11 +115,11 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     ) {}
 
     ngOnInit() {
-        this.contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(
+        this.contentFromStore$ = this.store.select(this.entitySelector.selectModelDraftContentById(this.modelId)).pipe(
             filter(content => !!content),
             take(1)
         );
-        const metadataFromStore$ = this.store.select(this.entitySelector.selectModelMetadataById(this.modelId)).pipe(
+        const metadataFromStore$ = this.store.select(this.entitySelector.selectModelDraftMetadataById(this.modelId)).pipe(
             filter(metadata => !!metadata)
         );
         this.editorContent$ = concat(this.contentFromStore$, this.editorContentSubject$).pipe(shareReplay(1));
@@ -144,6 +146,15 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
 
         this.loading$ = this.store.select(selectProcessLoading);
         this.setVisibilityConditions();
+        this.store.select(this.entitySelector.selectModelDraftStateExists(this.modelId)).pipe(takeUntil(this.onDestroy$)).subscribe(isDirty => {
+            if (isDirty) {
+                this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_upload');
+                this.modelCommands.setDisable(BasicModelCommands.save, false);
+            } else {
+                this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_done');
+                this.modelCommands.setDisable(BasicModelCommands.save, true);
+            }
+        });
     }
 
     async onBpmnEditorChange(): Promise<void> {
@@ -151,7 +162,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.editorContentSubject$.next(modelContent);
 
         const element = this.processModeler.getRootProcessElement();
-        this.editorMetadataSubject$.next({
+        const metadata = {
             ...this.metadataSnapshot,
             extensions: {
                 ...this.extensionsSnapshot
@@ -159,7 +170,12 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
             name: modelNameHandler.get(element),
             description: documentationHandler.get(element),
             category: categoryHandler.get(element),
-        });
+        };
+        this.editorMetadataSubject$.next(metadata);
+        this.store.dispatch(new DraftUpdateProcessContentAction({
+            id: this.modelId,
+            changes: metadata
+        }, modelContent));
     }
 
     onXmlEditorChange(modelContent: ProcessContent): void {
@@ -168,6 +184,19 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
                 this.store.dispatch(new SetAppDirtyStateAction(true));
             });
         this.editorContentSubject$.next(modelContent);
+        const element = this.processModeler.getRootProcessElement();
+        this.store.dispatch(new DraftUpdateProcessContentAction({
+            id: this.modelId,
+            changes: {
+                ...this.metadataSnapshot,
+                extensions: {
+                    ...this.extensionsSnapshot
+                },
+                name: modelNameHandler.get(element),
+                description: documentationHandler.get(element),
+                category: categoryHandler.get(element),
+            }
+        }, modelContent));
     }
 
     onExtensionEditorChange(extensions: string): void {
@@ -247,6 +276,8 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     }
 
     ngOnDestroy() {
+        this.modelCommands.destroy();
+        this.onDestroy$.complete();
         this.modelCommands.destroy();
     }
 }

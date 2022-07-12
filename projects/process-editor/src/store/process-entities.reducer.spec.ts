@@ -30,7 +30,11 @@ import {
     GetProcessSuccessAction,
     RemoveElementMappingAction,
     REMOVE_ELEMENT_MAPPING,
-    DeleteProcessExtensionAction
+    DeleteProcessExtensionAction,
+    DraftUpdateProcessContentAction,
+    DRAFT_UPDATE_PROCESS_CONTENT,
+    DraftDeleteProcessAction,
+    DRAFT_DELETE_PROCESS
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
 import {
@@ -259,6 +263,45 @@ describe('ProcessEntitiesReducer', () => {
             name: 'name2',
             description: 'desc2'
         });
+    });
+
+    it('should handle DRAFT_UPDATE_PROCESS_CONTENT', () => {
+        const processes = [process, { ...process, id: 'mock-id2' }];
+        action = <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes: processes };
+
+        const stateWithAddedProcesses = processEntitiesReducer(initialState, action);
+        const changes = {
+            id: process.id,
+            changes: {
+                ...process,
+                name: 'name2',
+                description: 'desc2'
+            }
+        };
+        action = <DraftUpdateProcessContentAction>{
+            type: DRAFT_UPDATE_PROCESS_CONTENT,
+            payload: changes,
+            content: ''
+        };
+        const newState = processEntitiesReducer(stateWithAddedProcesses, action);
+        expect(newState.draftEntities.entities[process.id]).toEqual({
+            ...process,
+            name: 'name2',
+            description: 'desc2'
+        });
+    });
+
+    it('should handle DRAFT_DELETE_PROCESS', () => {
+        const processes = [process];
+        action = <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes: processes };
+        let newState = processEntitiesReducer(initialState, action);
+
+        action = <DraftDeleteProcessAction>{ type: DRAFT_DELETE_PROCESS, modelId: 'mock-id' };
+
+        newState = processEntitiesReducer(newState, action);
+
+        expect(newState.draftEntities.entities).toEqual({});
+        expect(newState.draftEntities.entityContents).toEqual({});
     });
 
     it('should update to next version on UPDATE_PROCESS_SUCCESS', () => {
