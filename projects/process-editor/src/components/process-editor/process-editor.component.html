@@ -4,7 +4,7 @@
             <div class="ama-process-header-section">
                 <modelingsdk-model-header [modelName]="modelType" class="ama-process-header-actions">
                 </modelingsdk-model-header>
-                <ama-process-modeler-actions class="ama-process-modeler-actions"></ama-process-modeler-actions>
+                <ama-process-modeler-actions *ngIf="selectedTabIndex===0" class="ama-process-modeler-actions"></ama-process-modeler-actions>
             </div>
 
             <mat-tab-group class="ama-process-tab-group" *ngIf="modelMetadata$ | async as process;"
