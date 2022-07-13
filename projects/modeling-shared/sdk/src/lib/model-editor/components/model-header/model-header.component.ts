@@ -16,11 +16,8 @@
  */
 
 import { Component, Inject, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
-import { selectAppDirtyState } from '../../../store/app.selectors';
-import { AmaState } from '../../../store/app.state';
+import { map } from 'rxjs/operators';
 import { BasicModelCommands } from '../../commands/commands.interface';
 import { ButtonType, ShowCommandButton } from '../../services/command.model';
 import { ModelCommandsService } from '../../services/model-commands.service';
@@ -43,32 +40,18 @@ export class ModelHeaderComponent implements OnInit, OnDestroy {
     menuButtons: ShowCommandButton[];
 
     constructor(@Inject(MODEL_COMMAND_SERVICE_TOKEN)
-        private modelCommands: ModelCommandsService,
-        private store: Store<AmaState>
+        private modelCommands: ModelCommandsService
     ) { }
 
     ngOnInit() {
         this.standardButtons = this.modelCommands.getCommandButtons(ButtonType.STANDARD);
         this.menuButtons = this.modelCommands.getCommandButtons(ButtonType.MENU);
-        this.updateIconOnDirtyState(); // to be removed once dirty state for each model is updated
     }
 
     showMenu(commandName): Observable<boolean> {
         const menuButton = this.menuButtons.find(button => button.commandName === commandName);
         const buttonsVisible$ = menuButton.createdMenuItems.map(button => button.visible$);
         return combineLatest(buttonsVisible$).pipe(map(buttonsVisible => buttonsVisible.some(isVisible => isVisible)));
-    }
-
-    updateIconOnDirtyState() {
-        this.store.select(selectAppDirtyState).pipe(takeUntil(this.onDestroy$)).subscribe(isDirty => {
-            if (isDirty) {
-                this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_upload');
-                this.modelCommands.setDisable(BasicModelCommands.save, false);
-            } else {
-                this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_done');
-                this.modelCommands.setDisable(BasicModelCommands.save, true);
-            }
-        });
     }
 
     onClick(commandName: BasicModelCommands) {
