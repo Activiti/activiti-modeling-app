@@ -33,6 +33,8 @@ class MockComponent implements CanComponentDeactivate {
     canDeactivate(): Observable<boolean> {
         return this.returnValue;
     }
+
+    deleteDraftStateOnDontSave() {}
 }
 
 describe('UnsavedPageGuard', () => {
@@ -45,6 +47,7 @@ describe('UnsavedPageGuard', () => {
         close: jasmine.createSpy('close')
     };
     let canDeactivateSpy: jasmine.Spy;
+    let deleteDraftStateOnDontSaveSpy: jasmine.Spy;
     let titleServiceSpy: jasmine.Spy;
     const modelMock = {};
     let isDirtyState = true;
@@ -108,10 +111,12 @@ describe('UnsavedPageGuard', () => {
 
     it('should deactivate when choice is WITHOUT_SAVE and canDeactivate method of component is not called', (done) => {
         canDeactivateSpy = spyOn(mockComponent, 'canDeactivate');
+        deleteDraftStateOnDontSaveSpy = spyOn(mockComponent, 'deleteDraftStateOnDontSave');
         spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'WITHOUT_SAVE' }));
 
         unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
             expect(canDeactivateSpy).not.toHaveBeenCalled();
+            expect(deleteDraftStateOnDontSaveSpy).toHaveBeenCalled();
             expect(titleServiceSpy).toHaveBeenCalled();
             expect(mockDialogRef.close).toHaveBeenCalled();
             expect(canDeactivate).toEqual(true);

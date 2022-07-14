@@ -87,6 +87,11 @@ export class UnsavedPageGuard
             dialogRef.close();
             return of(false);
         } else if (choice === UNSAVED_MODEL_REDIRECTION_CHOICE.WITHOUT_SAVE) {
+            if (component.modelEditor?.deleteDraftStateOnDontSave) {
+                component.modelEditor.deleteDraftStateOnDontSave();
+            } else if (component.deleteDraftStateOnDontSave) {
+                component.deleteDraftStateOnDontSave();
+            }
             this.titleService.setSavedTitle();
             dialogRef.close();
             return of(true);

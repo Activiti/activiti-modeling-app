@@ -104,6 +104,10 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
         return this.modelEditor.canDeactivate();
     }
 
+    deleteDraftStateOnDontSave() {
+        this.modelEditor.deleteDraftStateOnDontSave();
+    }
+
     onRemoveTab(tab: TabModel) {
         this.unsavedChanges.canDeactivate(this.modelEditor).pipe(take(1))
             .subscribe((choice) => {

@@ -91,4 +91,8 @@ export class ModelEditorComponent implements OnChanges, CanComponentDeactivate {
     public canDeactivate(): Observable<boolean> {
         return this.componentReference.instance.canDeactivate?.() || of(true);
     }
+
+    public deleteDraftStateOnDontSave() {
+        return this.componentReference.instance.deleteDraftStateOnDontSave?.();
+    }
 }
