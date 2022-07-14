@@ -13,6 +13,7 @@
     .mat-ink-bar {
         background-color: white !important;
         height: 1px;
+        transition: none;
     }
 
     .mat-tab-labels, .mat-tab-header-pagination-before, .mat-tab-header-pagination-after {

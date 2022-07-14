@@ -34,7 +34,8 @@ describe('TabManagerService', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: TabManagerEntityService, useValue: {
-                        entities$: entitySubject
+                        entities$: entitySubject,
+                        updateOneInCache: jest.fn()
                     }
                 }
             ]

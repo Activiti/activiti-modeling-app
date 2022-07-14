@@ -121,7 +121,7 @@ describe('TabManagerComponent', () => {
                 provideMockStore({ initialState: fakeEntityState }),
                 {
                     provide: Router,
-                    useValue: { navigate: jest.fn(), navigateByUrl: jest.fn(() => Promise.resolve(true)) }
+                    useValue: { navigate: jest.fn(() => Promise.resolve(true)) }
                 },
                 TabManagerService,
                 DialogService,
@@ -299,7 +299,7 @@ describe('TabManagerComponent', () => {
 
         fixture.detectChanges();
         await fixture.whenStable();
-        expect(router.navigate).toHaveBeenCalledWith(['/project/whatever-project-id'], jasmine.any(Object));
+        expect(router.navigate).toHaveBeenCalledWith(['','project','whatever-project-id'], jasmine.any(Object));
     });
 
     it('should prevent the tab from closing if the app is in dirty state', async () => {
@@ -334,7 +334,6 @@ describe('TabManagerComponent', () => {
     });
 
     it('should update the url when clicking on a tab', async () => {
-        jest.spyOn(location, 'replaceState');
         jest.spyOn(location, 'path').mockReturnValue('/project/whatever-project-id/ui/fake-ui-id');
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
@@ -348,6 +347,30 @@ describe('TabManagerComponent', () => {
         uiTab.click();
 
         fixture.detectChanges();
-        expect(router.navigateByUrl).toHaveBeenCalledWith('/project/whatever-project-id/process/fake-process-id', jasmine.any(Object));
+        expect(router.navigate).toHaveBeenCalledWith(['', 'project', 'whatever-project-id','process', 'fake-process-id'], jasmine.any(Object));
+    });
+
+    it('should navigate correctly on the last element of the tab list when is replaced in its position', async () => {
+        jest.spyOn(location, 'path').mockReturnValue('/project/whatever-project-id/ui/fake-ui-id');
+        jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(true));
+        triggerModelIdChangeWithId('fake-ui-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        triggerModelIdChangeWithId('fake-process-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        triggerModelIdChangeWithId('fake-ui-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('#model-tab-close-button-' + fakeModelUI.id);
+        closeButton.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(router.navigate).toHaveBeenLastCalledWith(['', 'project', 'whatever-project-id','process', 'fake-process-id'], jasmine.any(Object));
     });
 });

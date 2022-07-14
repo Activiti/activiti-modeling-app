@@ -16,10 +16,10 @@
  */
 
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { distinctUntilChanged, distinctUntilKeyChanged, filter, map, switchMap, take, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { MODEL_TYPE } from '../../api/types';
 import { ModelEditorComponent } from '../../model-editor/components/model-editor/model-editor.component';
@@ -37,7 +37,7 @@ import { ModelOpenedAction } from '../../store/project.actions';
     encapsulation: ViewEncapsulation.None,
     host: { 'class': 'modelingsdk-tab-manager' }
 })
-export class TabManagerComponent implements OnInit, CanComponentDeactivate {
+export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDestroy {
 
     modelId$: Observable<string>;
     modelEntity$: Observable<MODEL_TYPE>;
@@ -46,11 +46,12 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     currentActiveTab: TabModel = null;
     selectedTabIndex = -1;
 
+    private onDestroy$ = new Subject<void>();
+
     @ViewChild('modelEditor')
     private modelEditor: ModelEditorComponent;
 
     currentTabs$: Observable<TabModel[]> | Store<TabModel[]>;
-    currentActiveTab$: Observable<[TabModel, TabModel[]]>;
 
     constructor(private activatedRoute: ActivatedRoute,
         private tabManagerService: TabManagerService,
@@ -61,19 +62,29 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
 
         this.currentTabs$ = this.tabManagerService.getTabs();
 
-        this.currentActiveTab$ = this.tabManagerService.getActiveTab();
+        this.tabManagerService.getActiveTab().pipe(
+            distinctUntilKeyChanged('id'),
+            withLatestFrom(this.currentTabs$),
+            takeUntil(this.onDestroy$))
+            .subscribe(([tab, currentTabs]) => {
+                const newActiveTabIndex = currentTabs.findIndex((indexTab) => indexTab.id === tab.id);
+                if(this.isLastTabChanged(tab, newActiveTabIndex, currentTabs)) {
+                    this.onSelectedTabChanged(newActiveTabIndex);
+                }
+                this.currentActiveTab = tab;
+                this.selectedTabIndex = newActiveTabIndex;
+            });
     }
+
+    private isLastTabChanged(tab: TabModel, newActiveTabIndex: number, currentTabs: TabModel[]) {
+        return this.currentActiveTab && currentTabs.length === 1 && this.currentActiveTab.id !== tab.id && this.selectedTabIndex === newActiveTabIndex;
+    }
+
 
     public ngOnInit(): void {
         this.modelId$ = this.activatedRoute.params.pipe(map((params) => params.modelId)).pipe(distinctUntilChanged());
         this.modelEntity$ = this.activatedRoute.data.pipe(map((data) => data.modelEntity)).pipe(take(1));
         this.modelIcon$ = this.activatedRoute.data.pipe(map((data) => data.entityIcon)).pipe(take(1));
-
-        this.currentActiveTab$.pipe(takeUntil(this.tabManagerService.resetTabs$))
-            .subscribe(([tab, currentTabs]) => {
-                this.currentActiveTab = tab;
-                this.selectedTabIndex = currentTabs.findIndex((indexTab) => indexTab.id === tab.id);
-            });
 
         this.modelId$.pipe(
             withLatestFrom(this.currentTabs$, this.modelEntity$, this.modelIcon$),
@@ -85,7 +96,7 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
                     return this.createNewTab(modelId, entityType, modelIcon);
                 }
             }),
-            takeUntil(this.tabManagerService.resetTabs$)
+            takeUntil(this.onDestroy$)
         ).subscribe((tab: TabModel) => this.tabManagerService.openTab(tab, this.currentActiveTab));
     }
 
@@ -96,10 +107,10 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     onRemoveTab(tab: TabModel) {
         this.unsavedChanges.canDeactivate(this.modelEditor).pipe(take(1))
             .subscribe((choice) => {
-                this.store.dispatch(new SetAppDirtyStateAction(false));
                 if (choice) {
                     this.removeTab(tab);
                 }
+                this.store.dispatch(new SetAppDirtyStateAction(false));
             });
     }
 
@@ -108,8 +119,8 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     }
 
     private resetToProjectUrl() {
-        const projectUrl = this.buildNextUrl();
-        void this.router.navigate([projectUrl], { relativeTo: this.activatedRoute });
+        const projectUrl = this.getProjectUrl();
+        void this.router.navigate([...projectUrl], { relativeTo: this.activatedRoute });
         this.tabManagerService.reset();
     }
 
@@ -130,25 +141,23 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
             const currentTab: TabModel = this.tabManagerService.getTabByIndex(tabIndex);
             if (currentTab) {
                 this.store.dispatch(new ModelOpenedAction({ id: currentTab.id, type: currentTab.modelType }));
-                const nextUrl = this.buildNextUrl(currentTab.modelType, currentTab.id);
+                const projectUrlPart = this.getProjectUrl();
                 this.unsavedChanges.disableCheck = true;
-                this.router.navigateByUrl(nextUrl, {relativeTo: this.activatedRoute}).then(() => this.unsavedChanges.disableCheck=false, () => {});
+                this.router.navigate([...projectUrlPart, currentTab.modelType, currentTab.id],
+                    { relativeTo: this.activatedRoute }).then(() => this.unsavedChanges.disableCheck = false, () => { });
             }
         }
     }
 
-    private buildNextUrl(modelType?: string, modelId?: string): string {
+    private getProjectUrl(): string[] {
         const splitUrl = this.location.path().split('/');
         splitUrl.splice(splitUrl.length - 2, 2);
-        const addOnPieces = [];
-        if (modelType) {
-            addOnPieces.push(modelType);
-        }
-        if (modelId) {
-            addOnPieces.push(modelId);
-        }
-        const reworkedUrl = addOnPieces.length > 0 ? splitUrl.concat(addOnPieces).join('/') : splitUrl.join('/');
-        return reworkedUrl;
+        return splitUrl;
+    }
+
+    ngOnDestroy(): void {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 
 }

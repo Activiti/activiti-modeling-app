@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilKeyChanged, filter, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { distinctUntilKeyChanged, filter, map, takeUntil, tap } from 'rxjs/operators';
 import { TabManagerEntityService } from '../components/tab-manager/tab-manager-entity.service';
 import { TabModel } from '../models/tab.model';
 
@@ -34,7 +34,9 @@ export class TabManagerService {
     }
 
     public removeTab(tab: TabModel) {
-        this.setNewActiveTab(tab);
+        if (tab.active) {
+            this.setNewActiveTab(tab, this.tabList);
+        }
         this.tabManagerEntityService.removeOneFromCache(tab);
     }
 
@@ -55,22 +57,30 @@ export class TabManagerService {
         return this.tabList[index];
     }
 
-    public getActiveTab(): Observable<[TabModel, TabModel[]]> {
+    public getActiveTab(): Observable<TabModel> {
         this.tabManagerEntityService.setFilter(true);
         return this.tabManagerEntityService.filteredEntities$.pipe(
             filter(tabActives => tabActives.length === 1),
             map(tabActives => tabActives[0]),
             distinctUntilKeyChanged('id'),
-            withLatestFrom(this.tabManagerEntityService.entities$),
             takeUntil(this.resetTabs$));
     }
 
-    private setNewActiveTab(tab: TabModel) {
-        const currentOpenTabIndex = this.tabList.findIndex((openedTab) => openedTab.id === tab.id);
-        if (currentOpenTabIndex - 1 !== -1) {
-            const nextActiveTab = this.tabList[currentOpenTabIndex - 1];
+    private setNewActiveTab(tab: TabModel, openedTabs: TabModel[]) {
+        const currentOpenTabIndex = openedTabs.findIndex((openedTab) => openedTab.id === tab.id);
+        const nextTabIndex = this.getNextRelativeTabIndex(currentOpenTabIndex, openedTabs);
+        if (nextTabIndex >= 0) {
+            const nextActiveTab = openedTabs[nextTabIndex];
             nextActiveTab.active = true;
             this.tabManagerEntityService.updateOneInCache(tab);
+        }
+    }
+
+    private getNextRelativeTabIndex(currentTabIndex: number, openedTabs: TabModel[]) {
+        if(openedTabs.length === 1 && currentTabIndex === 0){
+            return -1;
+        }else{
+            return currentTabIndex -1 >= 0 ? currentTabIndex -1 : currentTabIndex + 1;
         }
     }
 
