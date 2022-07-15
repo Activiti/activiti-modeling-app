@@ -47,6 +47,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
     ChangeProcessModelContextAction,
+    DraftDeleteProcessAction,
     DraftUpdateProcessContentAction,
     UpdateProcessAttemptAction,
     UpdateProcessExtensionsAction,
@@ -238,6 +239,10 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
                 map(state => state === ModelEditorState.SAVED),
                 catchError(() => of(false))
             );
+    }
+
+    deleteDraftStateOnDontSave() {
+        this.store.dispatch(new DraftDeleteProcessAction(this.modelId));
     }
 
     private get metadataSnapshot(): Process {

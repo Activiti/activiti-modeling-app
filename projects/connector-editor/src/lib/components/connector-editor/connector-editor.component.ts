@@ -42,7 +42,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
-import { ChangeConnectorContent, DraftUpdateConnectorContentAction, UpdateConnectorContentAttemptAction} from '../../store/connector-editor.actions';
+import { ChangeConnectorContent, DraftDeleteConnectorAction, DraftUpdateConnectorContentAction, UpdateConnectorContentAttemptAction} from '../../store/connector-editor.actions';
 const memoize = require('lodash/memoize');
 
 @Component({
@@ -177,6 +177,10 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
             map(state => state === ModelEditorState.SAVED),
             catchError(() => of(false))
         );
+    }
+
+    deleteDraftStateOnDontSave() {
+        this.store.dispatch(new DraftDeleteConnectorAction(this.modelId));
     }
 
     private setVisibilityConditions() {
