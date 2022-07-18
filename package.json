@@ -7,14 +7,14 @@
   "scripts": {
     "postinstall": "ngcc",
     "prebuild": "mkdir -p ./app/.tmp && cp ./app/src/app.config.json.tpl ./app/.tmp/app.config.json",
-    "build": "ng build",
+    "build": "NODE_OPTIONS=--max_old_space_size=8192 ${NG_CLI:-nx} build",
     "prestart": "mkdir -p ./app/.tmp && npm run assemble-app-config && npm run validate-app-config",
     "assemble-app-config": "envsub --env-file ./.env --env APP_CONFIG_BPM_HOST=http://localhost:4201 --env APP_CONFIG_ECM_HOST=http://localhost:4201 --all ./app/src/app.config.json.tpl ./app/.tmp/app.config.json",
     "validate-app-config": "ajv validate -s ./node_modules/@alfresco/adf-core/app.config.schema.json -d ./app/.tmp/app.config.json --errors=text --verbose",
-    "start": "ng serve",
-    "test": "ng test",
+    "start": "NODE_OPTIONS=--max_old_space_size=8192 ${NG_CLI:-nx} serve",
+    "test": "${NG_CLI:-nx} test",
     "test:ci": "NODE_OPTIONS=--max_old_space_size=8192 nx affected:test --all",
-    "lint": "ng lint",
+    "lint": "${NG_CLI:-nx} lint",
     "lint:ci": "NODE_OPTIONS=--max_old_space_size=8192 nx affected:lint --all --quiet",
     "dep-graph": "nx dep-graph"
   },

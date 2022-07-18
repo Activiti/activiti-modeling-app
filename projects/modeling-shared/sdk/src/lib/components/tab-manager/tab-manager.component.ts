@@ -147,8 +147,10 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
                 this.store.dispatch(new ModelOpenedAction({ id: currentTab.id, type: currentTab.modelType }));
                 const projectUrlPart = this.getProjectUrl();
                 this.unsavedChanges.disableCheck = true;
-                this.router.navigate([...projectUrlPart, currentTab.modelType, currentTab.id],
-                    { relativeTo: this.activatedRoute }).then(() => this.unsavedChanges.disableCheck = false, () => { });
+                this.router.navigate(
+                    [...projectUrlPart, currentTab.modelType, currentTab.id],
+                    { relativeTo: this.activatedRoute }
+                ).then(() => this.unsavedChanges.disableCheck = false, () => { });
             }
         }
     }
