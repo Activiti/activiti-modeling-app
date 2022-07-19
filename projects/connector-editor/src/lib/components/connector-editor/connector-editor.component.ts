@@ -38,7 +38,8 @@ import {
     CONNECTOR_MODEL_ENTITY_SELECTORS,
     ModelEntitySelectors,
     MODEL_COMMAND_SERVICE_TOKEN,
-    BasicModelCommands
+    BasicModelCommands,
+    UpdateTabDirtyState
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
@@ -116,6 +117,7 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
         this.modelCommands.init(CONNECTOR, ContentType.Connector, this.modelId$, this.editorContent$);
         this.setVisibilityConditions();
         this.store.select(this.entitySelector.selectModelDraftStateExists(this.modelId)).pipe(takeUntil(this.onDestroy$)).subscribe(isDirty => {
+            this.store.dispatch(new UpdateTabDirtyState(isDirty, this.modelId));
             if (isDirty) {
                 this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_upload');
                 this.modelCommands.setDisable(BasicModelCommands.save, false);

@@ -4,6 +4,7 @@
             <div class="ama-tab-model-body">
                 <mat-icon class="ama-tab-model-icon" [attr.data-automation-id]="'model-tab-icon-'+tab.id">{{ tab.icon }}</mat-icon>
                 <p [attr.data-automation-id]="'model-tab-title-'+tab.id" class="ama-tab-title">{{ tab.title }}</p>
+                <div *ngIf="tab.isDirty" class="ama-tab-model-dirty" [attr.data-automation-id]="'model-tab-dirty-'+tab.id"></div>
                 <button mat-icon-button [disableRipple]="true" [attr.data-automation-id]="'model-tab-close-button-'+tab.id"
                         class="ama-tab-model-close" [id]="'model-tab-close-button-'+tab.id" (click)="onRemoveTab(tab)">
                     <mat-icon class="ama-tab-model-icon-close">close</mat-icon>

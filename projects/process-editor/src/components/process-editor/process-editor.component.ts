@@ -44,6 +44,7 @@ import {
     ModelEntitySelectors,
     BasicModelCommands,
     MODEL_COMMAND_SERVICE_TOKEN,
+    UpdateTabDirtyState,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
     ChangeProcessModelContextAction,
@@ -148,6 +149,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.loading$ = this.store.select(selectProcessLoading);
         this.setVisibilityConditions();
         this.store.select(this.entitySelector.selectModelDraftStateExists(this.modelId)).pipe(takeUntil(this.onDestroy$)).subscribe(isDirty => {
+            this.store.dispatch(new UpdateTabDirtyState(isDirty, this.modelId));
             if (isDirty) {
                 this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_upload');
                 this.modelCommands.setDisable(BasicModelCommands.save, false);

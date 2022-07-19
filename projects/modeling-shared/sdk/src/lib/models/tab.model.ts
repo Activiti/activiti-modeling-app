@@ -22,12 +22,14 @@ export class TabModel {
     public icon: string;
     public active: boolean;
     public modelType: MODEL_TYPE;
+    public isDirty: boolean;
 
-   constructor(title: string, icon: string, modelId: string, modelType: MODEL_TYPE, active: boolean) {
+    constructor(title: string, icon: string, modelId: string, modelType: MODEL_TYPE, active: boolean, isDirty: boolean) {
         this.id = modelId;
         this.title = title;
         this.icon = icon;
         this.modelType = modelType;
         this.active = active;
+        this.isDirty = isDirty;
     }
 }

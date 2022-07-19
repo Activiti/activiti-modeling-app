@@ -205,7 +205,6 @@ describe('TabManagerComponent', () => {
         dirtyStateSpy.mockReturnValue(false);
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
-        await fixture.whenStable();
 
         triggerModelIdChangeWithId('fake-process-id');
         fixture.detectChanges();
@@ -222,7 +221,6 @@ describe('TabManagerComponent', () => {
         dirtyStateSpy.mockReturnValue(false);
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
-        await fixture.whenStable();
 
         triggerModelIdChangeWithId('fake-process-id');
         fixture.detectChanges();
@@ -248,7 +246,6 @@ describe('TabManagerComponent', () => {
         jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(true));
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
-        await fixture.whenStable();
 
         triggerModelIdChangeWithId('fake-process-id');
         fixture.detectChanges();
@@ -275,7 +272,6 @@ describe('TabManagerComponent', () => {
         jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(true));
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
-        await fixture.whenStable();
 
         const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('.ama-tab-model-close');
         closeButton.click();
@@ -292,7 +288,6 @@ describe('TabManagerComponent', () => {
         dirtyStateSpy.mockReturnValue(false);
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
-        await fixture.whenStable();
 
         const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('.ama-tab-model-close');
         closeButton.click();
@@ -307,7 +302,6 @@ describe('TabManagerComponent', () => {
         dirtyStateSpy.mockReturnValue(true);
         jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(false));
         fixture.detectChanges();
-        await fixture.whenStable();
 
         const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('.ama-tab-model-close');
         closeButton.click();
@@ -337,7 +331,6 @@ describe('TabManagerComponent', () => {
         jest.spyOn(location, 'path').mockReturnValue('/project/whatever-project-id/ui/fake-ui-id');
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
-        await fixture.whenStable();
 
         triggerModelIdChangeWithId('fake-process-id');
         fixture.detectChanges();
@@ -355,7 +348,6 @@ describe('TabManagerComponent', () => {
         jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(true));
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
-        await fixture.whenStable();
 
         triggerModelIdChangeWithId('fake-process-id');
         fixture.detectChanges();

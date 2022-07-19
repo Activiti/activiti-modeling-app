@@ -131,7 +131,7 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
     private createNewTab(modelId: string, entityType: MODEL_TYPE, modelIcon: string) {
         return this.store.select(selectModelEntityByType(entityType, modelId)).pipe(
             filter((model) => !!model),
-            map((model) => new TabModel(model.name, modelIcon, model.id, model.type.toLocaleLowerCase(), true)),
+            map((model) => new TabModel(model.name, modelIcon, model.id, model.type.toLocaleLowerCase(), true, false)),
             distinctUntilKeyChanged('id'),
             tap((tab: TabModel) => this.tabManagerService.addTabToList(tab)),
             takeUntil(this.tabManagerService.resetTabs$)

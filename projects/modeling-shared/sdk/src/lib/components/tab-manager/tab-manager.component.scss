@@ -49,6 +49,13 @@
         flex: 1;
     }
 
+    .ama-tab-model-dirty {
+        width: 8px;
+        height: 8px;
+        background: var(--theme-primary-color);
+        border-radius: 12px;
+    }
+
     .ama-tab-model-icon-close {
         font-size: 15px;
         font-weight: bolder;

@@ -21,7 +21,7 @@ import { hot, getTestScheduler } from 'jasmine-marbles';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { TabManagerEntityService, TabManagerService, UpdateTabTitle } from '@alfresco-dbp/modeling-shared/sdk';
+import { TabManagerEntityService, TabManagerService, UpdateTabDirtyState, UpdateTabTitle } from '@alfresco-dbp/modeling-shared/sdk';
 import { TabEffects } from './tab.effects';
 
 describe('TabEffects', () => {
@@ -70,5 +70,18 @@ describe('TabEffects', () => {
         getTestScheduler().flush();
 
         expect(tabManagerSpy).toHaveBeenCalledWith('newName', 'modelId-1');
+    });
+
+    it('updateTabDirtyState should update the tab dirty state', () => {
+        const tabManagerSpy = spyOn(tabManagerService, 'updateTabDirtyState');
+
+        const updateTabDirtyStateAction = new UpdateTabDirtyState(true, 'modelId-1');
+        actions$ = hot('a', { a: updateTabDirtyStateAction });
+
+        effects.updateTabDirtyState.subscribe(() => {
+        });
+        getTestScheduler().flush();
+
+        expect(tabManagerSpy).toHaveBeenCalledWith(true, 'modelId-1');
     });
 });

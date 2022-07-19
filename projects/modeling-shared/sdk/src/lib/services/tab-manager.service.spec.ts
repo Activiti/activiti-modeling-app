@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-import { TabModel, TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 import { TabManagerEntityService } from '../components/tab-manager/tab-manager-entity.service';
+import { TabModel } from '../models/tab.model';
 import { TabManagerService } from './tab-manager.service';
 
 
@@ -26,7 +27,7 @@ describe('TabManagerService', () => {
     let service: TabManagerService;
     const entitySubject = new BehaviorSubject<TabModel[]>([]);
     const fakeTabModel: TabModel = <TabModel> {id: 'id-1', title: 'new-name'};
-    const fakeTabModelDisturbance: TabModel = <TabModel> {id: 'id-2', title: 'new-name-2'};
+    const fakeTabModelDisturbance: TabModel = <TabModel> {id: 'id-2', title: 'new-name-2', isDirty: false };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -72,4 +73,23 @@ describe('TabManagerService', () => {
         });
     });
 
+    it('should update dirty state when tab is found in tabs registry', (done) => {
+        entitySubject.next([fakeTabModel, fakeTabModelDisturbance]);
+        service.getTabs().subscribe((tabs) => {
+            service.updateTabDirtyState(true, 'id-1');
+            expect(tabs[0].id).toBe('id-1');
+            expect(tabs[0].isDirty).toBe(true);
+            done();
+        });
+    });
+
+    it('should not update dirty state when tab state has not been changed', (done) => {
+        entitySubject.next([fakeTabModel]);
+        service.getTabs().subscribe((tabs) => {
+            service.updateTabDirtyState(false, 'id-1');
+            expect(tabs.length).toBe(1);
+            expect(tabs).toContainEqual(fakeTabModel);
+            done();
+        });
+    });
 });

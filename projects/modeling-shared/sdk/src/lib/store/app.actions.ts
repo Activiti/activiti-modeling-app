@@ -49,6 +49,12 @@ export class UpdateTabTitle implements Action {
     constructor(public title: string, public modelId: string | number) {}
 }
 
+export const UPDATE_TAB_DIRTY_STATE = 'Update tab dirty state';
+export class UpdateTabDirtyState implements Action {
+    readonly type = UPDATE_TAB_DIRTY_STATE;
+    constructor(public dirtyState: boolean, public modelId: string | number) {}
+}
+
 export interface OpenInfoDialogActionPayload {
     dialogData?: DialogData;
 }

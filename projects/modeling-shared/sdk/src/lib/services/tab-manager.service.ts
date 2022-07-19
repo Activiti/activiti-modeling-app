@@ -114,4 +114,11 @@ export class TabManagerService {
         }
     }
 
+    updateTabDirtyState(dirtyState: boolean, modelId: string | number) {
+        const tab = this.tabList?.find(openTab => openTab.id === modelId);
+        if (tab && tab.isDirty !== dirtyState) {
+            tab.isDirty = dirtyState;
+        }
+    }
+
 }
