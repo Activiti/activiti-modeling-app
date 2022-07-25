@@ -17,7 +17,3 @@
 
 export { StudioLayoutModule } from './studio/studio-layout.module';
 export { studioLayoutRoutes } from './studio/studio-layout.routes';
-
-/** @deprecated: theming **/
-export { OriginsLayoutModule } from './origins/origins-layout.module';
-export { originsLayoutRoutes } from './origins/origins-layout.routes';

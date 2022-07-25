@@ -105,10 +105,11 @@
                             }
                         ],
                         "styles": [
-                            "app/src/assets/fonts/material-icons/material-icons.css",
-                            "app/src/assets/fonts/muli/muli.css",
                             "node_modules/cropperjs/dist/cropper.min.css",
-                            "app/src/old-styles.scss"
+                            "app/src/styles.scss",
+                            "app/src/assets/fonts/material-icons/material-icons.css",
+                            "app/src/assets/fonts/material-icons/material-icons-outlined.css",
+                            "app/src/assets/fonts/Inter/Inter.css"
                         ],
                         "scripts": []
                     },

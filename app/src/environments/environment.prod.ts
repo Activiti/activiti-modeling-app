@@ -24,7 +24,6 @@ export const environment: Environment<typeof FEATURES> = {
     e2e: false,
     features: {
         canary: true,
-        studioLayout: false,
         tabEditors: false
     }
 };

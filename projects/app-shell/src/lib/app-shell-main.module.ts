@@ -37,7 +37,7 @@ import { Store } from '@ngrx/store';
 import { AppStoreModule } from './store/app-store.module';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './router';
-import { OriginsLayoutModule, originsLayoutRoutes, StudioLayoutModule, studioLayoutRoutes } from './layout';
+import { StudioLayoutModule, studioLayoutRoutes } from './layout';
 import { getApplicationRoutes } from './application.routes';
 
 @NgModule({
@@ -76,24 +76,6 @@ import { getApplicationRoutes } from './application.routes';
     ]
 })
 export class AppShellMainModule {}
-
-/** @deprecated: theming **/
-@NgModule({
-    imports: [
-        AppShellMainModule,
-        OriginsLayoutModule,
-        AppRoutingModule.forRoot(getApplicationRoutes(originsLayoutRoutes), { useHash: true }),
-        // Ngx-translate only works if placed here, not in the AppShellMainModule...
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useClass: TranslateLoaderService
-            }
-        })
-    ]
-})
-export class OriginsAppShellModule {}
-
 @NgModule({
     imports: [
         AppShellMainModule,

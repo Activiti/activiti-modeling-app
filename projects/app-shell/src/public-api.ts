@@ -15,6 +15,6 @@
  * limitations under the License.
  */
 
-export { OriginsAppShellModule, StudioAppShellModule } from './lib/app-shell-main.module';
+export { StudioAppShellModule } from './lib/app-shell-main.module';
 export * from './lib/common/components/about/about.module';
 export * from './lib/common/services/plugin-routes-manager.service';
