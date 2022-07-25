@@ -47,11 +47,10 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
     selectedTabIndex = -1;
 
     private onDestroy$ = new Subject<void>();
+    currentTabs$: Observable<TabModel[]> | Store<TabModel[]>;
 
     @ViewChild('modelEditor')
     private modelEditor: ModelEditorComponent;
-
-    currentTabs$: Observable<TabModel[]> | Store<TabModel[]>;
 
     constructor(private activatedRoute: ActivatedRoute,
         private tabManagerService: TabManagerService,
@@ -109,12 +108,12 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
     }
 
     onRemoveTab(tab: TabModel) {
-        this.unsavedChanges.canDeactivate(this.modelEditor).pipe(take(1))
+        this.unsavedChanges.canDeactivate().pipe(take(1))
             .subscribe((choice) => {
                 if (choice) {
                     this.removeTab(tab);
+                    this.store.dispatch(new SetAppDirtyStateAction(false));
                 }
-                this.store.dispatch(new SetAppDirtyStateAction(false));
             });
     }
 
@@ -146,11 +145,7 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
             if (currentTab) {
                 this.store.dispatch(new ModelOpenedAction({ id: currentTab.id, type: currentTab.modelType }));
                 const projectUrlPart = this.getProjectUrl();
-                this.unsavedChanges.disableCheck = true;
-                this.router.navigate(
-                    [...projectUrlPart, currentTab.modelType, currentTab.id],
-                    { relativeTo: this.activatedRoute }
-                ).then(() => this.unsavedChanges.disableCheck = false, () => { });
+                void this.router.navigate([...projectUrlPart, currentTab.modelType, currentTab.id], { relativeTo: this.activatedRoute, state: { avoidCheck: true } });
             }
         }
     }

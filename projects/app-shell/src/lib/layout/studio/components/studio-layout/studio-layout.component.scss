@@ -6,8 +6,6 @@ mat-sidenav-container.studio-layout {
 
     .studio-layout-content {
         overflow: inherit;
-        margin-right: 1px !important;
-        margin-left: 324px !important;
 
         .modelingsdk-workbench-layout {
             .mat-sidenav-content {
@@ -17,8 +15,6 @@ mat-sidenav-container.studio-layout {
     }
 
     .studio-layout-content-rtl {
-        margin-left: 1px !important;
-        margin-right: 324px !important;
 
         .modelingsdk-workbench-layout {
             .mat-sidenav .mat-drawer-inner-container {

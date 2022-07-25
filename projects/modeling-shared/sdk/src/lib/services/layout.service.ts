@@ -20,7 +20,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 const TABLET_WIDTH = '768';
-const SMALL_SCREEN_WIDTH = '650';
+const SMALL_SCREEN_WIDTH = '680';
 @Injectable({ providedIn: 'root'})
 export class LayoutService {
 

@@ -17,6 +17,7 @@
         width: 100%;
         display:flex;
         justify-content: space-between;
+        align-items: flex-start;
 
         &-title {
             display:flex;
@@ -49,6 +50,18 @@
                 font-size: 16px;
                 line-height: 22px;
                 margin-left: 12px;
+
+                @media only screen and (max-width: 865px) {
+                    font-size: 11px;
+                    margin-left: 0;
+                }
+            }
+
+            @media only screen and (max-width: 865px) {
+                flex-wrap: wrap;
+                align-items: flex-start;
+                justify-content: flex-start;
+                flex-direction: column-reverse;
             }
         }
 
@@ -120,7 +133,7 @@
         }
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 865px) {
         width: 195px;
         padding-left: 15px;
     }

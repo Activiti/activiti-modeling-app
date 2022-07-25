@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { TranslationService } from '@alfresco/adf-core';
-import { CanDeactivate } from '@angular/router';
+import { CanDeactivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { of, Observable, zip } from 'rxjs';
 import { switchMap, tap, catchError } from 'rxjs/operators';
@@ -41,19 +41,18 @@ export enum UNSAVED_MODEL_REDIRECTION_CHOICE {
 export class UnsavedPageGuard
     implements CanDeactivate<CanComponentDeactivate> {
 
-    disableCheck = false;
-
     constructor(
         private store: Store<AmaState>,
         private dialogService: DialogService,
         private titleService: AmaTitleService,
-        private translationService: TranslationService
+        private translationService: TranslationService,
+        private router: Router
     ) { }
 
     canDeactivate(
-        component: CanComponentDeactivate,
+        component?: CanComponentDeactivate,
     ): Observable<boolean> {
-        if (this.disableCheck) {
+        if (this.router.getCurrentNavigation()?.extras?.state?.avoidCheck) {
             return of(true);
         } else {
             return this.store.select(selectAppDirtyState).pipe(

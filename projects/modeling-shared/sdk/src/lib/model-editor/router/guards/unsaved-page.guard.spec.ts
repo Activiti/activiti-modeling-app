@@ -26,6 +26,7 @@ import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { CanComponentDeactivate, UnsavedPageGuard } from './unsaved-page.guard';
 import { AmaTitleService } from '../../../services/title.service';
 import { selectAppDirtyState } from '../../../store/app.selectors';
+import { RouterTestingModule } from '@angular/router/testing';
 
 class MockComponent implements CanComponentDeactivate {
     returnValue: Observable<boolean> = of(false);
@@ -57,6 +58,7 @@ describe('UnsavedPageGuard', () => {
             imports: [
                 MatDialogModule,
                 TranslateModule.forRoot(),
+                RouterTestingModule.withRoutes([]),
                 BrowserAnimationsModule
             ],
             providers: [

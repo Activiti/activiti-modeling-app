@@ -9,7 +9,7 @@
             <div class="studio-project-list-header-title">
                 {{ headerLabel$ | async | translate }}
             </div>
-            <div class="studio-project-list-header-actions" *ngIf="!isTabletScreen; else iconButtons">
+            <div class="studio-project-list-header-actions" *ngIf="!isSmallScreen; else iconButtons">
                 <ng-container *ngFor="let action of actions">
                     <button mat-button (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
                         <span>{{ action.title | translate }}</span>
@@ -28,7 +28,7 @@
 <ng-template #iconButtons>
     <div class="studio-project-list-header-actions">
         <ng-container *ngFor="let action of actions">
-            <button mat-mini-fab (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
+            <button mat-mini-fab [matTooltip]="action.actionName" (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
                 <mat-icon>{{action.icon}}</mat-icon>
             </button>
         </ng-container>
