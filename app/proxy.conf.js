@@ -38,5 +38,14 @@ module.exports = {
             "^/script-service/script-service": ""
         },
         'logLevel': 'debug'
+    },
+    "/identity-adapter-service": {
+        "target": APP_CONFIG_BPM_HOST,
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/identity-adapter-service/identity-adapter-service": ""
+        },
+        'logLevel': 'debug'
     }
 };
