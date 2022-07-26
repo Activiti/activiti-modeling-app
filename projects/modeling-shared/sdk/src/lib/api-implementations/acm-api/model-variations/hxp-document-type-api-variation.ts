@@ -47,7 +47,8 @@ export class HxPDocumentTypeApiVariation<M extends HxPDocumentType, C extends JS
 
     public createInitialContent(model: M): C {
         return <C>{
-            description: model.description
+            description: model.description,
+            allOf: []
         };
     }
 

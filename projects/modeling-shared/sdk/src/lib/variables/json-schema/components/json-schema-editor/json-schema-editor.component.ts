@@ -102,6 +102,26 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
         if (changes['nodeSelectedAccessor']) {
             this.nodeSelected = isEqual(this.accessor, this.nodeSelectedAccessor);
         }
+
+        if (this.changesTriggerCustomization(changes)) {
+            this.customizeNode();
+        }
+    }
+
+    private changesTriggerCustomization(changes: SimpleChanges) {
+        const schemaChanges = changes['schema'] &&
+            !changes['schema'].isFirstChange() &&
+            JSON.stringify(changes['schema'].previousValue) !== JSON.stringify(changes['schema'].currentValue);
+
+        const accessorChanges = changes['accessor'] &&
+            !changes['accessor'].isFirstChange() &&
+            JSON.stringify(changes['accessor'].previousValue) !== JSON.stringify(changes['accessor'].currentValue);
+
+        const dataModelTypeChanges = changes['dataModelType'] &&
+            !changes['dataModelType'].isFirstChange() &&
+            JSON.stringify(changes['dataModelType'].previousValue) !== JSON.stringify(changes['dataModelType'].currentValue);
+
+        return schemaChanges || accessorChanges || dataModelTypeChanges;
     }
 
     get regex(): RegExp {
@@ -173,25 +193,29 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
 
     private filterReferencesStartingWith(hierarchy: PropertyTypeItem[], filteredReferences: string[], whiteList: boolean) {
         if (filteredReferences && hierarchy) {
-            for (let referencesIndex = 0; referencesIndex < filteredReferences.length; referencesIndex++) {
-                const reference = filteredReferences[referencesIndex];
+            if (whiteList) {
+                for (let hierarchyIndex = hierarchy.length - 1; hierarchyIndex >= 0; hierarchyIndex--) {
+                    const item = hierarchy[hierarchyIndex];
 
-                if (whiteList) {
-                    for (let hierarchyIndex = hierarchy.length - 1; hierarchyIndex >= 0; hierarchyIndex--) {
-                        const item = hierarchy[hierarchyIndex];
-                        if (item.value?.$ref && !item.value.$ref.startsWith(reference)) {
+                    if (item.children && item.children.length > 0) {
+                        this.filterReferencesStartingWith(item.children, filteredReferences, whiteList);
+                    } else if (item.value?.$ref) {
+                        const reference = item.value?.$ref;
+                        if (!filteredReferences.some(filter => reference.startsWith(filter))) {
                             hierarchy.splice(hierarchyIndex, 1);
-                        } else if (item.children && item.children.length > 0) {
-                            this.filterReferencesStartingWith(item.children, filteredReferences, whiteList);
                         }
                     }
-                } else {
-                    for (let hierarchyIndex = 0; hierarchyIndex < hierarchy.length; hierarchyIndex++) {
-                        const item = hierarchy[hierarchyIndex];
-                        if (item.value?.$ref && item.value.$ref.startsWith(reference)) {
+                }
+            } else {
+                for (let hierarchyIndex = 0; hierarchyIndex < hierarchy.length; hierarchyIndex++) {
+                    const item = hierarchy[hierarchyIndex];
+
+                    if (item.children && item.children.length > 0) {
+                        this.filterReferencesStartingWith(item.children, filteredReferences, whiteList);
+                    } else if (item.value?.$ref) {
+                        const reference = item.value?.$ref;
+                        if (filteredReferences.some(filter => reference.startsWith(filter))) {
                             hierarchy.splice(hierarchyIndex, 1);
-                        } else if (item.children && item.children.length > 0) {
-                            this.filterReferencesStartingWith(item.children, filteredReferences, whiteList);
                         }
                     }
                 }
@@ -418,7 +442,6 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     }
 
     onChanges() {
-        this.updateSchema();
         this.onTouched(this.value);
         this.onChange(this.value);
         this.changes.emit(this.value);
@@ -442,16 +465,8 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
         dialogRef.afterClosed().subscribe((result: JSONSchemaInfoBasics) => {
             if (result) {
                 this.value = result;
-                this.updateSchema();
             }
         });
-    }
-
-    private updateSchema() {
-        let node = this.jsonSchemaEditorService.getNodeFromSchemaAndAccessor(this.schema || this.value, this.accessor || ['root']);
-        if (node) {
-            node = cloneDeep(this.value);
-        }
     }
 
     private isNull(ele: any): boolean {

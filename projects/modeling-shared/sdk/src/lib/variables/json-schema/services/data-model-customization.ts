@@ -60,6 +60,16 @@ export abstract class DataModelCustomizer {
     addChild(schema: JSONSchemaInfoBasics, accessor: string[], type: string): JSONSchemaInfoBasics {
         return { type: 'object' };
     }
+
+    protected getNodeFromSchemaAndAccessor(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
+        let value = { ...schema };
+
+        for (let index = 1; index < accessor.length; index++) {
+            value = { ...value[accessor[index]] };
+        }
+
+        return value;
+    }
 }
 
 export function provideDataModelCustomization(implementationClass: Type<DataModelCustomizer>) {
