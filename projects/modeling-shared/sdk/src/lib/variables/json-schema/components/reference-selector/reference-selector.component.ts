@@ -19,6 +19,7 @@ import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/cor
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { EntityProperty } from '../../../../api/types';
 import { PropertyTypeItem } from '../../../properties-viewer/property-type-item/models';
+const cloneDeep = require('lodash/cloneDeep');
 
 @Component({
     selector: 'modelingsdk-reference-selector',
@@ -49,6 +50,7 @@ export class ReferenceSelectorComponent implements ControlValueAccessor {
 
     writeValue(ref: string): void {
         this.reference = ref;
+        this.property = cloneDeep(this.property);
         this.property.model.$ref = this.reference;
     }
 

@@ -28,9 +28,8 @@ import {
     DATE_TYPE_REFERENCE,
     FILE_TYPE_REFERENCE,
     FOLDER_TYPE_REFERENCE,
+    JsonNodeCustomization,
     JSONSchemaDefinition,
-    JsonSchemaEditorLabels,
-    JSONSchemaTypeDropdownDefinition,
     JSONTypePropertiesDefinition,
     TYPE
 } from '../models/model';
@@ -276,10 +275,6 @@ export class JsonSchemaEditorService {
             }));
     }
 
-    getTypeNames(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaTypeDropdownDefinition {
-        return this.findCustomizer(dataModelType).getTypeDropdownForNode(schema, accessor);
-    }
-
     getProtectedAttributesForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): string[] {
         const types = this.getTypes(this.getNodeFromSchemaAndAccessor(schema, accessor));
 
@@ -292,8 +287,8 @@ export class JsonSchemaEditorService {
         return [...new Set(attributes)];
     }
 
-    getLabelsForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JsonSchemaEditorLabels {
-        return this.findCustomizer(dataModelType).getLabels(schema, accessor);
+    getNodeCustomizationsForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JsonNodeCustomization {
+        return this.findCustomizer(dataModelType).getNodeCustomization(schema, accessor);
     }
 
     addPropertyForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
@@ -310,20 +305,6 @@ export class JsonSchemaEditorService {
 
     addChildForDataModelType(dataModelType: string, schema: JSONSchemaInfoBasics, accessor: string[], type: string): JSONSchemaInfoBasics {
         return this.findCustomizer(dataModelType).addChild(schema, accessor, type);
-    }
-
-    filterHierarchyByDataModelType(
-        dataModelType: string,
-        schema: JSONSchemaInfoBasics,
-        accessor: string[],
-        hierarchy: Observable<PropertyTypeItem[]>
-    ): Observable<PropertyTypeItem[]> {
-        return hierarchy.pipe(map(items => {
-            const customizedHierarchy = items.slice();
-            const filteredReferences = this.findCustomizer(dataModelType).filterDataModelReferencesStartingWith(schema, accessor);
-            this.filterReferencesStartingWith(customizedHierarchy, filteredReferences);
-            return customizedHierarchy;
-        }));
     }
 
     getNodeFromSchemaAndAccessor(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
@@ -358,22 +339,5 @@ export class JsonSchemaEditorService {
                 this.removeFilteredReferences(item.children, filteredReferences);
             }
         });
-    }
-
-    private filterReferencesStartingWith(hierarchy: PropertyTypeItem[], filteredReferences: string[]) {
-        if (filteredReferences && hierarchy) {
-            for (let referencesIndex = 0; referencesIndex < filteredReferences.length; referencesIndex++) {
-                const reference = filteredReferences[referencesIndex];
-
-                for (let hierarchyIndex = 0; hierarchyIndex < hierarchy.length; hierarchyIndex++) {
-                    const item = hierarchy[hierarchyIndex];
-                    if (item.value?.$ref && item.value.$ref.startsWith(reference)) {
-                        hierarchy.splice(hierarchyIndex, 1);
-                    } else if (item.children && item.children.length > 0) {
-                        this.filterReferencesStartingWith(item.children, filteredReferences);
-                    }
-                }
-            }
-        }
     }
 }

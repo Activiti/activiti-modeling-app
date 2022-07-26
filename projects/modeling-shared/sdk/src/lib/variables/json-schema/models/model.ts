@@ -122,15 +122,73 @@ export interface ChildrenDeletedEvent {
     index: number;
 }
 
-export interface JsonSchemaEditorLabels {
-    anyOf: string;
-    anyOfAddButton: string;
-    allOf: string;
-    allOfAddButton: string;
-    oneOf: string;
-    oneOfAddButton: string;
-    items: string;
-    propertyAddButton: string;
-    definitionAddButton: string;
-    root: string;
+export interface JsonNodeCustomization {
+    key: {
+        disabled: boolean;
+        hide: boolean;
+        value?: string;
+    },
+    required: {
+        disabled: boolean;
+        hide: boolean;
+        value?: boolean;
+    }
+    type: {
+        disabled: boolean;
+        hide: boolean;
+        static: boolean;
+        value?: string[];
+        definitions?: JSONSchemaTypeDropdownDefinition;
+        references: {
+            whiteList?: string[];
+            blackList?: string[];
+        };
+    },
+    title: {
+        disabled: boolean;
+        hide: boolean;
+        value?: string;
+    },
+    buttonTooltips: {
+        anyOf: string;
+        allOf: string;
+        oneOf: string;
+        property: string;
+        definition: string;
+    }
+}
+
+export class DefaultJsonNodeCustomization implements JsonNodeCustomization {
+    key = {
+        disabled: false,
+        hide: false
+    };
+
+    required = {
+        disabled: false,
+        hide: false
+    };
+
+    type = {
+        disabled: false,
+        hide: false,
+        static: false,
+        definitions: TYPES,
+        references: {
+            blackList: []
+        }
+    };
+
+    title = {
+        disabled: false,
+        hide: false
+    };
+
+    buttonTooltips = {
+        anyOf: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ANY_OF',
+        allOf: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ALL_OF',
+        oneOf: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ONE_OF',
+        property: 'SDK.JSON_SCHEMA_EDITOR.ADD_PROPERTY',
+        definition: 'SDK.JSON_SCHEMA_EDITOR.ADD_DEFINITION',
+    };
 }

@@ -18,7 +18,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { InjectionToken, Type } from '@angular/core';
 import { JSONSchemaInfoBasics } from '../../../api/types';
-import { JsonSchemaEditorLabels, JSONSchemaTypeDropdownDefinition, JSONTypePropertiesDefinition, TYPE, TYPES } from '../models/model';
+import {
+    DefaultJsonNodeCustomization,
+    JsonNodeCustomization,
+    JSONTypePropertiesDefinition,
+    TYPE
+} from '../models/model';
 
 export const DATA_MODEL_CUSTOMIZATION = new InjectionToken<DataModelCustomizer[]>('data-model-customizers');
 
@@ -28,8 +33,8 @@ export abstract class DataModelCustomizer {
 
     abstract getDataModelType(): string;
 
-    getTypeDropdownForNode(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaTypeDropdownDefinition {
-        return TYPES;
+    getNodeCustomization(schema: JSONSchemaInfoBasics, accessor: string[]): JsonNodeCustomization {
+        return new DefaultJsonNodeCustomization();
     }
 
     getPropertiesDefinitionForType(schema: JSONSchemaInfoBasics, accessor: string[], type: string): JSONTypePropertiesDefinition {
@@ -38,21 +43,6 @@ export abstract class DataModelCustomizer {
 
     getProtectedAttributesByType(schema: JSONSchemaInfoBasics, accessor: string[], type: string): string[] {
         return DataModelCustomizer.PROTECTED_ATTRIBUTES;
-    }
-
-    getLabels(schema: JSONSchemaInfoBasics, accessor: string[]): JsonSchemaEditorLabels {
-        return {
-            anyOf: 'anyOf',
-            anyOfAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ANY_OF',
-            allOf: 'allOf',
-            allOfAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ALL_OF',
-            oneOf: 'oneOf',
-            oneOfAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ONE_OF',
-            items: 'items',
-            propertyAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_PROPERTY',
-            definitionAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_DEFINITION',
-            root: 'root'
-        };
     }
 
     addProperty(schema: JSONSchemaInfoBasics, accessor: string[]): JSONSchemaInfoBasics {
@@ -69,10 +59,6 @@ export abstract class DataModelCustomizer {
 
     addChild(schema: JSONSchemaInfoBasics, accessor: string[], type: string): JSONSchemaInfoBasics {
         return { type: 'object' };
-    }
-
-    filterDataModelReferencesStartingWith(schema: JSONSchemaInfoBasics, accessor: string[]): string [] {
-        return [];
     }
 }
 

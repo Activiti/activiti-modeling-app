@@ -16,7 +16,7 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { TYPE, TYPES } from '../models/model';
+import { DefaultJsonNodeCustomization, TYPE } from '../models/model';
 import { DataModelCustomizer } from './data-model-customization';
 
 import { DefaultDataModelCustomizationService } from './default-data-model.customization.service';
@@ -29,8 +29,12 @@ describe('DefaultDataModelCustomizationService', () => {
         service = TestBed.inject(DefaultDataModelCustomizationService);
     });
 
-    it('should return the default modeling dropdown types', () => {
-        expect(service.getTypeDropdownForNode(jasmine.anything(), [])).toEqual(TYPES);
+    it('should return undefined as data model type', () => {
+        expect(service.getDataModelType()).toBeUndefined();
+    });
+
+    it('should return the default node customization', () => {
+        expect(service.getNodeCustomization(null, null)).toEqual(new DefaultJsonNodeCustomization());
     });
 
     it('should return the default properties definition for type', () => {
@@ -43,21 +47,6 @@ describe('DefaultDataModelCustomizationService', () => {
     it('should return the default protected attributes for type', () => {
         Object.keys(TYPE).forEach(type => {
             expect(service.getProtectedAttributesByType(jasmine.anything(), [], type)).toEqual(DataModelCustomizer.PROTECTED_ATTRIBUTES);
-        });
-    });
-
-    it('should return the default labels', () => {
-        expect(service.getLabels(jasmine.anything(), [])).toEqual({
-            anyOf: 'anyOf',
-            anyOfAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ANY_OF',
-            allOf: 'allOf',
-            allOfAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ALL_OF',
-            oneOf: 'oneOf',
-            oneOfAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ONE_OF',
-            items: 'items',
-            propertyAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_PROPERTY',
-            definitionAddButton: 'SDK.JSON_SCHEMA_EDITOR.ADD_DEFINITION',
-            root: 'root'
         });
     });
 
@@ -75,9 +64,5 @@ describe('DefaultDataModelCustomizationService', () => {
 
     it('should return the default schema for a new child', () => {
         expect(service.addChild(jasmine.anything(), [], '')).toEqual({ type: 'object' });
-    });
-
-    it('should return the default filter references', () => {
-        expect(service.filterDataModelReferencesStartingWith(jasmine.anything(), [])).toEqual([]);
     });
 });

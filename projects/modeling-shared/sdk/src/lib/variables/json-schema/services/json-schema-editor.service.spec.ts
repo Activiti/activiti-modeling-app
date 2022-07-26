@@ -21,9 +21,8 @@ import { of } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { JSONSchemaInfoBasics } from '../../../api/types';
 import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
-import { PropertyTypeItem } from '../../properties-viewer/property-type-item/models';
 import { hierarchy } from '../mocks/json-schema-editor.mocks';
-import { JSONSchemaDefinition, JSONSchemaTypeDropdownDefinition, JSONTypePropertiesDefinition, TYPES } from '../models/model';
+import { DefaultJsonNodeCustomization, JSONSchemaDefinition, JSONSchemaTypeDropdownDefinition, JSONTypePropertiesDefinition, TYPES } from '../models/model';
 import { DataModelCustomizer, DATA_MODEL_CUSTOMIZATION } from './data-model-customization';
 import { DefaultDataModelCustomizationService } from './default-data-model.customization.service';
 import { JsonSchemaEditorService } from './json-schema-editor.service';
@@ -62,12 +61,9 @@ describe('JsonSchemaEditorService', () => {
     let defaultCustomizer: DefaultDataModelCustomizationService;
     let defaultCustomizerSpy: jasmine.Spy;
     const customCustomizer = new CustomDataModelCustomizer();
-    let customCustomizerSpy: jasmine.Spy;
-    let modelingJSONSchemaService: ModelingJSONSchemaService;
     let findCustomizerSpy: jasmine.Spy;
 
     beforeEach(() => {
-        customCustomizerSpy = spyOn(customCustomizer, 'getTypeDropdownForNode');
         TestBed.configureTestingModule({
             providers: [
                 {
@@ -85,9 +81,8 @@ describe('JsonSchemaEditorService', () => {
             ]
         });
         service = TestBed.inject(JsonSchemaEditorService);
-        modelingJSONSchemaService = TestBed.inject(ModelingJSONSchemaService);
         defaultCustomizer = TestBed.inject(DefaultDataModelCustomizationService);
-        defaultCustomizerSpy = spyOn(defaultCustomizer, 'getTypeDropdownForNode');
+        defaultCustomizerSpy = spyOn(defaultCustomizer, 'getNodeCustomization').and.callThrough();
         findCustomizerSpy = spyOn<any>(service, 'findCustomizer').and.callThrough();
     });
 
@@ -459,36 +454,6 @@ describe('JsonSchemaEditorService', () => {
         });
     });
 
-    describe('getTypeNames', () => {
-        it('should call default customizer when no providers', () => {
-            service = new JsonSchemaEditorService(modelingJSONSchemaService, null, defaultCustomizer);
-
-            service.getTypeNames('whatever', {}, []);
-
-            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
-        });
-
-        it('should call default customizer when no data model type is provided ', () => {
-            service.getTypeNames(undefined, {}, []);
-            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
-
-            service.getTypeNames(null, {}, []);
-            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
-        });
-
-        it('should call default customizer when no provider matches the data model type', () => {
-            service.getTypeNames('whatever', {}, []);
-
-            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
-        });
-
-        it('should call the registered customizer when provider matches the data model type', () => {
-            service.getTypeNames('custom', {}, []);
-
-            expect(customCustomizerSpy).toHaveBeenCalledWith({}, []);
-        });
-    });
-
     describe('getProtectedAttributesForDataModelType', () => {
         it('should call the find customizer', () => {
             service.getProtectedAttributesForDataModelType(null, { type: 'string' }, []);
@@ -513,20 +478,18 @@ describe('JsonSchemaEditorService', () => {
         });
     });
 
-    describe('getLabelsForDataModelType', () => {
+    describe('getNodeCustomizationsForDataModelType', () => {
         it('should call the find customizer', () => {
-            service.getLabelsForDataModelType(null, {}, []);
+            service.getNodeCustomizationsForDataModelType(null, {}, []);
 
             expect(findCustomizerSpy).toHaveBeenCalledWith(null);
         });
 
-        it('should call the customizer to retrieve the labels and return them', () => {
-            const spy = spyOn(defaultCustomizer, 'getLabels').and.returnValue('mock');
+        it('should call the customizer to retrieve the customizations', () => {
+            const result = service.getNodeCustomizationsForDataModelType(null, {}, []);
 
-            const result = service.getLabelsForDataModelType(null, {}, []);
-
-            expect(spy).toHaveBeenCalledWith({}, []);
-            expect(result).toEqual('mock');
+            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
+            expect(result).toEqual(new DefaultJsonNodeCustomization());
         });
     });
 
@@ -595,39 +558,6 @@ describe('JsonSchemaEditorService', () => {
 
             expect(spy).toHaveBeenCalledWith({}, [], '');
             expect(result).toEqual('mock');
-        });
-    });
-
-    describe('filterHierarchyByDataModelType', () => {
-        it('should call the find customizer', async () => {
-            await service.filterHierarchyByDataModelType(null, {}, [], of([])).toPromise();
-
-            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
-        });
-
-        it('should call the customizer to retrieve the data models filter', async () => {
-            const spy = spyOn(defaultCustomizer, 'filterDataModelReferencesStartingWith').and.returnValue(['mock']);
-
-            await service.filterHierarchyByDataModelType(null, {}, [], of([])).toPromise();
-
-            expect(spy).toHaveBeenCalledWith({}, []);
-        });
-
-        it('should filter the items in the hierarchy which reference starts with the filters', async () => {
-            const item: PropertyTypeItem = {
-                displayName: 'mock',
-                iconName: 'mock',
-                isCustomIcon: true,
-                provider: 'mock',
-                value: {
-                    $ref: 'mock/path/to/definition'
-                }
-            };
-            spyOn(defaultCustomizer, 'filterDataModelReferencesStartingWith').and.returnValue(['mock']);
-
-            const result = await service.filterHierarchyByDataModelType(null, {}, [], of([item])).toPromise();
-
-            expect(result).toEqual([]);
         });
     });
 });

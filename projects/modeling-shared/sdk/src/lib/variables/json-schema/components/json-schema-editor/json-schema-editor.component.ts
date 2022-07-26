@@ -24,9 +24,9 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
     ChildrenDeletedEvent,
+    JsonNodeCustomization,
     JSONSchemaDefinition,
     JSONSchemaEditorDialogData,
-    JsonSchemaEditorLabels,
     JSONSchemaTypeDropdownDefinition
 } from '../../models/model';
 import { JsonSchemaEditorDialogComponent } from '../json-schema-editor-dialog/json-schema-editor-dialog.component';
@@ -36,6 +36,7 @@ import { PropertyTypeItem } from '../../../../variables/properties-viewer/proper
 import { Observable } from 'rxjs';
 import { MODELER_NAME_REGEX } from '../../../../helpers/utils/create-entries-names';
 import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/operators';
 const isEqual = require('lodash/isEqual');
 const cloneDeep = require('lodash/cloneDeep');
 
@@ -70,7 +71,6 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     @Input() nodeSelectedAccessor: any[];
     @Input() allowCustomAttributes = true;
     @Input() allowAttributesPreview = true;
-    @Input() disableTypeSelection = false;
     @Input() schema: JSONSchemaInfoBasics;
     @Output() changes = new EventEmitter<JSONSchemaInfoBasics>();
     @Output() propertyDeleted = new EventEmitter<string>();
@@ -89,9 +89,9 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     type: string[] = [];
     typeNames: JSONSchemaTypeDropdownDefinition;
     nodeSelected = false;
-    labels: JsonSchemaEditorLabels;
-    blockedNodeLabel: string;
+    customizations: JsonNodeCustomization;
     customHierarchy: Observable<PropertyTypeItem[]>;
+    label: string;
 
     constructor(
         private jsonSchemaEditorService: JsonSchemaEditorService,
@@ -121,6 +121,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
             this.type = this.jsonSchemaEditorService.getTypes(this.value);
             this.initProperties();
             this.getDefinitionsInSchema();
+            this.customizeNode();
         }
 
         if (!this.schema || this.depth === 0) {
@@ -129,13 +130,73 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
         if (!this.accessor || this.depth === 0) {
             this.accessor = [this.key];
         }
-        this.typeNames = this.jsonSchemaEditorService.getTypeNames(this.dataModelType, this.schema, this.accessor);
-        this.labels = this.jsonSchemaEditorService.getLabelsForDataModelType(this.dataModelType, this.schema, this.accessor);
-        if (this.blockedNode && !this.enableKeyEdition) {
-            this.blockedNodeLabel = this.labels[this.key] ? this.translateService.instant(this.labels[this.key]) : this.key;
-        }
         this.nodeSelected = isEqual(this.accessor, this.nodeSelectedAccessor);
-        this.customHierarchy = this.jsonSchemaEditorService.filterHierarchyByDataModelType(this.dataModelType, this.schema, this.accessor, this.hierarchy);
+    }
+
+    private customizeNode() {
+        this.customizations = this.jsonSchemaEditorService.getNodeCustomizationsForDataModelType(this.dataModelType, this.schema, this.accessor);
+        this.typeNames = this.customizations.type.definitions;
+        this.customHierarchy = this.getCustomHierarchy(this.hierarchy, this.customizations.type.references);
+
+        if (this.customizations.key?.value) {
+            this.label = this.translateService.instant(this.customizations.key.value);
+        }
+
+        if (this.customizations.required?.value) {
+            this.required = this.customizations.required.value;
+        }
+
+        if (this.customizations.title?.value) {
+            this.value.title = this.customizations.title.value;
+        }
+
+        if (this.customizations.type?.value) {
+            this.type = this.customizations.type.value;
+        }
+    }
+
+    private getCustomHierarchy(hierarchy: Observable<PropertyTypeItem[]>, references: { whiteList?: string[], blacklist?: string[] }): Observable<PropertyTypeItem[]> {
+        return hierarchy.pipe(map(initialHierarchy => {
+            const result: PropertyTypeItem[] = [...initialHierarchy];
+
+            if (references?.whiteList) {
+                this.filterReferencesStartingWith(result, references.whiteList, true);
+            }
+
+            if (references?.blacklist) {
+                this.filterReferencesStartingWith(result, references.blacklist, false);
+            }
+
+            return result.filter(item => item.children?.length > 0 || item.value?.$ref);
+        }));
+    }
+
+    private filterReferencesStartingWith(hierarchy: PropertyTypeItem[], filteredReferences: string[], whiteList: boolean) {
+        if (filteredReferences && hierarchy) {
+            for (let referencesIndex = 0; referencesIndex < filteredReferences.length; referencesIndex++) {
+                const reference = filteredReferences[referencesIndex];
+
+                if (whiteList) {
+                    for (let hierarchyIndex = hierarchy.length - 1; hierarchyIndex >= 0; hierarchyIndex--) {
+                        const item = hierarchy[hierarchyIndex];
+                        if (item.value?.$ref && !item.value.$ref.startsWith(reference)) {
+                            hierarchy.splice(hierarchyIndex, 1);
+                        } else if (item.children && item.children.length > 0) {
+                            this.filterReferencesStartingWith(item.children, filteredReferences, whiteList);
+                        }
+                    }
+                } else {
+                    for (let hierarchyIndex = 0; hierarchyIndex < hierarchy.length; hierarchyIndex++) {
+                        const item = hierarchy[hierarchyIndex];
+                        if (item.value?.$ref && item.value.$ref.startsWith(reference)) {
+                            hierarchy.splice(hierarchyIndex, 1);
+                        } else if (item.children && item.children.length > 0) {
+                            this.filterReferencesStartingWith(item.children, filteredReferences, whiteList);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     registerOnChange(fn: any) {
@@ -217,9 +278,9 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
             }
 
             this.initProperties();
+            this.customizeNode();
             this.onChanges();
         }
-        this.labels = this.jsonSchemaEditorService.getLabelsForDataModelType(this.dataModelType, this.schema, this.accessor);
     }
 
     onReferenceChanges(reference: string) {
@@ -387,7 +448,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     }
 
     private updateSchema() {
-        let node = this.jsonSchemaEditorService.getNodeFromSchemaAndAccessor(this.schema, this.accessor);
+        let node = this.jsonSchemaEditorService.getNodeFromSchemaAndAccessor(this.schema || this.value, this.accessor || ['root']);
         if (node) {
             node = cloneDeep(this.value);
         }
