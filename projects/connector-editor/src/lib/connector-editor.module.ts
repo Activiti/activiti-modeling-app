@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
@@ -36,8 +36,7 @@ import {
     getExtensionErrorProvider,
     ModelEditorModule,
     CONNECTOR_MODEL_ENTITY_SELECTORS,
-    ModelEntitySelectors,
-    FEATURES,
+    ModelEntitySelectors
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -56,10 +55,8 @@ import { SaveAsConnectorCommand } from './services/commands/save-as-connector.co
 import { DownloadConnectorCommand } from './services/commands/download-connector.command';
 import { ValidateConnectorCommand } from './services/commands/validate-connector.command';
 import { ConnectorsLoaderGuard } from './router/guards/connectors-loader.guard';
-import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
 import { provideRoutes } from '@angular/router';
 import { connectorEditorTabRoutes } from './router/connector-editor-tab.routes';
-import { connectorEditorRoutes } from './router/connector-editor.routes';
 
 @NgModule({
     imports: [
@@ -95,6 +92,7 @@ import { connectorEditorRoutes } from './router/connector-editor.routes';
         ...getConnectorUploaderProvider(),
         ...getExtensionErrorProvider(ConnectorErrorProviderService),
         provideLogFilter(getConnectorLogInitiator()),
+        provideRoutes(connectorEditorTabRoutes),
         provideLoadableModelSchema({
             modelType: CONNECTOR,
             schemaKey: MODEL_SCHEMA_TYPE.CONNECTOR
@@ -107,12 +105,4 @@ import { connectorEditorRoutes } from './router/connector-editor.routes';
     ]
 })
 export class ConnectorEditorModule {
-    static forRoot<T extends typeof FEATURES>(environment: Environment<T>): ModuleWithProviders<ConnectorEditorModule> {
-        return {
-            ngModule: ConnectorEditorModule,
-            providers: [
-                ...(environment.features.tabEditors ? provideRoutes(connectorEditorTabRoutes) : provideRoutes(connectorEditorRoutes))
-            ]
-        };
-    }
 }

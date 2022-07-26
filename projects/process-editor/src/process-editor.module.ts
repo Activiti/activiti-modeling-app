@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -56,8 +56,7 @@ import {
     VariableMappingTypeModule,
     provideProcessEditorElementVariablesProvider,
     ModelEditorModule,
-    ModelEntitySelectors,
-    FEATURES
+    ModelEntitySelectors
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -127,10 +126,8 @@ import { SaveAsProcessCommand } from './services/commands/save-as-process.comman
 import { DownloadProcessSVGImageCommand } from './services/commands/download-process-svg-image.command';
 import { CardProcessVersionItemComponent } from './services/cardview-properties/process-version-item/process-version-item.component';
 import { ProcessModelerActionsComponent } from './components/process-modeler/process-modeler-actions/process-modeler-actions.component';
-import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
 import { provideRoutes } from '@angular/router';
 import { processEditorTabRoutes } from './router/process-editor-tab.routes';
-import { processEditorRoutes } from './router/process-editor.routes';
 import { ProcessesLoaderGuard } from './router/guards/processes-loader.guard';
 import { ProcessDeactivateGuard } from './router/guards/process-deactivate.guard';
 
@@ -252,6 +249,7 @@ import { ProcessDeactivateGuard } from './router/guards/process-deactivate.guard
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),
+        provideRoutes(processEditorTabRoutes),
         provideLogFilter(getProcessLogInitiator()),
         provideLoadableModelSchema({
             modelType: PROCESS,
@@ -269,12 +267,5 @@ import { ProcessDeactivateGuard } from './router/guards/process-deactivate.guard
     ]
 })
 export class ProcessEditorModule {
-    static forRoot<T extends typeof FEATURES>(environment: Environment<T>): ModuleWithProviders<ProcessEditorModule> {
-        return {
-            ngModule: ProcessEditorModule,
-            providers: [
-                ...(environment.features.tabEditors ? provideRoutes(processEditorTabRoutes) : provideRoutes(processEditorRoutes))
-            ]
-        };
-    }
+
 }

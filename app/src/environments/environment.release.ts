@@ -23,7 +23,6 @@ export const environment: Environment<typeof FEATURES> = {
     devTools: false,
     e2e: false,
     features: {
-        canary: false,
-        tabEditors: false
+        canary: false
     }
 };

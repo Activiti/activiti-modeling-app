@@ -18,17 +18,12 @@
 import { FeaturesInfo } from '@alfresco-dbp/adf-candidates/core/environment';
 
 export enum FEATURES {
-    canary = 'canary',
-    tabEditors = 'tabEditors'
+    canary = 'canary'
 }
 
 export const featuresInfo: FeaturesInfo<typeof FEATURES> = {
     canary: {
         name: 'Canary features',
         description: 'Listing of Canary (experimental) features as part of the About page'
-    },
-    tabEditors: {
-        name: 'Editor will open in tabs',
-        description: 'Experimental (HxP) Editor will open up in tabs'
     }
 };
