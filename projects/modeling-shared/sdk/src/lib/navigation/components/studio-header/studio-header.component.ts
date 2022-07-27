@@ -15,14 +15,16 @@
  * limitations under the License.
  */
 
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Inject, Optional } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Inject, Optional, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Project } from '../../../api/types';
 import { ProjectContextMenuActionClass, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, PROJECT_MENU_HEADER_ACTIONS } from '../../../project-editor/project-context-menu';
 import { LayoutService } from '../../../services/layout.service';
-import { OpenLogHistory } from '../../../store/app.actions';
+import { OpenInfoDialogAction, OpenLogHistory } from '../../../store/app.actions';
+import { selectAnyModelInDirtyState } from '../../../store/app.selectors';
 import { AmaState } from '../../../store/app.state';
 import { AddToFavoritesProjectAttemptAction,
     ExportProjectAction,
@@ -41,9 +43,11 @@ import { selectProject } from '../../../store/project.selectors';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StudioHeaderComponent {
+export class StudioHeaderComponent implements OnInit, OnDestroy {
 
     project$: Observable<Partial<Project>>;
+    isAnyModelInDirtyState = false;
+    onDestroy$: Subject<boolean> = new Subject();
 
     constructor(private store: Store<AmaState>,
                 private router: Router,
@@ -58,6 +62,12 @@ export class StudioHeaderComponent {
         }
     }
 
+    ngOnInit() {
+        this.store.select(selectAnyModelInDirtyState).pipe(takeUntil(this.onDestroy$)).subscribe(isAnyModelDirty => {
+            this.isAnyModelInDirtyState = isAnyModelDirty;
+        });
+    }
+
     private filterObjectArray(buttons, buttonsToFilter) {
         return buttons.filter( button =>
             buttonsToFilter.some( filterButton =>
@@ -67,7 +77,11 @@ export class StudioHeaderComponent {
     }
 
     onBackArrowClick() {
-        void this.router.navigate(['']);
+        if (this.isAnyModelInDirtyState) {
+            this.unsavedModelsMessage('SDK.PROJECT_HEADER.UNSAVED_BACK_TO_DASHBOARD_MESSAGE');
+        } else {
+            void this.router.navigate(['']);
+        }
     }
 
     onToggleLeftSideNav() {
@@ -83,11 +97,19 @@ export class StudioHeaderComponent {
     }
 
     onValidateProject(projectId: string) {
-        this.store.dispatch(new ValidateProjectAttemptAction(projectId));
+        if (this.isAnyModelInDirtyState) {
+            this.unsavedModelsMessage('SDK.PROJECT_HEADER.UNSAVED_VALIDATE_MESSAGE');
+        } else {
+            this.store.dispatch(new ValidateProjectAttemptAction(projectId));
+        }
     }
 
-    handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
-        this.store.dispatch(new actionClass(projectId));
+    handleClick(actionClass: ProjectContextMenuActionClass, projectId: string, buttonTitle?: string) {
+        if (buttonTitle === 'APP.MENU.RELEASE' && this.isAnyModelInDirtyState) {
+            this.unsavedModelsMessage('SDK.PROJECT_HEADER.UNSAVED_RELEASE_MESSAGE');
+        } else {
+            this.store.dispatch(new actionClass(projectId));
+        }
     }
 
     openLogHistory(projectId: string) {
@@ -109,5 +131,17 @@ export class StudioHeaderComponent {
             action: new ExportProjectAction({ projectId: project.id, projectName: project.name})
         };
         this.store.dispatch(new ExportProjectAttemptAction(payload));
+    }
+
+    unsavedModelsMessage(message: string) {
+        this.store.dispatch(new OpenInfoDialogAction({dialogData: {
+            title: 'SDK.PROJECT_HEADER.UNSAVED_DIALOG_TITLE',
+            messages: [message]
+        }}));
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.next(true);
+        this.onDestroy$.complete();
     }
 }

@@ -23,6 +23,7 @@ export const mockProject: Project = {
     description: 'description',
     version: '0.0.1',
     type: PROJECT,
+    favorite: false,
     createdBy: 'user',
     creationDate: new Date(),
     lastModifiedBy: 'user',

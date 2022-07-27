@@ -7,7 +7,11 @@
             "SAVE_AS_ICON": "Save as icon",
             "DOWNLOAD": "Download project",
             "VIEW_RELEASES": "View releases",
-            "VERSION": "Version"
+            "VERSION": "Version",
+            "UNSAVED_DIALOG_TITLE": "Unsaved Models",
+            "UNSAVED_VALIDATE_MESSAGE": "There are unsaved changes in some of the opened models, please save them before validating",
+            "UNSAVED_RELEASE_MESSAGE": "There are unsaved changes in some of the opened models, please save them before releasing",
+            "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "There are unsaved changes in some of the opened models, please save them before going back to dashboard"
         },
         "MODEL_EDITOR": {
             "DIALOG": {

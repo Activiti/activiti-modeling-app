@@ -37,6 +37,20 @@ export const selectSelectedModel = createSelector(getEntitiesState, selectApp, (
     }
 });
 
+export const selectAnyModelInDirtyState = createSelector(getEntitiesState, (entities) => {
+    const dirtyStates = [];
+    for (let i = 1; i < Object.keys(entities).length; i++) {
+        const value = Object.values(entities)[i];
+        if (value.draftEntities && (Object.keys(value.draftEntities.entities).length || Object.keys(value.draftEntities.entityContents).length)) {
+            dirtyStates.push(true);
+        } else {
+            dirtyStates.push(false);
+        }
+    }
+    return !dirtyStates.every(element => !element);
+});
+
+
 export const selectSelectedModelIdFor = function(modelType: string) {
     return createSelector(selectApp, (state: AppState) => state.openedModel && state.openedModel.type.toLowerCase() === modelType.toLowerCase() ? state.openedModel.id : null);
 };
