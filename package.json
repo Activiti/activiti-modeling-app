@@ -192,7 +192,7 @@
     "lite-server": "^2.5.4",
     "lodash.wrap": "^4.1.1",
     "mock-fs": "^4.13.0",
-    "ng-mocks": "^10.5.4",
+    "ng-mocks": "^14.1.0",
     "ng-packagr": "^10.1.2",
     "njwt": "^1.1.0",
     "node-stream-zip": "^1.13.0",
