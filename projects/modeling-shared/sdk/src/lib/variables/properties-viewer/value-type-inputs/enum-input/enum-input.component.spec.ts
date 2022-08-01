@@ -68,6 +68,7 @@ describe('PropertiesViewerEnumInputComponent', () => {
         });
 
         it('should emit null value when selecting none', () => {
+            component.value = '';
             const spy = spyOn(component.change, 'emit');
             dropdownElement.nativeElement.click();
             fixture.detectChanges();
