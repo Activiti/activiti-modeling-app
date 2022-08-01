@@ -1,0 +1,11 @@
+<div class="ama-project-collaborators">
+    <button *ngFor="let collaborator of collaborators | slice:0:3;" mat-button class="ama-collaborators-initials"
+        [matTooltip]="collaborator.username" matTooltipClass="ama-collaborator-tooltip"
+        [attr.data-automation-id]="'collaborator-initial-' + collaborator.username">
+        <div [outerHTML]="{ firstName: collaborator.username } |  usernameInitials"></div>
+    </button>
+    <span class="ama-extra-collaborators" *ngIf="collaborators?.length>3" [matTooltip]="collaboratorsToolTip"
+        matTooltipClass="ama-collaborator-tooltip">
+        +{{collaborators.length - 3}}
+    </span>
+</div>

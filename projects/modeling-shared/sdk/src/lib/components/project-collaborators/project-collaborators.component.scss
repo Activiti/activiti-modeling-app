@@ -1,0 +1,32 @@
+
+.ama-project-collaborators {
+    display: flex;
+    align-items: center;
+
+    .ama-collaborators-initials {
+        font-size: 10px;
+        border-radius: 90%;
+        height: 24px;
+        margin-right: 2px;
+        min-width: 24px;
+        padding: 0;
+        font-weight: bolder;
+        line-height: 24px !important;
+        text-align: center;
+        vertical-align: middle;
+        background: var(--theme-studio-background) !important;
+        border: none;
+    }
+
+    .ama-extra-collaborators {
+        margin-left: 2px;
+    }
+
+}
+
+.ama-collaborator-tooltip {
+    font-size: 12px;
+    line-height: 16px;
+    background-color: black !important;
+    opacity: 2;
+}
