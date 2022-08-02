@@ -181,7 +181,7 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
         );
     }
 
-    deleteDraftStateOnDontSave() {
+    deleteDraftState() {
         this.store.dispatch(new DraftDeleteConnectorAction(this.modelId));
     }
 

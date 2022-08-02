@@ -30,7 +30,7 @@
                         <div *ngFor="let content of contentByCategory.items"
                             data-automation-id="ama-project-tree-filter-contents-list">
                             <a mat-button [attr.data-automation-id]="filter.type + '-' + content.id"
-                                class="ama-project-tree-filter__button" [routerLink]="[filter.type, content.id]"
+                                class="ama-project-tree-filter__button" [routerLink]="[filter.type, content.id]" [state]="{ avoidCheck: true }"
                                 [routerLinkActive]="['active']"
                                 [class.ama-project-tree-filter-global-item]="isScopeGlobal(content?.scope)"
                                 [title]="content.name">

@@ -1,4 +1,7 @@
-<mat-tab-group [@.disabled]="true" #tabs class="ama-tab-models" [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onSelectedTabChanged($event)">
+<mat-tab-group [@.disabled]="true" #tabs class="ama-tab-models"
+    [(selectedIndex)]="selectedTabIndex"
+    (selectedTabChange)="onTabChange()"
+    (selectedIndexChange)="onSelectedTabChanged($event)">
     <mat-tab class="ama-tab-model" *ngFor="let tab of currentTabs$ | async" >
         <ng-template mat-tab-label>
             <div class="ama-tab-model-body">

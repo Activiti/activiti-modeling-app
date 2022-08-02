@@ -100,7 +100,6 @@ import {
     ModelEntitySelectors,
     UpdateTabTitle,
     SetLogHistoryVisibilityAction,
-    TabManagerEntityService,
     TabManagerService,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
@@ -135,7 +134,6 @@ export class ProcessEditorEffects {
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
         private entitySelector: ModelEntitySelectors,
-        private tabManagerEntityService: TabManagerEntityService,
         private tabManagerService: TabManagerService
     ) {}
 
@@ -187,10 +185,10 @@ export class ProcessEditorEffects {
     @Effect({ dispatch: false })
     deleteProcessSuccessEffect = this.actions$.pipe(
         ofType<DeleteProcessSuccessAction>(DELETE_PROCESS_SUCCESS),
-        withLatestFrom(this.store.select(selectSelectedProjectId), this.tabManagerEntityService.entities$),
-        map(([deletedSuccessAction, projectId, openedTabs]) => {
-            if (openedTabs && openedTabs.length > 0) {
-                this.tabManagerService.removeTabByModelId(deletedSuccessAction.processId, openedTabs);
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
+        map(([deletedSuccessAction, projectId]) => {
+            if (!this.tabManagerService.isTabListEmpty()) {
+                this.tabManagerService.removeTabByModelId(deletedSuccessAction.processId);
             } else {
                 void this.router.navigate(['/projects', projectId]);
             }

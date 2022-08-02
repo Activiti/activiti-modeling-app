@@ -47,6 +47,7 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
     selectedTabIndex = -1;
 
     private onDestroy$ = new Subject<void>();
+    private deleteActivatedTab$ = new Subject<TabModel>();
     currentTabs$: Observable<TabModel[]> | Store<TabModel[]>;
 
     @ViewChild('modelEditor')
@@ -103,17 +104,29 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
         return this.modelEditor.canDeactivate();
     }
 
-    deleteDraftStateOnDontSave() {
-        this.modelEditor.deleteDraftStateOnDontSave();
+    deleteDraftState() {
+        this.modelEditor.deleteDraftState();
     }
 
     onRemoveTab(tab: TabModel) {
-        this.unsavedChanges.canDeactivate().pipe(take(1))
-            .subscribe((choice) => {
-                if (choice) {
-                    this.removeTab(tab);
-                    this.store.dispatch(new SetAppDirtyStateAction(false));
-                }
+        if (tab.isDirty) {
+            if(tab.id !== this.currentActiveTab.id) {
+                this.tabManagerService.setTabActive(tab, this.currentActiveTab);
+                this.deleteActivatedTab$.pipe(take(1)).subscribe((tabToDelete) => this.showConfirmDialogAndClose(tabToDelete));
+            }else {
+                this.showConfirmDialogAndClose(tab);
+            }
+        } else {
+            this.removeTab(tab);
+        }
+    }
+
+    private showConfirmDialogAndClose(tab: TabModel) {
+        this.unsavedChanges.openDirtyStateDialog(this.modelEditor, tab.title).pipe(take(1), filter((choice) => choice))
+            .subscribe(() => {
+                this.deleteDraftState();
+                this.removeTab(tab);
+                this.store.dispatch(new SetAppDirtyStateAction(false));
             });
     }
 
@@ -148,6 +161,10 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate, OnDe
                 void this.router.navigate([...projectUrlPart, currentTab.modelType, currentTab.id], { relativeTo: this.activatedRoute, state: { avoidCheck: true } });
             }
         }
+    }
+
+    onTabChange() {
+        this.deleteActivatedTab$.next(this.currentActiveTab);
     }
 
     private getProjectUrl(): string[] {

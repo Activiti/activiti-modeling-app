@@ -29,6 +29,7 @@ export class TabManagerService {
     private resetTabs = new Subject<void>();
     public resetTabs$ = this.resetTabs.asObservable();
     private tabList: TabModel[] = [];
+    private editorMap = new Map();
 
     constructor(private tabManagerEntityService: TabManagerEntityService) {
     }
@@ -40,8 +41,8 @@ export class TabManagerService {
         this.tabManagerEntityService.removeOneFromCache(tab);
     }
 
-    public removeTabByModelId(modelId: string, openedTabs: TabModel[]) {
-        const deletedTab = openedTabs.find(tab => tab.id === modelId);
+    public removeTabByModelId(modelId: string) {
+        const deletedTab = this.tabList.find(tab => tab.id === modelId);
         this.removeTab(deletedTab);
     }
 
@@ -51,6 +52,10 @@ export class TabManagerService {
 
     public isTabListEmpty(): boolean {
         return this.tabList && this.tabList.length === 0;
+    }
+
+    public hasTabListElements(numberOfElements: number): boolean {
+        return this.tabList && this.tabList.length === numberOfElements;
     }
 
     public getTabByIndex(index: number): TabModel {
@@ -77,10 +82,10 @@ export class TabManagerService {
     }
 
     private getNextRelativeTabIndex(currentTabIndex: number, openedTabs: TabModel[]) {
-        if(openedTabs.length === 1 && currentTabIndex === 0){
+        if (openedTabs.length === 1 && currentTabIndex === 0) {
             return -1;
-        }else{
-            return currentTabIndex -1 >= 0 ? currentTabIndex -1 : currentTabIndex + 1;
+        } else {
+            return currentTabIndex - 1 >= 0 ? currentTabIndex - 1 : currentTabIndex + 1;
         }
     }
 
@@ -121,4 +126,13 @@ export class TabManagerService {
         }
     }
 
+    registerEditor(editor) {
+        if (!this.editorMap.get(editor.modelId)) {
+            this.editorMap.set(editor.modelId, editor);
+        }
+    }
+
+    getEditor(modelId: string) {
+        return this.editorMap.get(modelId);
+    }
 }

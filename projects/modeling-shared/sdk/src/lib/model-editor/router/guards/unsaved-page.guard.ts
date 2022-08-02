@@ -27,8 +27,8 @@ import { AmaTitleService } from '../../../services/title.service';
 import { selectAppDirtyState, selectSelectedModel } from '../../../store/app.selectors';
 
 export interface CanComponentDeactivate {
-    disableCheck?: boolean;
     canDeactivate: () => Observable<boolean>;
+    deleteDraftState: () => void;
 }
 
 export enum UNSAVED_MODEL_REDIRECTION_CHOICE {
@@ -50,7 +50,7 @@ export class UnsavedPageGuard
     ) { }
 
     canDeactivate(
-        component?: CanComponentDeactivate,
+        component: CanComponentDeactivate
     ): Observable<boolean> {
         if (this.router.getCurrentNavigation()?.extras?.state?.avoidCheck) {
             return of(true);
@@ -59,20 +59,7 @@ export class UnsavedPageGuard
                 switchMap(dirty => zip(of(dirty), this.store.select(selectSelectedModel))),
                 switchMap(([dirty, model]) => {
                     if (dirty && model) {
-                        const subtitle = this.translationService.instant('APP.DIALOGS.UNSAVED_PAGE_TITLE');
-
-                        const dialogData: MultipleChoiceDialogData<UNSAVED_MODEL_REDIRECTION_CHOICE> = {
-                            subtitle: `${subtitle}: "${model.name || ''}" ?`,
-                            choices: [
-                                { title: 'APP.DIALOGS.DONT_SAVE', choice: UNSAVED_MODEL_REDIRECTION_CHOICE.WITHOUT_SAVE, color: 'default', spinnable: false },
-                                { title: 'APP.DIALOGS.CANCEL', choice: UNSAVED_MODEL_REDIRECTION_CHOICE.ABORT, color: 'default', spinnable: false },
-                                { title: 'APP.DIALOGS.SAVE', choice: UNSAVED_MODEL_REDIRECTION_CHOICE.WITH_SAVE, color: 'primary', spinnable: true }
-                            ]
-                        };
-
-                        return this.dialogService.openMultipleChoiceDialog<UNSAVED_MODEL_REDIRECTION_CHOICE>(dialogData).pipe(
-                            switchMap(({ dialogRef, choice }) => this.selectedChoiceActions(component, dialogRef, choice))
-                        );
+                        return this.openDirtyStateDialog(component, model.name);
                     } else {
                         return of(true);
                     }
@@ -81,16 +68,29 @@ export class UnsavedPageGuard
         }
     }
 
+    public openDirtyStateDialog(component: CanComponentDeactivate, modelName: string) {
+        const subtitle = this.translationService.instant('APP.DIALOGS.UNSAVED_PAGE_TITLE');
+
+        const dialogData: MultipleChoiceDialogData<UNSAVED_MODEL_REDIRECTION_CHOICE> = {
+            subtitle: `${subtitle}: "${modelName || ''}" ?`,
+            choices: [
+                { title: 'APP.DIALOGS.DONT_SAVE', choice: UNSAVED_MODEL_REDIRECTION_CHOICE.WITHOUT_SAVE, color: 'default', spinnable: false },
+                { title: 'APP.DIALOGS.CANCEL', choice: UNSAVED_MODEL_REDIRECTION_CHOICE.ABORT, color: 'default', spinnable: false },
+                { title: 'APP.DIALOGS.SAVE', choice: UNSAVED_MODEL_REDIRECTION_CHOICE.WITH_SAVE, color: 'primary', spinnable: true }
+            ]
+        };
+
+        return this.dialogService.openMultipleChoiceDialog<UNSAVED_MODEL_REDIRECTION_CHOICE>(dialogData).pipe(
+            switchMap(({ dialogRef, choice }) => this.selectedChoiceActions(component, dialogRef, choice))
+        );
+    }
+
     private selectedChoiceActions(component, dialogRef, choice): Observable<boolean> {
         if (choice === UNSAVED_MODEL_REDIRECTION_CHOICE.ABORT) {
             dialogRef.close();
             return of(false);
         } else if (choice === UNSAVED_MODEL_REDIRECTION_CHOICE.WITHOUT_SAVE) {
-            if (component.modelEditor?.deleteDraftStateOnDontSave) {
-                component.modelEditor.deleteDraftStateOnDontSave();
-            } else if (component.deleteDraftStateOnDontSave) {
-                component.deleteDraftStateOnDontSave();
-            }
+            component.deleteDraftState();
             this.titleService.setSavedTitle();
             dialogRef.close();
             return of(true);

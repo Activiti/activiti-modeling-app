@@ -53,4 +53,9 @@ export class ModelEditorProxyComponent implements OnInit, CanComponentDeactivate
     canDeactivate(): Observable<boolean> {
         return this.modelEditor.canDeactivate();
     }
+
+    deleteDraftState() {
+        this.modelEditor.deleteDraftState();
+    }
+
 }

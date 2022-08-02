@@ -243,7 +243,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
             );
     }
 
-    deleteDraftStateOnDontSave() {
+    deleteDraftState() {
         this.store.dispatch(new DraftDeleteProcessAction(this.modelId));
     }
 
