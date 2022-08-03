@@ -20,7 +20,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { ElementVariable, ProcessEditorElementVariable } from '../../../api/types';
 import { expectedVariables } from '../../../mocks/process-editor.mock';
@@ -48,7 +48,7 @@ describe('VariableSelectorComponent', () => {
                 CoreModule.forChild(),
                 OverlayModule,
                 TranslateModule.forRoot(),
-                BrowserAnimationsModule
+                NoopAnimationsModule
             ],
             declarations: [VariableSelectorComponent]
         });

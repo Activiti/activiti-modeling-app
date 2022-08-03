@@ -18,7 +18,7 @@
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
@@ -59,7 +59,7 @@ describe('UnsavedPageGuard', () => {
                 MatDialogModule,
                 TranslateModule.forRoot(),
                 RouterTestingModule.withRoutes([]),
-                BrowserAnimationsModule
+                NoopAnimationsModule
             ],
             providers: [
                 UnsavedPageGuard,

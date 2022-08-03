@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { selectProcessCategories } from '../../store/process-editor.selectors';
 import { ProcessCategorySelectorComponent } from './process-category-selector.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
 describe('ProcessCategorySelectorComponent', () => {
@@ -46,7 +46,7 @@ describe('ProcessCategorySelectorComponent', () => {
                 MatFormFieldModule,
                 MatAutocompleteModule,
                 MatInputModule,
-                BrowserAnimationsModule,
+                NoopAnimationsModule,
                 ReactiveFormsModule,
             ],
             providers: [
