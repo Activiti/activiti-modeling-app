@@ -127,6 +127,13 @@ body {
     .ama-model-header .mat-toolbar-single-row {
       background-color: var(--theme-card-bg-color);
     }
+
+    .ama-collaborators-dialog-container {
+      .mat-dialog-container {
+          border-radius: 12px;
+          padding: 20px 0 24px;
+      }
+  }
 }
 
 body.dark-theme {

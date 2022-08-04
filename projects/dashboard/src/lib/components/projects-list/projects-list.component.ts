@@ -26,7 +26,7 @@ import {
     ProjectContextMenuActionClass, selectLoading, selectPagination, selectProjectSummaries,
     GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
     SaveAsProjectAttemptAction, ExportProjectAction,
-    GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries, LayoutService
+    GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries, LayoutService, GetCollaboratorsAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
@@ -215,6 +215,9 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
         }));
     }
 
+    addCollaborators(project: Partial<Project>) {
+        this.store.dispatch(new GetCollaboratorsAttemptAction(project.id));
+    }
     handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
         this.store.dispatch(new actionClass(projectId));
     }

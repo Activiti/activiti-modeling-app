@@ -23,7 +23,8 @@ import { Store } from '@ngrx/store';
 import {
     AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading,
     selectPagination, selectProjectSummaries, ExportProjectAction,
-    LayoutService
+    LayoutService,
+    GetCollaboratorsAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
@@ -126,6 +127,22 @@ describe ('Projects List Component', () => {
             projectId: 'mock-project-id',
             projectName: 'mock-project-name'
         });
+    });
+
+    it('clicking on collaborators button should dispatch an GetCollaboratorsAttemptAction', () => {
+        dashboardService.fetchProjects = jest.fn().mockReturnValue(of([ mockProject ]));
+
+        const dispatchSpy = spyOn(store, 'dispatch');
+        const menu = fixture.debugElement.query(By.css('[data-automation-id="project-context-mock-project-id"]'));
+        menu.triggerEventHandler('click', {});
+        fixture.detectChanges();
+        const button = fixture.debugElement.query(By.css('[data-automation-id="project-collaborators-mock-project-id"]'));
+        button.triggerEventHandler('click', {});
+        fixture.detectChanges();
+        const getCollaboratorsAction: GetCollaboratorsAttemptAction = dispatchSpy.calls.argsFor(0)[0];
+
+        expect(getCollaboratorsAction.type).toBe('GET_COLLABORATORS_ATTEMPT');
+        expect(getCollaboratorsAction.projectId).toEqual('mock-project-id');
     });
 
     it('should sort by updated column desc by default', () => {

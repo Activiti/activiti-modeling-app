@@ -27,7 +27,7 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of, ReplaySubject } from 'rxjs';
 import { LayoutService } from '../../../services/layout.service';
-import { OpenInfoDialogAction } from '../../../store/app.actions';
+import { GetCollaboratorsAttemptAction, OpenInfoDialogAction } from '../../../store/app.actions';
 import { AmaState } from '../../../store/app.state';
 import { ValidateProjectAttemptAction } from '../../../store/project.actions';
 import { StudioHeaderComponent } from './studio-header.component';
@@ -64,12 +64,10 @@ describe('StudioHeaderComponent', () => {
                     useValue: {
                         dispatch: jest.fn().mockReturnValue(of({})),
                         select: jest.fn().mockImplementation((selector) => {
-                            if (selector === 'selectProject') {
-                                return of();
-                            } else if (selector === 'selectAnyModelInDirtyState') {
+                            if (selector === 'selectAnyModelInDirtyState') {
                                 return of(true);
                             }
-                            return of({});
+                            return of({id: 'mock-id'});
                         }),
                     }
                 },
@@ -112,7 +110,19 @@ describe('StudioHeaderComponent', () => {
         validateButton.triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        expect(store.dispatch).toHaveBeenCalledWith(new ValidateProjectAttemptAction(undefined));
+        expect(store.dispatch).toHaveBeenCalledWith(new ValidateProjectAttemptAction('mock-id'));
+    });
+
+    it('should dispatch GetCollaboratorsAttemptAction on click of Add Collaborators button', () => {
+        spyOn(store, 'dispatch');
+        fixture.detectChanges();
+
+        const searchButton = fixture.debugElement.query(By.css('[data-automation-id="studio-header-add-collaborators"]'));
+        searchButton.triggerEventHandler('click', null);
+
+        fixture.detectChanges();
+
+        expect(store.dispatch).toHaveBeenCalledWith(new GetCollaboratorsAttemptAction('mock-id'));
     });
 
 });

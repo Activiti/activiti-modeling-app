@@ -18,6 +18,7 @@
 import { Action } from '@ngrx/store';
 import { MODEL_TYPE } from '../api/types';
 import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
+import { ProjectContextMenuAction } from '../project-editor/project-context-menu';
 
 export const SNACKBAR_ERROR = 'SNACKBAR_ERROR';
 export class SnackbarErrorAction implements Action {
@@ -142,5 +143,12 @@ export class OpenAboutDialogAction implements Action {
 export const OPEN_LOG_HISTORY =  'OPEN_LOG_HISTORY';
 export class OpenLogHistory implements Action {
     readonly type = OPEN_LOG_HISTORY;
+    constructor(public projectId: string) {}
+}
+
+
+export const GET_COLLABORATORS_ATTEMPT = 'GET_COLLABORATORS_ATTEMPT';
+export class GetCollaboratorsAttemptAction implements ProjectContextMenuAction {
+    readonly type = GET_COLLABORATORS_ATTEMPT;
     constructor(public projectId: string) {}
 }

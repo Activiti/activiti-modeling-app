@@ -40,6 +40,13 @@
         </div>
 
         <div class="ama-studio-project-header-action">
+            <button mat-icon-button
+                aria-label="Add Collaborators"
+                data-automation-id="studio-header-add-collaborators"
+                class="ama-studio-project-header-add-collaborators"
+                (click)="onAddCollaborators(project.id)">
+                <mat-icon>person_add</mat-icon>
+            </button>
             <adf-notification-history menuPositionX="before" menuPositionY="above"></adf-notification-history>
             <modelingsdk-user-info-menu class="ama-studio-project-header-user-info"></modelingsdk-user-info-menu>
             <button mat-flat-button class="ama-studio-project-header-action-validate" (click)="onValidateProject(project.id)">

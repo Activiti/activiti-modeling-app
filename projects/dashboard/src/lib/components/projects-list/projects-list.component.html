@@ -152,6 +152,10 @@
                 [attr.data-automation-id]="'project-save-as-' + element.id">
                 <mat-icon svgIcon="save_as"></mat-icon> <span>{{ 'APP.MENU.SAVE_AS' | translate }}</span>
             </button>
+            <button mat-menu-item (click)="addCollaborators(element)"
+                [attr.data-automation-id]="'project-collaborators-' + element.id">
+                <mat-icon>supervised_user_circle</mat-icon> <span>{{ 'APP.MENU.COLLABORATORS' | translate }}</span>
+            </button>
             <button *ngFor="let button of buttons" mat-menu-item
                 [attr.data-automation-id]="'project-' + button.automationId + '-' + element.id"
                 (click)="handleClick(button.actionClass, element.id)">

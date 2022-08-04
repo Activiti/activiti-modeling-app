@@ -23,7 +23,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Project } from '../../../api/types';
 import { ProjectContextMenuActionClass, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, PROJECT_MENU_HEADER_ACTIONS } from '../../../project-editor/project-context-menu';
 import { LayoutService } from '../../../services/layout.service';
-import { OpenInfoDialogAction, OpenLogHistory } from '../../../store/app.actions';
+import { GetCollaboratorsAttemptAction, OpenInfoDialogAction, OpenLogHistory } from '../../../store/app.actions';
 import { selectAnyModelInDirtyState } from '../../../store/app.selectors';
 import { AmaState } from '../../../store/app.state';
 import { AddToFavoritesProjectAttemptAction,
@@ -143,5 +143,9 @@ export class StudioHeaderComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.onDestroy$.next(true);
         this.onDestroy$.complete();
+    }
+
+    onAddCollaborators(projectId: string) {
+        this.store.dispatch(new GetCollaboratorsAttemptAction(projectId));
     }
 }
