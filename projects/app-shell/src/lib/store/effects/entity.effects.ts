@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable, of, zip } from 'rxjs';
 import { mergeMap, catchError } from 'rxjs/operators';
 import {
@@ -43,8 +43,8 @@ export class EntityEffects {
         private store: Store<AmaState>
     ) {}
 
-    @Effect()
-    showModelsEffect = this.actions$.pipe(
+
+    showModelsEffect = createEffect(() => this.actions$.pipe(
         ofType<ShowModelsAction>(SHOW_MODELS),
         mergeMap(action => zip(
             of(action),
@@ -57,13 +57,13 @@ export class EntityEffects {
                 return EMPTY;
             }
         })
-    );
+    ));
 
-    @Effect()
-    getModelsEffect = this.actions$.pipe(
+
+    getModelsEffect = createEffect(() => this.actions$.pipe(
         ofType<GetModelsAttemptAction>(GET_MODELS_ATTEMPT),
         mergeMap(action => this.getModels(action.projectId, action.modelType))
-    );
+    ));
 
     private getModels(projectId: string, modelType: MODEL_TYPE): Observable<any | GetModelsSuccessAction> {
         return this.modelStorageService.fetchAll(projectId, modelType).pipe(

@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { TabManagerService, UpdateTabDirtyState, UpdateTabTitle, UPDATE_TAB_DIRTY_STATE, UPDATE_TAB_TITLE } from '@alfresco-dbp/modeling-shared/sdk';
 import { tap } from 'rxjs/operators';
 
@@ -27,19 +27,19 @@ export class TabEffects {
         private tabManagerService: TabManagerService
     ) {}
 
-    @Effect({ dispatch: false })
-    updateTabTitle = this.actions$.pipe(
+
+    updateTabTitle = createEffect(() => this.actions$.pipe(
         ofType<UpdateTabTitle>(UPDATE_TAB_TITLE),
         tap(action => {
             this.tabManagerService.updateTabTitle(action.title, action.modelId);
         })
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    updateTabDirtyState = this.actions$.pipe(
+
+    updateTabDirtyState = createEffect(() => this.actions$.pipe(
         ofType<UpdateTabDirtyState>(UPDATE_TAB_DIRTY_STATE),
         tap(action => {
             this.tabManagerService.updateTabDirtyState(action.dirtyState, action.modelId);
         })
-    );
+    ), { dispatch: false });
 }

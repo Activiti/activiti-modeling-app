@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/operators';
 import { LogoutAction, AppActionTypes, AsyncInitAction, LoggedInAction } from '../actions/app.actions';
 import { AuthenticationService, StorageService } from '@alfresco/adf-core';
@@ -31,17 +31,17 @@ export class AuthEffects {
         private authService: AuthenticationService
     ) {}
 
-    @Effect({ dispatch: false })
-    logoutEffect$ = this.actions$.pipe(
+
+    logoutEffect$ = createEffect(() => this.actions$.pipe(
         ofType<LogoutAction>(AppActionTypes.Logout),
         map(() => this.authService.logout())
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    loggedInEffect$ = this.actions$.pipe(
+
+    loggedInEffect$ = createEffect(() => this.actions$.pipe(
         ofType<LoggedInAction>(AppActionTypes.LoggedIn),
         switchMap(this.setupFromStorage.bind(this))
-    );
+    ));
 
     private setupFromStorage() {
         const menuOpened = JSON.parse(this.storageService.getItem('menuOpened')),

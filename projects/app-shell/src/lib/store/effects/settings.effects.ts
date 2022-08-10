@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { StorageService } from '@alfresco/adf-core';
@@ -25,11 +25,11 @@ import { UPDATE_SETTINGS, UpdateSettingsAction, UpdateSettingsPayload } from '..
 export class SettingsEffects {
     constructor(private actions$: Actions, private storageService: StorageService) {}
 
-    @Effect({ dispatch: false })
-    updateSettingsEffect = this.actions$.pipe(
+
+    updateSettingsEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateSettingsAction>(UPDATE_SETTINGS),
         map(action => this.saveToLocalStorage(action.payload))
-    );
+    ), { dispatch: false });
 
     private saveToLocalStorage(payload: UpdateSettingsPayload): void {
         this.storageService.setItem('selectedTheme', payload.theme);

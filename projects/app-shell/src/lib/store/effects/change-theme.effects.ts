@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { StorageService } from '@alfresco/adf-core';
@@ -25,11 +25,11 @@ import { ChangeThemeAction, ChangeThemePayload, CHANGE_THEME } from '@alfresco-d
 export class ChangeThemeEffects {
     constructor(private actions$: Actions, private storageService: StorageService) {}
 
-    @Effect({ dispatch: false })
-    changingThemeEffect = this.actions$.pipe(
+
+    changingThemeEffect = createEffect(() => this.actions$.pipe(
         ofType<ChangeThemeAction>(CHANGE_THEME),
         map(action => this.saveToLocalStorage(action.payload))
-    );
+    ), { dispatch: false });
 
     private saveToLocalStorage(payload: ChangeThemePayload): void {
         this.storageService.setItem('selectedTheme', payload.theme);

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
@@ -77,77 +77,77 @@ export class ProjectsEffects {
         private router: Router
     ) {}
 
-    @Effect()
-    showProjectsEffect = this.actions$.pipe(
+
+    showProjectsEffect = createEffect(() => this.actions$.pipe(
         ofType<ShowProjectsAction>(SHOW_PROJECTS),
         withLatestFrom(this.store.select(selectProjectsLoaded)),
         switchMap(([action, loaded]) => loaded ? EMPTY : of(new GetProjectsAttemptAction(<FetchQueries> action.pagination)))
-    );
+    ));
 
-    @Effect()
-    uploadProjectAttemptEffect = this.actions$.pipe(
+
+    uploadProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<UploadProjectAttemptAction>(UPLOAD_PROJECT_ATTEMPT),
         switchMap((action) => this.uploadProject(action.file, action.name))
-    );
+    ));
 
-    @Effect()
-    createProjectAttemptEffect = this.actions$.pipe(
+
+    createProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<CreateProjectAttemptAction>(CREATE_PROJECT_ATTEMPT),
         map(action => action.payload),
         mergeMap(payload => this.createProject(payload))
-    );
+    ));
 
-    @Effect()
-    overrideProjectAttemptEffect = this.actions$.pipe(
+
+    overrideProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<OverrideProjectAttemptAction>(OVERRIDE_PROJECT_ATTEMPT),
         switchMap(action => this.overrideProject(action.payload.submitData.file, action.payload.name))
-    );
+    ));
 
-    @Effect()
-    updateProjectAttemptEffect = this.actions$.pipe(
+
+    updateProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateProjectAttemptAction>(UPDATE_PROJECT_ATTEMPT),
         map(action => action.payload),
         mergeMap(payload => this.updateProject(payload.id, payload.form))
-    );
+    ));
 
-    @Effect()
-    deleteProjectAttemptEffect = this.actions$.pipe(
+
+    deleteProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<DeleteProjectAttemptAction>(DELETE_PROJECT_ATTEMPT),
         map(action => action),
         withLatestFrom(this.store.select(selectPagination)),
         mergeMap(([action, pagination]) => this.deleteProject(action.projectId, action.sorting, action.search, pagination))
-    );
+    ));
 
-    @Effect()
-    getProjectsAttemptEffect = this.actions$.pipe(
+
+    getProjectsAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
         switchMap(action => this.getProjectsAttempt(<FetchQueries> action.pagination, action.sorting, action.search))
-    );
+    ));
 
-    @Effect()
-    getFavoriteProjectsAttemptEffect = this.actions$.pipe(
+
+    getFavoriteProjectsAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<GetFavoriteProjectsAttemptAction>(GET_FAVORITE_PROJECTS_ATTEMPT),
         switchMap(action => this.getFavoriteProjectsAttempt(<FetchQueries> action.pagination, action.sorting, action.search))
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    createProjectSuccessEffect$ = this.actions$.pipe(
+
+    createProjectSuccessEffect$ = createEffect(() => this.actions$.pipe(
         ofType<CreateProjectSuccessAction>(CREATE_PROJECT_SUCCESS),
         tap((action) => this.router.navigate(['/projects', action.payload.id]))
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    openSaveAsProjectDialogAction = this.actions$.pipe(
+
+    openSaveAsProjectDialogAction = createEffect(() => this.actions$.pipe(
         ofType<OpenSaveAsProjectDialogAction>(OPEN_SAVE_AS_PROJECT_DIALOG),
         tap((action) => this.openSaveAsProjectDialog(action.payload))
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    saveAsProjectAttemptAction = this.actions$.pipe(
+
+    saveAsProjectAttemptAction = createEffect(() => this.actions$.pipe(
         ofType<SaveAsProjectAttemptAction>(SAVE_AS_PROJECT_ATTEMPT),
         map(action => action.payload),
         mergeMap(payload => this.saveAsProject(payload))
-    );
+    ));
 
     private deleteProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination) {
         let skipCount;

@@ -1,52 +1,38 @@
 {
   "npmScope": "activiti-modeling-app",
-  "implicitDependencies": {
-    "angular.json": "*",
-    "package.json": "*",
-    "tsconfig.json": "*",
-    "tslint.json": "*",
-    "nx.json": "*",
-    "travis.yml": "*"
-  },
-  "projects": {
-    "modeling-ce": {
-      "tags": [
-        "scope:modeling-ce",
-        "type:app",
-        "category:modeling-ce"
-      ]
-    },
-    "modeling-ce-connector-editor": {
-      "implicitDependencies": ["modeling-ce-app-shell"],
-      "tags": ["scope:modeling-ce-connector-editor", "type:lib", "category:modeling-ce"]
-    },
-    "modeling-ce-dashboard": {
-      "implicitDependencies": ["modeling-ce-app-shell"],
-      "tags": ["scope:modeling-ce-dashboard", "type:lib", "category:modeling-ce"]
-    },
-    "modeling-ce-app-shell": {
-      "tags": ["scope:modeling-ce-app-shell", "type:lib", "category:modeling-ce"]
-    },
-    "modeling-ce-process-editor": {
-      "implicitDependencies": ["modeling-ce-app-shell"],
-      "tags": ["scope:modeling-ce-process-editor", "category:modeling-ce"]
-    },
-    "modeling-ce-project-editor": {
-      "implicitDependencies": ["modeling-ce-app-shell"],
-      "tags": ["scope:modeling-ce-project-editor", "category:modeling-ce"]
-    },
-    "adf-candidates": {
-      "tags": [
-        "scope:adf-candidates",
-        "type:lib",
-        "category:modeling-ce"
-      ]
-    },
-    "modeling-sdk": {
-      "tags": [
-        "scope:modeling-sdk",
-        "category:modeling-ce"
-      ]
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test"],
+        "cacheDirectory": "nxcache",
+        "parallel": 1
+      }
     }
+  },
+  "affected": {
+    "defaultBase": "develop"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "karma"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "karma"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

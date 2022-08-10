@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Injectable, RendererFactory2 } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import {
@@ -77,8 +77,8 @@ export class DialogEffects {
         renderer.appendChild(document.body, this.projectFileInput);
     }
 
-    @Effect({ dispatch: false })
-    openDialog = this.actions$.pipe(
+
+    openDialog = createEffect(() => this.actions$.pipe(
         ofType<OpenDialogAction<any>>(OPEN_DIALOG),
         map(action =>
             this.dialogService.openDialog(
@@ -86,16 +86,16 @@ export class DialogEffects {
                 action.dialogConfig
             )
         )
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    closeDialog = this.actions$.pipe(
+
+    closeDialog = createEffect(() => this.actions$.pipe(
         ofType<CloseAllDialogsAction>(CLOSE_ALL_DIALOGS),
         map(() => this.dialogService.closeAll())
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    confirmDialogEffect = this.actions$.pipe(
+
+    confirmDialogEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenConfirmDialogAction>(OPEN_CONFIRM_DIALOG),
         switchMap(action =>
             this.openConfirmDialog(
@@ -103,37 +103,37 @@ export class DialogEffects {
                 action.payload.dialogData
             )
         )
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    infoDialogEffect = this.actions$.pipe(
+
+    infoDialogEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenInfoDialogAction>(OPEN_INFO_DIALOG),
         map(action => this.dialogService.info(action.payload.dialogData))
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    openEntityDialogEffect = this.actions$.pipe(
+
+    openEntityDialogEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenEntityDialogAction>(OPEN_ENTITY_DIALOG),
         map(action => action.payload),
         map(data =>
             this.dialogService.openDialog(data.dialog ? data.dialog : EntityDialogComponent, { data })
         )
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    settingsDialogEffect = this.actions$.pipe(
+
+    settingsDialogEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenInfoDialogAction>(OPEN_SETTINGS_DIALOG),
         map(() => this.dialogService.openDialog(SettingsDialogComponent))
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    openAboutDialogEffect$ = this.actions$.pipe(
+
+    openAboutDialogEffect$ = createEffect(() => this.actions$.pipe(
         ofType<OpenAboutDialogAction>(OPEN_ABOUT_DIALOG),
         map(() => this.dialogService.openDialog(AboutComponent, { width: '700px'}))
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    createProject$ = this.actions$.pipe(
+
+    createProject$ = createEffect(() => this.actions$.pipe(
         ofType<CreateProjectDialogAction>(CREATE_PROJECT_DIALOG),
         map(
             () =>
@@ -148,10 +148,10 @@ export class DialogEffects {
                     }
                 })
         )
-    );
+    ));
 
-    @Effect()
-    overrideNameProject$ = this.actions$.pipe(
+
+    overrideNameProject$ = createEffect(() => this.actions$.pipe(
         ofType<OverrideProjectNameDialogAction>(OVERRIDE_PROJECT_NAME_DIALOG),
         map(
             (action) =>
@@ -169,13 +169,13 @@ export class DialogEffects {
                     }
                 })
         )
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    importProject$ = this.actions$.pipe(
+
+    importProject$ = createEffect(() => this.actions$.pipe(
         ofType<ImportProjectDialogAction>(IMPORT_PROJECT_DIALOG),
         map(() => this.projectFileInput.click())
-    );
+    ), { dispatch: false });
 
     private openConfirmDialog(action: Action, dialogData: DialogData) {
         return this.dialogService

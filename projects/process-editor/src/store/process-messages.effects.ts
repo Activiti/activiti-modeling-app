@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ofType, Actions, Effect } from '@ngrx/effects';
+import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { switchMap, tap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
@@ -37,12 +37,12 @@ export class ProcessMessagesEffects {
         private dialogService: DialogService,
         private store: Store<AmaState>) {}
 
-    @Effect({ dispatch: false })
-    openProcessMessagesDialogEffect = this.actions$.pipe(
+
+    openProcessMessagesDialogEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenProcessMessagesDialogAction>(OPEN_PROCESS_MESSAGES_DIALOG),
         switchMap(() => this.store.select(selectSelectedProcess).pipe(take(1))),
         tap(() => this.openMessagesDialog())
-    );
+    ), { dispatch: false });
 
     private openMessagesDialog() {
         const propertiesUpdate$ = new Subject<Bpmn.DiagramElement[]>();

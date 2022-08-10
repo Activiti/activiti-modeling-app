@@ -53,7 +53,7 @@ export interface EntitiesState {
 
 export const getEntitiesState = createFeatureSelector<EntityMap<ModelEntitiesState>>('entities');
 
-export const selectModelsEntityContainer = (entityContainer: string) => createSelector<any, EntityMap<ModelEntitiesState>, ModelEntitiesState>(
+export const selectModelsEntityContainer = (entityContainer: string) => createSelector<any,[EntityMap<ModelEntitiesState>],ModelEntitiesState>(
     getEntitiesState,
     state => state[entityContainer]
 );

@@ -17,7 +17,7 @@
 
 /* eslint-disable max-lines */
 
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Inject, Injectable } from '@angular/core';
 import { catchError, filter, map, mergeMap, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
 import { EMPTY, forkJoin, Observable, of, zip } from 'rxjs';
@@ -137,22 +137,22 @@ export class ProcessEditorEffects {
         private tabManagerService: TabManagerService
     ) {}
 
-    @Effect()
-    showProcessesEffect = this.actions$.pipe(
+
+    showProcessesEffect = createEffect(() => this.actions$.pipe(
         ofType<ShowProcessesAction>(SHOW_PROCESSES),
         map(action => action.projectId),
         switchMap(projectId => zip(of(projectId), this.store.select(selectProcessesLoaded))),
         switchMap(([projectId, loaded]) => loaded ? EMPTY : of(new GetProcessesAttemptAction(projectId)))
-    );
+    ));
 
-    @Effect()
-    getProcessesEffect = this.actions$.pipe(
+
+    getProcessesEffect = createEffect(() => this.actions$.pipe(
         ofType<GetProcessesAttemptAction>(GET_PROCESSES_ATTEMPT),
         switchMap(action => this.getProcesses(action.projectId))
-    );
+    ));
 
-    @Effect()
-    removeDiagramElementEffect = this.actions$.pipe(
+
+    removeDiagramElementEffect = createEffect(() => this.actions$.pipe(
         ofType<RemoveDiagramElementAction>(REMOVE_DIAGRAM_ELEMENT),
         filter(action => [BpmnElement.ServiceTask, BpmnElement.UserTask, BpmnElement.CallActivity, BpmnElement.Participant].includes(<BpmnElement>action.element.type)),
         mergeMap(action => zip(of(action), this.store.select(selectOpenedModel))),
@@ -160,30 +160,30 @@ export class ProcessEditorEffects {
             of(new DeleteProcessExtensionAction(process.id, action.element.processId)) :
             of(new RemoveElementMappingAction(action.element.id, process.id, action.element.processId))
         )
-    );
+    ));
 
-    @Effect()
-    createProcessEffect = this.actions$.pipe(
+
+    createProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<CreateProcessAttemptAction>(CREATE_PROCESS_ATTEMPT),
         mergeMap(action => zip(of(action), this.store.select(selectSelectedProjectId))),
         mergeMap(([action, projectId]) => this.createProcess(action.payload, action.navigateTo, projectId))
-    );
+    ));
 
-    @Effect()
-    uploadProcessEffect = this.actions$.pipe(
+
+    uploadProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<UploadProcessAttemptAction>(UPLOAD_PROCESS_ATTEMPT),
         switchMap(action => this.uploadProcess(action.payload))
-    );
+    ));
 
-    @Effect()
-    deleteProcessEffect = this.actions$.pipe(
+
+    deleteProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<DeleteProcessAttemptAction>(DELETE_PROCESS_ATTEMPT),
         map(action => action.processId),
         mergeMap(processId => this.deleteProcess(processId))
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    deleteProcessSuccessEffect = this.actions$.pipe(
+
+    deleteProcessSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<DeleteProcessSuccessAction>(DELETE_PROCESS_SUCCESS),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         map(([deletedSuccessAction, projectId]) => {
@@ -193,10 +193,10 @@ export class ProcessEditorEffects {
                 void this.router.navigate(['/projects', projectId]);
             }
         })
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    createProcessSuccessEffect = this.actions$.pipe(
+
+    createProcessSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<CreateProcessSuccessAction>(CREATE_PROCESS_SUCCESS),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         tap(([action, projectId]) => {
@@ -204,77 +204,77 @@ export class ProcessEditorEffects {
                 void this.router.navigate(['/projects', projectId, 'process', action.process.id]);
             }
         })
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    updateProcessEffect = this.actions$.pipe(
+
+    updateProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateProcessAttemptAction>(UPDATE_PROCESS_ATTEMPT),
         map(action => action.payload),
         mergeMap(payload => zip(of(payload), this.store.select(selectSelectedProjectId))),
         mergeMap(([payload, projectId]) => this.updateProcess(payload, projectId))
-    );
+    ));
 
-    @Effect()
-    updateProcessSuccessEffect = this.actions$.pipe(
+
+    updateProcessSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateProcessSuccessAction>(UPDATE_PROCESS_SUCCESS),
         mergeMap((action) =>[
             new UpdateTabTitle(action.payload.changes.name, action.payload.id),
             new SetApplicationLoadingStateAction(false)
         ])
-    );
+    ));
 
-    @Effect()
-    updateProcessFailedEffect = this.actions$.pipe(
+
+    updateProcessFailedEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateProcessFailedAction>(UPDATE_PROCESS_FAILED),
         mergeMap(() => of(new SetApplicationLoadingStateAction(false)))
-    );
+    ));
 
-    @Effect()
-    validateProcessEffect = this.actions$.pipe(
+
+    validateProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<ValidateProcessAttemptAction>(VALIDATE_PROCESS_ATTEMPT),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         mergeMap(([action, projectId]) => this.validateProcess({...action.payload, projectId}))
-    );
+    ));
 
-    @Effect()
-    validateProcessSuccessEffect = this.actions$.pipe(
+
+    validateProcessSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<ValidateProcessSuccessAction>(VALIDATE_PROCESS_SUCCESS),
         mergeMap(action => action.payload)
-    );
+    ));
 
-    @Effect()
-    getProcessEffect = this.actions$.pipe(
+
+    getProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<GetProcessAttemptAction>(GET_PROCESS_ATTEMPT),
         mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedProjectId))),
         mergeMap(([processId, projectId]) => this.getProcess(processId, projectId))
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    downloadProcessEffect = this.actions$.pipe(
+
+    downloadProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<DownloadProcessAction>(DOWNLOAD_PROCESS_DIAGRAM),
         switchMap((action) => this.downloadProcessDiagram(action.modelId))
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    downloadProcessSVGImageEffect = this.actions$.pipe(
+
+    downloadProcessSVGImageEffect = createEffect(() => this.actions$.pipe(
         ofType<DownloadProcessSVGImageAction>(DOWNLOAD_PROCESS_SVG_IMAGE),
         map(({ process }) => this.downloadProcessSVGImage(process.name))
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    changedProcessDiagramEffect = this.actions$.pipe(
+
+    changedProcessDiagramEffect = createEffect(() => this.actions$.pipe(
         ofType(CHANGED_PROCESS_DIAGRAM),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
-    );
+    ));
 
-    @Effect()
-    updateServiceParameterSEffect = this.actions$.pipe(
+
+    updateServiceParameterSEffect = createEffect(() => this.actions$.pipe(
         ofType(UPDATE_SERVICE_PARAMETERS),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
-    );
+    ));
 
-    @Effect()
-    changedElementEffect = this.actions$.pipe(
+
+    changedElementEffect = createEffect(() => this.actions$.pipe(
         ofType<ChangedProcessAction>(CHANGED_PROCESS_DIAGRAM),
         map(action => action.element),
         mergeMap(element => zip(of(element), this.store.select(selectSelectedElement))),
@@ -284,20 +284,20 @@ export class ProcessEditorEffects {
                 (selected.name !== element.name || selected.type !== element.type)
         )),
         mergeMap(([element]) => of(new SelectModelerElementAction(element)))
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    openSaveAsProcessEffect = this.actions$.pipe(
+
+    openSaveAsProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenSaveAsProcessAction>(OPEN_PROCESS_SAVE_AS_FORM),
         tap((action) => this.openSaveAsProcessDialog(action.dialogData))
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    saveAsProcessEffect = this.actions$.pipe(
+
+    saveAsProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<SaveAsProcessAttemptAction>(SAVE_AS_PROCESS_ATTEMPT),
         mergeMap((action) => zip(of(action), this.store.select(selectSelectedProjectId))),
         mergeMap(([action, projectId]) => this.saveAsProcess(action.payload, action.navigateTo, projectId))
-    );
+    ));
 
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.modelId, payload.modelContent, payload.projectId, payload.modelMetadata.extensions).pipe(

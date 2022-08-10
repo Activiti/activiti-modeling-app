@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
@@ -62,51 +62,51 @@ export class ProjectEffects {
         private tabManagerService: TabManagerService
     ) { }
 
-    @Effect()
-    getProjectEffect = this.actions$.pipe(
+
+    getProjectEffect = createEffect(() => this.actions$.pipe(
         ofType<GetProjectAttemptAction>(GET_PROJECT_ATTEMPT),
         map((action: GetProjectAttemptAction) => action.payload),
         switchMap(projectId => this.getProject(projectId))
-    );
+    ));
 
-    @Effect()
-    validateProjectAttemptEffect$ = this.actions$.pipe(
+
+    validateProjectAttemptEffect$ = createEffect(() => this.actions$.pipe(
         ofType<ValidateProjectAttemptAction>(VALIDATE_PROJECT_ATTEMPT),
         switchMap(action => this.validateProject(action.projectId))
-    );
+    ));
 
-    @Effect()
-    exportApplicationAttemptEffect = this.actions$.pipe(
+
+    exportApplicationAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<ExportProjectAttemptAction>(EXPORT_PROJECT_ATTEMPT),
         map((action: ExportProjectAttemptAction) => action.payload),
         switchMap(payload => this.exportProjectAttempt(payload))
-    );
+    ));
 
-    @Effect()
-    exportApplicationEffect = this.actions$.pipe(
+
+    exportApplicationEffect = createEffect(() => this.actions$.pipe(
         ofType<ExportProjectAction>(EXPORT_PROJECT),
         map((action: ExportProjectAction) => action.payload),
         switchMap(payload => this.exportProject(payload.projectId, payload.projectName))
-    );
+    ));
 
-    @Effect()
-    leaveProjectEffect = this.actions$.pipe(
+
+    leaveProjectEffect = createEffect(() => this.actions$.pipe(
         ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
         filter(() => !this.router.url.startsWith('/projects')),
         mergeMap(() => this.leftProjectAction())
-    );
+    ));
 
-    @Effect()
-    addToFavoritesProjectAttemptEffect = this.actions$.pipe(
+
+    addToFavoritesProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<AddToFavoritesProjectAttemptAction>(ADD_TO_FAVORITES_PROJECT_ATTEMPT),
         mergeMap((action) => this.addToFavoritesProject(action.projectId))
-    );
+    ));
 
-    @Effect()
-    removeFromFavoritesProjectAttemptEffect = this.actions$.pipe(
+
+    removeFromFavoritesProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<RemoveFromFavoritesProjectAttemptAction>(REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT),
         mergeMap((action) => this.removeFromFavoritesProject(action.projectId))
-    );
+    ));
 
     private getProject(projectId: string) {
         return this.projectEditorService.fetchProject(projectId).pipe(

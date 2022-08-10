@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import {
     SnackbarErrorAction,
@@ -35,23 +35,23 @@ export class SnackbarEffects {
     constructor(private actions$: Actions, private notificationService: NotificationService) {
     }
 
-    @Effect({ dispatch: true }) infoEffect = this.actions$.pipe(
+     infoEffect = createEffect(() => this.actions$.pipe(
         ofType<SnackbarInfoAction>(SNACKBAR_INFO),
         mergeMap(({ message, params, action }) => zip(of(action), this.notificationService.showInfo(message, action?.name, params).onAction())),
         mergeMap(([action]) => of(...action.actions))
-    );
+    ), { dispatch: true });
 
-    @Effect({ dispatch: false }) warningEffect = this.actions$.pipe(
+     warningEffect = createEffect(() => this.actions$.pipe(
         ofType<SnackbarWarningAction>(SNACKBAR_WARNING),
         map(({ message, params }) => {
             this.notificationService.showWarning(message, null, params);
         })
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false }) errorEffect = this.actions$.pipe(
+     errorEffect = createEffect(() => this.actions$.pipe(
         ofType<SnackbarErrorAction>(SNACKBAR_ERROR),
         map(({ message, params }) => {
             this.notificationService.showError(message, null, params);
         })
-    );
+    ), { dispatch: false });
 }

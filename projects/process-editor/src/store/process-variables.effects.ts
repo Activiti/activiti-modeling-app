@@ -16,7 +16,7 @@
  */
 
 import { OpenProcessVariablesDialogAction, OPEN_PROCESS_VARIABLES_DIALOG, UpdateProcessVariablesAction, UPDATE_PROCESS_VARIABLES } from './process-variables.actions';
-import { ofType, Actions, Effect } from '@ngrx/effects';
+import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { switchMap, tap, take, map, mergeMap } from 'rxjs/operators';
 import { Injectable, Inject } from '@angular/core';
 import {
@@ -43,25 +43,25 @@ export class ProcessVariablesEffects {
         @Inject(ProcessModelerServiceToken) private modelerService: ProcessModelerService
     ) {}
 
-    @Effect({ dispatch: false })
-    openProcessVariablesDialogEffect = this.actions$.pipe(
+
+    openProcessVariablesDialogEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenProcessVariablesDialogAction>(OPEN_PROCESS_VARIABLES_DIALOG),
         switchMap((action) => zip(of(action), this.store.select(selectSelectedProcess).pipe(take(1)))),
         tap(([action, model]) => {
             const processExtension = model.extensions[action.processId];
             return this.openVariablesDialog(model.id, action.processId, processExtension ? processExtension.properties : {});
         })
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    updateProcessVariablesEffect = this.actions$.pipe(
+
+    updateProcessVariablesEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateProcessVariablesAction>(UPDATE_PROCESS_VARIABLES),
         map(action => {
             const shapeId = this.modelerService.getRootProcessElement().id;
             this.modelerService.updateElementProperty(shapeId, BpmnCompositeProperty.properties, action.payload.properties);
         }),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
-    );
+    ));
 
     private openVariablesDialog(modelId: string, processId: string, properties: EntityProperties) {
         const propertiesUpdate$ = new Subject<EntityProperties>();

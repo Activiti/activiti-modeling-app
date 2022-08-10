@@ -7,16 +7,17 @@ module.exports = function getJestConfig(config, tsConfigFileName = DEFAULT_TS_CO
     const { compilerOptions } = require(path.resolve(rootDirectory, tsConfigFileName));
     return {
         preset: 'jest-preset-angular',
+        testRunner : 'jasmine2',
         rootDir: rootDirectory,
         verbose: false,
         testURL: 'http://localhost',
         setupFilesAfterEnv: [ path.resolve(rootDirectory, 'jest/jest-setup.ts') ],
         collectCoverage: true,
         transformIgnorePatterns: [
-            'node_modules/(?!@alfresco\\/js-api|diagram-js|bpmn-js)'
+            'node_modules/(?!.*\\.mjs$|@alfresco\\/js-api|diagram-js|bpmn-js|@ngrx)'
         ],
         transform: {
-            '^.+\\.(ts|js|html)$': 'ts-jest'
+            '^.+\\.(ts|js|html)$': 'jest-preset-angular'
         },
         snapshotSerializers: [
             'jest-preset-angular/build/serializers/no-ng-attributes',

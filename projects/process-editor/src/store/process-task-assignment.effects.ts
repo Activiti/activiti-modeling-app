@@ -23,7 +23,7 @@ import {
     SetAppDirtyStateAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { Effect, ofType, Actions } from '@ngrx/effects';
+import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { OpenTaskAssignmentDialogAction, OPEN_TASK_ASSIGNMENT_DIALOG, UpdateTaskAssignmentAction, UPDATE_TASK_ASSIGNMENT_VARIABLES } from './process-task-assignment.actions';
 import { switchMap, take, map, tap, mergeMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -43,15 +43,15 @@ export class ProcessTaskAssignmentEffects {
         private store: Store<AmaState>
     ) {}
 
-    @Effect({ dispatch: false })
-    openTaskAssignmentDialogEffect = this.actions$.pipe(
+
+    openTaskAssignmentDialogEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenTaskAssignmentDialogAction>(OPEN_TASK_ASSIGNMENT_DIALOG),
         switchMap(() => this.store.select(selectSelectedElement).pipe(take(1))),
         tap((element) => this.openTaskAssignmentDialog(this.processModelerService.getElement(element.id)))
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    updateTaskAssignmentEffect = this.actions$.pipe(
+
+    updateTaskAssignmentEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateTaskAssignmentAction>(UPDATE_TASK_ASSIGNMENT_VARIABLES),
         map((action: UpdateTaskAssignmentAction) => {
             const shapeId = action.payload.id;
@@ -60,7 +60,7 @@ export class ProcessTaskAssignmentEffects {
             });
         }),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
-    );
+    ));
 
     private openTaskAssignmentDialog(element: Bpmn.DiagramElement) {
         const processId = element.businessObject.$parent.$type === 'bpmn:SubProcess' ? this.findParentProcess(element.businessObject.$parent).id :

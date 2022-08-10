@@ -25,8 +25,14 @@
                         "name": "fdescribe",
                         "message": "Calls to fdescribe is not allowed"
                     },
-                    { "name": "fit", "message": "Calls to fit is not allowed" },
-                    { "name": "xit", "message": "Calls to xit is not allowed" },
+                    {
+                        "name": "fit",
+                        "message": "Calls to fit is not allowed"
+                    },
+                    {
+                        "name": "xit",
+                        "message": "Calls to xit is not allowed"
+                    },
                     {
                         "name": "xdescribe",
                         "message": "Calls to xdescribe is not allowed"
@@ -195,7 +201,13 @@
                 "@typescript-eslint/unified-signatures": "error",
                 "@typescript-eslint/no-unused-vars": "warn",
                 "arrow-body-style": "warn",
-                "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+                "brace-style": [
+                    "error",
+                    "1tbs",
+                    {
+                        "allowSingleLine": true
+                    }
+                ],
                 "constructor-super": "error",
                 "curly": "error",
                 "dot-notation": "off",

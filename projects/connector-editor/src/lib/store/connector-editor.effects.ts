@@ -18,7 +18,7 @@
 /* eslint-disable max-lines */
 
 import { Inject, Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
     EntityDialogForm,
@@ -111,36 +111,36 @@ export class ConnectorEditorEffects {
         private tabManagerService: TabManagerService
     ) {}
 
-    @Effect()
-    validateConnectorEffect = this.actions$.pipe(
+
+    validateConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<ValidateConnectorAttemptAction>(VALIDATE_CONNECTOR_ATTEMPT),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         mergeMap(([action, projectId]) => this.validateConnector({...action.payload, projectId}))
-    );
+    ));
 
-    @Effect()
-    validateConnectorSuccessEffect = this.actions$.pipe(
+
+    validateConnectorSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<ValidateConnectorSuccessAction>(VALIDATE_CONNECTOR_SUCCESS),
         mergeMap((action) => action.payload)
-    );
+    ));
 
-    @Effect()
-    updateConnectorContentEffect = this.actions$.pipe(
+
+    updateConnectorContentEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateConnectorContentAttemptAction>(UPDATE_CONNECTOR_CONTENT_ATTEMPT),
         map(action => action.payload),
         mergeMap((payload) => zip(of(payload), this.store.select(this.entitySelector.selectModelMetadataById(payload.modelId)), this.store.select(selectSelectedProjectId))),
         mergeMap(([payload, connector, projectId]) => this.updateConnector(connector, payload.modelContent, projectId))
-    );
+    ));
 
-    @Effect()
-    deleteConnectorAttemptEffect = this.actions$.pipe(
+
+    deleteConnectorAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<DeleteConnectorAttemptAction>(DELETE_CONNECTOR_ATTEMPT),
         map(action => action.connectorId),
         mergeMap(connectorId => this.deleteConnector(connectorId))
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    deleteConnectorSuccessEffect = this.actions$.pipe(
+
+    deleteConnectorSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<DeleteConnectorSuccessAction>(DELETE_CONNECTOR_SUCCESS),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         map(([deletedSuccessAction, projectId]) => {
@@ -150,10 +150,10 @@ export class ConnectorEditorEffects {
                 void this.router.navigate(['/projects', projectId]);
             }
         })
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    createConnectorSuccessEffect = this.actions$.pipe(
+
+    createConnectorSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<CreateConnectorSuccessAction>(CREATE_CONNECTOR_SUCCESS),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         tap(([action, projectId]) => {
@@ -161,53 +161,53 @@ export class ConnectorEditorEffects {
                 void this.router.navigate(['/projects', projectId, 'connector', action.connector.id]);
             }
         })
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    getConnectorEffect = this.actions$.pipe(
+
+    getConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<GetConnectorAttemptAction>(GET_CONNECTOR_ATTEMPT),
         mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedProjectId))),
         switchMap(([connectorId, projectId]) => this.getConnector(connectorId, projectId))
-    );
+    ));
 
-    @Effect()
-    loadConnectorEffect = this.actions$.pipe(
+
+    loadConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<LoadConnectorAttemptAction>(LOAD_CONNECTOR_ATTEMPT),
         mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedProjectId))),
         switchMap(([connectorId, projectId]) => this.getConnector(connectorId, projectId, true))
-    );
+    ));
 
-    @Effect()
-    changeConnectorContentEffect = this.actions$.pipe(
+
+    changeConnectorContentEffect = createEffect(() => this.actions$.pipe(
         ofType<ChangeConnectorContent>(CHANGE_CONNECTOR_CONTENT),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
-    );
+    ));
 
-    @Effect()
-    updateConnectorSuccessEffect = this.actions$.pipe(
+
+    updateConnectorSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateConnectorSuccessAction>(UPDATE_CONNECTOR_SUCCESS),
         mergeMap((action) => [
             new UpdateTabTitle(action.connector.changes.name, action.connector.id),
             new SetApplicationLoadingStateAction(false),
             new SetAppDirtyStateAction(false)
         ])
-    );
+    ));
 
-    @Effect()
-    updateConnectorFailedEffect = this.actions$.pipe(
+
+    updateConnectorFailedEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateConnectorFailedAction>(UPDATE_CONNECTOR_FAILED),
         mergeMap(() => of(new SetApplicationLoadingStateAction(false)))
-    );
+    ));
 
-    @Effect()
-    createConnectorEffect = this.actions$.pipe(
+
+    createConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<CreateConnectorAttemptAction>(CREATE_CONNECTOR_ATTEMPT),
         mergeMap(action => zip(of(action), this.store.select(selectSelectedProjectId))),
         mergeMap(([action, projectId]) => this.createConnector(action.payload, action.navigateTo, projectId, action.callback))
-    );
+    ));
 
-    @Effect()
-    showConnectorsEffect = this.actions$.pipe(
+
+    showConnectorsEffect = createEffect(() => this.actions$.pipe(
         ofType<ShowConnectorsAction>(SHOW_CONNECTORS),
         map(action => action.projectId),
         mergeMap(projectId => zip(of(projectId), this.store.select(selectConnectorsLoaded))),
@@ -218,38 +218,38 @@ export class ConnectorEditorEffects {
                 return EMPTY;
             }
         })
-    );
+    ));
 
-    @Effect()
-    getConnectorsEffect = this.actions$.pipe(
+
+    getConnectorsEffect = createEffect(() => this.actions$.pipe(
         ofType<GetConnectorsAttemptAction>(GET_CONNECTORS_ATTEMPT),
         mergeMap(action => this.getConnectors(action.projectId))
-    );
+    ));
 
-    @Effect()
-    uploadConnectorEffect = this.actions$.pipe(
+
+    uploadConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<UploadConnectorAttemptAction>(UPLOAD_CONNECTOR_ATTEMPT),
         switchMap(action => this.uploadConnector(action.payload))
-    );
+    ));
 
-    @Effect({ dispatch: false })
-    downloadConnectorEffect = this.actions$.pipe(
+
+    downloadConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<DownloadConnectorAction>(DOWNLOAD_CONNECTOR),
         switchMap((action) => this.downloadConnector(action.modelId))
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    openSaveAsConnectorEffect = this.actions$.pipe(
+
+    openSaveAsConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<OpenSaveAsConnectorAction>(OPEN_CONNECTOR_SAVE_AS_FORM),
         tap((action) => this.openSaveAsConnectorDialog(action.dialogData))
-    );
+    ), { dispatch: false });
 
-    @Effect()
-    saveAsConnectorEffect = this.actions$.pipe(
+
+    saveAsConnectorEffect = createEffect(() => this.actions$.pipe(
         ofType<SaveAsConnectorAttemptAction>(SAVE_AS_CONNECTOR_ATTEMPT),
         mergeMap(action => zip(of(action), this.store.select(selectSelectedProjectId))),
         mergeMap(([action, projectId]) => this.saveAsConnector(action.payload, action.navigateTo, projectId))
-    );
+    ));
 
     private validateConnector({ modelId, modelContent, action, title, errorAction, projectId }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(modelId, modelContent, projectId).pipe(

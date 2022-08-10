@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { StorageService } from '@alfresco/adf-core';
 import { SetAppDirtyStateAction, SET_APP_DIRTY_STATE, AmaTitleService, SET_MENU, SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { tap } from 'rxjs/operators';
@@ -29,16 +29,16 @@ export class UiEffects {
         private titleService: AmaTitleService
     ) {}
 
-    @Effect({ dispatch: false })
-    setMenu = this.actions$.pipe(
+
+    setMenu = createEffect(() => this.actions$.pipe(
         ofType<SetMenuAction>(SET_MENU),
         tap(action => {
             this.storageService.setItem('menuOpened', action.payload.toString());
         })
-    );
+    ), { dispatch: false });
 
-    @Effect({ dispatch: false })
-    SetAppDirtyStateEffect = this.actions$.pipe(
+
+    SetAppDirtyStateEffect = createEffect(() => this.actions$.pipe(
         ofType<SetAppDirtyStateAction>(SET_APP_DIRTY_STATE),
         tap(action => {
             if (action.payload) {
@@ -47,6 +47,6 @@ export class UiEffects {
                 this.titleService.setSavedTitle();
             }
         })
-    );
+    ), { dispatch: false });
 
 }
