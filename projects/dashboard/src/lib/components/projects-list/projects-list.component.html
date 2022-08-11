@@ -53,6 +53,16 @@
                                     (click)="rowSelected(element)"> {{ element.version }} </td>
                             </ng-container>
 
+                            <ng-container matColumnDef="collaborators">
+                                <th mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_COLLABORATORS' | translate }}</th>
+                                <td mat-cell *matCellDef="let element"
+                                    [attr.data-automation-id]="'project-list-collaborators-' + element.id"
+                                    class="ama-dashboard-list-container-collaborators-cell">
+                                    <modelingsdk-project-collaborators [projectId]="element.id">
+                                    </modelingsdk-project-collaborators>
+                                </td>
+                            </ng-container>
+
                             <ng-container matColumnDef="menu">
                                 <th mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate }}
                                 </th>
@@ -60,7 +70,7 @@
                                     [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate"
                                     class="ama-dashboard-list-container-custom-cell">
                                     <ng-container [ngTemplateOutlet]="!isMobileScreen() ? actioMenu : mobileButtons"
-                                                  [ngTemplateOutletContext]="{element: element}">
+                                        [ngTemplateOutletContext]="{element: element}">
                                     </ng-container>
                                 </td>
                             </ng-container>

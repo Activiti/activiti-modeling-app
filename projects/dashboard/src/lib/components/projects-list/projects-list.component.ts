@@ -45,7 +45,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     dataSource$: Observable<MatTableDataSource<Partial<Project>>>;
     loading$: Observable<boolean>;
     pagination$: Observable<Pagination>;
-    displayedColumns = ['name', 'lastModifiedDate', 'creationDate', 'createdBy', 'version', 'menu', 'favorite'];
+    displayedColumns = ['name', 'lastModifiedDate', 'creationDate', 'createdBy', 'version', 'collaborators', 'menu', 'favorite'];
     pageSizeOptions = [10, 25, 50, 100, 1000];
     sorting: ServerSideSorting = {
         key: DEFAULT_SORT_KEY,
@@ -218,6 +218,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     addCollaborators(project: Partial<Project>) {
         this.store.dispatch(new GetCollaboratorsAttemptAction(project.id));
     }
+
     handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
         this.store.dispatch(new actionClass(projectId));
     }

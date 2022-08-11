@@ -28,9 +28,9 @@ export const selectProject = createSelector(
     (state, projectId) => state.entities[projectId]
 );
 
-export const selectProjectCollaborators = createSelector(
-    getDashboardFeatureState, selectSelectedProjectId,
-    (state, projectId) => state.entities[projectId].collaborators
+export const selectProjectCollaborators = (projectId: string) => createSelector(
+    getDashboardFeatureState,
+    (state) => state.entities[projectId].collaborators
 );
 
 export const selectProjectLoading = createSelector(

@@ -43,7 +43,7 @@ export class ProjectCollaboratorsComponent implements OnInit, OnDestroy {
     constructor(private store: Store<AmaState>) {}
 
     ngOnInit() {
-        this.collaborators$ = this.store.select(selectProjectCollaborators);
+        this.collaborators$ = this.store.select(selectProjectCollaborators(this.projectId));
         this.collaborators$.pipe(takeUntil(this.onDestroy$)).subscribe(collaborators => {
             if (collaborators?.length > 3) {
                 this.collaboratorsToolTip = collaborators.slice(3).map(collaborator => collaborator.username).join(', ');

@@ -25,7 +25,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { selectProjectCollaborators } from '../../store/project.selectors';
 import { ProjectCollaboratorsComponent } from './project-collaborators.component';
 
 describe('ProjectCollaboratorsComponent', () => {
@@ -58,6 +57,7 @@ describe('ProjectCollaboratorsComponent', () => {
             projectId: 'mock-id'
         }
     ];
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
@@ -76,12 +76,7 @@ describe('ProjectCollaboratorsComponent', () => {
                 {
                     provide: Store,
                     useValue: {
-                        select: jest.fn().mockImplementation((selector) => {
-                            if (selector === selectProjectCollaborators) {
-                                return of(mockCollaborators);
-                            }
-                            return of({});
-                        })
+                        select: jest.fn().mockImplementation(() => of(mockCollaborators))
                     }
                 },
             ]
@@ -105,7 +100,6 @@ describe('ProjectCollaboratorsComponent', () => {
 
     it('should show the + number of remaining collaborators if projects has more than 3 collaborators', () => {
         fixture.detectChanges();
-        component.ngOnInit();
         const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-modeler"]');
         expect(collaborator1.textContent).toBe('m');
         const collaborator2: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-superadmin"]');

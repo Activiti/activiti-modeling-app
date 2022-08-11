@@ -47,6 +47,7 @@
             "COLUMN_MODIFIED": "Updated",
             "COLUMN_OPTIONS": "Options",
             "COLUMN_ACTIONS": "Actions",
+            "COLUMN_COLLABORATORS": "Collaborators",
             "NO_ITEMS": "Create or import a project to view it in the list.",
             "NO_FAV_PROCESSES": "Favorite a process to make it available here.",
             "NO_FAV_PROJECTS": "Favorite a project to make it available here.",
