@@ -22,7 +22,7 @@ import { take } from 'rxjs/operators';
 import { JSONSchemaInfoBasics } from '../../../api/types';
 import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { hierarchy } from '../mocks/json-schema-editor.mocks';
-import { DefaultJsonNodeCustomization, JSONSchemaDefinition, JSONSchemaTypeDropdownDefinition, JSONTypePropertiesDefinition, TYPES } from '../models/model';
+import { DefaultJsonNodeCustomization, JSONSchemaDefinition, JSONSchemaTypeDropdownDefinition, JSONTypePropertiesDefinition } from '../models/model';
 import { DataModelCustomizer, DATA_MODEL_CUSTOMIZATION } from './data-model-customization';
 import { DefaultDataModelCustomizationService } from './default-data-model.customization.service';
 import { JsonSchemaEditorService } from './json-schema-editor.service';
@@ -82,227 +82,40 @@ describe('JsonSchemaEditorService', () => {
         });
         service = TestBed.inject(JsonSchemaEditorService);
         defaultCustomizer = TestBed.inject(DefaultDataModelCustomizationService);
-        defaultCustomizerSpy = spyOn(defaultCustomizer, 'getNodeCustomization').and.callThrough();
+        defaultCustomizerSpy = spyOn(defaultCustomizer, 'updateNodeCustomization').and.callThrough();
         findCustomizerSpy = spyOn<any>(service, 'findCustomizer').and.callThrough();
     });
 
     describe('getTypes', () => {
+        it('should call the find customizer', () => {
+            service.getTypes(null, {}, []);
 
-        describe('single type', () => {
-            it('JSONSchemaTypes', () => {
-                TYPES.groupOptions.find(type => type.name === 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES')?.value.forEach(type => {
-                    expect(service.getTypes({ type: type.id })).toEqual([type.id]);
-                });
-            });
-
-            it('date', () => {
-                expect(service.getTypes({ $ref: '#/$defs/primitive/date' })).toEqual(['date']);
-            });
-
-            it('datetime', () => {
-                expect(service.getTypes({ $ref: '#/$defs/primitive/datetime' })).toEqual(['datetime']);
-            });
-
-            it('file', () => {
-                expect(service.getTypes({ $ref: '#/$defs/primitive/file' })).toEqual(['file']);
-            });
-
-            it('folder', () => {
-                expect(service.getTypes({ $ref: '#/$defs/primitive/folder' })).toEqual(['folder']);
-            });
-
-            it('enum', () => {
-                expect(service.getTypes({ enum: ['a', 'b', 'c'] })).toEqual(['enum']);
-            });
-
-            it('ref', () => {
-                expect(service.getTypes({ $ref: '#/$defs/date' })).toEqual(['ref']);
-            });
-
-            it('allOf', () => {
-                expect(service.getTypes({ allOf: [] })).toEqual(['allOf']);
-            });
-
-            it('anyOf', () => {
-                expect(service.getTypes({ anyOf: [] })).toEqual(['anyOf']);
-            });
-
-            it('oneOf', () => {
-                expect(service.getTypes({ oneOf: [] })).toEqual(['oneOf']);
-            });
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
         });
 
-        it('multiple types', () => {
-            const value = {
-                type: ['object', 'string', 'integer'],
-                enum: ['a', 'b', 'c'],
-                $ref: '#/$defs/primitive/date',
-                allOf: [],
-                anyOf: [],
-                oneOf: []
-            };
+        it('should call the customizer to retrieve the new definition', () => {
+            const spy = spyOn(defaultCustomizer, 'getTypes').and.returnValue('mock');
 
-            expect(service.getTypes(value)).toEqual(['object', 'string', 'integer', 'date', 'enum', 'anyOf', 'allOf', 'oneOf']);
+            const result = service.getTypes(null, {}, []);
+
+            expect(spy).toHaveBeenCalledWith({}, []);
+            expect(result).toEqual('mock');
         });
-
     });
 
     describe('setType', () => {
+        it('should call the find customizer', () => {
+            service.setType('string', null, {}, [], true);
 
-        it('date', () => {
-            const value = {};
-            const expectedValue = { $ref: '#/$defs/primitive/date' };
-
-            service.setType('date', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('date', false, value, null, value, []);
-
-            expect(value).toEqual({});
+            expect(findCustomizerSpy).toHaveBeenCalledWith(null);
         });
 
-        it('datetime', () => {
-            const value = {};
-            const expectedValue = { $ref: '#/$defs/primitive/datetime' };
+        it('should call the customizer to retrieve the new definition', () => {
+            const spy = spyOn(defaultCustomizer, 'setType');
 
-            service.setType('datetime', true, value, null, value, []);
+            service.setType('string', null, {}, [], true);
 
-            expect(value).toEqual(expectedValue);
-
-            service.setType('datetime', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('file', () => {
-            const value = {};
-            const expectedValue = { $ref: '#/$defs/primitive/file' };
-
-            service.setType('file', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('file', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('folder', () => {
-            const value = {};
-            const expectedValue = { $ref: '#/$defs/primitive/folder' };
-
-            service.setType('folder', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('folder', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('enum', () => {
-            const value = {};
-            const expectedValue = { enum: [] };
-
-            service.setType('enum', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('enum', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('ref', () => {
-            const value = {};
-            const expectedValue = { $ref: '#/$defs' };
-
-            service.setType('ref', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('ref', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('allOf', () => {
-            const value = {};
-            const expectedValue = { allOf: [] };
-
-            service.setType('allOf', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('allOf', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('anyOf', () => {
-            const value = {};
-            const expectedValue = { anyOf: [] };
-
-            service.setType('anyOf', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('anyOf', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('oneOf', () => {
-            const value = {};
-            const expectedValue = { oneOf: [] };
-
-            service.setType('oneOf', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('oneOf', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('array', () => {
-            const value = {};
-            const expectedValue = { type: 'array', items: { type: 'string' } };
-
-            service.setType('array', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('array', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('object', () => {
-            const value = {};
-            const expectedValue = { type: 'object', properties: {} };
-
-            service.setType('object', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('object', false, value, null, value, []);
-
-            expect(value).toEqual({});
-        });
-
-        it('others', () => {
-            const value = {};
-            const expectedValue = { type: 'string' };
-
-            service.setType('string', true, value, null, value, []);
-
-            expect(value).toEqual(expectedValue);
-
-            service.setType('string', false, value, null, value, []);
-
-            expect(value).toEqual({});
+            expect(spy).toHaveBeenCalledWith('string', {}, [], true);
         });
     });
 
@@ -479,17 +292,19 @@ describe('JsonSchemaEditorService', () => {
     });
 
     describe('getNodeCustomizationsForDataModelType', () => {
+        const customization = new DefaultJsonNodeCustomization();
+
         it('should call the find customizer', () => {
-            service.getNodeCustomizationsForDataModelType(null, {}, []);
+            service.updateNodeCustomization(null, {}, [], customization);
 
             expect(findCustomizerSpy).toHaveBeenCalledWith(null);
         });
 
         it('should call the customizer to retrieve the customizations', () => {
-            const result = service.getNodeCustomizationsForDataModelType(null, {}, []);
+            service.updateNodeCustomization(null, {}, [], customization);
 
-            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, []);
-            expect(result).toEqual(new DefaultJsonNodeCustomization());
+            expect(defaultCustomizerSpy).toHaveBeenCalledWith({}, [], customization);
+            expect(customization).toEqual(new DefaultJsonNodeCustomization());
         });
     });
 

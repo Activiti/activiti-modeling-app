@@ -32,11 +32,11 @@ export type TRIGGER_TYPE = 'trigger';
 export type FORM_WIDGET_TYPE = 'custom-form-widget';
 export type DATA_TYPE = 'data';
 export type AUTHENTICATION_TYPE = 'authentication';
-export type HXP_DOC_TYPE = 'hxp-document-type';
-export type HXP_MIXIN = 'hxp-mixin';
-export type HXP_SCHEMA = 'hxp-schema';
+export type HXP_DOC_TYPE_TYPE = 'hxp_doc_type';
+export type HXP_MIXIN_TYPE = 'hxp_mixin';
+export type HXP_SCHEMA_TYPE = 'hxp_schema';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
-| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE | HXP_MIXIN | HXP_SCHEMA;
+| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -51,9 +51,9 @@ export const TRIGGER: TRIGGER_TYPE = 'trigger';
 export const FORM_WIDGET: FORM_WIDGET_TYPE = 'custom-form-widget';
 export const DATA: DATA_TYPE = 'data';
 export const AUTHENTICATION: AUTHENTICATION_TYPE = 'authentication';
-export const HXP_DOC_TYPE: HXP_DOC_TYPE = 'hxp-document-type';
-export const HXP_MIXIN: HXP_MIXIN = 'hxp-mixin';
-export const HXP_SCHEMA: HXP_SCHEMA = 'hxp-schema';
+export const HXP_DOC_TYPE: HXP_DOC_TYPE_TYPE = 'hxp_doc_type';
+export const HXP_MIXIN: HXP_MIXIN_TYPE = 'hxp_mixin';
+export const HXP_SCHEMA: HXP_SCHEMA_TYPE = 'hxp_schema';
 
 export interface Project {
     type: PROJECT_TYPE;
@@ -737,13 +737,13 @@ export interface ReleaseInfo {
 }
 
 export interface HxPDocumentType extends Model {
-    type: HXP_DOC_TYPE;
+    type: HXP_DOC_TYPE_TYPE;
 }
 
 export interface HxPMixin extends Model {
-    type: HXP_MIXIN;
+    type: HXP_MIXIN_TYPE;
 }
 
 export interface HxPSchema extends Model {
-    type: HXP_SCHEMA;
+    type: HXP_SCHEMA_TYPE;
 }

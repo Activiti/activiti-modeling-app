@@ -2,7 +2,7 @@
     [ngClass]="depth === 0 ? 'modelingsdk-json-schema-editor-parent' : (lastChild ? 'modelingsdk-json-schema-editor-last-child' : '')">
     <div class="modelingsdk-json-schema-editor" [ngClass]="depth === 0 ? 'modelingsdk-json-schema-editor-parent': ''">
         <div class="modelingsdk-json-schema-editor-node" modelingsdk-focus-element (focused)="focused($event)"
-            [class.ama-selected]="nodeSelected">
+            [class.ama-selected]="isNodeSelected">
             <div class="modelingsdk-json-schema-editor-node-inputs" tabindex="0">
                 <div class="modelingsdk-json-schema-editor-node-inputs-id" tabindex="1"
                     [ngClass]="(blockedNode || !displayRequired) ? 'ama-parent' : ''">
@@ -14,11 +14,11 @@
                         <mat-icon *ngIf="!collapsed">arrow_drop_down</mat-icon>
                     </button>
                     <mat-form-field class="modelingsdk-json-schema-editor-element-name"
-                        *ngIf="!customizations?.key?.disabled"
+                        *ngIf="!customizations?.key?.hide"
                         [ngClass]="(type | isAnyType: 'object': 'array': 'allOf': 'anyOf': 'oneOf') ? 'modelingsdk-json-schema-editor-parent' : ''">
                         <input matInput [placeholder]="'SDK.JSON_SCHEMA_EDITOR.NAME' | translate"
                             [disabled]="(blockedNode && !enableKeyEdition) || customizations?.key?.disabled"
-                            [value]="label || key" [modelingsdk-allowed-characters]="regex" (blur)="onChangeName($event)"
+                            [value]="customizations?.key?.value ? (customizations.key.value | translate) : key" [modelingsdk-allowed-characters]="regex" (blur)="onChangeName($event)"
                             [attr.data-automation-id]="'json-schema-editor-name'" />
                         <span class="mat-error ama-name-error" *ngIf="enableKeyEdition && !key?.length">{{
                             'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</span>
@@ -30,34 +30,33 @@
                         </span>
                     </mat-form-field>
                 </div>
-                <div class="modelingsdk-json-schema-editor-node-inputs-required" tabindex="2"
-                    *ngIf="!blockedNode && displayRequired && !customizations?.required?.hide">
+                <div class="modelingsdk-json-schema-editor-node-inputs-required" tabindex="2">
                     <mat-checkbox matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.REQUIRED' | translate}}" [(ngModel)]="required"
                         (change)="onCheck($event)" [attr.data-automation-id]="'json-schema-editor-required'"
-                        [disabled]="customizations?.required?.disabled">
+                        [disabled]="customizations?.required?.disabled" *ngIf="!blockedNode && displayRequired && !customizations?.required?.hide">
                     </mat-checkbox>
                 </div>
                 <div class="modelingsdk-json-schema-editor-node-inputs-type" tabindex="3"
                     [ngClass]="(blockedNode || !displayRequired) ? 'ama-parent' : ''">
                     <mat-form-field class="modelingsdk-json-schema-editor-node-inputs-type-selector"
                         [ngClass]="(type | isAnyType: 'ref') ? 'ama-ref' : ''" *ngIf="!customizations?.type?.hide">
-                        <mat-select [disabled]="customizations?.type?.disabled" *ngIf="typeNames?.groups" [value]="type"
-                            [multiple]="typeNames?.multiple" placeholder="{{'SDK.TYPE' | translate}}"
+                        <mat-select [disabled]="customizations?.type?.disabled" [(ngModel)]="typeSelectorValue"
+                            [multiple]="customizations?.type?.definitions?.multiple" placeholder="{{'SDK.TYPE' | translate}}"
                             [attr.data-automation-id]="'json-schema-editor-type'">
-                            <mat-optgroup *ngFor="let group of typeNames.groupOptions" [label]="group.name | translate">
-                                <mat-option *ngFor="let typeName of group.value" [value]="typeName.id"
+                            <ng-container *ngIf="customizations?.type?.definitions?.groups">
+                                <mat-optgroup *ngFor="let group of customizations?.type?.definitions.groupOptions" [label]="group.name | translate">
+                                    <mat-option *ngFor="let typeName of group.value" [value]="typeName.id"
+                                        (onSelectionChange)="onTypeChanges($event)">
+                                        {{typeName.label}}
+                                    </mat-option>
+                                </mat-optgroup>
+                            </ng-container>
+                            <ng-container *ngIf="!customizations?.type?.definitions?.groups">
+                                <mat-option *ngFor="let typeName of customizations?.type?.definitions?.options" [value]="typeName.id"
                                     (onSelectionChange)="onTypeChanges($event)">
                                     {{typeName.label}}
                                 </mat-option>
-                            </mat-optgroup>
-                        </mat-select>
-                        <mat-select [disabled]="customizations?.type?.disabled" *ngIf="!typeNames?.groups" [value]="type"
-                            [multiple]="typeNames?.multiple" placeholder="{{'SDK.TYPE' | translate}}"
-                            [attr.data-automation-id]="'json-schema-editor-type'">
-                            <mat-option *ngFor="let typeName of typeNames?.options" [value]="typeName.id"
-                                (onSelectionChange)="onTypeChanges($event)">
-                                {{typeName.label}}
-                            </mat-option>
+                            </ng-container>
                         </mat-select>
                     </mat-form-field>
 

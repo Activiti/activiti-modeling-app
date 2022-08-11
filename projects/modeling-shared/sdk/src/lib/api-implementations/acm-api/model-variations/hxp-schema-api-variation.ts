@@ -47,7 +47,9 @@ export class HxPSchemaApiVariation<M extends HxPSchema, C extends JSONSchemaInfo
 
     public createInitialContent(model: M): C {
         return <C>{
-            description: model.description
+            description: model.description,
+            type: 'object',
+            $id: model.name
         };
     }
 

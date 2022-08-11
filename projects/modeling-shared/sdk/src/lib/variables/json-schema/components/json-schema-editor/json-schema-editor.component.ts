@@ -24,10 +24,10 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
     ChildrenDeletedEvent,
+    DefaultJsonNodeCustomization,
     JsonNodeCustomization,
     JSONSchemaDefinition,
-    JSONSchemaEditorDialogData,
-    JSONSchemaTypeDropdownDefinition
+    JSONSchemaEditorDialogData
 } from '../../models/model';
 import { JsonSchemaEditorDialogComponent } from '../json-schema-editor-dialog/json-schema-editor-dialog.component';
 import { JsonSchemaEditorService } from '../../services/json-schema-editor.service';
@@ -35,7 +35,6 @@ import { JSONSchemaInfoBasics } from '../../../../api/types';
 import { PropertyTypeItem } from '../../../../variables/properties-viewer/property-type-item/models';
 import { Observable } from 'rxjs';
 import { MODELER_NAME_REGEX } from '../../../../helpers/utils/create-entries-names';
-import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 const isEqual = require('lodash/isEqual');
 const cloneDeep = require('lodash/cloneDeep');
@@ -87,41 +86,19 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     collapsed = false;
     definitionsCollapsed = false;
     type: string[] = [];
-    typeNames: JSONSchemaTypeDropdownDefinition;
-    nodeSelected = false;
-    customizations: JsonNodeCustomization;
+    typeSelectorValue: string[] | string;
+    isNodeSelected = false;
+    customizations: JsonNodeCustomization = new DefaultJsonNodeCustomization();
     customHierarchy: Observable<PropertyTypeItem[]>;
-    label: string;
 
     constructor(
         private jsonSchemaEditorService: JsonSchemaEditorService,
-        private dialog: MatDialog,
-        private translateService: TranslateService) { }
+        private dialog: MatDialog) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['nodeSelectedAccessor']) {
-            this.nodeSelected = isEqual(this.accessor, this.nodeSelectedAccessor);
+            this.isNodeSelected = isEqual(this.accessor, this.nodeSelectedAccessor);
         }
-
-        if (this.changesTriggerCustomization(changes)) {
-            this.customizeNode();
-        }
-    }
-
-    private changesTriggerCustomization(changes: SimpleChanges) {
-        const schemaChanges = changes['schema'] &&
-            !changes['schema'].isFirstChange() &&
-            JSON.stringify(changes['schema'].previousValue) !== JSON.stringify(changes['schema'].currentValue);
-
-        const accessorChanges = changes['accessor'] &&
-            !changes['accessor'].isFirstChange() &&
-            JSON.stringify(changes['accessor'].previousValue) !== JSON.stringify(changes['accessor'].currentValue);
-
-        const dataModelTypeChanges = changes['dataModelType'] &&
-            !changes['dataModelType'].isFirstChange() &&
-            JSON.stringify(changes['dataModelType'].previousValue) !== JSON.stringify(changes['dataModelType'].currentValue);
-
-        return schemaChanges || accessorChanges || dataModelTypeChanges;
     }
 
     get regex(): RegExp {
@@ -136,30 +113,29 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     private onTouched: any = () => { };
 
     writeValue(value: JSONSchemaInfoBasics) {
-        if (JSON.stringify(this.value) === '{}' || JSON.stringify(value) !== JSON.stringify(this.value)) {
-            this.value = value || { type: 'object' };
-            this.type = this.jsonSchemaEditorService.getTypes(this.value);
-            this.initProperties();
-            this.getDefinitionsInSchema();
-            this.customizeNode();
-        }
-
-        if (!this.schema || this.depth === 0) {
-            this.schema = cloneDeep(this.value);
-        }
-        if (!this.accessor || this.depth === 0) {
+        if (!this.accessor) {
             this.accessor = [this.key];
         }
-        this.nodeSelected = isEqual(this.accessor, this.nodeSelectedAccessor);
+
+        if (JSON.stringify(this.value) === '{}' || JSON.stringify(value) !== JSON.stringify(this.value)) {
+            this.value = value || { type: 'object' };
+
+            if (this.depth === 0) {
+                this.schema = this.value;
+            }
+
+            this.type = this.jsonSchemaEditorService.getTypes(this.dataModelType, this.schema, this.accessor);
+            this.isNodeSelected = isEqual(this.accessor, this.nodeSelectedAccessor);
+            this.customizeNode();
+            this.initProperties();
+            this.getDefinitionsInSchema();
+        }
     }
 
     private customizeNode() {
-        this.customizations = this.jsonSchemaEditorService.getNodeCustomizationsForDataModelType(this.dataModelType, this.schema, this.accessor);
-        this.typeNames = this.customizations.type.definitions;
-        this.customHierarchy = this.getCustomHierarchy(this.hierarchy, this.customizations.type.references);
-
-        if (this.customizations.key?.value) {
-            this.label = this.translateService.instant(this.customizations.key.value);
+        this.jsonSchemaEditorService.updateNodeCustomization(this.dataModelType, this.schema, this.accessor, this.customizations);
+        if (this.hierarchy) {
+            this.customHierarchy = this.getCustomHierarchy(this.hierarchy, this.customizations.type.references);
         }
 
         if (this.customizations.required?.value) {
@@ -172,6 +148,12 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
 
         if (this.customizations.type?.value) {
             this.type = this.customizations.type.value;
+        }
+
+        if (this.customizations.type.definitions && !this.customizations.type.definitions.multiple) {
+            this.typeSelectorValue = this.type.length > 0 ? this.type[0] : null;
+        } else {
+            this.typeSelectorValue = this.type;
         }
     }
 
@@ -234,7 +216,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
     private initProperties() {
         this.properties = [];
 
-        if (this.value.properties) {
+        if (this.value?.properties) {
             Object.keys(this.value.properties).forEach(key => this.properties.push({ key, definition: this.value.properties?.[key] }));
         }
     }
@@ -294,16 +276,45 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
 
     onTypeChanges(event: MatOptionSelectionChange) {
         if (event.isUserInput) {
-            this.jsonSchemaEditorService.setType(event.source.value, event.source.selected, this.value, this.dataModelType, this.schema, this.accessor);
-            this.type = this.jsonSchemaEditorService.getTypes(this.value);
+
+            const oldTypes = cloneDeep(this.type);
+
+            if (this.customizations.type.definitions.multiple) {
+                this.jsonSchemaEditorService.setType(
+                    event.source.value,
+                    this.dataModelType,
+                    this.schema,
+                    this.accessor,
+                    event.source.selected);
+            } else {
+                if (oldTypes[0] !== event.source.value) {
+                    this.jsonSchemaEditorService.setType(
+                        this.type[0],
+                        this.dataModelType,
+                        this.schema,
+                        this.accessor,
+                        false);
+                    this.jsonSchemaEditorService.setType(
+                        event.source.value,
+                        this.dataModelType,
+                        this.schema,
+                        this.accessor,
+                        event.source.selected);
+                }
+
+            }
+
+            this.type = this.jsonSchemaEditorService.getTypes(this.dataModelType, this.schema, this.accessor);
 
             if (this.type.indexOf('object') === -1) {
                 delete this.value.required;
             }
 
             this.initProperties();
-            this.customizeNode();
-            this.onChanges();
+
+            if (!isEqual(this.type, oldTypes)) {
+                this.onChanges();
+            }
         }
     }
 
@@ -445,6 +456,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
         this.onTouched(this.value);
         this.onChange(this.value);
         this.changes.emit(this.value);
+        this.customizeNode();
     }
 
     onSettings() {
