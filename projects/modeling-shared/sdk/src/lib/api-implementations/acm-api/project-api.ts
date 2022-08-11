@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries, ReleaseInfo } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries, ReleaseInfo, Collaborator } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 import { ValidationErrors } from '../../interfaces/validation-errors.interface';
@@ -35,6 +35,7 @@ export interface BackendProject {
     lastModifiedBy: string;
     version: string;
     favorite: boolean;
+    collaborators: Collaborator[];
 }
 
 @Injectable()
@@ -46,7 +47,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public get(projectId: string): Observable<Project> {
         return this.requestApiHelper
-            .get(`/modeling-service/v1/projects/${projectId}`)
+            .get(`/modeling-service/v1/projects/${projectId}`, { queryParams: { include: 'collaborators' }})
             .pipe(
                 map((response: any) => response.entry),
                 map(this.createProject.bind(this))
@@ -129,14 +130,16 @@ export class ACMProjectApi implements ProjectApi {
             queryParams = {
                 ...fetchQueries,
                 sort: `${sorting.key},${sorting.direction}`,
-                [search.key]: search.value
+                [search.key]: search.value,
+                include: 'collaborators'
             };
         } else {
             queryParams = {
                 ...fetchQueries,
                 sort: `${sorting.key},${sorting.direction}`,
                 [search.key]: search.value,
-                filters: 'favorites'
+                filters: 'favorites',
+                include: 'collaborators'
             };
         }
 

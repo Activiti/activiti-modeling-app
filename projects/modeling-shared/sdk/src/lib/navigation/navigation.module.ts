@@ -28,6 +28,7 @@ import { StudioHeaderComponent } from './components/studio-header/studio-header.
 import { SearchHeaderComponent } from './components/search-header/search-header.component';
 import { PreferProjectButtonModule } from '../components/prefer-project-button/prefer-project-button.module';
 import { ThemeMenuComponent } from './components/theme-menu/theme-menu.component';
+import { ProjectCollaboratorsModule } from '../components/project-collaborators/project-collaborators.module';
 
 @NgModule({
     imports: [
@@ -35,6 +36,7 @@ import { ThemeMenuComponent } from './components/theme-menu/theme-menu.component
         MatIconModule,
         MatButtonModule,
         PreferProjectButtonModule,
+        ProjectCollaboratorsModule,
         RouterModule.forChild([]),
         CoreModule.forChild()
     ],

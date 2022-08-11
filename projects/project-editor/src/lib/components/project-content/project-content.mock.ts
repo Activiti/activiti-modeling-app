@@ -27,5 +27,6 @@ export const mockProject: Project = {
     createdBy: 'user',
     creationDate: new Date(),
     lastModifiedBy: 'user',
-    lastModifiedDate: new Date()
+    lastModifiedDate: new Date(),
+    collaborators: []
 };

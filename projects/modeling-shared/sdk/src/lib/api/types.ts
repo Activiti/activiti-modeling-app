@@ -66,6 +66,7 @@ export interface Project {
     description: string;
     version: string;
     favorite: boolean;
+    collaborators: Collaborator[];
 }
 
 export type CustomModelStatus = 'ACTIVE' | 'DRAFT';

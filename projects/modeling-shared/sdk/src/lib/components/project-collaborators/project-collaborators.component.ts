@@ -15,8 +15,13 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Collaborator } from '../../api/types';
+import { AmaState } from '../../store/app.state';
+import { selectProjectCollaborators } from '../../store/project.selectors';
 
 @Component({
     selector: 'modelingsdk-project-collaborators',
@@ -24,17 +29,30 @@ import { Collaborator } from '../../api/types';
     styleUrls: [ './project-collaborators.component.scss' ],
     encapsulation: ViewEncapsulation.None
 })
-export class ProjectCollaboratorsComponent implements OnInit {
+export class ProjectCollaboratorsComponent implements OnInit, OnDestroy {
     @Input()
     projectId;
 
     @Input()
-    collaborators: Collaborator[];
+    overlapCollaborators = false;
+
+    collaborators$: Observable<Collaborator[]>;
+    onDestroy$ = new Subject<boolean>();
     collaboratorsToolTip: string;
 
+    constructor(private store: Store<AmaState>) {}
+
     ngOnInit() {
-        if (this.collaborators?.length > 3) {
-            this.collaboratorsToolTip = this.collaborators.slice(3).map(collaborator => collaborator.username).join(', ');
-        }
+        this.collaborators$ = this.store.select(selectProjectCollaborators);
+        this.collaborators$.pipe(takeUntil(this.onDestroy$)).subscribe(collaborators => {
+            if (collaborators?.length > 3) {
+                this.collaboratorsToolTip = collaborators.slice(3).map(collaborator => collaborator.username).join(', ');
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.next(true);
+        this.onDestroy$.complete();
     }
 }

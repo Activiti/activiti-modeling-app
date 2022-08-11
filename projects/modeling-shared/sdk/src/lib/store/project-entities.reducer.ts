@@ -35,7 +35,8 @@ import {
     GetFavoriteProjectsSuccessAction,
     GET_FAVORITE_PROJECTS_ATTEMPT
 } from './project.actions';
-import { Pagination } from '../api/types';
+import { CollaboratorEntry, Pagination } from '../api/types';
+import { AddCollaboratorsSuccessAction, ADD_COLLABORATORS_SUCCESS, RemoveCollaboratorSuccessAction, REMOVE_COLLABORATOR_SUCCESS } from './app.actions';
 
 export function projectEntitiesReducer(state: ProjectEntitiesState = initialProjectEntitiesState, action: Action): ProjectEntitiesState {
     let newState: ProjectEntitiesState;
@@ -82,6 +83,14 @@ export function projectEntitiesReducer(state: ProjectEntitiesState = initialProj
         newState = setProject(state, <GetProjectSuccessAction>action);
         break;
 
+    case ADD_COLLABORATORS_SUCCESS:
+        newState = addCollaboratorToProject(state, <AddCollaboratorsSuccessAction> action);
+        break;
+
+    case REMOVE_COLLABORATOR_SUCCESS:
+        newState = removeCollaboratorFromProject(state, <RemoveCollaboratorSuccessAction>action);
+        break;
+
     default:
         newState = Object.assign({}, state);
     }
@@ -120,4 +129,29 @@ function uploadProject(state: ProjectEntitiesState, action: UploadProjectSuccess
 
 function setProject(state: ProjectEntitiesState, action: GetProjectSuccessAction): ProjectEntitiesState {
     return projectAdapter.addOne(action.payload, state);
+}
+
+function removeCollaboratorFromProject(state: ProjectEntitiesState, action: RemoveCollaboratorSuccessAction): ProjectEntitiesState {
+    const newState = { ...state };
+
+    let collaborators = [ ...state.entities[action.projectId].collaborators ];
+    collaborators = collaborators.filter(collaborator => collaborator.id !== action.collaborator.id);
+    newState.entities[action.projectId].collaborators = collaborators;
+
+    return newState;
+}
+
+function addCollaboratorToProject(state: ProjectEntitiesState, action: AddCollaboratorsSuccessAction): ProjectEntitiesState {
+    const newState = { ...state };
+    const addedCollaborators = action.collaborators.reduce((accumulator, collaborator: CollaboratorEntry) => {
+        accumulator.push(collaborator.entry);
+        return accumulator;
+    }, []);
+
+    newState.entities[action.projectId].collaborators = [
+        ...newState.entities[action.projectId].collaborators,
+        ...addedCollaborators
+    ];
+
+    return newState;
 }

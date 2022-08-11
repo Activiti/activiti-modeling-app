@@ -35,7 +35,8 @@ export const mockProject: Project = {
     creationDate: new Date(),
     lastModifiedBy: 'user',
     lastModifiedDate: new Date(),
-    favorite: true
+    favorite: true,
+    collaborators: []
 };
 
 export const mockProject1: Project = {
@@ -48,5 +49,6 @@ export const mockProject1: Project = {
     creationDate: new Date(),
     lastModifiedBy: 'user',
     lastModifiedDate: new Date(),
-    favorite: false
+    favorite: false,
+    collaborators: []
 };

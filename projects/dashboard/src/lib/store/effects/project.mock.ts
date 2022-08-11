@@ -27,7 +27,8 @@ export const mockProject: Project = {
     creationDate: new Date(),
     lastModifiedBy: 'user',
     lastModifiedDate: new Date(),
-    favorite: false
+    favorite: false,
+    collaborators: []
 };
 
 export const paginationMock: Pagination = {

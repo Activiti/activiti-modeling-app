@@ -22,7 +22,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs';
+import { selectProjectCollaborators } from '../../store/project.selectors';
 import { ProjectCollaboratorsComponent } from './project-collaborators.component';
 
 describe('ProjectCollaboratorsComponent', () => {
@@ -38,6 +41,18 @@ describe('ProjectCollaboratorsComponent', () => {
         },
         {
             username: 'superadmin',
+            createdBy: 'modeler',
+            id: '1',
+            projectId: 'mock-id'
+        },
+        {
+            username: 'hruser',
+            createdBy: 'modeler',
+            id: '1',
+            projectId: 'mock-id'
+        },
+        {
+            username: 'admin',
             createdBy: 'modeler',
             id: '1',
             projectId: 'mock-id'
@@ -57,7 +72,18 @@ describe('ProjectCollaboratorsComponent', () => {
                 InitialUsernamePipe
             ],
             providers: [
-                { provide: TranslationService, useClass: TranslationMock }
+                { provide: TranslationService, useClass: TranslationMock },
+                {
+                    provide: Store,
+                    useValue: {
+                        select: jest.fn().mockImplementation((selector) => {
+                            if (selector === selectProjectCollaborators) {
+                                return of(mockCollaborators);
+                            }
+                            return of({});
+                        })
+                    }
+                },
             ]
         });
     });
@@ -70,7 +96,6 @@ describe('ProjectCollaboratorsComponent', () => {
     });
 
     it('should show the collaborators name initials if projects has less than 4 collaborators', () => {
-        component.collaborators = mockCollaborators;
         fixture.detectChanges();
         const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-modeler"] [id="user-initials-image"]');
         expect(collaborator1.textContent).toBe('m');
@@ -79,21 +104,6 @@ describe('ProjectCollaboratorsComponent', () => {
     });
 
     it('should show the + number of remaining collaborators if projects has more than 3 collaborators', () => {
-        component.collaborators = [
-            ...mockCollaborators,
-            {
-                username: 'hruser',
-                createdBy: 'modeler',
-                id: '1',
-                projectId: 'mock-id'
-            },
-            {
-                username: 'admin',
-                createdBy: 'modeler',
-                id: '1',
-                projectId: 'mock-id'
-            }
-        ];
         fixture.detectChanges();
         component.ngOnInit();
         const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-modeler"]');

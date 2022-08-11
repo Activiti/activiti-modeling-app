@@ -16,9 +16,10 @@
  */
 
 import { Action } from '@ngrx/store';
-import { MODEL_TYPE } from '../api/types';
+import { CollaboratorEntry, MODEL_TYPE } from '../api/types';
 import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectContextMenuAction } from '../project-editor/project-context-menu';
+import { IdentityUserModel } from '@alfresco/adf-core';
 
 export const SNACKBAR_ERROR = 'SNACKBAR_ERROR';
 export class SnackbarErrorAction implements Action {
@@ -151,4 +152,16 @@ export const GET_COLLABORATORS_ATTEMPT = 'GET_COLLABORATORS_ATTEMPT';
 export class GetCollaboratorsAttemptAction implements ProjectContextMenuAction {
     readonly type = GET_COLLABORATORS_ATTEMPT;
     constructor(public projectId: string) {}
+}
+
+export const ADD_COLLABORATORS_SUCCESS =  'ADD_COLLABORATORS_SUCCESS';
+export class AddCollaboratorsSuccessAction implements Action {
+    readonly type = ADD_COLLABORATORS_SUCCESS;
+    constructor(public projectId: string, public collaborators: CollaboratorEntry[]) {}
+}
+
+export const REMOVE_COLLABORATOR_SUCCESS =  'REMOVE_COLLABORATOR_SUCCESS';
+export class RemoveCollaboratorSuccessAction implements Action {
+    readonly type = REMOVE_COLLABORATOR_SUCCESS;
+    constructor(public projectId: string, public collaborator: IdentityUserModel) {}
 }
