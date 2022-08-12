@@ -24,7 +24,7 @@ import {
     AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading,
     selectPagination, selectProjectSummaries, ExportProjectAction,
     LayoutService,
-    GetCollaboratorsAttemptAction
+    OpenCollaboratorsDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
@@ -129,7 +129,7 @@ describe ('Projects List Component', () => {
         });
     });
 
-    it('clicking on collaborators button should dispatch an GetCollaboratorsAttemptAction', () => {
+    it('clicking on collaborators button should dispatch an OpenCollaboratorsDialogAction', () => {
         dashboardService.fetchProjects = jest.fn().mockReturnValue(of([ mockProject ]));
 
         const dispatchSpy = spyOn(store, 'dispatch');
@@ -139,10 +139,10 @@ describe ('Projects List Component', () => {
         const button = fixture.debugElement.query(By.css('[data-automation-id="project-collaborators-mock-project-id"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
-        const getCollaboratorsAction: GetCollaboratorsAttemptAction = dispatchSpy.calls.argsFor(0)[0];
+        const openCollaboratorsDialogAction: OpenCollaboratorsDialogAction = dispatchSpy.calls.argsFor(0)[0];
 
-        expect(getCollaboratorsAction.type).toBe('GET_COLLABORATORS_ATTEMPT');
-        expect(getCollaboratorsAction.projectId).toEqual('mock-project-id');
+        expect(openCollaboratorsDialogAction.type).toBe('OPEN_COLLABORATORS_DIALOG');
+        expect(openCollaboratorsDialogAction.projectId).toEqual('mock-project-id');
     });
 
     it('should sort by updated column desc by default', () => {

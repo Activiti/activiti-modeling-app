@@ -148,9 +148,9 @@ export class OpenLogHistory implements Action {
 }
 
 
-export const GET_COLLABORATORS_ATTEMPT = 'GET_COLLABORATORS_ATTEMPT';
-export class GetCollaboratorsAttemptAction implements ProjectContextMenuAction {
-    readonly type = GET_COLLABORATORS_ATTEMPT;
+export const OPEN_COLLABORATORS_DIALOG = 'OPEN_COLLABORATORS_DIALOG';
+export class OpenCollaboratorsDialogAction implements ProjectContextMenuAction {
+    readonly type = OPEN_COLLABORATORS_DIALOG;
     constructor(public projectId: string) {}
 }
 

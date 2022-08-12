@@ -27,7 +27,7 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of, ReplaySubject } from 'rxjs';
 import { LayoutService } from '../../../services/layout.service';
-import { GetCollaboratorsAttemptAction, OpenInfoDialogAction } from '../../../store/app.actions';
+import { OpenCollaboratorsDialogAction, OpenInfoDialogAction } from '../../../store/app.actions';
 import { AmaState } from '../../../store/app.state';
 import { ValidateProjectAttemptAction } from '../../../store/project.actions';
 import { StudioHeaderComponent } from './studio-header.component';
@@ -113,7 +113,7 @@ describe('StudioHeaderComponent', () => {
         expect(store.dispatch).toHaveBeenCalledWith(new ValidateProjectAttemptAction('mock-id'));
     });
 
-    it('should dispatch GetCollaboratorsAttemptAction on click of Add Collaborators button', () => {
+    it('should dispatch OpenCollaboratorsDialogAction on click of Add Collaborators button', () => {
         spyOn(store, 'dispatch');
         fixture.detectChanges();
 
@@ -122,7 +122,7 @@ describe('StudioHeaderComponent', () => {
 
         fixture.detectChanges();
 
-        expect(store.dispatch).toHaveBeenCalledWith(new GetCollaboratorsAttemptAction('mock-id'));
+        expect(store.dispatch).toHaveBeenCalledWith(new OpenCollaboratorsDialogAction('mock-id'));
     });
 
 });

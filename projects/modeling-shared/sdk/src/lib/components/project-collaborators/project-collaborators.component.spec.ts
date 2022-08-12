@@ -92,26 +92,26 @@ describe('ProjectCollaboratorsComponent', () => {
 
     it('should show the collaborators name initials if projects has less than 4 collaborators', () => {
         fixture.detectChanges();
-        const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-modeler"] [id="user-initials-image"]');
-        expect(collaborator1.textContent).toBe('m');
-        const collaborator2: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-superadmin"]');
-        expect(collaborator2.textContent).toBe('s');
+        const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-admin"] [id="user-initials-image"]');
+        expect(collaborator1.textContent).toBe('a');
+        const collaborator2: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-hruser"]');
+        expect(collaborator2.textContent).toBe('h');
     });
 
     it('should show the + number of remaining collaborators if projects has more than 3 collaborators', () => {
         fixture.detectChanges();
-        const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-modeler"]');
-        expect(collaborator1.textContent).toBe('m');
-        const collaborator2: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-superadmin"]');
-        expect(collaborator2.textContent).toBe('s');
-        const collaborator3: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-hruser"]');
-        expect(collaborator3.textContent).toBe('h');
+        const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-admin"]');
+        expect(collaborator1.textContent).toBe('a');
+        const collaborator2: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-hruser"]');
+        expect(collaborator2.textContent).toBe('h');
+        const collaborator3: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-modeler"]');
+        expect(collaborator3.textContent).toBe('m');
         const extraCollaborators: HTMLElement = fixture.nativeElement.querySelector('.ama-extra-collaborators');
         expect(extraCollaborators.textContent).toBe(' +1 ');
         const extraCollaboratorsToolTip = fixture.debugElement.query(By.css('.ama-extra-collaborators'));
         const tooltip = extraCollaboratorsToolTip.injector.get<MatTooltip>(MatTooltip);
         fixture.detectChanges();
         expect(extraCollaboratorsToolTip).toBeTruthy();
-        expect(tooltip.message).toEqual('admin');
+        expect(tooltip.message).toEqual('superadmin');
     });
 });
