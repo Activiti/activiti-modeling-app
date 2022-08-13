@@ -1,0 +1,59 @@
+.ama-search-element-dialog {
+
+    box-shadow: none;
+
+    .mat-dialog-container {
+        padding: 1px;
+        border-radius: 20px;
+    }
+
+    .mat-dialog-title {
+        margin-bottom: 0;
+    }
+
+    &-search-results {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+        max-height: 300px;
+        padding: 0;
+        margin: 0;
+
+        .mat-option {
+            display: flex;
+            width: 100%;
+            padding-left: 10px;
+        }
+
+        &-input-form {
+            width: 100%;
+        }
+
+        &-list {
+            margin-top: 10px;
+        }
+
+        &-input-text {
+            width: 100%;
+
+            .mat-form-field-flex {
+                align-items: flex-end;
+                padding-left: 10px;
+            }
+
+            .mat-form-field-underline {
+                display: none;
+            }
+
+            .mat-form-field-wrapper {
+                padding: 0;
+            }
+
+            .mat-form-field-infix {
+                border-top-width: 0;
+            }
+        }
+    }
+}

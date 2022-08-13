@@ -24,6 +24,7 @@ import {
     ModelImporter, selectMenuOpened, OpenDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectElementCreateDialogComponent } from '../project-element-create-dialog/project-element-create-dialog.component';
+import { ProjectElementSearchDialogComponent } from '../project-element-search-dialog/project-element-search-dialog.component';
 
 const orderBy = require('lodash/orderBy');
 
@@ -56,11 +57,20 @@ export class ProjectNavigationComponent implements AfterContentInit {
         this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
     }
 
-    openDialog() {
+    openCreateDialog() {
         this.store.dispatch(new OpenDialogAction(ProjectElementCreateDialogComponent, {
             height: '400px',
             width: '680px',
             panelClass: 'ama-create-element-dialog',
+            data: {}
+        }));
+    }
+
+    openSearchDialog() {
+        this.store.dispatch(new OpenDialogAction(ProjectElementSearchDialogComponent, {
+            width: '400px',
+            panelClass: 'ama-search-element-dialog',
+            position: { top: '50px' },
             data: {}
         }));
     }

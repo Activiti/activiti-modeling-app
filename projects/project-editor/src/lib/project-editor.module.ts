@@ -41,6 +41,10 @@ import { ProjectElementCreateDialogComponent } from './components/project-elemen
 import { MatSelectModule } from '@angular/material/select';
 import { ProjectImportSelectListComponent } from './components/project-import-select-list/project-import-select-list.component';
 import { ProjectEmptyContentComponent } from './components/project-empty-content/project-empty-content.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProjectElementSearchDialogComponent } from './components/project-element-search-dialog/project-element-search-dialog.component';
+import { ProjectTreeSearchService } from './services/project-tree-search.service';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
     imports: [
@@ -53,7 +57,9 @@ import { ProjectEmptyContentComponent } from './components/project-empty-content
         ExtensionsModule,
         RouterModule,
         MatSidenavModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDialogModule,
+        MatDividerModule
     ],
     declarations: [
         ProjectContentComponent,
@@ -65,11 +71,13 @@ import { ProjectEmptyContentComponent } from './components/project-empty-content
         ProjectTreeIconsComponent,
         ProjectImportSelectListComponent,
         ProjectElementCreateComponent,
-        ProjectElementCreateDialogComponent
+        ProjectElementCreateDialogComponent,
+        ProjectElementSearchDialogComponent
     ],
     providers: [
         ProjectEditorService,
         ProjectTreeHelper,
+        ProjectTreeSearchService,
         provideTranslations('project-editor'),
         provideLogFilter(getProjectEditorLogInitiator()),
         provideRoutes(studioProjectEditorRoutes)

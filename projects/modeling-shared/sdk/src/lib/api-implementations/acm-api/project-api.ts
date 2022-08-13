@@ -18,7 +18,8 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries, ReleaseInfo, Collaborator } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting,
+    SearchQuery, CollaboratorEntry, FetchQueries, ReleaseInfo, Collaborator, Model } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 import { ValidationErrors } from '../../interfaces/validation-errors.interface';
@@ -242,6 +243,20 @@ export class ACMProjectApi implements ProjectApi {
             .put(`/modeling-service/v1/releases/${release.id}`, { bodyParam: release })
             .pipe(
                 map((response: any) => response.entry)
+            );
+    }
+
+    public searchProjectModelByName(projectId: string, partialName: string, pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<Model>> {
+        const queryParams = {
+            name: partialName,
+            ...pagination
+        };
+        return this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}/models/findByName`,  { queryParams: queryParams })
+            .pipe(
+                map((modelPaged: any) => ({
+                    pagination: modelPaged.list.pagination,
+                    entries: modelPaged.list.entries.map(entry => entry.entry)
+                }))
             );
     }
 }

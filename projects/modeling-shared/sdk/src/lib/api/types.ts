@@ -107,7 +107,6 @@ export interface ReleaseEntry {
 export interface CollaboratorEntry {
     entry: Collaborator;
 }
-
 export interface Release {
     id: string;
     name: string;
