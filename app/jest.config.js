@@ -1,3 +1,4 @@
+const path = require('path');
 const getJestConfig = require(__dirname + '/../projects/adf-candidates/testing/jest/jest.get-config');
 
 module.exports = getJestConfig({
@@ -12,8 +13,8 @@ module.exports = getJestConfig({
         path.resolve(__dirname, 'src')
     ],
     globals: {
-        "ts-jest": {
-           tsconfig: "<rootDir>/tsconfig.spec.json"
+       "ts-jest": {
+            tsconfig: path.resolve(__dirname, 'tsconfig.spec.json'),
         }
     }
-}, path.resolve(__dirname, '..', 'tsconfig.json'), '<rootDir>/../');
+}, 'tsconfig.json', path.resolve(__dirname, '..'));
