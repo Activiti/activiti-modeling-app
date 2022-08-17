@@ -16,7 +16,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { PropertiesViewerComponent } from './properties-viewer.component';
@@ -50,6 +50,14 @@ describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
     let component: PropertiesViewerComponent;
     let service: VariablesService;
+    let debugEl: DebugElement;
+
+    const cssSelector = {
+        analyticsCheckbox: '.ama-variable-analytics',
+        addVariableButton: '.ama-add-btn',
+        variableTypeSelector: '[data-automation-id="variable-type-selector"]',
+        analyticsInputCheckbox: '.ama-variable-analytics input[type="checkbox"]'
+    };
 
     const mockDialog = {
         close: jest.fn()
@@ -108,6 +116,7 @@ describe('PropertiesViewerComponent', () => {
         service = TestBed.inject(VariablesService);
         component = fixture.componentInstance;
         component.dataSource = new MatTableDataSource(Object.values(data));
+        debugEl = fixture.debugElement;
         fixture.detectChanges();
     });
 
@@ -279,18 +288,20 @@ describe('PropertiesViewerComponent', () => {
 
     it('should call sendData of VariablesDialog when clicking on add button', () => {
         component.requiredCheckbox = true;
+        component.allowAnalytics = true;
         const data1 = {
             'generated-uuid': {
                 'id': 'generated-uuid',
                 'name': '',
                 'type': null,
                 'value': '',
+                'analytics': false,
                 'required': false
             }
         };
         spyOn(service, 'sendData');
 
-        const button = fixture.nativeElement.querySelector('.ama-add-btn');
+        const button = fixture.nativeElement.querySelector(cssSelector.addVariableButton);
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
@@ -340,6 +351,7 @@ describe('PropertiesViewerComponent', () => {
     });
 
     it('should be able to choose a display name', () => {
+        component.allowAnalytics = true;
         fixture.detectChanges();
         const addButton = fixture.nativeElement.querySelector('[data-automation-id="add-variable"]');
         addButton.dispatchEvent(new Event('click'));
@@ -367,6 +379,7 @@ describe('PropertiesViewerComponent', () => {
                 'id': 'generated-uuid',
                 'name': 'name',
                 'type': 'string',
+                'analytics': false,
                 'required': false,
                 'display': true,
                 'displayName': 'newColumn'
@@ -778,5 +791,221 @@ describe('PropertiesViewerComponent', () => {
 
         expect(component.form.name).toEqual('var2');
     });
+
+    describe('test analytics checkbox', () => {
+
+        describe('allowAnalytics is true', () => {
+
+            beforeEach(() => {
+                component.allowAnalytics = true;
+            });
+
+            it('should not show analytics checkbox if type is not selected', async () => {
+                await clickOnAddVariableBtn();
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+            });
+
+            it('should show analytics checkbox if selected type is string', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('string');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).not.toBeNull();
+                expect(component.form.analytics).toEqual(false);
+
+            });
+
+            it('should show analytics checkbox if selected type is integer', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('integer');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).not.toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should show analytics checkbox if selected type is boolean', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('boolean');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).not.toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should show analytics checkbox if selected type is date', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('date');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).not.toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should not show analytics checkbox if selected type is array', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('array');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should not show analytics checkbox if selected type is datetime', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('datetime');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should not show analytics checkbox if selected type is file', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('file');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should not show analytics checkbox if selected type is folder', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('folder');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should not show analytics checkbox if selected type is json', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('json');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+                expect(component.form.analytics).toEqual(false);
+            });
+
+            it('should analytics value be true if is checked', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('string');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsInputCheckbox));
+                analyticsCheckboxEl.nativeElement.dispatchEvent(new Event('click'));
+                fixture.detectChanges();
+                await fixture.whenStable();
+                expect(component.form.analytics).toEqual(true);
+            });
+
+            describe('check analytics value and visibility clicking on a table row', () => {
+                it('should show analytics checkbox true clicking on a variable in a table that was set to true', async () => {
+                    const fieldValue = {
+                        '9ff707dd-3aa0-4a6f-b268-65f5a33a0ca0': {
+                            id: '9ff707dd-3aa0-4a6f-b268-65f5a33a0ca0',
+                            name: 'date_Analytics_true',
+                            type: 'date',
+                            required: false,
+                            model: {
+                                $ref: '#/$defs/primitive/date'
+                            },
+                            analytics: true
+                        }
+                    };
+                    component.dataSource = new MatTableDataSource(Object.values(fieldValue));
+                    fixture.detectChanges();
+                    await fixture.whenStable();
+                    const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+                    rows[0].dispatchEvent(new Event('click'));
+                    fixture.detectChanges();
+                    await fixture.whenStable();
+                    const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                    expect(analyticsCheckboxEl).not.toBeNull();
+                    expect(component.form.analytics).toEqual(true);
+                });
+
+                it('should show analytics checkbox false clicking on a variable in a table that was set to false', async () => {
+                    const fieldValue = {
+                        '9ff707dd-3aa0-4a6f-b268-65f5a33a0ca0': {
+                            id: '9ff707dd-3aa0-4a6f-b268-65f5a33a0ca0',
+                            name: 'date_Analytics_false',
+                            type: 'date',
+                            required: false,
+                            model: {
+                                $ref: '#/$defs/primitive/date'
+                            },
+                            analytics: false
+                        }
+                    };
+                    component.dataSource = new MatTableDataSource(Object.values(fieldValue));
+                    fixture.detectChanges();
+                    await fixture.whenStable();
+                    const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+                    rows[0].dispatchEvent(new Event('click'));
+                    fixture.detectChanges();
+                    await fixture.whenStable();
+                    const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                    expect(analyticsCheckboxEl).not.toBeNull();
+                    expect(component.form.analytics).toEqual(false);
+                });
+
+                it('should not show analytics checkbox clicking on a variable in a table that can\'t set analytics to true', async () => {
+                    const fieldValue = {
+                        '9ff707dd-3aa0-4a6f-b268-65f5a33a0ca0': {
+                            id: '9ff707dd-3aa0-4a6f-b268-65f5a33a0ca0',
+                            name: 'array',
+                            type: 'array',
+                            required: false,
+                            model: {
+                                $ref: '#/$defs/primitive/date'
+                            },
+                            analytics: false
+                        }
+                    };
+                    component.dataSource = new MatTableDataSource(Object.values(fieldValue));
+                    fixture.detectChanges();
+                    await fixture.whenStable();
+                    const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+                    rows[0].dispatchEvent(new Event('click'));
+                    fixture.detectChanges();
+                    await fixture.whenStable();
+                    const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                    expect(analyticsCheckboxEl).toBeNull();
+                    expect(component.form.analytics).toEqual(false);
+                });
+
+            });
+
+        });
+
+        describe('allowAnalytics is false', () => {
+
+            beforeEach(() => {
+                component.allowAnalytics = false;
+            });
+
+            it('should not show analytics checkbox if type is not selected', async () => {
+                await clickOnAddVariableBtn();
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+            });
+
+            it('should not show analytics checkbox if type is selected', async () => {
+                await clickOnAddVariableBtn();
+                await triggerVariableTypeChangeTo('string');
+                const analyticsCheckboxEl = debugEl.query(By.css(cssSelector.analyticsCheckbox));
+                expect(analyticsCheckboxEl).toBeNull();
+                expect(component.form.analytics).toBeUndefined();
+            });
+
+        });
+
+    });
+
+    async function clickOnAddVariableBtn() {
+        const button = fixture.nativeElement.querySelector(cssSelector.addVariableButton);
+        button.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        await fixture.whenStable();
+    }
+
+    async function triggerVariableTypeChangeTo(variableType: string) {
+        component.form.type = variableType;
+        debugEl.query(By.css(cssSelector.variableTypeSelector)).nativeElement.dispatchEvent(new Event('change'));
+        fixture.detectChanges();
+        await fixture.whenStable();
+    }
+
 
 });

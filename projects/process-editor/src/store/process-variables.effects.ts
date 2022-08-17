@@ -70,13 +70,14 @@ export class ProcessVariablesEffects {
         const required = true;
         const columns = [ 'name', 'type', 'required', 'displayName', 'value', 'delete' ];
         const allowExpressions = true;
+        const allowAnalytics = true;
 
         this.dialogService.openDialog(VariablesComponent, {
             disableClose: true,
             height: '650px',
             width: '1000px',
             panelClass: 'ama-process-variables-dialog',
-            data: { properties, title, filterPlaceholder, columns, required, allowExpressions, propertiesUpdate$ },
+            data: { properties, title, filterPlaceholder, columns, required, allowExpressions, propertiesUpdate$, allowAnalytics },
         });
 
         propertiesUpdate$.subscribe(data => {

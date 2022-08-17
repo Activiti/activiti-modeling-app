@@ -34,6 +34,7 @@ export interface VariableDialogData extends MatDialogConfig {
     required: boolean;
     propertiesUpdate$: Subject<EntityProperties>;
     allowExpressions: boolean;
+    allowAnalytics?: boolean;
 }
 
 @Component({
@@ -56,6 +57,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     types: string[];
     validVariables = true;
     allowExpressions = false;
+    allowAnalytics = false;
 
     constructor(
         public dialog: MatDialogRef<VariablesComponent>,
@@ -69,6 +71,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
         this.columns = data.columns;
         this.types = data.types || primitive_types;
         this.allowExpressions = data.allowExpressions || false;
+        this.allowAnalytics = data.allowAnalytics || false;
     }
 
     ngOnInit() {

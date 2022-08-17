@@ -45,6 +45,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     @Input() filterValue = '';
     @Input() filterPlaceholder: string;
     @Input() allowExpressions = false;
+    @Input() allowAnalytics = false;
     @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(ValueTypeInputComponent) valueTypeInput: ValueTypeInputComponent;
@@ -66,6 +67,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         allowExpressions: boolean;
     };
     autocompletionContext: EntityProperty[];
+    showAnalyticsInput = false;
 
     private readonly EXPRESSION_REGEX = /\${([^]*)}/m;
 
@@ -84,6 +86,10 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
 
         if (this.requiredCheckbox) {
             this.form.required = false;
+        }
+
+        if (this.allowAnalytics) {
+            this.form.analytics = false;
         }
 
         this.expression = '';
@@ -184,6 +190,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.autocompletionContext = this.getVariablesForExpressionEditor(element.id);
         this.updateTabIndex();
         this.validateCurrentFormValue();
+        this.handleAnalyticsInput();
     }
 
     private getVariablesForExpressionEditor(id: any): EntityProperty[] {
@@ -194,8 +201,18 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         delete this.form.value;
         this.expression = '';
         this.valueTypeInput?.resetInput();
+        this.handleAnalyticsInput();
         this.updateTabIndex();
         this.saveChanges();
+    }
+
+    private handleAnalyticsInput() {
+        if (this.allowAnalytics) {
+            this.showAnalyticsInput = ['string', 'integer', 'boolean', 'date'].includes(this.form.type);
+            if (!this.showAnalyticsInput) {
+                this.form.analytics = false;
+            }
+        }
     }
 
     saveChanges() {
@@ -320,6 +337,10 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
             'type': null,
             'value': ''
         };
+
+        if (this.allowAnalytics) {
+            newVariable['analytics'] = false;
+        }
 
         if (this.requiredCheckbox) {
             newVariable['required'] = false;

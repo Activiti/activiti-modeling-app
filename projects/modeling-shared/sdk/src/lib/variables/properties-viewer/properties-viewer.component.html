@@ -108,6 +108,7 @@
         </mat-form-field>
         <div class="ama-variable-type-required-row">
             <modelingsdk-property-type-selector-smart
+                [attr.data-automation-id]="'variable-type-selector'"
                 [automationId]="'variable-type'"
                 [onlyPrimitiveTypes]="true"
                 [(ngModel)]="form"
@@ -117,6 +118,16 @@
             <mat-checkbox *ngIf="requiredCheckbox && allowExpressions" [(ngModel)]="form.required" (change)="saveChanges()" color="primary"
                 data-automation-id="variable-required" class="ama-variable-required">
                 {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
+            </mat-checkbox>
+        </div>
+        <div class="ama-variable-analytics-row" *ngIf="allowAnalytics && showAnalyticsInput">
+            <mat-checkbox
+                [(ngModel)]="form.analytics"
+                (change)="saveChanges()"
+                color="primary"
+                data-automation-id="variable-analytics"
+                class="ama-variable-analytics">
+                {{ 'SDK.VARIABLES_EDITOR.TABLE.ANALYTICS' | translate }}
             </mat-checkbox>
         </div>
 
@@ -132,7 +143,7 @@
                     [checked]="form?.display">
                 {{ 'SDK.DISPLAY_NAME_VISIBILITY.YES' | translate }}
                 </mat-button-toggle>
-    
+
                 <mat-button-toggle
                     [value]="false"
                     [checked]="!form?.display">
