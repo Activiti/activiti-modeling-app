@@ -276,6 +276,7 @@ export interface EntityProperty {
     readOnly?: boolean;
     placeholder?: string;
     aggregatedTypes?: string[];
+    analytics?: boolean;
 }
 
 export interface EntityProperties {
