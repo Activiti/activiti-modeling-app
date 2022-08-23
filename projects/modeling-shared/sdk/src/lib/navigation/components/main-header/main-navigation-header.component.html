@@ -11,7 +11,7 @@
             </div>
             <div class="studio-project-list-header-actions" *ngIf="!isSmallScreen; else iconButtons">
                 <ng-container *ngFor="let action of actions">
-                    <button mat-button (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
+                    <button mat-button onclick="this.blur()" (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
                         <span>{{ action.title | translate }}</span>
                     </button>
                 </ng-container>

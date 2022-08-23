@@ -27,6 +27,11 @@
             padding-left: 10px;
         }
 
+        &-divider {
+            display: flex;
+            width: 100%;
+        }
+
         &-input-form {
             width: 100%;
         }
@@ -48,7 +53,7 @@
             }
 
             .mat-form-field-wrapper {
-                padding: 0;
+                padding: 5px 0 0;
             }
 
             .mat-form-field-infix {

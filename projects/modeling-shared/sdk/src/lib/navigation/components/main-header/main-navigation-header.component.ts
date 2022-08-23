@@ -90,8 +90,8 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
         });
     }
 
-    runAction(type: string) {
-        this.store.dispatch({ type });
+    runAction(actionName: string) {
+        this.store.dispatch( { type : actionName} );
     }
 
     ngOnDestroy() {

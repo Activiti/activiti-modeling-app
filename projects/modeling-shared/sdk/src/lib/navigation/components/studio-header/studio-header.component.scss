@@ -9,6 +9,7 @@
     &-navigation {
         display: flex;
         padding-left: 15px;
+        flex: 0 1 30%;
 
         button {
             color: var(--theme-text-color);
@@ -22,7 +23,8 @@
     &-menu {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
+        flex: 1 1 auto;
 
         &-version {
             user-select: none;
@@ -56,6 +58,8 @@
         flex-direction: row;
         align-items: center;
         padding-right: 12px;
+        flex: 0 1 30%;
+        justify-content: flex-end;
 
         &-validate.mat-flat-button {
             background: rgba(33, 33, 33, 0.12);

@@ -30,7 +30,7 @@ export const selectProject = createSelector(
 
 export const selectProjectCollaborators = (projectId: string) => createSelector(
     getDashboardFeatureState,
-    (state) => state.entities[projectId].collaborators
+    (state) => state.entities[projectId]?.collaborators
 );
 
 export const selectProjectLoading = createSelector(

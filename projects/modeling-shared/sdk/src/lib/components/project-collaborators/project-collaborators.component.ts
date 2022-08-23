@@ -18,7 +18,7 @@
 import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { Collaborator } from '../../api/types';
 import { AmaState } from '../../store/app.state';
 import { selectProjectCollaborators } from '../../store/project.selectors';
@@ -43,7 +43,8 @@ export class ProjectCollaboratorsComponent implements OnInit, OnDestroy {
     constructor(private store: Store<AmaState>) {}
 
     ngOnInit() {
-        this.collaborators$ = this.store.select(selectProjectCollaborators(this.projectId)).pipe(map(collaborators => collaborators.sort(this.sortByName)));
+        this.collaborators$ = this.store.select(selectProjectCollaborators(this.projectId))
+            .pipe(filter(collaborators => !!collaborators), map(collaborators => collaborators.sort(this.sortByName)));
         this.collaborators$.pipe(takeUntil(this.onDestroy$)).subscribe(collaborators => {
             if (collaborators?.length > 3) {
                 this.collaboratorsToolTip = collaborators.slice(3).map(collaborator => collaborator.username).join(', ');
