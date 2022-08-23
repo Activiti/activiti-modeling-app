@@ -228,6 +228,7 @@ describe('ConnectorEditorEffects', () => {
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
             const expectedLogAction = logFactory.logInfo(getConnectorLogInitiator(), 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
+            /* cspell: disable-next-line */
             const expected = cold('(bcdef)', {
                 b: new SetApplicationLoadingStateAction(true),
                 c: new DraftDeleteConnectorAction(connector.id),
@@ -378,7 +379,7 @@ describe('ConnectorEditorEffects', () => {
 
         it('deleteConnectorAttemptEffect should dispatch the DeleteConnectorSuccessAction and SnackbarInfoAction actions', () => {
             actions$ = hot('a', { a: new DeleteConnectorAttemptAction(connector.id) });
-
+            /* cspell: disable-next-line */
             const expected = cold('(bcde)', {
                 b: new DeleteConnectorSuccessAction(connector.id),
                 c: new ModelClosedAction({ id: connector.id, type: CONNECTOR }),
