@@ -26,13 +26,5 @@
     "@nrwl/angular:component": {
       "style": "scss"
     }
-  },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
   }
 }

@@ -53,7 +53,8 @@ describe('ThemeMenuComponent', () => {
                     }),
                     dispatch: jest.fn()
                 }
-            }]
+            }],
+            declarations: [ThemeMenuComponent]
         });
 
         fixture = TestBed.createComponent(ThemeMenuComponent);

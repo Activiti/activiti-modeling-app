@@ -40,7 +40,7 @@ jobs:
 
     - stage: Build
       name: Build
-      script: npm run build -- --prod
+      script: npm run build modeling-ce -- --prod
       workspaces:
         create:
           name: modeling-ce-build-artifact-cache

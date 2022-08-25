@@ -23,7 +23,7 @@ import {
     EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel, ISO_8601_TIME_DURATION_REGEX
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { filter, take, debounceTime, takeUntil } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -54,28 +54,28 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     @Input() property: DueDateItemModel;
 
     processVariables: EntityProperty[] = [];
-    dueDateForm: FormGroup;
+    dueDateForm: UntypedFormGroup;
     today = new Date();
     properties: CardViewItem[] = [];
     dueDateType = DueDateType;
 
     onDestroy$: Subject<void> = new Subject<void>();
 
-    get timeDurationForm(): FormGroup {
-        return this.dueDateForm.get('timeDuration') as FormGroup;
+    get timeDurationForm(): UntypedFormGroup {
+        return this.dueDateForm.get('timeDuration') as UntypedFormGroup;
     }
 
-    get processVariable(): FormControl {
-        return this.dueDateForm.get('processVariable') as FormControl;
+    get processVariable(): UntypedFormControl {
+        return this.dueDateForm.get('processVariable') as UntypedFormControl;
     }
 
-    get selectedDueDateType(): FormControl {
-        return this.dueDateForm.get('selectedDueDateType') as FormControl;
+    get selectedDueDateType(): UntypedFormControl {
+        return this.dueDateForm.get('selectedDueDateType') as UntypedFormControl;
     }
 
     constructor(private cardViewUpdateService: CardViewUpdateService,
         private store: Store<AmaState>,
-        private formBuilder: FormBuilder) {
+        private formBuilder: UntypedFormBuilder) {
     }
 
     ngOnInit() {

@@ -18,7 +18,7 @@
 import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import moment from 'moment-es6';
 import { MomentDateAdapter } from '@alfresco/adf-core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -98,7 +98,7 @@ export class PropertiesViewerDateInputComponent implements OnChanges {
     }
 
     get pickerDate() {
-        return new FormControl({ value: this.value ? moment(this.value, this.format) : '', disabled: this.disabled });
+        return new UntypedFormControl({ value: this.value ? moment(this.value, this.format) : '', disabled: this.disabled });
     }
 
     onChange(event: MatDatepickerInputEvent<Date> | MatCheckboxChange) {

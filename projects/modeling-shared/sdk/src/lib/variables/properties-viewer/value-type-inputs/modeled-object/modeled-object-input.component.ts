@@ -16,7 +16,7 @@
  */
 
 import { Component, Output, EventEmitter, Input, ViewEncapsulation, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ElementVariable, EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
 import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
@@ -47,13 +47,13 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
     valueInit = false;
     primitiveType: string[] = null;
 
-    objectForm: FormGroup;
+    objectForm: UntypedFormGroup;
 
     private oldModel = null;
     private oldValue = null;
     private subscription: Subscription = null;
 
-    constructor(private formBuilder: FormBuilder, private jsonService: JSONSchemaToEntityPropertyService) { }
+    constructor(private formBuilder: UntypedFormBuilder, private jsonService: JSONSchemaToEntityPropertyService) { }
 
     ngOnChanges() {
         const modelChanged = !this.objectEquals(this.oldModel, this.model);

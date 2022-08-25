@@ -18,7 +18,7 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { AmaState, selectSelectedProjectId } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, switchMap, takeUntil } from 'rxjs/operators';
 import { ProjectTreeSearchService } from '../../services/project-tree-search.service';
 import { Store } from '@ngrx/store';
@@ -40,7 +40,7 @@ export class SearchOption {
 })
 export class ProjectElementSearchDialogComponent implements OnInit, OnDestroy {
 
-    modelControl = new FormControl('');
+    modelControl = new UntypedFormControl('');
     filteredOptions$: Observable<SearchOption[]>;
     private currentProjectId = null;
 

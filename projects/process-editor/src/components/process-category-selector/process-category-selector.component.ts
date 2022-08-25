@@ -17,7 +17,7 @@
 
 import { AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -41,7 +41,7 @@ export class ProcessCategorySelectorComponent implements OnInit {
     allCategories$: Observable<string[]>;
     filteredCategories$: Observable<string[]>;
 
-    categorySearchInput = new FormControl();
+    categorySearchInput = new UntypedFormControl();
 
     constructor(private store: Store<AmaState>) { }
 

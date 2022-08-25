@@ -4,6 +4,7 @@
     "newProjectRoot": "projects",
     "projects": {
         "modeling-ce": {
+            "$schema": "../../../node_modules/nx/schemas/project-schema.json",
             "root": "app",
             "sourceRoot": "app/src",
             "projectType": "application",
@@ -246,6 +247,7 @@
             "tags": ["scope:modeling-ce", "type:app", "category:modeling-ce"]
         },
         "modeling-sdk": {
+            "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
             "root": "projects/modeling-shared/sdk",
             "sourceRoot": "projects/modeling-shared/sdk/src",
             "projectType": "library",
@@ -254,12 +256,12 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/modeling-shared/sdk/jest.config.js",
+                        "jestConfig": "projects/modeling-shared/sdk/jest.config.ts",
                         "runInBand": true
                     },
                     "configurations": {
                         "adf": {
-                            "jestConfig": "projects/modeling-shared/sdk/jest.adf.config.js",
+                            "jestConfig": "projects/modeling-shared/sdk/jest.adf.config.ts",
                             "codeCoverage": false,
                             "silent": true
                         }
@@ -282,6 +284,7 @@
             "tags": ["scope:modeling-sdk", "category:modeling-ce"]
         },
         "modeling-ce-connector-editor": {
+            "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
             "root": "projects/connector-editor",
             "sourceRoot": "projects/connector-editor/src",
             "projectType": "library",
@@ -290,12 +293,12 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/connector-editor/jest.config.js",
+                        "jestConfig": "projects/connector-editor/jest.config.ts",
                         "runInBand": true
                     },
                     "configurations": {
                         "adf": {
-                            "jestConfig": "projects/connector-editor/jest.adf.config.js",
+                            "jestConfig": "projects/connector-editor/jest.adf.config.ts",
                             "codeCoverage": false,
                             "silent": true
                         }
@@ -323,6 +326,7 @@
             "implicitDependencies": ["modeling-ce-app-shell"]
         },
         "modeling-ce-dashboard": {
+            "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
             "root": "projects/dashboard",
             "sourceRoot": "projects/dashboard/src",
             "projectType": "library",
@@ -331,12 +335,12 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/dashboard/jest.config.js",
+                        "jestConfig": "projects/dashboard/jest.config.ts",
                         "runInBand": true
                     },
                     "configurations": {
                         "adf": {
-                            "jestConfig": "projects/dashboard/jest.adf.config.js",
+                            "jestConfig": "projects/dashboard/jest.adf.config.ts",
                             "codeCoverage": false,
                             "silent": true
                         }
@@ -362,6 +366,7 @@
             "implicitDependencies": ["modeling-ce-app-shell"]
         },
         "modeling-ce-project-editor": {
+            "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
             "root": "projects/project-editor",
             "sourceRoot": "projects/project-editor/src",
             "projectType": "library",
@@ -370,12 +375,12 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/project-editor/jest.config.js",
+                        "jestConfig": "projects/project-editor/jest.config.ts",
                         "runInBand": true
                     },
                     "configurations": {
                         "adf": {
-                            "jestConfig": "projects/project-editor/jest.adf.config.js",
+                            "jestConfig": "projects/project-editor/jest.adf.config.ts",
                             "codeCoverage": false,
                             "silent": true
                         }
@@ -402,6 +407,7 @@
             "implicitDependencies": ["modeling-ce-app-shell"]
         },
         "modeling-ce-process-editor": {
+            "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
             "root": "projects/process-editor",
             "sourceRoot": "projects/process-editor/src",
             "projectType": "library",
@@ -410,12 +416,12 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/process-editor/jest.config.js",
+                        "jestConfig": "projects/process-editor/jest.config.ts",
                         "runInBand": true
                     },
                     "configurations": {
                         "adf": {
-                            "jestConfig": "projects/process-editor/jest.adf.config.js",
+                            "jestConfig": "projects/process-editor/jest.adf.config.ts",
                             "codeCoverage": false,
                             "silent": true
                         }
@@ -442,6 +448,7 @@
             "implicitDependencies": ["modeling-ce-app-shell"]
         },
         "adf-candidates": {
+            "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
             "projectType": "library",
             "root": "projects/adf-candidates",
             "sourceRoot": "projects/adf-candidates",
@@ -450,12 +457,12 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/adf-candidates/jest.config.js",
+                        "jestConfig": "projects/adf-candidates/jest.config.ts",
                         "runInBand": true
                     },
                     "configurations": {
                         "adf": {
-                            "jestConfig": "projects/adf-candidates/jest.adf.config.js",
+                            "jestConfig": "projects/adf-candidates/jest.adf.config.ts",
                             "codeCoverage": false,
                             "silent": true
                         }
@@ -475,9 +482,14 @@
                     "outputs": ["{options.outputFile}"]
                 }
             },
-            "tags": ["scope:adf-candidates", "type:lib", "category:modeling-ce"]
+            "tags": [
+                "scope:adf-candidates",
+                "type:lib",
+                "category:modeling-ce"
+            ]
         },
         "modeling-ce-app-shell": {
+            "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
             "root": "projects/app-shell",
             "sourceRoot": "projects/app-shell/src",
             "projectType": "library",
@@ -486,12 +498,12 @@
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/app-shell/jest.config.js",
+                        "jestConfig": "projects/app-shell/jest.config.ts",
                         "runInBand": true
                     },
                     "configurations": {
                         "adf": {
-                            "jestConfig": "projects/app-shell/jest.adf.config.js",
+                            "jestConfig": "projects/app-shell/jest.adf.config.ts",
                             "codeCoverage": false,
                             "silent": true
                         }

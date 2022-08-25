@@ -16,7 +16,7 @@
  */
 
 import { Component, Output, EventEmitter, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { JSONSchemaInfoBasics } from '../../api/types';
@@ -33,7 +33,7 @@ export abstract class PropertiesViewerModelValidatedInputComponent implements On
     @Input() placeholder: string;
     @Input() required = false;
 
-    validatedInput: FormControl;
+    validatedInput: UntypedFormControl;
     matcher = new InstantErrorStateMatcher();
 
     onDestroy$ = new Subject<boolean>();
@@ -59,7 +59,7 @@ export abstract class PropertiesViewerModelValidatedInputComponent implements On
 
     private createFormControlIfNeeded() {
         if (!this.validatedInput) {
-            this.validatedInput = new FormControl({ value: this.value, disabled: this.disabled || this.model?.readOnly });
+            this.validatedInput = new UntypedFormControl({ value: this.value, disabled: this.disabled || this.model?.readOnly });
             this.validatedInput.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(value => {
                 if (this.validatedInput.valid && this.previousValue !== value && typeof value === 'string') {
                     this.change.emit(this.transformValueToBeEmitted(value));

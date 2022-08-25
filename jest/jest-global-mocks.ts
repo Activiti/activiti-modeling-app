@@ -32,7 +32,7 @@ Object.defineProperty(window, 'getComputedStyle', {
     value: () => ({ display: 'none', appearance: ['-webkit-appearance'], getPropertyValue: () => '' })
 });
 
-Object.defineProperty(window, 'matchMedia', { value: () => ({ matches: true }) });
+Object.defineProperty(window, 'matchMedia', { value: () => ({ matches: true, addListener: jest.fn(), removeListener: jest.fn() }) });
 Object.defineProperty(window, 'CSS', { value: '' });
 
 // fix https://github.com/Alfresco/alfresco-ng2-components/blob/develop/lib/core/services/alfresco-api.service.ts#L124

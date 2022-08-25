@@ -20,7 +20,7 @@ import { Observable, of, Subject } from 'rxjs';
 import { AppConfigService, CardViewSelectItemOption, CardViewUpdateService, UpdateNotification } from '@alfresco/adf-core';
 import { MultiInstanceItemModel } from './multi-instance.item.model';
 import { getMultiInstanceType, MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { CardViewMultiInstanceItemService } from './multi-instance-item.service';
 import { takeUntil, filter, map } from 'rxjs/operators';
@@ -36,13 +36,13 @@ export class CardViewMultiInstanceItemComponent implements OnInit, OnDestroy {
 
     options$: Observable<CardViewSelectItemOption<string>[]>;
     selectedType: MultiInstanceType;
-    form: FormGroup;
+    form: UntypedFormGroup;
     onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private appConfigService: AppConfigService,
         private multiInstanceItemService: CardViewMultiInstanceItemService,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private cardViewUpdateService: CardViewUpdateService) {
         this.options$ = of(this.appConfigService.get('process-modeler.multi-instance-types'));
     }
@@ -180,7 +180,7 @@ export class CardViewMultiInstanceItemComponent implements OnInit, OnDestroy {
         );
     }
 
-    validateExpression(formGroup: FormGroup) {
+    validateExpression(formGroup: UntypedFormGroup) {
         const cardinalityControl = formGroup.controls['cardinality'], elementControl =  formGroup.controls['elementVariable'];
         const expression = /{([^}]+)}/;
         if (cardinalityControl.value) {

@@ -19,7 +19,7 @@
 
 import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService, MomentDateAdapter } from '@alfresco/adf-core';
-import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, Validators, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { debounceTime, takeUntil, filter, take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
@@ -53,7 +53,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     selectedTimer: Bpmn.DiagramElement;
     defaultTimerDefinition = '';
     defaultTimerType = '';
-    timerDefinitionForm: FormGroup;
+    timerDefinitionForm: UntypedFormGroup;
     today = moment();
     eventType: string;
     optionsForParams: {
@@ -65,7 +65,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
         private appConfigService: AppConfigService,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private store: Store<AmaState>) {
     }
 
@@ -102,20 +102,20 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
 
     buildForm() {
         this.timerDefinitionForm = this.formBuilder.group({
-            timerType: new FormControl(undefined, [Validators.required]),
-            date: new FormControl(undefined, []),
-            years: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            months: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            weeks: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            days: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            hours: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            minutes: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            seconds: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            repetitions: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
-            cronExpression: new FormControl(undefined, [Validators.pattern(this.CRON_REGEX)]),
-            useCronExpression: new FormControl(false, []),
-            processVariable: new FormControl(undefined, []),
-            useProcessVariable: new FormControl(false, []),
+            timerType: new UntypedFormControl(undefined, [Validators.required]),
+            date: new UntypedFormControl(undefined, []),
+            years: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            months: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            weeks: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            days: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            hours: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            minutes: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            seconds: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            repetitions: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            cronExpression: new UntypedFormControl(undefined, [Validators.pattern(this.CRON_REGEX)]),
+            useCronExpression: new UntypedFormControl(false, []),
+            processVariable: new UntypedFormControl(undefined, []),
+            useProcessVariable: new UntypedFormControl(false, []),
         });
 
         this.timerDefinitionForm.valueChanges
@@ -289,60 +289,60 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
         return this.eventType !== 'bpmn:StartEvent' && this.isTimerTypeDefined();
     }
 
-    get timerType(): FormControl {
-        return this.timerDefinitionForm.get('timerType') as FormControl;
+    get timerType(): UntypedFormControl {
+        return this.timerDefinitionForm.get('timerType') as UntypedFormControl;
     }
 
-    get date(): FormControl {
-        return this.timerDefinitionForm.get('date') as FormControl;
+    get date(): UntypedFormControl {
+        return this.timerDefinitionForm.get('date') as UntypedFormControl;
     }
 
-    get years(): FormControl {
-        return this.timerDefinitionForm.get('years') as FormControl;
+    get years(): UntypedFormControl {
+        return this.timerDefinitionForm.get('years') as UntypedFormControl;
     }
 
-    get months(): FormControl {
-        return this.timerDefinitionForm.get('months') as FormControl;
+    get months(): UntypedFormControl {
+        return this.timerDefinitionForm.get('months') as UntypedFormControl;
     }
 
-    get weeks(): FormControl {
-        return this.timerDefinitionForm.get('weeks') as FormControl;
+    get weeks(): UntypedFormControl {
+        return this.timerDefinitionForm.get('weeks') as UntypedFormControl;
     }
 
-    get days(): FormControl {
-        return this.timerDefinitionForm.get('days') as FormControl;
+    get days(): UntypedFormControl {
+        return this.timerDefinitionForm.get('days') as UntypedFormControl;
     }
 
-    get hours(): FormControl {
-        return this.timerDefinitionForm.get('hours') as FormControl;
+    get hours(): UntypedFormControl {
+        return this.timerDefinitionForm.get('hours') as UntypedFormControl;
     }
 
-    get minutes(): FormControl {
-        return this.timerDefinitionForm.get('minutes') as FormControl;
+    get minutes(): UntypedFormControl {
+        return this.timerDefinitionForm.get('minutes') as UntypedFormControl;
     }
 
-    get seconds(): FormControl {
-        return this.timerDefinitionForm.get('seconds') as FormControl;
+    get seconds(): UntypedFormControl {
+        return this.timerDefinitionForm.get('seconds') as UntypedFormControl;
     }
 
-    get repetitions(): FormControl {
-        return this.timerDefinitionForm.get('repetitions') as FormControl;
+    get repetitions(): UntypedFormControl {
+        return this.timerDefinitionForm.get('repetitions') as UntypedFormControl;
     }
 
-    get processVariable(): FormControl {
-        return this.timerDefinitionForm.get('processVariable') as FormControl;
+    get processVariable(): UntypedFormControl {
+        return this.timerDefinitionForm.get('processVariable') as UntypedFormControl;
     }
 
-    get useProcessVariable(): FormControl {
-        return this.timerDefinitionForm.get('useProcessVariable') as FormControl;
+    get useProcessVariable(): UntypedFormControl {
+        return this.timerDefinitionForm.get('useProcessVariable') as UntypedFormControl;
     }
 
-    get cronExpression(): FormControl {
-        return this.timerDefinitionForm.get('cronExpression') as FormControl;
+    get cronExpression(): UntypedFormControl {
+        return this.timerDefinitionForm.get('cronExpression') as UntypedFormControl;
     }
 
-    get useCronExpression(): FormControl {
-        return this.timerDefinitionForm.get('useCronExpression') as FormControl;
+    get useCronExpression(): UntypedFormControl {
+        return this.timerDefinitionForm.get('useCronExpression') as UntypedFormControl;
     }
 
     ngOnDestroy() {

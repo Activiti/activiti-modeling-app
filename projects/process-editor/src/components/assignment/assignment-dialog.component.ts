@@ -37,7 +37,7 @@ import {
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Store } from '@ngrx/store';
 import { filter, take, takeUntil } from 'rxjs/operators';
-import { AbstractControl, FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { MatSelectChange } from '@angular/material/select';
@@ -73,7 +73,7 @@ export enum AssigneeExpressionErrorMessages {
     candidateEmpty = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.CANDIDATE_EMPTY'
 }
 
-export const identityCandidateValidator: ValidatorFn = (candidateFormGroup: FormGroup): ValidationErrors | null => {
+export const identityCandidateValidator: ValidatorFn = (candidateFormGroup: UntypedFormGroup): ValidationErrors | null => {
     const isCandidateFormGroupDirtyTouched = candidateFormGroup.dirty && candidateFormGroup.touched;
 
     const candidateUserFormGroup = candidateFormGroup.get('candidateUserFormGroup');
@@ -150,7 +150,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     process$: Observable<Process>;
     onDestroy$: Subject<void> = new Subject<void>();
 
-    assignmentForm: FormGroup;
+    assignmentForm: UntypedFormGroup;
     expressionErrorMessage: string;
 
     expressionSuggestions = [
@@ -168,7 +168,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         public dialogRef: MatDialogRef<AssignmentDialogComponent>,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         @Inject(MAT_DIALOG_DATA) public settings: AssignmentSettings) {
     }
 
@@ -239,18 +239,18 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
 
     private createExpressionForm(): void {
         if (this.isAssigneeMode()) {
-            this.expressionForm.addControl('assignee', new FormControl({ value: '' }));
+            this.expressionForm.addControl('assignee', new UntypedFormControl({ value: '' }));
         } else {
-            this.expressionForm.addControl('candidateUsers', new FormControl({ value: '' }));
-            this.expressionForm.addControl('candidateGroups', new FormControl({ value: '' }));
+            this.expressionForm.addControl('candidateUsers', new UntypedFormControl({ value: '' }));
+            this.expressionForm.addControl('candidateGroups', new UntypedFormControl({ value: '' }));
         }
         this.expressionForm.updateValueAndValidity();
     }
 
-    private createAssigneeCandidateForm(formGroup: FormGroup, assigneeValue?: string): void {
+    private createAssigneeCandidateForm(formGroup: UntypedFormGroup, assigneeValue?: string): void {
         if (this.isAssigneeMode()) {
-            const assignee = new FormControl({ value: '', disabled: false });
-            const assigneeChipsFormControl = new FormControl({ value: assigneeValue, disabled: false }, [Validators.required]);
+            const assignee = new UntypedFormControl({ value: '', disabled: false });
+            const assigneeChipsFormControl = new UntypedFormControl({ value: assigneeValue, disabled: false }, [Validators.required]);
             formGroup.addControl('assignee', assignee);
             formGroup.addControl('assigneeChips', assigneeChipsFormControl);
         } else {
@@ -269,7 +269,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         }
     }
 
-    private createCandidatesFormGroup(): FormGroup {
+    private createCandidatesFormGroup(): UntypedFormGroup {
         const candidateUserFormGroup = this.createCandidateUserFormGroup();
         const candidateGroupFormGroup = this.createCandidateGroupFormGroup();
         return this.formBuilder.group(
@@ -279,7 +279,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             }, { validator: identityCandidateValidator });
     }
 
-    private createCandidateUserFormGroup(): FormGroup {
+    private createCandidateUserFormGroup(): UntypedFormGroup {
         return this.formBuilder.group(
             {
                 'candidateUsers': '',
@@ -287,7 +287,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             });
     }
 
-    private createCandidateGroupFormGroup(): FormGroup {
+    private createCandidateGroupFormGroup(): UntypedFormGroup {
         return this.formBuilder.group(
             {
                 'candidateGroups': '',
@@ -836,12 +836,12 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.onDestroy$.complete();
     }
 
-    get staticForm(): FormGroup {
-        return <FormGroup> this.assignmentForm.get('staticForm');
+    get staticForm(): UntypedFormGroup {
+        return <UntypedFormGroup> this.assignmentForm.get('staticForm');
     }
 
-    get assigneeStaticControl(): FormControl {
-        return this.staticForm.get('assignee') as FormControl;
+    get assigneeStaticControl(): UntypedFormControl {
+        return this.staticForm.get('assignee') as UntypedFormControl;
     }
 
     get assigneeChipsStaticControl(): AbstractControl {
@@ -890,76 +890,76 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.candidateGroupsChipsStaticControl.updateValueAndValidity();
     }
 
-    get candidatesStaticFormGroup(): FormGroup {
-        return <FormGroup> this.staticForm.get('candidatesFormGroup');
+    get candidatesStaticFormGroup(): UntypedFormGroup {
+        return <UntypedFormGroup> this.staticForm.get('candidatesFormGroup');
     }
 
-    get candidateUserStaticFormGroup(): FormGroup {
-        return <FormGroup> this.candidatesStaticFormGroup.get('candidateUserFormGroup');
+    get candidateUserStaticFormGroup(): UntypedFormGroup {
+        return <UntypedFormGroup> this.candidatesStaticFormGroup.get('candidateUserFormGroup');
     }
 
-    get candidateUsersStaticControl(): FormControl {
-        return this.candidateUserStaticFormGroup.get('candidateUsers') as FormControl;
+    get candidateUsersStaticControl(): UntypedFormControl {
+        return this.candidateUserStaticFormGroup.get('candidateUsers') as UntypedFormControl;
     }
 
     get candidateUsersChipsStaticControl(): AbstractControl {
         return this.candidateUserStaticFormGroup.get('candidateUsersChips');
     }
 
-    get candidateGroupStaticFormGroup(): FormGroup {
-        return <FormGroup> this.candidatesStaticFormGroup.get('candidateGroupFormGroup');
+    get candidateGroupStaticFormGroup(): UntypedFormGroup {
+        return <UntypedFormGroup> this.candidatesStaticFormGroup.get('candidateGroupFormGroup');
     }
 
-    get candidateGroupsStaticControl(): FormControl {
-        return this.candidateGroupStaticFormGroup.get('candidateGroups') as FormControl;
+    get candidateGroupsStaticControl(): UntypedFormControl {
+        return this.candidateGroupStaticFormGroup.get('candidateGroups') as UntypedFormControl;
     }
 
     get candidateGroupsChipsStaticControl(): AbstractControl {
         return this.candidateGroupStaticFormGroup.get('candidateGroupsChips');
     }
 
-    get identityForm(): FormGroup {
-        return <FormGroup> this.assignmentForm.get('identityForm');
+    get identityForm(): UntypedFormGroup {
+        return <UntypedFormGroup> this.assignmentForm.get('identityForm');
     }
 
-    get assigneeIdentityControl(): FormControl {
-        return this.identityForm.get('assignee') as FormControl;
+    get assigneeIdentityControl(): UntypedFormControl {
+        return this.identityForm.get('assignee') as UntypedFormControl;
     }
 
-    get assigneeChipsIdentityControl(): FormControl {
-        return this.identityForm.get('assigneeChips') as FormControl;
+    get assigneeChipsIdentityControl(): UntypedFormControl {
+        return this.identityForm.get('assigneeChips') as UntypedFormControl;
     }
 
-    get candidatesIdentityFormGroup(): FormGroup {
-        return <FormGroup> this.identityForm.get('candidatesFormGroup');
+    get candidatesIdentityFormGroup(): UntypedFormGroup {
+        return <UntypedFormGroup> this.identityForm.get('candidatesFormGroup');
     }
 
-    get candidateUserIdentityFormGroup(): FormGroup {
-        return <FormGroup> this.candidatesIdentityFormGroup.get('candidateUserFormGroup');
+    get candidateUserIdentityFormGroup(): UntypedFormGroup {
+        return <UntypedFormGroup> this.candidatesIdentityFormGroup.get('candidateUserFormGroup');
     }
 
-    get candidateUsersIdentityControl(): FormControl {
-        return this.candidateUserIdentityFormGroup.get('candidateUsers') as FormControl;
+    get candidateUsersIdentityControl(): UntypedFormControl {
+        return this.candidateUserIdentityFormGroup.get('candidateUsers') as UntypedFormControl;
     }
 
-    get candidateUsersChipsIdentityControl(): FormControl {
-        return this.candidateUserIdentityFormGroup.get('candidateUsersChips') as FormControl;
+    get candidateUsersChipsIdentityControl(): UntypedFormControl {
+        return this.candidateUserIdentityFormGroup.get('candidateUsersChips') as UntypedFormControl;
     }
 
-    get candidateGroupIdentityFormGroup(): FormGroup {
-        return <FormGroup> this.candidatesIdentityFormGroup.get('candidateGroupFormGroup');
+    get candidateGroupIdentityFormGroup(): UntypedFormGroup {
+        return <UntypedFormGroup> this.candidatesIdentityFormGroup.get('candidateGroupFormGroup');
     }
 
-    get candidateGroupsChipsIdentityControl(): FormControl {
-        return this.candidateGroupIdentityFormGroup.get('candidateGroupsChips') as FormControl;
+    get candidateGroupsChipsIdentityControl(): UntypedFormControl {
+        return this.candidateGroupIdentityFormGroup.get('candidateGroupsChips') as UntypedFormControl;
     }
 
-    get candidateGroupsIdentityControl(): FormControl {
-        return this.candidateGroupIdentityFormGroup.get('candidateGroups') as FormControl;
+    get candidateGroupsIdentityControl(): UntypedFormControl {
+        return this.candidateGroupIdentityFormGroup.get('candidateGroups') as UntypedFormControl;
     }
 
-    get expressionForm(): FormGroup {
-        return <FormGroup> this.assignmentForm.get('expressionForm');
+    get expressionForm(): UntypedFormGroup {
+        return <UntypedFormGroup> this.assignmentForm.get('expressionForm');
     }
 
     get assigneeExpressionControl(): AbstractControl {

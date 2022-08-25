@@ -2,13 +2,8 @@
     "extends": "../tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/modeling-ce",
+        "target": "es2020"
     },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/environments/*.ts",
-    "src/**/*.d.ts"
-  ]
+    "files": ["src/main.ts", "src/polyfills.ts"],
+    "include": ["src/environments/*.ts", "src/**/*.d.ts"]
 }

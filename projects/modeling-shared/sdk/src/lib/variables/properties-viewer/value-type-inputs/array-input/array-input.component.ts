@@ -20,7 +20,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { ValueTypeInputComponent } from '../../value-type-input.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -54,7 +54,7 @@ export class PropertiesViewerArrayInputComponent implements OnChanges {
     @Input() model: JSONSchemaInfoBasics;
     @Input() autocompletionContext: ElementVariable[] = [];
 
-    arrayCtrl = new FormControl();
+    arrayCtrl = new UntypedFormControl();
     filteredItems: Observable<any[]>;
     regexInput = /.*/;
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];

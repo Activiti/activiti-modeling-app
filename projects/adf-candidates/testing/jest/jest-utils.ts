@@ -15,12 +15,20 @@
  * limitations under the License.
  */
 
-import { UntypedFormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-
-export class InstantErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: UntypedFormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-        const isSubmitted = form && form.submitted;
-        return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-    }
+function overrideTsConfig(config, tsConfigPath) {
+    const defaultConfig = config.default ?? config;
+    return {
+        ...defaultConfig,
+        globals: {
+            ...defaultConfig.globals,
+            'ts-jest': {
+                ...defaultConfig.globals['ts-jest'],
+                tsconfig: tsConfigPath
+            }
+        },
+    };
 }
+
+module.exports = {
+    overrideTsConfig
+};
