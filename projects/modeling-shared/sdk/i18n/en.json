@@ -159,7 +159,8 @@
                 "DOCGEN_SERVICE": "Docgen service task",
                 "PARTICIPANT": "Process",
                 "FORM_FIELDS": "Form fields",
-                "FORM_VARIABLES": "Form variables"
+                "FORM_VARIABLES": "Form variables",
+                "CONTENT_SERVICE": "Content service"
             },
             "TOOLTIP": {
                 "VARIABLE": "Variable",

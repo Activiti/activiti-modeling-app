@@ -161,7 +161,8 @@ export class ProcessEditorElementVariablesService {
         case 'bpmn:UserTask':
             return ProcessEditorElementWithVariables.UserTask;
         case 'bpmn:ServiceTask': {
-            const implementation = element.businessObject[BpmnProperty.implementation];
+            const implementation: string = element.businessObject[BpmnProperty.implementation];
+            const isContentService = implementation.startsWith('content-service.');
             switch (implementation) {
             case 'script.EXECUTE':
                 return ProcessEditorElementWithVariables.ScriptTask;
@@ -172,7 +173,7 @@ export class ProcessEditorElementVariablesService {
             case 'docgen-service.GENERATE':
                 return ProcessEditorElementWithVariables.DocgenServiceTask;
             default:
-                return ProcessEditorElementWithVariables.ServiceTask;
+                return isContentService ? ProcessEditorElementWithVariables.ContentServiceTask : ProcessEditorElementWithVariables.ServiceTask;
             }
         }
         case ProcessEditorElementWithVariables.Event:
