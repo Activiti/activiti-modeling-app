@@ -149,7 +149,7 @@ function addCollaboratorToProject(state: ProjectEntitiesState, action: AddCollab
     }, []);
 
     newState.entities[action.projectId].collaborators = [
-        ...newState.entities[action.projectId].collaborators,
+        ...newState.entities[action.projectId]?.collaborators ?? [],
         ...addedCollaborators
     ];
 
