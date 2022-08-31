@@ -32,7 +32,7 @@ import { CodeEditorService } from '../../../../../code-editor/services/code-edit
 import { JSONSchemaToEntityPropertyService } from '../../../../../services/json-schema-to-entity-property.service';
 import { ModelingJSONSchemaService } from './../../../../../services/modeling-json-schema.service';
 import { provideModelingJsonSchemaProvider } from '../../../../../services/modeling-json-schema-provider.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../../services/registered-inputs-modeling-json-schema-provider.service';
+import { PrimitivesModelingJsonSchemaProvider } from '../../../../../services/primitives-modeling-json-schema-provider.service';
 
 describe('ArrayInputDialogComponent', () => {
     let fixture: ComponentFixture<ArrayInputDialogComponent>;
@@ -82,7 +82,7 @@ describe('ArrayInputDialogComponent', () => {
                 ModelingJSONSchemaService,
                 CodeEditorService,
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider),
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: MAT_DIALOG_DATA, useValue: customMockDialogData },
                 { provide: TranslationService, useClass: TranslationMock }

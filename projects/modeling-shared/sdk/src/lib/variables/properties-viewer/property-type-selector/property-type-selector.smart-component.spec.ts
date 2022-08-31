@@ -28,8 +28,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { EntityProperty } from '../../../api/types';
 import { exampleJSONSchema } from '../../../mocks/json-schema.mock';
-import { expectedHierarchy, expectedItems } from '../../../mocks/modeling-json-schema.service.mock';
+import { expectedCreateModelItems, expectedHierarchy, expectedPrimitivesInputsItems } from '../../../mocks/modeling-json-schema.service.mock';
 import { provideModelingJsonSchemaProvider } from '../../../services/modeling-json-schema-provider.service';
+import { PrimitivesModelingJsonSchemaProvider } from '../../../services/primitives-modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../../services/registered-inputs-modeling-json-schema-provider.service';
 import { PropertiesViewerStringInputComponent, PropertiesViewerIntegerInputComponent, PropertiesViewerJsonInputComponent } from '../../public-api';
 import { AutomationIdPipe } from '../property-type-item/automation-id.pipe';
@@ -71,7 +72,9 @@ describe('PropertyTypeSelectorSmartComponent', () => {
                 provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
                 provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
                 provideInputTypeItemHandler('employee', PropertiesViewerJsonInputComponent, 'json', exampleJSONSchema),
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
+                provideInputTypeItemHandler('other-boolean', PropertiesViewerBooleanInputComponent, 'boolean'),
+                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider)
             ]
         });
     });
@@ -97,25 +100,57 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         component.ngOnChanges({ onlyPrimitiveTypes: { currentValue: true, previousValue: false, firstChange: false, isFirstChange: () => false } });
         fixture.detectChanges();
 
-        expect(component.hierarchy).toEqual(expectedHierarchy);
+        expect(component.hierarchy).toEqual([expectedPrimitivesInputsItems, expectedCreateModelItems]);
     });
 
     it('should update values when selection changes', () => {
-        component.onSelectionChanges(expectedItems[0].children[1]);
+        component.onSelectionChanges(expectedHierarchy[1].children[0]);
         expect(component.displayedValue).toEqual('employee');
-        expect(component.displayedIcon).toEqual('assignment_turned_in');
+        expect(component.displayedIcon).toEqual('assignment');
         expect(component.displayedCustomIcon).toEqual(false);
     });
 
     it('should emit the value when selection changes', () => {
         spyOn(component.change, 'emit');
-        component.onSelectionChanges(expectedItems[0].children[0]);
+        component.onSelectionChanges(expectedHierarchy[0].children[0]);
 
         const expectedProperty = {
             ...component.property,
             type: 'boolean',
             model: {
                 $ref: '#/$defs/primitive/boolean',
+            }
+        };
+
+        expect(component.change.emit).toHaveBeenCalledWith(expectedProperty);
+    });
+
+    it('should emit the primitive value as property type when selection changes and only primitive types', () => {
+        spyOn(component.change, 'emit');
+        component.onlyPrimitiveTypes = true;
+        component.onSelectionChanges(expectedHierarchy[1].children[1]);
+
+        const expectedProperty = {
+            ...component.property,
+            type: 'boolean',
+            model: {
+                $ref: '#/$defs/primitive/other-boolean',
+            }
+        };
+
+        expect(component.change.emit).toHaveBeenCalledWith(expectedProperty);
+    });
+
+    it('should emit the provided value as property type when selection changes and not primitive types', () => {
+        spyOn(component.change, 'emit');
+        component.onlyPrimitiveTypes = false;
+        component.onSelectionChanges(expectedHierarchy[1].children[1]);
+
+        const expectedProperty = {
+            ...component.property,
+            type: 'other-boolean',
+            model: {
+                $ref: '#/$defs/primitive/other-boolean',
             }
         };
 
@@ -179,11 +214,11 @@ describe('PropertyTypeSelectorSmartComponent', () => {
     });
 
     it('should display selectedDisplayedValue if present when changes', () => {
-        component.onSelectionChanges(expectedItems[0].children[0]);
+        component.onSelectionChanges(expectedHierarchy[0].children[0]);
         fixture.detectChanges();
         expect(component.displayedValue).toEqual('boolean');
 
-        component.onSelectionChanges(expectedItems[0].children[2]);
+        component.onSelectionChanges(expectedHierarchy[0].children[1]);
         fixture.detectChanges();
         expect(component.displayedValue).toEqual('integer');
     });
@@ -228,16 +263,18 @@ describe('PropertyTypeSelectorSmartComponent', () => {
     });
 
     it('should include custom edit item if is custom model', () => {
-        const hierarchWithAddCustomModel = [...expectedHierarchy];
-        expectedHierarchy[1] = {
+        const hierarchWithAddCustomModel = [expectedPrimitivesInputsItems];
+        hierarchWithAddCustomModel.push({
             displayName: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL',
             description: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL_DESCRIPTION',
             isCustomIcon: false,
             iconName: 'note_alt',
             value: { type: 'object' },
             provider: 'PropertyTypeSelectorSmartComponent'
-        };
+        });
         component.onlyPrimitiveTypes = true;
+
+        component.property = { ...property, model: { type: 'object' }};
 
         component.ngOnChanges({
             onlyPrimitiveTypes: {
@@ -247,12 +284,10 @@ describe('PropertyTypeSelectorSmartComponent', () => {
                 isFirstChange: () => false
             },
             property: {
-                currentValue: {
-                    model: { type: 'object' }
-                },
+                currentValue: component.property,
                 firstChange: true,
                 isFirstChange: () => true,
-                previousValue: []
+                previousValue: property
             }
         });
 

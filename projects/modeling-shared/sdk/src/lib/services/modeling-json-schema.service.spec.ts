@@ -27,10 +27,11 @@ import { PropertiesViewerStringInputComponent } from '../variables/properties-vi
 import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';
 import { PropertiesViewerJsonInputComponent } from '../variables/properties-viewer/value-type-inputs/json-input/json-input.component';
 import { first, take } from 'rxjs/operators';
-import { expectedItems } from '../mocks/modeling-json-schema.service.mock';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { EntityProperty } from '../api/types';
 import { primitiveTypesSchema } from '../variables/expression-code-editor/services/expression-language/primitive-types-schema';
+import { PrimitivesModelingJsonSchemaProvider } from './primitives-modeling-json-schema-provider.service';
+import { expectedPrimitivesInputsItems, expectedRegisteredInputsItems } from '../mocks/modeling-json-schema.service.mock';
 
 describe('ModelingJSONSchemaService', () => {
     let service: ModelingJSONSchemaService;
@@ -43,7 +44,10 @@ describe('ModelingJSONSchemaService', () => {
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
                 provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider),
+                provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
                 provideInputTypeItemHandler('employee', PropertiesViewerJsonInputComponent, 'json', exampleJSONSchema),
+                provideInputTypeItemHandler('other-boolean', PropertiesViewerBooleanInputComponent, 'boolean'),
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
         });
@@ -124,7 +128,7 @@ describe('ModelingJSONSchemaService', () => {
     it('should get property items form registered providers', async () => {
         const items = await service.getPropertyTypeItems().pipe(take(1)).toPromise();
 
-        expect(items).toEqual(expectedItems);
+        expect(items).toEqual([expectedPrimitivesInputsItems, expectedRegisteredInputsItems]);
     });
 
     it('should get the primitive type used in mapping from a type represented as string', () => {
@@ -272,29 +276,13 @@ describe('ModelingJSONSchemaService', () => {
         const expectedNotification = [
             {
                 projectId: null,
-                schema: {
-                    type: 'string',
-                },
-                typeId: ['string']
+                typeId: ['employee'],
+                schema: exampleJSONSchema
             },
             {
                 projectId: null,
-                schema: {
-                    type: 'integer',
-                },
-                typeId: ['integer']
-            },
-            {
-                projectId: null,
-                schema: {
-                    type: 'boolean',
-                },
-                typeId: ['boolean']
-            },
-            {
-                projectId: null,
-                schema: exampleJSONSchema,
-                typeId: ['employee']
+                typeId: ['other-boolean'],
+                schema: primitiveTypesSchema.$defs.primitive.boolean
             }
         ];
 

@@ -32,7 +32,7 @@ import { AllowedCharactersDirective } from '../../../../helpers/directives/allow
 import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
 import { provideModelingJsonSchemaProvider } from '../../../../services/modeling-json-schema-provider.service';
 import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../services/registered-inputs-modeling-json-schema-provider.service';
+import { PrimitivesModelingJsonSchemaProvider } from '../../../../services/primitives-modeling-json-schema-provider.service';
 import { ValueTypeInputComponent } from '../../value-type-input.component';
 import { VariableValuePipe } from '../../variable-value.pipe';
 import { PropertiesViewerArrayInputComponent } from '../array-input/array-input.component';
@@ -74,7 +74,7 @@ describe('PropertiesViewerJsonInputComponent', () => {
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: Store, useValue: { dispatch: jest.fn() } },
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider)
             ]
         });
     });

@@ -19,18 +19,19 @@ import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { take } from 'rxjs/operators';
 import { primitiveTypesSchema } from '../variables/expression-code-editor/services/expression-language/primitive-types-schema';
-import { expectedRegisteredInputsItems } from '../mocks/modeling-json-schema.service.mock';
+import { expectedPrimitivesInputsItems } from '../mocks/modeling-json-schema.service.mock';
 import { PropertiesViewerBooleanInputComponent } from '../variables/properties-viewer/value-type-inputs/boolean-input.component';
 import { provideInputTypeItemHandler } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { provideModelingJsonSchemaProvider } from './modeling-json-schema-provider.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-modeling-json-schema-provider.service';
+import { PrimitivesModelingJsonSchemaProvider } from './primitives-modeling-json-schema-provider.service';
+import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input/string-input.component';
+import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';
 import { PropertiesViewerJsonInputComponent } from '../variables/properties-viewer/value-type-inputs/json-input/json-input.component';
-import { exampleJSONSchema } from '../mocks/json-schema.mock';
 import { PropertyTypeItem } from '../variables/properties-viewer/property-type-item/models';
 const cloneDeep = require('lodash/cloneDeep');
 
-describe('RegisteredInputsModelingJsonSchemaProvider', () => {
-    let service: RegisteredInputsModelingJsonSchemaProvider;
+describe('PrimitivesModelingJsonSchemaProvider', () => {
+    let service: PrimitivesModelingJsonSchemaProvider;
 
     const projectId = null;
 
@@ -38,13 +39,15 @@ describe('RegisteredInputsModelingJsonSchemaProvider', () => {
         TestBed.configureTestingModule({
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                provideInputTypeItemHandler('employee', PropertiesViewerJsonInputComponent, 'json', exampleJSONSchema),
-                provideInputTypeItemHandler('other-boolean', PropertiesViewerBooleanInputComponent, 'boolean'),
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
+                provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
+                provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
+                provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
+                provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider)
             ]
         });
 
-        service = TestBed.inject(RegisteredInputsModelingJsonSchemaProvider);
+        service = TestBed.inject(PrimitivesModelingJsonSchemaProvider);
     });
 
     it('should return inputs schemas', async () => {
@@ -52,13 +55,23 @@ describe('RegisteredInputsModelingJsonSchemaProvider', () => {
         expect(jsonSchemas).toEqual([
             {
                 projectId,
-                typeId: ['employee'],
-                schema: exampleJSONSchema
+                typeId: ['string'],
+                schema: primitiveTypesSchema.$defs.primitive.string
             },
             {
                 projectId,
-                typeId: ['other-boolean'],
+                typeId: ['integer'],
+                schema: primitiveTypesSchema.$defs.primitive.integer
+            },
+            {
+                projectId,
+                typeId: ['boolean'],
                 schema: primitiveTypesSchema.$defs.primitive.boolean
+            },
+            {
+                projectId,
+                typeId: ['json'],
+                schema: primitiveTypesSchema.$defs.primitive.json
             }
         ]);
     });
@@ -66,7 +79,7 @@ describe('RegisteredInputsModelingJsonSchemaProvider', () => {
     it('should get property items form registered providers', async () => {
         const items = await service.getPropertyTypeItems(projectId).pipe(take(1)).toPromise();
 
-        const expectedResult = removeValueFromPropertyItems(cloneDeep(expectedRegisteredInputsItems));
+        const expectedResult = removeValueFromPropertyItems(cloneDeep(expectedPrimitivesInputsItems));
 
         expect(items).toEqual(expectedResult);
     });

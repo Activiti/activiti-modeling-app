@@ -181,6 +181,7 @@
         },
         "VARIABLE_TYPE_INPUT": {
             "PRIMITIVE_PROPERTIES_TYPES": "Primitives",
+            "CUSTOM_INPUTS_PROPERTIES_TYPES": "Custom inputs",
             "DATE": {
                 "CURRENT_DATE": "Today",
                 "CLEAR_BUTTON": "Clear"

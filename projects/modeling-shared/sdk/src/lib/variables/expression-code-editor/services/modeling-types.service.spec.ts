@@ -31,7 +31,7 @@ import { ModelingTypeSignatureHelper } from './modeling-type.model';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { INPUT_TYPE_ITEM_HANDLER } from '../../properties-viewer/value-type-inputs/value-type-inputs';
 import { provideModelingJsonSchemaProvider } from '../../../services/modeling-json-schema-provider.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../../services/registered-inputs-modeling-json-schema-provider.service';
+import { PrimitivesModelingJsonSchemaProvider } from '../../../services/primitives-modeling-json-schema-provider.service';
 
 describe('ModelingTypesService', () => {
     let service: ModelingTypesService;
@@ -67,7 +67,7 @@ describe('ModelingTypesService', () => {
                 ModelingTypesService,
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] },
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider)
             ]
         });
 

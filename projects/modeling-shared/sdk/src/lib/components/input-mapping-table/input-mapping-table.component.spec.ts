@@ -34,9 +34,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ExpressionsEditorService } from '../../variables/expression-code-editor/services/expressions-editor.service';
 import { UuidService } from '../../services/uuid.service';
 import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';
 import { VariableMappingType } from '../../services/mapping-dialog.service';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
+import { PrimitivesModelingJsonSchemaProvider } from '../../services/primitives-modeling-json-schema-provider.service';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;
@@ -77,7 +77,7 @@ describe('InputMappingTableComponent', () => {
                 DialogService,
                 MatDialog,
                 { provide: INPUT_TYPE_ITEM_HANDLER, useValue: { type: 'string', implementationClass: PropertiesViewerStringInputComponent }, multi: true },
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider)
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });

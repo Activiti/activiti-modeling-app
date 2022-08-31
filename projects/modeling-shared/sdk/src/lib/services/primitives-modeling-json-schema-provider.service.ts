@@ -28,15 +28,15 @@ import { ModelingJsonSchema, ModelingJsonSchemaProvider, ModelsWithJsonSchemaMap
 @Injectable({
     providedIn: 'root'
 })
-export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSchemaProvider<JSONSchemaInfoBasics> {
+export class PrimitivesModelingJsonSchemaProvider extends ModelingJsonSchemaProvider<JSONSchemaInfoBasics> {
     constructor(@Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[], private translationService: TranslationService) {
         super();
     }
 
-    public static readonly PROVIDER_NAME = 'registered-inputs';
+    public static readonly PROVIDER_NAME = 'primitives';
 
     getProviderName(): string {
-        return RegisteredInputsModelingJsonSchemaProvider.PROVIDER_NAME;
+        return PrimitivesModelingJsonSchemaProvider.PROVIDER_NAME;
     }
 
     isGlobalProvider() {
@@ -44,17 +44,17 @@ export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSche
     }
 
     getProviderIcon(): string {
-        return 'assignment';
+        return 'assignment_turned_in';
     }
 
     getProviderTranslatedName(): string {
-        return this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.CUSTOM_INPUTS_PROPERTIES_TYPES');
+        return this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES');
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected retrieveModels(_projectId: string): Observable<ModelsWithJsonSchemaMap<JSONSchemaInfoBasics>> {
         const result: ModelsWithJsonSchemaMap<JSONSchemaInfoBasics> = {};
-        const handlersWithModel = this.inputTypeItemHandler.filter(handler => !primitive_types.some(type => type === handler.type));
+        const handlersWithModel = this.inputTypeItemHandler.filter(handler => primitive_types.some(type => type === handler.type));
         handlersWithModel.forEach(handler => result[handler.type] = handler.model);
 
         return of(result);

@@ -15,142 +15,97 @@
  * limitations under the License.
  */
 
-export const expectedItems = [
-    {
-        displayName: 'SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES',
-        iconName: 'assignment_turned_in',
-        isCustomIcon: false,
-        provider: 'registered-inputs',
-        children: [
-            {
-                displayName: 'boolean',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['boolean'],
-                value: {
-                    $ref: '#/$defs/primitive/boolean'
-                }
-            },
-            {
-                displayName: 'employee',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['employee'],
-                value: {
-                    $ref: '#/$defs/primitive/employee'
-                }
-            },
-            {
-                displayName: 'integer',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['integer'],
-                value: {
-                    $ref: '#/$defs/primitive/integer'
-                }
-            },
-            {
-                displayName: 'string',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['string'],
-                value: {
-                    $ref: '#/$defs/primitive/string'
-                }
-            }
-        ]
-    }
-];
+import { PropertyTypeItem } from '../variables/properties-viewer/property-type-item/models';
 
-export const expectedHierarchy = [
-    {
-        displayName: 'SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES',
-        iconName: 'assignment_turned_in',
-        isCustomIcon: false,
-        provider: 'registered-inputs',
-        children: [
-            {
-                displayName: 'boolean',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['boolean'],
-                value: {
-                    $ref: '#/$defs/primitive/boolean'
-                }
-            },
-            {
-                displayName: 'integer',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['integer'],
-                value: {
-                    $ref: '#/$defs/primitive/integer'
-                }
-            },
-            {
-                displayName: 'json',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['json'],
-                value: {
-                    $ref: '#/$defs/primitive/json'
-                }
-            },
-            {
-                displayName: 'string',
-                iconName: 'assignment_turned_in',
-                isCustomIcon: false,
-                provider: 'registered-inputs',
-                typeId: ['string'],
-                value: {
-                    $ref: '#/$defs/primitive/string'
-                }
-            }
-        ]
-    },
-    {
-        displayName: 'SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL',
-        description: 'SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL_DESCRIPTION',
-        isCustomIcon: false,
-        iconName: 'note_alt',
-        value: {},
-        provider: 'PropertyTypeSelectorSmartComponent'
-    }
-];
-
-export const expectedRegisteredInputsItems = {
+export const expectedPrimitivesInputsItems: PropertyTypeItem = {
     displayName: 'SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES',
     iconName: 'assignment_turned_in',
     isCustomIcon: false,
-    provider: 'registered-inputs',
+    provider: 'primitives',
     children: [
         {
             displayName: 'boolean',
             iconName: 'assignment_turned_in',
             isCustomIcon: false,
-            provider: 'registered-inputs',
-            typeId: ['boolean']
+            provider: 'primitives',
+            typeId: ['boolean'],
+            value: {
+                $ref: '#/$defs/primitive/boolean'
+            }
         },
         {
             displayName: 'integer',
             iconName: 'assignment_turned_in',
             isCustomIcon: false,
-            provider: 'registered-inputs',
-            typeId: ['integer']
+            provider: 'primitives',
+            typeId: ['integer'],
+            value: {
+                $ref: '#/$defs/primitive/integer'
+            }
+        },
+        {
+            displayName: 'json',
+            iconName: 'assignment_turned_in',
+            isCustomIcon: false,
+            provider: 'primitives',
+            typeId: ['json'],
+            value: {
+                $ref: '#/$defs/primitive/json'
+            }
         },
         {
             displayName: 'string',
             iconName: 'assignment_turned_in',
             isCustomIcon: false,
-            provider: 'registered-inputs',
-            typeId: ['string']
+            provider: 'primitives',
+            typeId: ['string'],
+            value: {
+                $ref: '#/$defs/primitive/string'
+            }
         }
     ]
 };
+
+export const expectedRegisteredInputsItems: PropertyTypeItem = {
+    displayName: 'SDK.VARIABLE_TYPE_INPUT.CUSTOM_INPUTS_PROPERTIES_TYPES',
+    iconName: 'assignment',
+    isCustomIcon: false,
+    provider: 'registered-inputs',
+    children: [
+        {
+            displayName: 'employee',
+            iconName: 'assignment',
+            isCustomIcon: false,
+            provider: 'registered-inputs',
+            typeId: ['employee'],
+            value: {
+                $ref: '#/$defs/primitive/employee'
+            }
+        },
+        {
+            displayName: 'other-boolean',
+            iconName: 'assignment',
+            isCustomIcon: false,
+            provider: 'registered-inputs',
+            typeId: ['other-boolean'],
+            value: {
+                $ref: '#/$defs/primitive/other-boolean'
+            }
+        }
+    ]
+};
+
+export const expectedCreateModelItems: PropertyTypeItem = {
+    displayName: 'SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL',
+    description: 'SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL_DESCRIPTION',
+    isCustomIcon: false,
+    iconName: 'note_alt',
+    value: {},
+    provider: 'PropertyTypeSelectorSmartComponent'
+};
+
+export const expectedHierarchy: PropertyTypeItem[] = [
+    expectedPrimitivesInputsItems,
+    expectedRegisteredInputsItems,
+    expectedCreateModelItems
+];

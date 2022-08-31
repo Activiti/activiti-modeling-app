@@ -36,7 +36,7 @@ import { JSONSchemaToEntityPropertyService } from '../../../../services/json-sch
 import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
 import { CodeEditorService } from '../../../../code-editor/services/code-editor-service.service';
 import { provideModelingJsonSchemaProvider } from '../../../../services/modeling-json-schema-provider.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../services/registered-inputs-modeling-json-schema-provider.service';
+import { PrimitivesModelingJsonSchemaProvider } from '../../../../services/primitives-modeling-json-schema-provider.service';
 
 describe('PropertiesViewerArrayInputComponent', () => {
     let component: PropertiesViewerArrayInputComponent;
@@ -72,7 +72,7 @@ describe('PropertiesViewerArrayInputComponent', () => {
                 { provide: MatDialog, useValue: mockDialog },
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider)
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });

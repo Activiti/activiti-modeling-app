@@ -34,7 +34,6 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { EntityProperty, JSONSchemaInfoBasics } from '../../../api/types';
-import { primitive_types } from '../../../helpers/primitive-types';
 import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../../services/registered-inputs-modeling-json-schema-provider.service';
 import { PropertyTypeItem } from '../property-type-item/models';
@@ -154,10 +153,8 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
         } else {
             this.hierarchy = this.initialHierarchy.slice();
             if (this.onlyPrimitiveTypes) {
-                const registeredInputsProviderItem = this.hierarchy.find(item => item.provider === RegisteredInputsModelingJsonSchemaProvider.PROVIDER_NAME);
-                if (registeredInputsProviderItem) {
-                    registeredInputsProviderItem.children = registeredInputsProviderItem.children.filter(item => primitive_types.find(element => element === item.displayName));
-                }
+                const registeredInputsProviderItem = this.hierarchy.findIndex(item => item.provider === RegisteredInputsModelingJsonSchemaProvider.PROVIDER_NAME);
+                this.hierarchy.splice(registeredInputsProviderItem, 1);
             }
         }
 
@@ -268,12 +265,17 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
 
     private updatePropertyModel($event: PropertyTypeItem) {
         const primitiveType = this.modelingJSONSchemaService.getPrimitiveTypes($event.value);
-        if (primitiveType.length > 1) {
-            this.property.aggregatedTypes = primitiveType;
-            this.property.type = 'json';
+        if (this.onlyPrimitiveTypes || !$event.typeId) {
+            if (primitiveType.length > 1) {
+                this.property.aggregatedTypes = primitiveType;
+                this.property.type = 'json';
+            } else {
+                this.property.type = primitiveType[0];
+            }
         } else {
-            this.property.type = primitiveType[0];
+            this.property.type = $event.typeId[0];
         }
         this.property.model = $event.value;
+
     }
 }

@@ -31,7 +31,6 @@ import { ModelingJSONSchemaService } from '../../../../services/modeling-json-sc
 import { CodeEditorService } from '../../../../code-editor/services/code-editor-service.service';
 import { provideInputTypeItemHandler } from '../value-type-inputs';
 import { provideModelingJsonSchemaProvider } from '../../../../services/modeling-json-schema-provider.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../services/registered-inputs-modeling-json-schema-provider.service';
 import { By } from '@angular/platform-browser';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -40,6 +39,7 @@ import { PropertiesViewerArrayInputComponent } from '../array-input/array-input.
 import { VariableValuePipe } from '../../variable-value.pipe';
 import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
 import { Store } from '@ngrx/store';
+import { PrimitivesModelingJsonSchemaProvider } from '../../../../services/primitives-modeling-json-schema-provider.service';
 
 describe('PropertiesViewerModeledObjectInputComponent', () => {
     let component: PropertiesViewerModeledObjectInputComponent;
@@ -85,8 +85,8 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
                 ModelingJSONSchemaService,
                 CodeEditorService,
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
-                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
                 provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider),
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: Store, useValue: { dispatch: jest.fn() } }
             ]

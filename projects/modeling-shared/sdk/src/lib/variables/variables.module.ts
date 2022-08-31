@@ -66,6 +66,7 @@ import { PropertiesViewerFolderInputComponent } from './properties-viewer/value-
 import { FocusInsideElementDirective } from './json-schema/components/json-schema-editor/focus-within.directive';
 import { JsonSchemaNodeSettingsComponent } from './json-schema/components/json-schema-node-settings/json-schema-node-settings.component';
 import { AccessorPipe } from './json-schema/components/json-schema-editor/accessor.pipe';
+import { PrimitivesModelingJsonSchemaProvider } from '../services/primitives-modeling-json-schema-provider.service';
 
 @NgModule({
     imports: [
@@ -128,6 +129,7 @@ import { AccessorPipe } from './json-schema/components/json-schema-editor/access
         provideInputTypeItemHandler('folder', PropertiesViewerFolderInputComponent),
         provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
         provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent, 'json'),
+        provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider),
         provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
         provideExpressionSyntaxHandler(JuelExpressionSyntax)
     ],

@@ -24,7 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { expectedItems } from '../../../mocks/modeling-json-schema.service.mock';
+import { expectedPrimitivesInputsItems } from '../../../mocks/modeling-json-schema.service.mock';
 import { PropertyTypeDialogComponent } from '../property-type-dialog/property-type-dialog.component';
 import { AutomationIdPipe } from './automation-id.pipe';
 import { PropertyTypeItemUiComponent } from './property-type-item.ui-component';
@@ -60,8 +60,8 @@ describe('PropertyTypeItemUiComponent', () => {
     });
 
     it('should emit value when option is selected', () => {
-        component.onChange(expectedItems[0].children[3]);
-        expect(component.change.emit).toHaveBeenCalledWith(expectedItems[0].children[3]);
+        component.onChange(expectedPrimitivesInputsItems.children[1]);
+        expect(component.change.emit).toHaveBeenCalledWith(expectedPrimitivesInputsItems.children[1]);
     });
 
     it('should open the dialog', () => {
