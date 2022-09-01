@@ -157,3 +157,7 @@ body.dark-theme {
       background: var(--theme-dark-header-toolbar-color);
     }
 }
+
+.mat-icon {
+    overflow: unset !important;
+}
