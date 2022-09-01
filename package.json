@@ -71,7 +71,7 @@
     "camunda-bpmn-moddle": "4.3.0",
     "crypto-js": "^4.1.1",
     "custom-event-polyfill": "^1.0.6",
-    "dmn-js": "^6.3.3",
+    "dmn-js": "^12.3.0",
     "dmn-moddle": "^6.0.0",
     "dotenv-expand": "^5.1.0",
     "graphql": "^15.4.0",
