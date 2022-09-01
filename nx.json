@@ -4,7 +4,7 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test"],
+        "cacheableOperations": ["build", "lint", "test", "pretest"],
         "cacheDirectory": "nxcache",
         "parallel": 1
       }
@@ -25,6 +25,14 @@
     },
     "@nrwl/angular:component": {
       "style": "scss"
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["pretest"]
     }
   }
 }
