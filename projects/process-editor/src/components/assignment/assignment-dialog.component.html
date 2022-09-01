@@ -163,6 +163,11 @@
                 </ng-container>
             </mat-tab>
         </mat-tab-group>
+        <ama-assignment-strategy-selector
+            *ngIf="isCandidatesMode()"
+            [defaultStrategy]="selectedAssignmentStrategy"
+            (changeStrategy)="onChangeAssignmentStrategy($event)">
+        </ama-assignment-strategy-selector>
     </mat-card-content>
   </mat-card>
 

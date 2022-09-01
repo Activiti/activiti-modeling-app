@@ -18,7 +18,16 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { TranslationService, CardViewArrayItem } from '@alfresco/adf-core';
 import { ElementHelper } from '../../bpmn-js/element.helper';
-import { AmaState, AssignmentMode, AssignmentType, BpmnProperty, selectSelectedProcess, TaskAssignment, UpdateServiceAssignmentAction } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    AmaState,
+    AssignmentMode,
+    AssignmentStrategyMode,
+    AssignmentType,
+    BpmnProperty,
+    selectSelectedProcess,
+    TaskAssignment,
+    UpdateServiceAssignmentAction
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Subject } from 'rxjs';
 import { AssignmentModel, AssignmentSettings } from '../../../components/assignment/assignment-dialog.component';
 import { filter, take, takeUntil } from 'rxjs/operators';
@@ -120,7 +129,8 @@ export class TaskAssignmentService implements OnDestroy {
                 <TaskAssignment>{
                     type: this.getAssignmentType(assignees, selectedElement.id),
                     assignment: this.getAssignmentValues(assignees),
-                    id: selectedElement.businessObject.id
+                    id: selectedElement.businessObject.id,
+                    ...(this.getAssignmentValues(assignees) === AssignmentMode.candidates && ({mode: this.getCopiedAssignmentMode(selectedElement.id)}))
                 }
             )
         );
@@ -128,6 +138,10 @@ export class TaskAssignmentService implements OnDestroy {
 
     getCopiedAssignmentType(taskId: string): string {
         return this.copiedAssignments[taskId]?.type ?? AssignmentType.static;
+    }
+
+    getCopiedAssignmentMode(taskId: string): string {
+        return this.copiedAssignments[taskId]?.mode ?? AssignmentStrategyMode.manual;
     }
 
     private getAssignmentValues(assignees: AssignmentSettings) {

@@ -69,7 +69,7 @@ export class ProcessTaskAssignmentEffects {
         const shapeId = element.id;
         this.dialogService.openDialog(AssignmentDialogComponent, {
             disableClose: true,
-            height: '500px',
+            minHeight: '500px',
             width: '900px',
             data: <AssignmentSettings> { shapeId: shapeId, ...this.taskAssignmentService.getAssignments(element), assignmentUpdate$, processId: processId },
         });

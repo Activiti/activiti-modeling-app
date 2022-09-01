@@ -1,0 +1,53 @@
+/*!
+ * @license
+ * Copyright 2019 Alfresco, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { AssignmentStrategySelectorComponent } from './assignment-strategy-selector.component';
+
+describe('AssignmentStrategySelectorComponent', () => {
+    let component: AssignmentStrategySelectorComponent;
+    let fixture: ComponentFixture<AssignmentStrategySelectorComponent>;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [
+                CoreModule.forChild(),
+                TranslateModule.forRoot(),
+                NoopAnimationsModule
+            ],
+            providers: [
+                { provide: TranslationService, useClass: TranslationMock }
+            ],
+            declarations: [AssignmentStrategySelectorComponent],
+        })
+            .compileComponents();
+    });
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AssignmentStrategySelectorComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+});

@@ -130,6 +130,7 @@ import { provideRoutes } from '@angular/router';
 import { processEditorTabRoutes } from './router/process-editor-tab.routes';
 import { ProcessesLoaderGuard } from './router/guards/processes-loader.guard';
 import { ProcessDeactivateGuard } from './router/guards/process-deactivate.guard';
+import { AssignmentStrategySelectorComponent } from './components/assignment/assignment-strategy-selector/assignment-strategy-selector.component';
 
 @NgModule({
     imports: [
@@ -200,7 +201,8 @@ import { ProcessDeactivateGuard } from './router/guards/process-deactivate.guard
         CardViewConditionExpressionItemComponent,
         CreateProcessDialogComponent,
         ProcessCategorySelectorComponent,
-        CardProcessVersionItemComponent
+        CardProcessVersionItemComponent,
+        AssignmentStrategySelectorComponent
     ],
     providers: [
         DeleteProcessCommand,

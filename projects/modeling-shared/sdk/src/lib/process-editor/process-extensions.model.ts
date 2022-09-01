@@ -124,7 +124,8 @@ export class ProcessExtensionsModel {
         return currentAssignmentObj === undefined ||
             newAssignmentObj.id !== currentAssignmentObj.id ||
             newAssignmentObj.assignment !== currentAssignmentObj.assignment ||
-            newAssignmentObj.type !== currentAssignmentObj.type;
+            newAssignmentObj.type !== currentAssignmentObj.type ||
+            newAssignmentObj.mode !== currentAssignmentObj.mode;
     }
 
     getAssignments(processId: string): TaskAssignmentContent {

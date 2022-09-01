@@ -18,7 +18,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { VariablesModule, AssignmentMode, AssignmentType, ExpressionsEditorService, UuidService } from '@alfresco-dbp/modeling-shared/sdk';
+import { VariablesModule, AssignmentMode, AssignmentType, ExpressionsEditorService, UuidService, AssignmentStrategyMode, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { CoreModule, TranslationService, TranslationMock, AlfrescoApiService } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
@@ -34,11 +34,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { AssignmentStrategySelectorComponent } from './assignment-strategy-selector/assignment-strategy-selector.component';
+import { DebugElement } from '@angular/core';
 
 describe('AssignmentDialogComponent', () => {
     let fixture: ComponentFixture<AssignmentDialogComponent>;
     let component: AssignmentDialogComponent;
     let alfrescoApiService: AlfrescoApiService;
+    let debugEl: DebugElement;
+    let store: Store<AmaState>;
 
     const mockDialogRef = {
         close: jasmine.createSpy('close'),
@@ -87,9 +91,34 @@ describe('AssignmentDialogComponent', () => {
         }
     };
 
+    const cssSelector = {
+        assignmentStrategySelector: '.ama-assignment-strategy-selector',
+        assignmentStrategySelectSpan: '.ama-assignment-strategy-selector-container .mat-select-value-text span',
+        assignmentStrategySelect: '[data-automation-id="ama-assignment-strategy-select"]',
+        assignmentStrategySequentialOption: '[data-automation-id="ama-assignment-strategy-option-sequential"]'
+    };
+
     function openSelect() {
         const dropdown = fixture.debugElement.query(By.css('.mat-select-trigger'));
         dropdown.triggerEventHandler('click', null);
+        fixture.detectChanges();
+    }
+
+    function openAssignmentStrategySelect() {
+        const assignmentStrategySelectEl = debugEl.query(By.css(cssSelector.assignmentStrategySelect));
+        assignmentStrategySelectEl.nativeElement.click();
+        fixture.detectChanges();
+    }
+
+    function selectAssignmentSequentialOption() {
+        const assignmentStrategySequentialOption = debugEl.query(By.css(cssSelector.assignmentStrategySequentialOption));
+        assignmentStrategySequentialOption.nativeElement.click();
+        fixture.detectChanges();
+    }
+
+    function clickOnAssignmentButton() {
+        const assignButton = debugEl.query(By.css(`#ama-assign-button`));
+        assignButton.nativeElement.click();
         fixture.detectChanges();
     }
 
@@ -136,12 +165,14 @@ describe('AssignmentDialogComponent', () => {
                     }
                 }
             ],
-            declarations: [AssignmentDialogComponent]
+            declarations: [AssignmentDialogComponent, AssignmentStrategySelectorComponent]
         });
 
         fixture = TestBed.createComponent(AssignmentDialogComponent);
         component = fixture.componentInstance;
+        debugEl = fixture.debugElement;
         alfrescoApiService = TestBed.inject(AlfrescoApiService);
+        store = TestBed.inject(Store);
         component.settings = mockDialogData;
         spyOn(alfrescoApiService, 'getInstance').and.returnValue(mockOauthApi);
     });
@@ -219,6 +250,7 @@ describe('AssignmentDialogComponent', () => {
             mockStreams.assignments.next({
                 type: AssignmentType.identity,
                 assignment: AssignmentMode.candidates,
+                mode: AssignmentStrategyMode.manual,
                 id: 'mock-shape-id'
             });
             fixture.detectChanges();
@@ -267,6 +299,7 @@ describe('AssignmentDialogComponent', () => {
             mockStreams.assignments.next({
                 type: AssignmentType.identity,
                 assignment: AssignmentMode.candidates,
+                mode: AssignmentStrategyMode.manual,
                 id: 'mock-shape-id'
             });
             fixture.detectChanges();
@@ -289,6 +322,7 @@ describe('AssignmentDialogComponent', () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.candidates,
+                mode: AssignmentStrategyMode.manual,
                 id: 'mock-shape-id'
             });
             mockStreams.processVariables.next(mockProcessVariable);
@@ -319,6 +353,7 @@ describe('AssignmentDialogComponent', () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.candidates,
+                mode: AssignmentStrategyMode.manual,
                 id: 'mock-shape-id'
             });
             mockStreams.processVariables.next(mockProcessVariable);
@@ -449,6 +484,7 @@ describe('AssignmentDialogComponent', () => {
             mockStreams.assignments.next({
                 type: AssignmentType.identity,
                 assignment: AssignmentMode.candidates,
+                mode: AssignmentStrategyMode.manual,
                 id: 'mock-shape-id'
             });
             fixture.detectChanges();
@@ -475,6 +511,7 @@ describe('AssignmentDialogComponent', () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.candidates,
+                mode: AssignmentStrategyMode.manual,
                 id: 'mock-shape-id'
             });
             component.settings = {
@@ -522,6 +559,7 @@ describe('AssignmentDialogComponent', () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.identity,
                     assignment: AssignmentMode.candidates,
+                    mode: AssignmentStrategyMode.manual,
                     id: 'mock-shape-id'
                 });
                 component.settings = {
@@ -555,6 +593,7 @@ describe('AssignmentDialogComponent', () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.expression,
                     assignment: AssignmentMode.candidates,
+                    mode: AssignmentStrategyMode.manual,
                     id: 'mock-shape-id'
                 });
                 component.settings = {
@@ -584,6 +623,7 @@ describe('AssignmentDialogComponent', () => {
             it('Should reload identity candidate values if the user change to original mode', async () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.identity,
+                    mode: AssignmentStrategyMode.manual,
                     assignment: AssignmentMode.candidates,
                     id: 'mock-shape-id'
                 });
@@ -624,6 +664,7 @@ describe('AssignmentDialogComponent', () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.expression,
                     assignment: AssignmentMode.candidates,
+                    mode: AssignmentStrategyMode.manual,
                     id: 'mock-shape-id'
                 });
                 component.settings = {
@@ -658,6 +699,7 @@ describe('AssignmentDialogComponent', () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.static,
                     assignment: AssignmentMode.candidates,
+                    mode: AssignmentStrategyMode.manual,
                     id: 'mock-shape-id'
                 });
                 component.settings = {
@@ -699,4 +741,339 @@ describe('AssignmentDialogComponent', () => {
             });
         });
     });
+
+    describe('Assignment type', () => {
+
+        it('Should not show assignment type selector field if is single assignment and static tab is selected', async () => {
+            mockStreams.assignments.next({
+                type: AssignmentType.static,
+                assignment: AssignmentMode.assignee,
+                id: 'mock-shape-id'
+            });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const assignmentStrategySelector = debugEl.query(By.css(cssSelector.assignmentStrategySelector));
+            expect(assignmentStrategySelector).toBeNull();
+        });
+
+        it('Should not show assignment type selector field if is single assignment and identity tab is selected', async () => {
+            mockStreams.assignments.next({
+                type: AssignmentType.identity,
+                assignment: AssignmentMode.assignee,
+                id: 'mock-shape-id'
+            });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const assignmentStrategySelector = debugEl.query(By.css(cssSelector.assignmentStrategySelector));
+            expect(assignmentStrategySelector).toBeNull();
+        });
+
+        it('Should not show assignment type selector field if is single assignment and expression tab is selected', async () => {
+            mockStreams.assignments.next({
+                type: AssignmentType.expression,
+                assignment: AssignmentMode.assignee,
+                id: 'mock-shape-id'
+            });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const assignmentStrategySelector = debugEl.query(By.css(cssSelector.assignmentStrategySelector));
+            expect(assignmentStrategySelector).toBeNull();
+        });
+
+        it('Should show assignment type selector field if is candidate assignment and static tab is selected', async () => {
+            mockStreams.assignments.next({
+                type: AssignmentType.static,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const assignmentStrategySelector = debugEl.query(By.css(cssSelector.assignmentStrategySelector));
+            expect(assignmentStrategySelector).not.toBeNull();
+        });
+
+        it('Should show assignment type selector field if is candidate assignment and identity tab is selected', async () => {
+            mockStreams.assignments.next({
+                type: AssignmentType.identity,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const assignmentStrategySelector = debugEl.query(By.css(cssSelector.assignmentStrategySelector));
+            expect(assignmentStrategySelector).not.toBeNull();
+        });
+
+        it('Should show assignment type selector field if is candidate assignment and expression tab is selected', async () => {
+            mockStreams.assignments.next({
+                type: AssignmentType.expression,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const assignmentStrategySelector = debugEl.query(By.css(cssSelector.assignmentStrategySelector));
+            expect(assignmentStrategySelector).not.toBeNull();
+        });
+
+        it('Should show assignment type manual when assignment is change from single to candidates mode', async () => {
+            const expectedAssignmentStrategyValue = 'Manual';
+            fixture.detectChanges();
+            await fixture.whenStable();
+            openSelect();
+            const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+            candidateOption.nativeElement.click();
+            fixture.detectChanges();
+            const assignmentStrategySpanEl = debugEl.query(By.css(cssSelector.assignmentStrategySelectSpan));
+            expect(assignmentStrategySpanEl.nativeElement.innerHTML).toEqual(expectedAssignmentStrategyValue);
+        });
+
+        it('Should send assignment mode clicking onAssign if is candidate', async () => {
+            const expectedObject = {
+                modelId: 'mock-shape-id',
+                processId: 'mock process',
+                serviceId: 'shapeId',
+                taskAssignment: {
+                    assignment: AssignmentMode.candidates,
+                    id: 'shapeId',
+                    mode: 'sequential',
+                    type: AssignmentType.static,
+                },
+                type: '[ProcessEditor] Update Task Assignments',
+            };
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.static,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: [],
+                candidateUsers: ['mock candidateUser'],
+                candidateGroups: ['mock candidateGroup'],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openAssignmentStrategySelect();
+            selectAssignmentSequentialOption();
+            clickOnAssignmentButton();
+
+            expect(store.dispatch).toHaveBeenCalledWith(expectedObject);
+        });
+
+        it('Should not send assignment mode clicking onAssign if is candidate', async () => {
+            const expectedObject = {
+                modelId: 'mock-shape-id',
+                processId: 'mock process',
+                serviceId: 'shapeId',
+                taskAssignment: {
+                    assignment: AssignmentMode.assignee,
+                    id: 'shapeId',
+                    type: AssignmentType.static
+                },
+                type: '[ProcessEditor] Update Task Assignments',
+            };
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.static,
+                assignment: AssignmentMode.assignee,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: ['hr'],
+                candidateUsers: [],
+                candidateGroups: [],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            component.updateAssignment();
+
+            expect(store.dispatch).toHaveBeenCalledWith(expectedObject);
+        });
+
+        it('Should update payload when the assignment strategy is changed in the static tab and static form is valid', async () => {
+            const expectedPayload = {
+                assignments: [
+                    { key: 'assignee', value: undefined },
+                    { key: 'candidateUsers', value: 'mock candidateUser' },
+                    { key: 'candidateGroups', value: 'mock candidateGroup' }
+                ]
+            };
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.static,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: [],
+                candidateUsers: ['mock candidateUser'],
+                candidateGroups: ['mock candidateGroup'],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openAssignmentStrategySelect();
+            selectAssignmentSequentialOption();
+
+            expect(component.assignmentPayload).toEqual(expectedPayload);
+        });
+
+        it('Should not update payload when the assignment strategy is changed in the static tab and static form is not valid', async () => {
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.static,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: [],
+                candidateUsers: [],
+                candidateGroups: [],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openAssignmentStrategySelect();
+            selectAssignmentSequentialOption();
+
+            expect(component.assignmentPayload).toBeUndefined();
+        });
+
+        it('Should update payload when the assignment strategy is changed in the identity tab and identity form is valid', async () => {
+            const expectedPayload = {
+                assignments: [
+                    { key: 'assignee', value: undefined },
+                    { key: 'candidateUsers', value: 'mock candidateUser' },
+                    { key: 'candidateGroups', value: 'mock candidateGroup' }
+                ]
+            };
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.identity,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: [],
+                candidateUsers: ['mock candidateUser'],
+                candidateGroups: ['mock candidateGroup'],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openAssignmentStrategySelect();
+            selectAssignmentSequentialOption();
+
+            expect(component.assignmentPayload).toEqual(expectedPayload);
+        });
+
+        it('Should not update payload when the assignment strategy is changed in the identity tab and identity form is not valid', async () => {
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.identity,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: [],
+                candidateUsers: [],
+                candidateGroups: [],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openAssignmentStrategySelect();
+            selectAssignmentSequentialOption();
+
+            expect(component.assignmentPayload).toBeUndefined();
+        });
+
+        it('Should update payload when the assignment strategy is changed in the expression tab and expression form is valid', async () => {
+            const expectedPayload = {
+                assignments: [
+                    { key: 'assignee', value: undefined },
+                    { key: 'candidateUsers', value: '${mock candidateUser}' },
+                    { key: 'candidateGroups', value: '${mock candidateGroup}' }
+                ]
+            };
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.expression,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: [],
+                candidateUsers: ['${mock candidateUser}'],
+                candidateGroups: ['${mock candidateGroup}'],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openAssignmentStrategySelect();
+            selectAssignmentSequentialOption();
+
+            expect(component.assignmentPayload).toEqual(expectedPayload);
+        });
+
+        it('Should not update payload when the assignment strategy is changed in the expression tab and expression form is not valid', async () => {
+            spyOn(store, 'dispatch');
+            mockStreams.assignments.next({
+                type: AssignmentType.expression,
+                mode: AssignmentStrategyMode.manual,
+                assignment: AssignmentMode.candidates,
+                id: 'mock-shape-id'
+            });
+            component.settings = {
+                assignee: [],
+                candidateUsers: [],
+                candidateGroups: [],
+                processId: 'mock process',
+                assignmentUpdate$: new Subject<AssignmentModel>(),
+                shapeId: 'shapeId'
+            };
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openAssignmentStrategySelect();
+            selectAssignmentSequentialOption();
+
+            expect(component.assignmentPayload).toBeUndefined();
+        });
+
+    });
+
 });

@@ -190,6 +190,7 @@
                 "GROUPS": "{{count}} Groups",
                 "ASSIGN": "Assign",
                 "CLOSE": "Close",
+                "STRATEGY": "Assignment type",
                 "EXPRESSION": {
                     "TITLE": "Expression",
                     "CANDIDATE_EMPTY": "Candidates can't be empty, provide either candidateUsers or candidateGroups",

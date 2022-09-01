@@ -32,7 +32,8 @@ import {
     Process,
     CodeValidatorService,
     selectProcessPropertiesArrayFor,
-    CodeEditorComponent
+    CodeEditorComponent,
+    AssignmentStrategyMode
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Store } from '@ngrx/store';
@@ -126,6 +127,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     roles = ['ACTIVITI_USER'];
     selectedMode: string = AssignmentMode.assignee;
     selectedType: string = AssignmentType.static;
+    selectedAssignmentStrategy = AssignmentStrategyMode.manual;
     currentActiveTab = AssignmentTabs.STATIC;
     separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -190,7 +192,8 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.assignmentForm = this.formBuilder.group({
             staticForm: this.formBuilder.group({}),
             identityForm: this.formBuilder.group({}),
-            expressionForm: this.formBuilder.group({})
+            expressionForm: this.formBuilder.group({}),
+            candidateAssignmentStrategyFormControl: new UntypedFormControl(this.selectedAssignmentStrategy)
         });
         this.createChildrenFormControls();
         this.loadingForm = false;
@@ -199,6 +202,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     private deductConfigFromXML() {
         this.selectedType = this.assignmentXML && this.assignmentXML.type ? this.assignmentXML.type : AssignmentType.static;
         this.selectedMode = this.assignmentXML && this.assignmentXML.assignment ? this.assignmentXML.assignment : AssignmentMode.assignee;
+        this.selectedAssignmentStrategy = this.assignmentXML?.mode ?? AssignmentStrategyMode.manual;
         this.selectActiveTab();
     }
 
@@ -400,7 +404,9 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     }
 
     isOriginalSelection() {
-        return this.selectedMode === this.assignmentXML.assignment && this.selectedType === this.assignmentXML.type;
+        return this.selectedMode === this.assignmentXML.assignment
+            && this.selectedType === this.assignmentXML.type
+            && this.selectedAssignmentStrategy === this.assignmentXML.mode;
     }
 
     onStaticAssigneeRemove() {
@@ -492,23 +498,28 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     }
 
     onExpressionChange(contentString: string) {
-        if (this.validate(contentString)) {
+        this.expressionContent = contentString;
+        this.validateExpressionContentAndUpdatePayload();
+    }
+
+    private validateExpressionContentAndUpdatePayload() {
+        if (this.validate(this.expressionContent)) {
             if (this.isAssigneeMode()) {
-                const assignee = JSON.parse(contentString);
+                const assignee = JSON.parse(this.expressionContent);
                 if (this.isAssigneeValid(assignee) && this.isExpressionValid(assignee.assignee)) {
                     this.expressionAssignee = this.isExpressionValid(assignee.assignee) ? assignee.assignee : undefined;
                     this.assigneeExpressionCtrlValue(this.expressionAssignee);
                 } else {
                     if (assignee.assignee === '') {
                         this.expressionErrorMessage = AssigneeExpressionErrorMessages.assigneeEmpty;
-                        this.expressionForm.setErrors({ pattern: 'true'});
+                        this.expressionForm.setErrors({ pattern: 'true' });
                     } else {
                         this.expressionErrorMessage = AssigneeExpressionErrorMessages.assigneePattern;
                         this.expressionForm.setErrors({ pattern: 'true' });
                     }
                 }
             } else {
-                const candidates = JSON.parse(contentString);
+                const candidates = JSON.parse(this.expressionContent);
                 if (this.isCandidatesPresentAndExpressionValid(candidates)) {
                     this.expressionCandidateUsers = this.isExpressionValid(candidates.candidateUsers) ? candidates.candidateUsers : undefined;
                     this.expressionCandidateGroups = this.isExpressionValid(candidates.candidateGroups) ? candidates.candidateGroups : undefined;
@@ -524,6 +535,29 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             }
         } else {
             this.expressionForm.setErrors({ pattern: 'true' });
+        }
+    }
+
+    onChangeAssignmentStrategy(assignmentStrategy: AssignmentStrategyMode) {
+        this.selectedAssignmentStrategy = assignmentStrategy;
+        this.setCandidateAssignmentStrategyCtrlValue(assignmentStrategy);
+        if (this.isStaticType()) {
+            if(this.candidatesStaticFormGroup.valid){
+                this.updatePayloadWithStaticValues();
+            }
+        } else if (this.isIdentityType()) {
+            this.validateIdentityFormAndUpdatePayload();
+        } else if (this.isExpressionType()) {
+            this.validateExpressionContentAndUpdatePayload();
+        }
+    }
+
+    private validateIdentityFormAndUpdatePayload() {
+        this.candidatesIdentityFormGroup.markAsDirty();
+        this.candidatesIdentityFormGroup.markAsTouched();
+        this.candidatesIdentityFormGroup.updateValueAndValidity();
+        if (this.candidatesIdentityFormGroup.valid) {
+            this.updatePayloadWithIdentityValues();
         }
     }
 
@@ -570,7 +604,8 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
                         <TaskAssignment>{
                             type: this.selectedType,
                             assignment: this.selectedMode,
-                            id: this.settings.shapeId
+                            id: this.settings.shapeId,
+                            ...(this.isCandidatesMode() && ({mode: this.selectedAssignmentStrategy}))
                         }
                     )
                 )
@@ -888,6 +923,17 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.candidateGroupsChipsStaticControl.markAsDirty();
         this.candidateGroupsChipsStaticControl.markAsTouched();
         this.candidateGroupsChipsStaticControl.updateValueAndValidity();
+    }
+
+    private setCandidateAssignmentStrategyCtrlValue(value: AssignmentStrategyMode) {
+        this.candidateAssignmentStrategyControl.setValue(value);
+        this.candidateAssignmentStrategyControl.markAsDirty();
+        this.candidateAssignmentStrategyControl.markAsTouched();
+        this.candidateAssignmentStrategyControl.updateValueAndValidity();
+    }
+
+    get candidateAssignmentStrategyControl(): UntypedFormControl {
+        return this.assignmentForm.get('candidateAssignmentStrategyFormControl') as UntypedFormControl;
     }
 
     get candidatesStaticFormGroup(): UntypedFormGroup {

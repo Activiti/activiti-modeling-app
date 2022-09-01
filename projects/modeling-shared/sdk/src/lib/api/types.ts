@@ -210,10 +210,16 @@ export enum AssignmentType {
     expression = 'expression'
 }
 
+export enum AssignmentStrategyMode {
+    manual = 'manual',
+    sequential = 'sequential'
+}
+
 export interface TaskAssignment {
     id: string;
     type: AssignmentType;
     assignment: AssignmentMode;
+    mode?: AssignmentStrategyMode
 }
 
 export interface TaskAssignmentContent {

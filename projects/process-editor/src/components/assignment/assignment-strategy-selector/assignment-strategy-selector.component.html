@@ -1,0 +1,16 @@
+<div class="ama-assignment-strategy-selector-container adf-property-list">
+    <mat-form-field class="ama-assignment-strategy-selector adf-property">
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.STRATEGY' | translate }}</div>
+        <mat-select
+            [value]="defaultStrategy"
+            (selectionChange)="onSelect($event)"
+            [attr.data-automation-id]="'ama-assignment-strategy-select'" >
+            <mat-option
+                *ngFor="let assignment of assignmentStrategies"
+                [attr.data-automation-id]="'ama-assignment-strategy-option-' + assignment.key"
+                [value]="assignment.key">
+                {{ assignment.label | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

@@ -16,7 +16,7 @@
  */
 
 import { ProcessExtensionsModel } from './process-extensions.model';
-import { AssignmentMode, AssignmentType, EntityProperties, EntityProperty, MappingType, ModelExtensions,
+import { AssignmentMode, AssignmentStrategyMode, AssignmentType, EntityProperties, EntityProperty, MappingType, ModelExtensions,
     ServiceParameterMapping, ServiceParameterMappings, ServicesParameterConstants, TaskAssignment, TaskTemplateMapping } from '../api/types';
 import { VariableMappingBehavior } from '../interfaces/variable-mapping-type.interface';
 
@@ -127,14 +127,20 @@ describe('ProcessExtensionModel', () => {
     });
 
     it('It should set an assignment element for a process', () => {
-        const fakeAssignment: TaskAssignment = { id: 'fake-assign-id-1', assignment: AssignmentMode.assignee, type: AssignmentType.static };
+        const fakeAssignment: TaskAssignment = {
+            id: 'fake-assign-id-1', assignment: AssignmentMode.assignee, type: AssignmentType.static, mode: AssignmentStrategyMode.sequential
+        };
         processExtension.setAssignments('fake-assign-process', 'fake-assign-service-id', fakeAssignment);
         expect(processExtension.getAssignments('fake-assign-process')).toStrictEqual({ 'fake-assign-service-id': fakeAssignment });
     });
 
     it('It should override the current assignment when a new one steps in for a service/the same process service combination', () => {
-        const fakeAssignment: TaskAssignment = { id: 'fake-assign-id-1', assignment: AssignmentMode.assignee, type: AssignmentType.static };
-        const fakeAssignmentOverride: TaskAssignment = { id: 'fake-assign-id-2', assignment: AssignmentMode.candidates, type: AssignmentType.identity };
+        const fakeAssignment: TaskAssignment = {
+            id: 'fake-assign-id-1', assignment: AssignmentMode.assignee, type: AssignmentType.static, mode: AssignmentStrategyMode.sequential
+        };
+        const fakeAssignmentOverride: TaskAssignment = {
+            id: 'fake-assign-id-2', assignment: AssignmentMode.candidates, type: AssignmentType.identity, mode: AssignmentStrategyMode.manual
+        };
         processExtension.setAssignments('fake-assign-process', 'fake-assign-service-id', fakeAssignment);
         processExtension.setAssignments('fake-assign-process', 'fake-assign-service-id', fakeAssignmentOverride);
         expect(processExtension.getAssignments('fake-assign-process')).toStrictEqual({ 'fake-assign-service-id': fakeAssignmentOverride });
