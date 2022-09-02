@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-function overrideTsConfig(config: any, tsConfigPath: string) {
+export function overrideTsConfig(config: any, tsConfigPath: string) {
     const defaultConfig = config.default ?? config;
     return {
         ...defaultConfig,
@@ -27,8 +27,4 @@ function overrideTsConfig(config: any, tsConfigPath: string) {
             }
         },
     };
-}
-
-export default {
-    overrideTsConfig
 };

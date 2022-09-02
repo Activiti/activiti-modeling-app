@@ -1,11 +1,10 @@
 /* eslint-disable */
-const path = require('path');
-const getJestConfig = require(__dirname +
-    '/../../adf-candidates/testing/jest/jest.get-config');
+import { resolve } from 'path';
+import { getJestConfig } from '@alfresco-dbp/shared/testing';
 
 export default getJestConfig(
     __dirname,
     {},
     'tsconfig.json',
-    path.resolve(__dirname, '../../..')
+    resolve(__dirname, '../../..')
 );

@@ -1,5 +1,5 @@
-const { resolve } = require('path');
+import { resolve } from 'path';
+import { overrideTsConfig } from '@alfresco-dbp/shared/testing';
 const config = require('./jest.config');
-const { overrideTsConfig } = require('../projects/adf-candidates/testing/jest/jest-utils');
 
 module.exports = overrideTsConfig(config, resolve(__dirname, 'tsconfig.spec.adf.json'));

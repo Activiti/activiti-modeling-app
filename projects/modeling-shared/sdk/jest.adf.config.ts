@@ -1,9 +1,7 @@
 /* eslint-disable */
-const { resolve } = require('path');
+import { resolve } from 'path';
+import { overrideTsConfig } from '@alfresco-dbp/shared/testing';
 const config = require('./jest.config');
-const {
-    overrideTsConfig,
-} = require('../../adf-candidates/testing/jest/jest-utils');
 
 export default overrideTsConfig(
     config,

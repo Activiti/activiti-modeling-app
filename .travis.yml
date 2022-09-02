@@ -2,7 +2,7 @@ language: node_js
 dist: bionic
 arch: arm64-graviton2
 node_js:
-  - '12.18.1'
+  - '14.15.4'
 git:
   depth: 100
 

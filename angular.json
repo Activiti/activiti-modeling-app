@@ -253,6 +253,12 @@
             "projectType": "library",
             "prefix": "modelingsdk",
             "targets": {
+                "pretest": {
+                    "executor": "nx:run-commands",
+                    "options": {
+                      "command": "nx run shared-unit-testing:build"
+                    }
+                },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
@@ -290,6 +296,12 @@
             "projectType": "library",
             "prefix": "modeling-ce-connector-editor",
             "targets": {
+                "pretest": {
+                    "executor": "nx:run-commands",
+                    "options": {
+                      "command": "nx run shared-unit-testing:build"
+                    }
+                },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
@@ -332,6 +344,12 @@
             "projectType": "library",
             "prefix": "modeling-ce-dashboard",
             "targets": {
+                "pretest": {
+                    "executor": "nx:run-commands",
+                    "options": {
+                      "command": "nx run shared-unit-testing:build"
+                    }
+                },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
@@ -372,6 +390,12 @@
             "projectType": "library",
             "prefix": "modeling-ce-project-editor",
             "targets": {
+                "pretest": {
+                    "executor": "nx:run-commands",
+                    "options": {
+                      "command": "nx run shared-unit-testing:build"
+                    }
+                },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
@@ -413,6 +437,12 @@
             "projectType": "library",
             "prefix": "modeling-ce-process-editor",
             "targets": {
+                "pretest": {
+                    "executor": "nx:run-commands",
+                    "options": {
+                      "command": "nx run shared-unit-testing:build"
+                    }
+                },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
@@ -454,6 +484,12 @@
             "sourceRoot": "projects/adf-candidates",
             "prefix": "adf-candidates",
             "targets": {
+                "pretest": {
+                    "executor": "nx:run-commands",
+                    "options": {
+                      "command": "nx run shared-unit-testing:build"
+                    }
+                },
                 "test": {
                     "executor": "@nrwl/jest:jest",
                     "options": {
