@@ -29,5 +29,8 @@ modelingsdk-workbench-layout-content {
         right: 390px;
         visibility: visible !important;
     }
-}
 
+    .mat-drawer {
+        display: unset !important;
+    }
+}
