@@ -18,7 +18,7 @@
 import { ProjectsListComponent } from './projects-list.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslationMock, TranslationService, AppConfigService, CoreModule } from '@alfresco/adf-core';
+import { TranslationMock, TranslationService, AppConfigService, CoreModule, JwtHelperService, StorageService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import {
     AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading,
@@ -40,12 +40,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe ('Projects List Component', () => {
     let component: ProjectsListComponent;
     let fixture: ComponentFixture<ProjectsListComponent>;
     let store: Store<AmaState>;
     let layoutService: LayoutService;
+    let storageService: StorageService;
 
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
     const paginationLoaded$ = new BehaviorSubject<Pagination>(paginationMock);
@@ -63,12 +65,13 @@ describe ('Projects List Component', () => {
                 MomentModule,
                 RouterTestingModule,
                 NoopAnimationsModule,
-                MatIconModule
+                MatIconTestingModule
             ],
             declarations: [
                 ProjectsListComponent
             ],
             providers: [
+                JwtHelperService,
                 AmaApi,
                 {
                     provide: Store,
@@ -105,6 +108,8 @@ describe ('Projects List Component', () => {
         store = TestBed.inject(Store);
         layoutService = TestBed.inject(LayoutService);
         layoutService.isTabletWidth = jest.fn().mockReturnValue(false);
+        storageService = TestBed.inject(StorageService);
+        storageService.setItem('username', 'fakeUser');
         component = fixture.componentInstance;
         component.ngOnInit();
         fixture.detectChanges();
@@ -148,5 +153,15 @@ describe ('Projects List Component', () => {
     it('should sort by updated column desc by default', () => {
         expect(component.sorting.key).toEqual('lastModifiedDate');
         expect(component.sorting.direction).toEqual('desc');
+    });
+
+    it('should display delete project option only for creator of the project', () => {
+        const menu = fixture.debugElement.query(By.css('[data-automation-id="project-context-mock-project-id"]'));
+        menu.triggerEventHandler('click', {});
+        fixture.detectChanges();
+        const deleteButton = fixture.debugElement.query(By.css('[data-automation-id="project-delete-mock-project-id"]'));
+        fixture.detectChanges();
+
+        expect(deleteButton).toBeNull();
     });
 });

@@ -52,6 +52,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
         direction: DEFAULT_SORT_DIRECTION
     };
     private unsubscribe$ = new Subject<void>();
+    userName: string;
 
     @Input() customDataSource$: Observable<Partial<Project>[]>;
 
@@ -79,6 +80,8 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
                 this.isFavoriteList = true;
             }
         });
+        this.userName = localStorage.getItem('username');
+
         this.route.queryParams.pipe(takeUntil(this.unsubscribe$))
             .subscribe(params => {
                 this.maxItems = +params.maxItems || 25;
@@ -221,6 +224,10 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
     handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
         this.store.dispatch(new actionClass(projectId));
+    }
+
+    isProjectCreator(createdBy: string): boolean {
+        return this.userName === createdBy;
     }
 
     ngOnDestroy() {
