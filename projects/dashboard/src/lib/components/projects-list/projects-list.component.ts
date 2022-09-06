@@ -80,7 +80,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
                 this.isFavoriteList = true;
             }
         });
-        this.userName = localStorage.getItem('username');
+        this.userName = localStorage.getItem('USERNAME');
 
         this.route.queryParams.pipe(takeUntil(this.unsubscribe$))
             .subscribe(params => {

@@ -109,7 +109,7 @@ describe ('Projects List Component', () => {
         layoutService = TestBed.inject(LayoutService);
         layoutService.isTabletWidth = jest.fn().mockReturnValue(false);
         storageService = TestBed.inject(StorageService);
-        storageService.setItem('username', 'fakeUser');
+        storageService.setItem('USERNAME', 'fakeUser');
         component = fixture.componentInstance;
         component.ngOnInit();
         fixture.detectChanges();
