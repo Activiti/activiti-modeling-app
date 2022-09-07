@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Vytvořit model ACS",
-        "TITLE_UPDATE": "Aktualizovat model ACS",
-        "CONTENT_MODEL_NAME": "Název modelu ACS:",
-        "CONTENT_MODEL_DESC": "Popis modelu ACS:",
-        "CONTENT_MODEL_CREATED": "Vytvoření modelu ACS",
-        "CONTENT_MODEL_DELETED": "Odstranění modelu ACS",
-        "CONTENT_MODEL_UPDATED": "Uložení modelu ACS"
+      "TITLE_CREATE": "Vytvořit model ACS",
+      "TITLE_UPDATE": "Aktualizovat model ACS",
+      "CONTENT_MODEL_NAME": "Název modelu ACS:",
+      "CONTENT_MODEL_DESC": "Popis modelu ACS:",
+      "CONTENT_MODEL_CREATED": "Vytvoření modelu ACS",
+      "CONTENT_MODEL_DELETED": "Odstranění modelu ACS",
+      "CONTENT_MODEL_UPDATED": "Uložení modelu ACS"
     },
     "BACK_TO": "Zpět k projektům",
     "NAME": "Editor projektů",
@@ -27,13 +27,14 @@
     "NO_CONTENT": "<prázdný>",
     "UNCATEGORIZED": "Nekategorizováno",
     "NO_SELECTION": "Vytvořte nový model nebo upravte existující pomocí bočního panelu.",
-    "NO_OPTION_SELECTED": "Žádné",
+    "NO_OPTION_SELECTED": "Žádný",
     "SELECT_MODEL_TYPE": "Vybrat typ modelu",
     "NEW_MENU": {
       "LABEL": "Nový",
       "CREATE": "Vytvořit",
       "UPLOAD": "Odeslat",
       "IMPORT": "Importovat",
+      "NO_ITEMS_TO_IMPORT": "Neexistují žádné modely k importu",
       "CREATE_PROCESS_TITLE": "Vytvořit proces",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Proces",
@@ -217,7 +218,7 @@
       "UPDATE_PROCESS": {
         "DUPLICATION": "Proces s tímto názvem již existuje",
         "GENERAL": "Došlo k problému při ukládání procesu. Zkuste ho uložit znovu.",
-        "EMPTY_NAME": "Název je povinný."
+        "EMPTY_NAME": "Název je povinný"
       },
       "CREATE_CONNECTOR": {
         "DUPLICATION": "Konektor s tímto názvem již existuje",
@@ -252,7 +253,7 @@
         "GENERAL": "Došlo k problému při vytváření rozhodovací tabulky. Zkuste ji vytvořit znovu."
       },
       "CREATE_AUTHENTICATION": {
-        "DUPLICATION": "Ověřování s tímto názvem již existuje.",
+        "DUPLICATION": "Ověřování s tímto názvem již existuje",
         "GENERAL": "Došlo k problému při vytváření ověřování. Zkuste ho vytvořit znovu."
       },
       "UPDATE_AUTHENTICATION": {

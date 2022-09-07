@@ -2,16 +2,16 @@
   "DASHBOARD": {
     "NEW_MENU": {
       "LABEL": "新規",
-      "CREATE_PROJECT_TITLE": "プロジェクトを作成",
+      "CREATE_PROJECT_TITLE": "プロジェクトの作成",
       "OVERRIDE_PROJECT_TITLE": "同じ名前のプロジェクトが既に存在します。",
-      "EDIT_PROJECT_TITLE": "プロジェクトを編集",
+      "EDIT_PROJECT_TITLE": "プロジェクトの編集",
       "PROJECT_CREATED": "プロジェクトが作成されました",
       "PROJECT_UPLOADED": "プロジェクトがアップロードされました",
       "PROJECT_UPDATED": "プロジェクトが保存されました",
       "PROJECT_RELEASED": "プロジェクトがリリースされました",
       "PROJECT_DELETED": "プロジェクトが削除されました",
       "MENU_ITEMS": {
-        "CREATE_PROJECT": "プロジェクトを作成",
+        "CREATE_PROJECT": "プロジェクトの作成",
         "UPLOAD_PROJECT": "プロジェクトをアップロード",
         "CREATE_MODEL": "コンテンツモデル"
       }
@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "更新日",
       "COLUMN_OPTIONS": "オプション",
       "COLUMN_ACTIONS": "アクション",
+      "COLUMN_COLLABORATORS": "コラボレーター",
       "NO_ITEMS": "リストに表示するプロジェクトを作成するかインポートしてください。",
       "NO_FAV_PROCESSES": "ここで使用するプロセスをお気に入りに登録します。",
       "NO_FAV_PROJECTS": "ここで使用するプロジェクトをお気に入りに登録します。",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "モデラー",
+    "NAME": "モデリングアプリケーション",
     "NAVIGATION": {
       "PROJECT_TITLE": "プロジェクト",
       "CONTENT_MODEL_TITLE": "コンテンツモデル",
       "DATA_MODELS_TITLE": "データモデル",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "あなたのプロジェクト",
         "LABEL": "すべてのプロジェクト",
         "TOOLTIP": "公開されたすべてのプロジェクト",
         "ACTIONS": {
           "CREATE": "プロジェクトの作成",
-          "UPLOAD": "アップロード"
+          "UPLOAD": "プロジェクトをアップロード"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "あなたの共有されたモデル",
-        "LABEL": "共有されたモデル",
+        "LABEL": "グローバルモデル",
         "TOOLTIP": "プロジェクト全体で共有されたモデル",
         "ACTIONS": {
-          "CREATE": "共有モデルの作成"
+          "CREATE": "コンテンツモデルの作成"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "あなたのデータモデル",
-        "LABEL": "データモデル",
+        "LABEL": "グローバルモデル",
         "TOOLTIP": "公開されたデータモデル",
         "ACTIONS": {
           "CREATE": "データモデルの作成"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "お気に入りから削除されたプロジェクト",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "お気に入りプロジェクトの読み込み中に問題が発生しました。ページを更新してください。"
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "検索"
     }
   }
 }

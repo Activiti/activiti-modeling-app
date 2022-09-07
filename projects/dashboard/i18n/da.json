@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "Opdateret",
       "COLUMN_OPTIONS": "Indstillinger",
       "COLUMN_ACTIONS": "Handlinger",
+      "COLUMN_COLLABORATORS": "Samarbejdspartnere",
       "NO_ITEMS": "Opret eller importér et projekt, så det vises på listen.",
       "NO_FAV_PROCESSES": "Angiv en proces som favorit for at gøre den tilgængelig her.",
       "NO_FAV_PROJECTS": "Angiv et projekt som favorit for at gøre det tilgængeligt her.",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "Modellering",
+    "NAME": "Modelleringsapp",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projekter",
       "CONTENT_MODEL_TITLE": "Indholdsmodeller",
       "DATA_MODELS_TITLE": "Datamodeller",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mine projekter",
         "LABEL": "Alle projekter",
         "TOOLTIP": "Alle udgivne projekter",
         "ACTIONS": {
           "CREATE": "Opret projekt",
-          "UPLOAD": "Upload"
+          "UPLOAD": "Upload projekt"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "Mine delte modeller",
-        "LABEL": "Delte modeller",
+        "LABEL": "Globale modeller",
         "TOOLTIP": "Modeller delt på tværs af projekterne",
         "ACTIONS": {
-          "CREATE": "Opret delt model"
+          "CREATE": "Opret indholdsmodel"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "Mine datamodeller",
-        "LABEL": "Datamodeller",
+        "LABEL": "Globale modeller",
         "TOOLTIP": "Udgivne datamodeller",
         "ACTIONS": {
           "CREATE": "Opret datamodel"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "Projekt fjernet fra favoritter",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "Vi stødte på et problem under indlæsning af favoritprojekterne. Prøv at opdatere siden."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "Søg"
     }
   }
 }

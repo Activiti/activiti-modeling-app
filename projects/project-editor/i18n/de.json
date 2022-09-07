@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Content-Modell erstellen",
-        "TITLE_UPDATE": "Content-Modell aktualisieren",
-        "CONTENT_MODEL_NAME": "Content-Modell-Name:",
-        "CONTENT_MODEL_DESC": "Content-Modell-Beschreibung:",
-        "CONTENT_MODEL_CREATED": "Content-Modell erstellt",
-        "CONTENT_MODEL_DELETED": "Content-Modell gelöscht",
-        "CONTENT_MODEL_UPDATED": "Content-Modell gespeichert"
+      "TITLE_CREATE": "Content-Modell erstellen",
+      "TITLE_UPDATE": "Content-Modell aktualisieren",
+      "CONTENT_MODEL_NAME": "Content-Modell-Name:",
+      "CONTENT_MODEL_DESC": "Content-Modell-Beschreibung:",
+      "CONTENT_MODEL_CREATED": "Content-Modell erstellt",
+      "CONTENT_MODEL_DELETED": "Content-Modell gelöscht",
+      "CONTENT_MODEL_UPDATED": "Content-Modell gespeichert"
     },
     "BACK_TO": "Zurück zu Projekten",
     "NAME": "Projekt-Editor",
@@ -34,6 +34,7 @@
       "CREATE": "Erstellen",
       "UPLOAD": "Hochladen",
       "IMPORT": "Importieren",
+      "NO_ITEMS_TO_IMPORT": "Es sind keine zu importierenden Modelle vorhanden",
       "CREATE_PROCESS_TITLE": "Prozess erstellen",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Prozess",

@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Zapisz jako ikonę",
       "DOWNLOAD": "Pobierz projekt",
       "VIEW_RELEASES": "Wyświetl wydania",
-      "VERSION": "Wersja"
+      "VERSION": "Wersja",
+      "UNSAVED_DIALOG_TITLE": "Niezapisane modele",
+      "UNSAVED_VALIDATE_MESSAGE": "W niektórych otwartych modelach są niezapisane zmiany, zapisz je przed zatwierdzeniem",
+      "UNSAVED_RELEASE_MESSAGE": "W niektórych otwartych modelach są niezapisane zmiany, zapisz je przed zwolnieniem",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "W niektórych otwartych modelach są niezapisane zmiany, zapisz je przed powrotem do pulpitu nawigacyjnego"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Wymagane",
         "COLUMN_VALUE": "Wartość",
         "NO_PROPERTIES": "Wybierz lub utwórz zmienną, aby wyświetlić jej właściwości",
-        "CLEAR": "Wyczyść"
+        "CLEAR": "Wyczyść",
+        "ANALYTICS": "ANALITYKA"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Wartość",
       "EXPRESSION_MAPPING": "Wyrażenie",
       "NONE": "Brak",
-      "TYPE": "Typ"
+      "TYPE": "Typ",
+      "WRONG_OUTPUT_MAPPING": "Mapowanie wyjścia jest nieprawidłowe. Nie wszystkie dodane mapowania mapują wyrażenie na zmienną"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Zapisz jako",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Zadanie usługi docgen",
         "PARTICIPANT": "Proces",
         "FORM_FIELDS": "Pola formularza",
-        "FORM_VARIABLES": "Zmienne formularza"
+        "FORM_VARIABLES": "Zmienne formularza",
+        "CONTENT_SERVICE": "Usługa treści"
       },
       "TOOLTIP": {
         "VARIABLE": "Zmienna",

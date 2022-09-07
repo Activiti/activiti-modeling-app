@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Tallenna kuvakkeena",
       "DOWNLOAD": "Lataa projekti",
       "VIEW_RELEASES": "Näytä julkaisut",
-      "VERSION": "Versio"
+      "VERSION": "Versio",
+      "UNSAVED_DIALOG_TITLE": "Tallentamattomat mallit",
+      "UNSAVED_VALIDATE_MESSAGE": "Joissakin avatuissa malleissa on tallentamattomia muutoksia, tallenna ne ennen vahvistamista",
+      "UNSAVED_RELEASE_MESSAGE": "Joissakin avatuissa malleissa on tallentamattomia muutoksia, tallenna ne ennen julkaisua",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Joissakin avatuissa malleissa on tallentamattomia muutoksia, tallenna ne ennen kuin palaat kojelautaan"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -15,7 +19,7 @@
         "CONFIRM_DELETE_MODEL": "Haluatko varmasti poistaa tämän {{ modelType }} mallityypin?",
         "CONFIRM_DOWNLOAD_MODEL": "Haluatko varmasti ladata tämän {{ modelType }} mallityypin?",
         "CONFIRM_SAVE_AS_MODEL": "Haluatko varmasti kopioida tämän {{ modelType }} mallityypin?",
-        "INVALID_MODEL": "{{ modelType }} sisältää vahvistusvirheitä.",
+        "INVALID_MODEL": "{{ modelType }} sisältää validointivirheen (-virheitä).",
         "VALID_MODEL": "{{ modelType }} on kelvollinen"
       }
     },
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Pakollinen",
         "COLUMN_VALUE": "Arvo",
         "NO_PROPERTIES": "Valitse tai luo muuttuja tarkastellaksesi sen ominaisuuksia",
-        "CLEAR": "Tyhjennä"
+        "CLEAR": "Tyhjennä",
+        "ANALYTICS": "Analytiikka"
       }
     },
     "VARIABLE_MAPPING": {
@@ -71,7 +76,7 @@
       "MAP_ALL": "Yhdistä kaikki syöttö-/tuottomuuttujat",
       "MAP_ALL_INPUTS": "Yhdistä kaikki syöttömuuttujat",
       "MAP_ALL_OUTPUTS": "Yhdistä kaikki tuottomuuttujat",
-      "NONE": "Ei yhtään"
+      "NONE": "Ei ole"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Prosessiviestit",
@@ -102,15 +107,16 @@
     "MAPPING_DIALOG": {
       "TITLE": "Muokkaa muuttujayhdistämisiä",
       "SELECTOR_TITLE": "Valitse muuttujayhdistämistyyppi, jota haluat muokata",
-      "INPUT_MAPPING": "Syötteen yhdistäminen",
+      "INPUT_MAPPING": "Sisääntulon kartoitus",
       "OUTPUT_MAPPING": "Tulosyhdistäminen",
       "PROCESS_VARIABLE": "Prosessimuuttuja",
       "INPUT_PARAMETER": "Syöteparametri",
       "OUTPUT_PARAMETER": "Tuotosparametri",
       "VALUE_MAPPING": "Arvo",
       "EXPRESSION_MAPPING": "Lauseke",
-      "NONE": "Ei yhtään",
-      "TYPE": "Tyyppi"
+      "NONE": "Ei ole",
+      "TYPE": "Tyyppi",
+      "WRONG_OUTPUT_MAPPING": "Lähtökartoitus on virheellinen. Kaikki lisätyt kartoitukset eivät liitä lauseketta muuttujaan"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Tallenna nimellä",
@@ -147,13 +153,14 @@
         "SCRIPT_TASK": "Komentosarjatehtävä",
         "DECISION_TABLE": "Päätöstaulukko",
         "USER_TASK": "Käyttäjätehtävä",
-        "NONE": "Ei yhtään",
+        "NONE": "Ei ole",
         "EVENT": "Tapahtuma",
         "EMAIL_SERVICE_TASK": "Sähköpostipalvelutehtävä",
         "DOCGEN_SERVICE": "Docgen-palvelutehtävä",
         "PARTICIPANT": "Prosessi",
         "FORM_FIELDS": "Lomakekentät",
-        "FORM_VARIABLES": "Lomakemuuttujat"
+        "FORM_VARIABLES": "Lomakemuuttujat",
+        "CONTENT_SERVICE": "Sisältöpalvelu"
       },
       "TOOLTIP": {
         "VARIABLE": "Muuttuja",

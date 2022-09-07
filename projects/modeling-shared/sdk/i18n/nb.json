@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Lagre som ikon",
       "DOWNLOAD": "Last ned prosjekt",
       "VIEW_RELEASES": "Vis utgivelser",
-      "VERSION": "Versjon"
+      "VERSION": "Versjon",
+      "UNSAVED_DIALOG_TITLE": "Ulagrede modeller",
+      "UNSAVED_VALIDATE_MESSAGE": "Det er ulagrede endringer i noen av de åpne modellene. Du må lagre disse før validering",
+      "UNSAVED_RELEASE_MESSAGE": "Det er ulagrede endringer i noen av de åpne modellene. DU må lagre disse før lansering",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Det er ulagrede endringer i noen av de åpne modellene. De må lagres før du går tilbake til dashbordet"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Påkrevd",
         "COLUMN_VALUE": "Verdi",
         "NO_PROPERTIES": "Velg eller opprett en variabel for å vise egenskapene dens",
-        "CLEAR": "Fjern"
+        "CLEAR": "Fjern",
+        "ANALYTICS": "Analyser"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Verdi",
       "EXPRESSION_MAPPING": "Uttrykk",
       "NONE": "Ingen",
-      "TYPE": "Type"
+      "TYPE": "Type",
+      "WRONG_OUTPUT_MAPPING": "Utgangsmappingen er ikke korrekt. Merk at alle mappinger kobler et begrep til en variabel"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Lagre som",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Docgen-tjenesteoppgave",
         "PARTICIPANT": "Prosess",
         "FORM_FIELDS": "Skjemafelt",
-        "FORM_VARIABLES": "Skjemavariabler"
+        "FORM_VARIABLES": "Skjemavariabler",
+        "CONTENT_SERVICE": "Innholdstjeneste"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",

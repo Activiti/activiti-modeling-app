@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Opprett innholdsmodell",
-        "TITLE_UPDATE": "Oppdater innholdsmodell",
-        "CONTENT_MODEL_NAME": "Innholdsmodellens navn:",
-        "CONTENT_MODEL_DESC": "Beskrivelse av innholdsmodell:",
-        "CONTENT_MODEL_CREATED": "Innholdsmodell opprettet",
-        "CONTENT_MODEL_DELETED": "Innholdsmodell slettet",
-        "CONTENT_MODEL_UPDATED": "Innholdsmodell lagret"
+      "TITLE_CREATE": "Opprett innholdsmodell",
+      "TITLE_UPDATE": "Oppdater innholdsmodell",
+      "CONTENT_MODEL_NAME": "Innholdsmodellens navn:",
+      "CONTENT_MODEL_DESC": "Beskrivelse av innholdsmodell:",
+      "CONTENT_MODEL_CREATED": "Innholdsmodell opprettet",
+      "CONTENT_MODEL_DELETED": "Innholdsmodell slettet",
+      "CONTENT_MODEL_UPDATED": "Innholdsmodell lagret"
     },
     "BACK_TO": "Tilbake til prosjekter",
     "NAME": "Prosjektredigering",
@@ -34,6 +34,7 @@
       "CREATE": "Opprett",
       "UPLOAD": "Last opp",
       "IMPORT": "Importer",
+      "NO_ITEMS_TO_IMPORT": "Det er ingen modeller som kan importeres",
       "CREATE_PROCESS_TITLE": "Opprett prosess",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Prosess",

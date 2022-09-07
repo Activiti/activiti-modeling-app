@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Opslaan als pictogram",
       "DOWNLOAD": "Project downloaden",
       "VIEW_RELEASES": "Versies weergeven",
-      "VERSION": "Versie"
+      "VERSION": "Versie",
+      "UNSAVED_DIALOG_TITLE": "Niet-opgeslagen modellen",
+      "UNSAVED_VALIDATE_MESSAGE": "Sommige geopende modellen bevatten niet-opgeslagen wijzigingen. Sla deze op voordat u ze valideert.",
+      "UNSAVED_RELEASE_MESSAGE": "Sommige geopende modellen bevatten niet-opgeslagen wijzigingen. Sla deze op voordat u ze vrijgeeft.",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Sommige geopende modellen bevatten niet-opgeslagen wijzigingen. Sla deze op voordat u terugkeert naar het dashboard."
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Vereist",
         "COLUMN_VALUE": "Waarde",
         "NO_PROPERTIES": "Selecteer of maak een variabele om de eigenschappen ervan weer te geven",
-        "CLEAR": "Wissen"
+        "CLEAR": "Wissen",
+        "ANALYTICS": "Analytics"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Waarde",
       "EXPRESSION_MAPPING": "Expressie",
       "NONE": "Geen",
-      "TYPE": "Type"
+      "TYPE": "Type",
+      "WRONG_OUTPUT_MAPPING": "De uitvoertoewijzing is onjuist. Niet alle toegevoegde toewijzingen wijzen een expressie toe aan een variabele."
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Opslaan als",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Docgen-servicetaak",
         "PARTICIPANT": "Proces",
         "FORM_FIELDS": "Formuliervelden",
-        "FORM_VARIABLES": "Formuliervariabelen"
+        "FORM_VARIABLES": "Formuliervariabelen",
+        "CONTENT_SERVICE": "Content Services"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabele",

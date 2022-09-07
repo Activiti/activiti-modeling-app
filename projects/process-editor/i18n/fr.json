@@ -9,7 +9,7 @@
     "SELECT_PROCESS_VARIABLE": "Sélectionner une variable de processus",
     "SCRIPT_NAME": "Nom du script",
     "PRIORITIES": {
-      "NONE": "Aucune",
+      "NONE": "Aucun",
       "LOW": "Basse",
       "MEDIUM": "Normale",
       "HIGH": "Élevée"
@@ -21,7 +21,7 @@
       "DATE": "Date"
     },
     "MULTI_INSTANCE_TYPES": {
-      "NONE": "Aucune",
+      "NONE": "Aucun",
       "PARALLEL": "Parallèle",
       "SEQUENCE": "Séquentielle"
     },
@@ -180,8 +180,8 @@
         "STATIC": "Statique",
         "IDENTITY": "Identité",
         "ASSIGNEE": "Personne assignée",
-        "CANDIDATE_WARNING": "L'un des champs, soit Utilisateurs candidats soit Groupes candidats, est obligatoire. Saisissez la valeur et appuyez sur Entrée.",
-        "USER_WARNING": "Champ obligatoire. Saisissez la valeur et appuyez sur Entrée",
+        "CANDIDATE_WARNING": "L'un des champs, soit Utilisateurs candidats soit Groupes candidats, est obligatoire. Entrez la valeur et appuyez sur Entrée.",
+        "USER_WARNING": "Champ obligatoire. Entrez la valeur et appuyez sur Entrée",
         "CANDIDATE_USERS": "Utilisateurs candidats",
         "CANDIDATE_GROUPS": "Groupes candidats",
         "USER": "{{count}} utilisateur",

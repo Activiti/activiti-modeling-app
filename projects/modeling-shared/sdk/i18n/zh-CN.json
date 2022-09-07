@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "另存为图标",
       "DOWNLOAD": "下载项目",
       "VIEW_RELEASES": "查看发布",
-      "VERSION": "版本"
+      "VERSION": "版本",
+      "UNSAVED_DIALOG_TITLE": "未保存的模型",
+      "UNSAVED_VALIDATE_MESSAGE": "某些打开的模型中存在未保存的更改，请在验证之前保存这些更改",
+      "UNSAVED_RELEASE_MESSAGE": "某些打开的模型中存在未保存的更改，请在发布前保存这些更改",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "某些打开的模型中存在未保存的更改，请在返回仪表板之前保存这些更改"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "必需",
         "COLUMN_VALUE": "值",
         "NO_PROPERTIES": "选择或创建变量以查看其属性",
-        "CLEAR": "清除"
+        "CLEAR": "清除",
+        "ANALYTICS": "分析"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "值",
       "EXPRESSION_MAPPING": "表达式",
       "NONE": "无",
-      "TYPE": "类型"
+      "TYPE": "类型",
+      "WRONG_OUTPUT_MAPPING": "输出映射不正确。并非所有添加的映射都将表达式映射到变量"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "保存为",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Docgen 服务任务",
         "PARTICIPANT": "流程",
         "FORM_FIELDS": "表单字段",
-        "FORM_VARIABLES": "表单变量"
+        "FORM_VARIABLES": "表单变量",
+        "CONTENT_SERVICE": "内容服务"
       },
       "TOOLTIP": {
         "VARIABLE": "变量",

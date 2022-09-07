@@ -9,7 +9,7 @@
     "SELECT_PROCESS_VARIABLE": "Seleccionar variable de proceso",
     "SCRIPT_NAME": "Nombre de script",
     "PRIORITIES": {
-      "NONE": "Ninguno",
+      "NONE": "Ninguna",
       "LOW": "Baja",
       "MEDIUM": "Media",
       "HIGH": "Alta"
@@ -186,8 +186,8 @@
         "CANDIDATE_GROUPS": "Grupos candidatos",
         "USER": "{{count}} Usuario",
         "USERS": "{{count}} Usuarios",
-        "GROUP": "{{count}} Grupo",
-        "GROUPS": "{{count}} Grupos",
+        "GROUP": "{{count}} grupo",
+        "GROUPS": "{{count}} grupos",
         "ASSIGN": "Asignar",
         "CLOSE": "Cerrar",
         "EXPRESSION": {
@@ -223,7 +223,7 @@
         "COLUMN_TYPE": "Tipo",
         "COLUMN_REQUIRED": "Obligatorio",
         "COLUMN_VALUE": "Valor",
-        "NO_PROPERTIES": "Seleccione o cree una variable para ver sus propiedades"
+        "NO_PROPERTIES": "Seleccionar o crear una variable para ver sus propiedades"
       },
       "ERRORS": {
         "EMPTY_NAME": "Se requiere un nombre"

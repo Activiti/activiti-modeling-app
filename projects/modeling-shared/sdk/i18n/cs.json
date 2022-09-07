@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Uložit jako ikonu",
       "DOWNLOAD": "Stáhnout projekt",
       "VIEW_RELEASES": "Zobrazit verze",
-      "VERSION": "Verze"
+      "VERSION": "Verze",
+      "UNSAVED_DIALOG_TITLE": "Neuložené modely",
+      "UNSAVED_VALIDATE_MESSAGE": "V některých otevřených modelech jsou neuložené změny, před validací je uložte.",
+      "UNSAVED_RELEASE_MESSAGE": "V některých otevřených modelech jsou neuložené změny, před vydáním je uložte.",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "V některých otevřených modelech jsou neuložené změny, před návratem zpět na řídicí panel je uložte."
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Povinné",
         "COLUMN_VALUE": "Hodnota",
         "NO_PROPERTIES": "Vyberte nebo vytvořte proměnnou, jejíž vlastnosti chcete zobrazit",
-        "CLEAR": "Vymazat"
+        "CLEAR": "Vymazat",
+        "ANALYTICS": "Analýza"
       }
     },
     "VARIABLE_MAPPING": {
@@ -76,7 +81,7 @@
     "MESSAGES_EDITOR": {
       "TITLE": "Zpráva procesu",
       "ERRORS": {
-        "EMPTY_NAME": "Název je povinný.",
+        "EMPTY_NAME": "Název je povinný",
         "NAME_ALREADY_EXISTS": "Názvy zpráv musí být jedinečné"
       },
       "TABLE": {
@@ -88,7 +93,7 @@
     "ERRORS_EDITOR": {
       "TITLE": "Chyby procesu",
       "ERRORS": {
-        "EMPTY_NAME": "Název je povinný.",
+        "EMPTY_NAME": "Název je povinný",
         "EMPTY_CODE": "Je požadován kód chyby",
         "NAME_ALREADY_EXISTS": "Názvy chyb procesu musí být jedinečné"
       },
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Hodnota",
       "EXPRESSION_MAPPING": "Výraz",
       "NONE": "Žádný",
-      "TYPE": "Typ"
+      "TYPE": "Typ",
+      "WRONG_OUTPUT_MAPPING": "Mapování výstupu je nesprávné. Ne všechna přidaná mapování mapují výraz na proměnnou."
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Uložit jako",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Úkol služby Docgen",
         "PARTICIPANT": "Proces",
         "FORM_FIELDS": "Pole formulářů",
-        "FORM_VARIABLES": "Proměnné formuláře"
+        "FORM_VARIABLES": "Proměnné formuláře",
+        "CONTENT_SERVICE": "Služba obsahu"
       },
       "TOOLTIP": {
         "VARIABLE": "Proměnná",

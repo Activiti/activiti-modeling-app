@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Luo sisältömalli",
-        "TITLE_UPDATE": "Päivitä sisältömalli",
-        "CONTENT_MODEL_NAME": "Sisältömallin nimi:",
-        "CONTENT_MODEL_DESC": "Sisältömallin kuvaus:",
-        "CONTENT_MODEL_CREATED": "Sisältömalli luotu",
-        "CONTENT_MODEL_DELETED": "Sisältömalli poistettu",
-        "CONTENT_MODEL_UPDATED": "Sisältömalli tallennettu"
+      "TITLE_CREATE": "Luo sisältömalli",
+      "TITLE_UPDATE": "Päivitä sisältömalli",
+      "CONTENT_MODEL_NAME": "Sisältömallin nimi:",
+      "CONTENT_MODEL_DESC": "Sisältömallin kuvaus:",
+      "CONTENT_MODEL_CREATED": "Sisältömalli luotu",
+      "CONTENT_MODEL_DELETED": "Sisältömalli poistettu",
+      "CONTENT_MODEL_UPDATED": "Sisältömalli tallennettu"
     },
     "BACK_TO": "Takaisin projekteihin",
     "NAME": "Projektieditori",
@@ -27,13 +27,14 @@
     "NO_CONTENT": "<tyhjä>",
     "UNCATEGORIZED": "Luokittelematon",
     "NO_SELECTION": "Luo uusi malli tai käytä jo olemassa olevaa mallia sivupalkista",
-    "NO_OPTION_SELECTED": "Ei yhtään",
+    "NO_OPTION_SELECTED": "Ei ole",
     "SELECT_MODEL_TYPE": "Valitse mallityyppi",
     "NEW_MENU": {
       "LABEL": "Uusi",
       "CREATE": "Luo",
       "UPLOAD": "Lataa",
       "IMPORT": "Tuo",
+      "NO_ITEMS_TO_IMPORT": "Tuotavia malleja ei ole",
       "CREATE_PROCESS_TITLE": "Luo prosessi",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Prosessi",

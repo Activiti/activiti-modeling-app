@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "Uppdaterad",
       "COLUMN_OPTIONS": "Alternativ",
       "COLUMN_ACTIONS": "Åtgärder",
+      "COLUMN_COLLABORATORS": "Medarbetare",
       "NO_ITEMS": "Skapa eller importera ett projekt som ska visas i listan.",
       "NO_FAV_PROCESSES": "Favoritmärk en process för att göra den tillgänglig här.",
       "NO_FAV_PROJECTS": "Favoritmarkera ett projekt för att göra det tillgängligt här.",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "Modeller",
+    "NAME": "Modeling Application",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projekt",
       "CONTENT_MODEL_TITLE": "Innehållsmodeller",
       "DATA_MODELS_TITLE": "Datamodeller",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mina projekt",
         "LABEL": "Alla projekt",
         "TOOLTIP": "Alla publicerade projekt",
         "ACTIONS": {
           "CREATE": "Skapa projekt",
-          "UPLOAD": "Ladda upp"
+          "UPLOAD": "Ladda upp projekt"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "Mina delade modeller",
-        "LABEL": "Delade modeller",
+        "LABEL": "Globala modeller",
         "TOOLTIP": "Modeller som delas över projekten",
         "ACTIONS": {
-          "CREATE": "Skapa delad modell"
+          "CREATE": "Skapa innehållsmodell"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "Mina datamodeller",
-        "LABEL": "Datamodeller",
+        "LABEL": "Globala modeller",
         "TOOLTIP": "Publicerade datamodeller",
         "ACTIONS": {
           "CREATE": "Skapa datamodell"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "Projekt togs bort från favoriter",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "Vi stötte på ett problem vid inläsningen av favoritprojekten. Prova att uppdatera sidan."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "Sök"
     }
   }
 }

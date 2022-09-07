@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Spara som ikon",
       "DOWNLOAD": "Ladda ner projekt",
       "VIEW_RELEASES": "Visa versioner",
-      "VERSION": "Version"
+      "VERSION": "Version",
+      "UNSAVED_DIALOG_TITLE": "Ej sparade modeller",
+      "UNSAVED_VALIDATE_MESSAGE": "Det finns ändringar som inte har sparats i några av de öppnade modellerna.Spara dem innan du bekräftar dem.",
+      "UNSAVED_RELEASE_MESSAGE": "Det finns ändringar som inte sparats i några av de öppnade modellerna. Spara dem innan du släpper dem.",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Det finns ändringar som inte sparats i några av de öppnade modellerna. Spara dem innan du går tillbaka till instrumentpanelen."
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -29,7 +33,7 @@
     "DISPLAY_NAME_VISIBILITY": {
       "YES": "Ja",
       "NO": "Nej",
-      "DISPLAY_NAME": "Visningsnamn",
+      "DISPLAY_NAME": "Displaynamn",
       "DISPLAY_NAME_AVAILABILITY": "Tillgänglig i webbapplikationen",
       "ENTER_DISPLAY_NAME": "Ange visningsnamn",
       "DISPLAY_NAME_TOOLTIP": "Visningsnamn används i webbapplikationen, t.ex. som kolumnrubrik i Uppgiftslistan, Processlistan och i API."
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Obligatorisk",
         "COLUMN_VALUE": "Värde",
         "NO_PROPERTIES": "Välj eller skapa en variabel för att visa dess egenskaper",
-        "CLEAR": "Rensa"
+        "CLEAR": "Rensa",
+        "ANALYTICS": "Analytics"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Värde",
       "EXPRESSION_MAPPING": "Uttryck",
       "NONE": "Ingen",
-      "TYPE": "Typ"
+      "TYPE": "Typ",
+      "WRONG_OUTPUT_MAPPING": "Utmatningen av utdata är felaktig. Inte alla de tillagda mappningarna mappar ett uttryck till en variabel."
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Spara som",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Docgen serviceuppgift",
         "PARTICIPANT": "Process",
         "FORM_FIELDS": "Formulärfält",
-        "FORM_VARIABLES": "Formulärvariabler"
+        "FORM_VARIABLES": "Formulärvariabler",
+        "CONTENT_SERVICE": "Innehållstjänst"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",

@@ -9,7 +9,7 @@
     "SELECT_PROCESS_VARIABLE": "Seleziona variabile del processo",
     "SCRIPT_NAME": "Nome script",
     "PRIORITIES": {
-      "NONE": "Nessuna",
+      "NONE": "Nessuno",
       "LOW": "Bassa",
       "MEDIUM": "Normale",
       "HIGH": "Alta"
@@ -21,7 +21,7 @@
       "DATE": "Data"
     },
     "MULTI_INSTANCE_TYPES": {
-      "NONE": "Nessuna",
+      "NONE": "Nessuno",
       "PARALLEL": "Parallelo",
       "SEQUENCE": "Sequenziale"
     },

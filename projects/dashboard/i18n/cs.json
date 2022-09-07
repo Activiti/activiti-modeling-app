@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "Aktualizováno",
       "COLUMN_OPTIONS": "Možnosti",
       "COLUMN_ACTIONS": "Akce",
+      "COLUMN_COLLABORATORS": "Spolupracovníci",
       "NO_ITEMS": "Vytvořte nebo naimportujte projekt, který chcete zobrazit v seznamu.",
       "NO_FAV_PROCESSES": "Označte proces jako oblíbený, aby byl k dispozici zde.",
       "NO_FAV_PROJECTS": "Označte projekt jako oblíbený, aby byl k dispozici zde.",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "Nástroj pro vytváření modelů",
+    "NAME": "Aplikace Modeling",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projekty",
       "CONTENT_MODEL_TITLE": "Modely ACS",
       "DATA_MODELS_TITLE": "Datové modely",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Moje projekty",
         "LABEL": "Všechny projekty",
         "TOOLTIP": "Všechny publikované projekty",
         "ACTIONS": {
           "CREATE": "Vytvoření projektu",
-          "UPLOAD": "Odeslat"
+          "UPLOAD": "Odeslat projekt"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "Moje sdílené modely",
-        "LABEL": "Sdílené modely",
+        "LABEL": "Globální modely",
         "TOOLTIP": "Modely sdílené napříč projekty",
         "ACTIONS": {
-          "CREATE": "Vytvořit sdílený model"
+          "CREATE": "Vytvořit model ACS"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "Moje datové modely",
-        "LABEL": "Datové modely",
+        "LABEL": "Globální modely",
         "TOOLTIP": "Publikované datové modely",
         "ACTIONS": {
           "CREATE": "Vytvořit datový model"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "Projekt odebraný z oblíbených",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "Narazili jsme na problém při načítání oblíbených projektů. Zkuste obnovit stránku."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "Hledat"
     }
   }
 }

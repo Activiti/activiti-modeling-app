@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Salvar como ícone",
       "DOWNLOAD": "Baixar projeto",
       "VIEW_RELEASES": "Exibir Versões",
-      "VERSION": "Versão"
+      "VERSION": "Versão",
+      "UNSAVED_DIALOG_TITLE": "Modelos não salvos",
+      "UNSAVED_VALIDATE_MESSAGE": "Há alterações não salvas em alguns dos modelos abertos, salve-os antes de validá-los",
+      "UNSAVED_RELEASE_MESSAGE": "Há alterações não salvas em alguns dos modelos abertos, salve-os antes de liberá-los",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Há alterações não salvas em alguns dos modelos abertos, salve-os antes de voltar ao painel"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Obrigatório",
         "COLUMN_VALUE": "Valor",
         "NO_PROPERTIES": "Selecione ou crie uma variável para exibir suas propriedades",
-        "CLEAR": "Limpar"
+        "CLEAR": "Limpar",
+        "ANALYTICS": "Análise"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Valor",
       "EXPRESSION_MAPPING": "Expressão",
       "NONE": "Nenhum",
-      "TYPE": "Tipo"
+      "TYPE": "Tipo",
+      "WRONG_OUTPUT_MAPPING": "O mapeamento de saída é incorreto. Nem todos os mapeamentos adicionados mapeiam uma expressão a uma variável"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Salvar como",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Tarefa do serviço docgen",
         "PARTICIPANT": "Processo",
         "FORM_FIELDS": "Campos do formulário",
-        "FORM_VARIABLES": "Variáveis do formulário"
+        "FORM_VARIABLES": "Variáveis do formulário",
+        "CONTENT_SERVICE": "Serviço de conteúdo"
       },
       "TOOLTIP": {
         "VARIABLE": "Variável",

@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Skapa innehållsmodell",
-        "TITLE_UPDATE": "Uppdatera innehållsmodell",
-        "CONTENT_MODEL_NAME": "Innehållsmodellens namn:",
-        "CONTENT_MODEL_DESC": "Beskrivning av innehållsmodell:",
-        "CONTENT_MODEL_CREATED": "Innehållsmodell skapad",
-        "CONTENT_MODEL_DELETED": "Innehållsmodell raderad",
-        "CONTENT_MODEL_UPDATED": "Innehållsmodell sparad"
+      "TITLE_CREATE": "Skapa innehållsmodell",
+      "TITLE_UPDATE": "Uppdatera innehållsmodell",
+      "CONTENT_MODEL_NAME": "Innehållsmodellens namn:",
+      "CONTENT_MODEL_DESC": "Beskrivning av innehållsmodell:",
+      "CONTENT_MODEL_CREATED": "Innehållsmodell skapad",
+      "CONTENT_MODEL_DELETED": "Innehållsmodell raderad",
+      "CONTENT_MODEL_UPDATED": "Innehållsmodell sparad"
     },
     "BACK_TO": "Tillbaka till projekt",
     "NAME": "Projekteditor",
@@ -34,6 +34,7 @@
       "CREATE": "Skapa",
       "UPLOAD": "Ladda upp",
       "IMPORT": "Importera",
+      "NO_ITEMS_TO_IMPORT": "Det finns inga modeller att importera.",
       "CREATE_PROCESS_TITLE": "Skapa process",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Process",

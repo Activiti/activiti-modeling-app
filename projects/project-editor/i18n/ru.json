@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Создать модель содержимого",
-        "TITLE_UPDATE": "Обновить модель содержимого",
-        "CONTENT_MODEL_NAME": "Имя модели содержимого:",
-        "CONTENT_MODEL_DESC": "Описание модели содержимого:",
-        "CONTENT_MODEL_CREATED": "Модель содержимого создана",
-        "CONTENT_MODEL_DELETED": "Модель содержимого удалена",
-        "CONTENT_MODEL_UPDATED": "Модель содержимого сохранена"
+      "TITLE_CREATE": "Создать модель содержимого",
+      "TITLE_UPDATE": "Обновить модель содержимого",
+      "CONTENT_MODEL_NAME": "Имя модели содержимого:",
+      "CONTENT_MODEL_DESC": "Описание модели содержимого:",
+      "CONTENT_MODEL_CREATED": "Модель содержимого создана",
+      "CONTENT_MODEL_DELETED": "Модель содержимого удалена",
+      "CONTENT_MODEL_UPDATED": "Модель содержимого сохранена"
     },
     "BACK_TO": "Вернуться назад к проектам",
     "NAME": "Редактор проектов",
@@ -34,6 +34,7 @@
       "CREATE": "Создать",
       "UPLOAD": "Загрузить",
       "IMPORT": "Импортировать",
+      "NO_ITEMS_TO_IMPORT": "Нет моделей для импорта",
       "CREATE_PROCESS_TITLE": "Создать процесс",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Процесс",

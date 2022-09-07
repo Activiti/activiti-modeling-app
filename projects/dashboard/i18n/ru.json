@@ -43,10 +43,11 @@
       "COLUMN_NAME": "Имя",
       "COLUMN_VERSION": "Версия",
       "COLUMN_CREATED": "Создано",
-      "COLUMN_CREATED_BY": "Создано:",
+      "COLUMN_CREATED_BY": "Создано",
       "COLUMN_MODIFIED": "Обновлено",
       "COLUMN_OPTIONS": "Параметры",
       "COLUMN_ACTIONS": "Действия",
+      "COLUMN_COLLABORATORS": "Взаимодействующие объекты",
       "NO_ITEMS": "Создайте либо импортируйте проект, чтобы увидеть его в списке.",
       "NO_FAV_PROCESSES": "Добавить в избранное процесс, чтобы сделать его доступным здесь.",
       "NO_FAV_PROJECTS": "Добавить в избранное проект, чтобы сделать его доступным здесь.",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "Администратор моделей",
+    "NAME": "Приложение моделирования",
     "NAVIGATION": {
       "PROJECT_TITLE": "Проекты",
       "CONTENT_MODEL_TITLE": "Модели содержимого",
       "DATA_MODELS_TITLE": "Модели данных",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Мои проекты",
         "LABEL": "Все проекты",
         "TOOLTIP": "Все опубликованные проекты",
         "ACTIONS": {
           "CREATE": "Создать проект",
-          "UPLOAD": "Загрузить"
+          "UPLOAD": "Выгрузить проект"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "Мои модели с общим доступом",
-        "LABEL": "Модели с общим доступом",
+        "LABEL": "Глобальные модели",
         "TOOLTIP": "Модели с общим доступом в рамках проектов",
         "ACTIONS": {
-          "CREATE": "Создать модель с общим доступом"
+          "CREATE": "Создать модель содержимого"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "Мои модели данных",
-        "LABEL": "Модели данных",
+        "LABEL": "Глобальные модели",
         "TOOLTIP": "Опубликованные модели данных",
         "ACTIONS": {
           "CREATE": "Создать модель данных"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "Проект удален из избранного",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "Во время загрузки избранных проектов возникла проблема. Попробуйте обновить страницу."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "Поиск"
     }
   }
 }

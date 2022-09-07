@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "创建内容模型",
-        "TITLE_UPDATE": "更新内容模型",
-        "CONTENT_MODEL_NAME": "内容模型名称:",
-        "CONTENT_MODEL_DESC": "内容模型描述:",
-        "CONTENT_MODEL_CREATED": "内容模型已创建",
-        "CONTENT_MODEL_DELETED": "内容模型已删除",
-        "CONTENT_MODEL_UPDATED": "内容模型已保存"
+      "TITLE_CREATE": "创建内容模型",
+      "TITLE_UPDATE": "更新内容模型",
+      "CONTENT_MODEL_NAME": "内容模型名称:",
+      "CONTENT_MODEL_DESC": "内容模型描述:",
+      "CONTENT_MODEL_CREATED": "内容模型已创建",
+      "CONTENT_MODEL_DELETED": "内容模型已删除",
+      "CONTENT_MODEL_UPDATED": "内容模型已保存"
     },
     "BACK_TO": "返回项目",
     "NAME": "项目编辑器",
@@ -34,6 +34,7 @@
       "CREATE": "创建",
       "UPLOAD": "上传",
       "IMPORT": "导入",
+      "NO_ITEMS_TO_IMPORT": "没有要导入的模型",
       "CREATE_PROCESS_TITLE": "创建流程",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "流程",

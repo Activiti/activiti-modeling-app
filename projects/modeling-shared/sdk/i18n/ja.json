@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "アイコンとして保存",
       "DOWNLOAD": "プロジェクトのダウンロード",
       "VIEW_RELEASES": "リリースの表示",
-      "VERSION": "バージョン"
+      "VERSION": "バージョン",
+      "UNSAVED_DIALOG_TITLE": "未保存のモデル",
+      "UNSAVED_VALIDATE_MESSAGE": "開いたモデルの一部に保存していない変更があります。検証する前に保存してください",
+      "UNSAVED_RELEASE_MESSAGE": "開いたモデルの一部に保存されていない変更があります。リリースする前に保存してください",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "開いたモデルの一部に保存されていない変更があります。ダッシュボードに戻る前に保存してください"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "必須",
         "COLUMN_VALUE": "値",
         "NO_PROPERTIES": "プロパティを表示する変数を選択するか作成してください",
-        "CLEAR": "消去"
+        "CLEAR": "消去",
+        "ANALYTICS": "分析"
       }
     },
     "VARIABLE_MAPPING": {
@@ -65,7 +70,7 @@
       "NO_PROCESS_PROPERTIES": "プロセスのプロパティがありません",
       "NO_PAYLOAD": "メッセージにペイロードがありません。メッセージのスローイベントにペイロードを追加してください。",
       "CLEAR_ASSIGNMENT": "割リ当てをクリア",
-      "MAPPING_TYPE": "マッピングの種類",
+      "MAPPING_TYPE": "マッピングタイプ",
       "MAP_VARIABLES": "変数の割り当て",
       "MAP_NO_VARIABLE": "変数をマップしない",
       "MAP_ALL": "すべての入力/出力変数をマップ",
@@ -100,7 +105,7 @@
       }
     },
     "MAPPING_DIALOG": {
-      "TITLE": "変数マッピングを編集",
+      "TITLE": "変数マッピングの編集",
       "SELECTOR_TITLE": "変数マッピングタイプを選択して編集",
       "INPUT_MAPPING": "入力割り当て",
       "OUTPUT_MAPPING": "出力割り当て",
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "値",
       "EXPRESSION_MAPPING": "式",
       "NONE": "なし",
-      "TYPE": "タイプ"
+      "TYPE": "タイプ",
+      "WRONG_OUTPUT_MAPPING": "出力マッピングが正しくありません。追加したすべてのマッピングが式を変数にマップするわけではありません"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "名前を付けて保存",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Docgenサービスタスク",
         "PARTICIPANT": "プロセス",
         "FORM_FIELDS": "フォームフィールド",
-        "FORM_VARIABLES": "フォームの変数"
+        "FORM_VARIABLES": "フォームの変数",
+        "CONTENT_SERVICE": "コンテンツサービス"
       },
       "TOOLTIP": {
         "VARIABLE": "変数",
@@ -220,7 +227,7 @@
       "DELETE_CUSTOM_ATTRIBUTE": "カスタム属性の削除",
       "ATTRIBUTE_NAME": "属性名",
       "ATTRIBUTE_VALUE": "属性値",
-      "CONFIRM_ATTRIBUTE_ADDITION": "属性の追加を確認",
+      "CONFIRM_ATTRIBUTE_ADDITION": "属性追加の確認",
       "CANCEL_ATTRIBUTE_ADDITION": "属性の追加をキャンセル",
       "TYPES_GROUPS": {
         "JSON_SCHEMA_TYPES": "JSONスキーマタイプ",

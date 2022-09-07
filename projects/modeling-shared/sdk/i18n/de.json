@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Als Symbol speichern",
       "DOWNLOAD": "Projekt herunterladen",
       "VIEW_RELEASES": "Versionen anzeigen",
-      "VERSION": "Version"
+      "VERSION": "Version",
+      "UNSAVED_DIALOG_TITLE": "Nicht gespeicherte Modelle",
+      "UNSAVED_VALIDATE_MESSAGE": "Es sind nicht gespeicherte Änderungen in einigen geöffneten Modellen vorhanden. Bitte speichern Sie diese vor dem Bestätigen",
+      "UNSAVED_RELEASE_MESSAGE": "Es sind nicht gespeicherte Änderungen in einigen geöffneten Modellen vorhanden. Bitte speichern Sie diese vor der Freigabe",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Es sind nicht gespeicherte Änderungen in einigen geöffneten Modellen vorhanden. Bitte speichern Sie diese, bevor Sie zum Dashboard zurückkehren"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Erforderlich",
         "COLUMN_VALUE": "Wert",
         "NO_PROPERTIES": "Wählen Sie eine Variable aus oder erstellen Sie eine, um ihre Eigenschaften anzuzeigen",
-        "CLEAR": "Löschen"
+        "CLEAR": "Löschen",
+        "ANALYTICS": "Analysen"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Wert",
       "EXPRESSION_MAPPING": "Ausdruck",
       "NONE": "Keine",
-      "TYPE": "Typ"
+      "TYPE": "Typ",
+      "WRONG_OUTPUT_MAPPING": "Die Ausgabezuordnung ist nicht korrekt. Nicht alle hinzugefügten Zuordnungen ordnen einer Variablen einen Ausdruck zu"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Speichern unter",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Docgen-Serviceaufgabe",
         "PARTICIPANT": "Prozess",
         "FORM_FIELDS": "Formularfelder",
-        "FORM_VARIABLES": "Formularvariablen"
+        "FORM_VARIABLES": "Formularvariablen",
+        "CONTENT_SERVICE": "Service für Inhalte"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",

@@ -2,7 +2,7 @@
   "APP": {
     "APPLICATION": "アプリケーション",
     "BACKEND_SERVICE": "バックエンドサービス",
-    "MORE_ACTIONS": "その他のアクション",
+    "MORE_ACTIONS": "その他の処理",
     "VALIDATE_PROJECT": "プロジェクトの検証",
     "DOWNLOAD_PROJECT": "プロジェクトのダウンロード",
     "ADD_ACTION": "新規処理の追加",

@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Guarda como icono",
       "DOWNLOAD": "Descargar proyecto",
       "VIEW_RELEASES": "Ver versiones",
-      "VERSION": "Versión"
+      "VERSION": "Versión",
+      "UNSAVED_DIALOG_TITLE": "Modelos sin guardar",
+      "UNSAVED_VALIDATE_MESSAGE": "Hay cambios sin guardar en algunos de los modelos abiertos, guárdelos antes de validarlos",
+      "UNSAVED_RELEASE_MESSAGE": "Hay cambios sin guardar en algunos de los modelos abiertos, guárdelos antes de publicarlos",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Hay cambios sin guardar en algunos de los modelos abiertos, guárdelos antes de regresar al panel de inicio"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -53,8 +57,9 @@
         "COLUMN_TYPE": "Tipo",
         "COLUMN_REQUIRED": "Obligatorio",
         "COLUMN_VALUE": "Valor",
-        "NO_PROPERTIES": "Seleccione o cree una variable para ver sus propiedades",
-        "CLEAR": "Borrar"
+        "NO_PROPERTIES": "Seleccionar o crear una variable para ver sus propiedades",
+        "CLEAR": "Borrar",
+        "ANALYTICS": "Análisis"
       }
     },
     "VARIABLE_MAPPING": {
@@ -71,7 +76,7 @@
       "MAP_ALL": "Asignar todas las variables de entradas/salidas",
       "MAP_ALL_INPUTS": "Asignar todas las variables de entradas",
       "MAP_ALL_OUTPUTS": "Asignar todas las variables de salidas",
-      "NONE": "Ninguno"
+      "NONE": "Ninguna"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Mensajes del proceso",
@@ -82,7 +87,7 @@
       "TABLE": {
         "COLUMN_NAME": "Nombre",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "Seleccione o cree un mensaje para ver las propiedades"
+        "NO_MESSAGES": "Seleccionar o crear un mensaje para ver las propiedades"
       }
     },
     "ERRORS_EDITOR": {
@@ -96,7 +101,7 @@
         "COLUMN_NAME": "Nombre de error",
         "COLUMN_CODE": "Código de error",
         "COLUMN_ID": "ID del error",
-        "NO_PROCESS_ERRORS": "Seleccione o cree un error de proceso para ver las propiedades"
+        "NO_PROCESS_ERRORS": "Seleccionar o crear un error de proceso para ver las propiedades"
       }
     },
     "MAPPING_DIALOG": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Valor",
       "EXPRESSION_MAPPING": "Expresión",
       "NONE": "Ninguno",
-      "TYPE": "Tipo"
+      "TYPE": "Tipo",
+      "WRONG_OUTPUT_MAPPING": "El mapeo de salida es incorrecto. No todas los mapeos añadidos asignan una expresión a una variable."
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Guardar como",
@@ -153,12 +159,13 @@
         "DOCGEN_SERVICE": "Tarea de servicio de Docgen",
         "PARTICIPANT": "Proceso",
         "FORM_FIELDS": "Campos de formulario",
-        "FORM_VARIABLES": "Variables de formulario"
+        "FORM_VARIABLES": "Variables de formulario",
+        "CONTENT_SERVICE": "Servicio de contenido"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",
         "PROCESS_VARIABLE_TOOLTIP": "Process variable of {{processName}}",
-        "NONE_VARIABLE_TOOLTIP": "Seleccione \"Ninguno\" para borrar la selección",
+        "NONE_VARIABLE_TOOLTIP": "Seleccionar \"Ninguno\" para borrar la selección",
         "OUTPUT_VARIABLE_TOOLTIP": "Salida del {{taskType}} {{taskName}}",
         "PROPERTIES": "Propiedades"
       }

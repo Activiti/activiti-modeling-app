@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "تم التحديث",
       "COLUMN_OPTIONS": "خيارات",
       "COLUMN_ACTIONS": "إجراءات",
+      "COLUMN_COLLABORATORS": "المعاونون",
       "NO_ITEMS": "إنشاء مشروع أو استيراده لعرضه في القائمة.",
       "NO_FAV_PROCESSES": "تفضيل عملية لجعلها متاحة هنا.",
       "NO_FAV_PROJECTS": "تفضيل مشروع لجعله متاحًا هنا.",
@@ -55,24 +56,27 @@
       "PROJECT_NAME": "اسم المشروع"
     },
     "ERROR": {
-      "LOAD_PROJECTS": "واجهتنا مشكلة في تحميل المشروعات. حاول تحديث الصفحة.",
-      "LOAD_RELEASES": "واجهتنا مشكلة في تحميل الإصدارات. حاول تحديث الصفحة",
-      "LOAD_PROCESSES": "واجهتنا مشكلة في تحميل العمليات. حاول تحديث الصفحة"
+      "LOAD_PROJECTS": "نواجه مشكلة في تحميل المشروعات. حاول تحديث الصفحة.",
+      "LOAD_RELEASES": "نواجه مشكلة في تحميل الإصدارات. حاول تحديث الصفحة",
+      "LOAD_PROCESSES": "نواجه مشكلة في تحميل العمليات. حاول تحديث الصفحة"
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "العارض",
+    "NAME": "تطبيق التصميم",
     "NAVIGATION": {
       "PROJECT_TITLE": "المشروعات",
       "CONTENT_MODEL_TITLE": "نموذج المحتوى",
       "DATA_MODELS_TITLE": "نماذج البيانات",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "مشاريعي",
         "LABEL": "كل المشاريع",
         "TOOLTIP": "جميع المشاريع المنشورة",
         "ACTIONS": {
-          "CREATE": "أنشئ مشروعًا",
-          "UPLOAD": "تحميل"
+          "CREATE": "إنشاء مشروع",
+          "UPLOAD": "تحميل مشروع"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "النماذج الخاصة بي المشتركة",
-        "LABEL": "النماذج المشتركة",
+        "LABEL": "النماذج العالمية",
         "TOOLTIP": "نماذج مشتركة عبر المشاريع",
         "ACTIONS": {
-          "CREATE": "إنشاء نموذج مشترك"
+          "CREATE": "إنشاء نموذج المحتوى"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "نماذج البيانات الخاصة بي",
-        "LABEL": "نماذج البيانات",
+        "LABEL": "النماذج العالمية",
         "TOOLTIP": "نماذج البيانات المنشورة",
         "ACTIONS": {
-          "CREATE": "تكوين نموذج بيانات"
+          "CREATE": "إنشاء نموذج البيانات"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -112,7 +140,12 @@
     "ADD_TO_FAVORITES": "تمت إضافة المشروع إلى المفضلة",
     "REMOVE_FROM_FAVORITES": "تمت إزالة المشروع من المفضلة",
     "ERROR": {
-      "LOAD_FAVORITE_PROJECTS": "واجهتنا مشكلة في تحميل المشاريع المفضلة. حاول تحديث الصفحة."
+      "LOAD_FAVORITE_PROJECTS": "نواجه مشكلة في تحميل المشاريع المفضلة. حاول تحديث الصفحة."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "بحث"
     }
   }
 }

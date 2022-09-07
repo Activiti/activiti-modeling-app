@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Criar modelo do conteúdo",
-        "TITLE_UPDATE": "Atualizar modelo do conteúdo",
-        "CONTENT_MODEL_NAME": "Nome do modelo do conteúdo",
-        "CONTENT_MODEL_DESC": "Descrição do modelo do conteúdo:",
-        "CONTENT_MODEL_CREATED": "Modelo do conteúdo criado",
-        "CONTENT_MODEL_DELETED": "Modelo do conteúdo excluido",
-        "CONTENT_MODEL_UPDATED": "Modelo do conteúdo salvo"
+      "TITLE_CREATE": "Criar modelo do conteúdo",
+      "TITLE_UPDATE": "Atualizar modelo do conteúdo",
+      "CONTENT_MODEL_NAME": "Nome do modelo do conteúdo",
+      "CONTENT_MODEL_DESC": "Descrição do modelo do conteúdo:",
+      "CONTENT_MODEL_CREATED": "Modelo do conteúdo criado",
+      "CONTENT_MODEL_DELETED": "Modelo do conteúdo excluido",
+      "CONTENT_MODEL_UPDATED": "Modelo do conteúdo salvo"
     },
     "BACK_TO": "Voltar para projetos",
     "NAME": "Editor de Projeto",
@@ -34,6 +34,7 @@
       "CREATE": "Criar",
       "UPLOAD": "Carregar",
       "IMPORT": "Importar",
+      "NO_ITEMS_TO_IMPORT": "Não há modelos para importar",
       "CREATE_PROCESS_TITLE": "Criar processo",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Processo",
@@ -49,7 +50,7 @@
         "CREATE_FORM_WIDGET": "Widget de formulário",
         "CREATE_DATA_MODEL": "Modelo de dados",
         "CREATE_AUTHENTICATION": "Autenticação",
-        "CREATE_CONTENT_MODEL": "Modelo de conteúdo",
+        "CREATE_CONTENT_MODEL": "Modelo de conteúdo"
       }
     },
     "TREE": {
@@ -122,7 +123,7 @@
       "DECISION_TABLE_UPDATED": "Tabela de decisão salva"
     },
     "FILE_DIALOG": {
-      "TITLE_CREATE": "Criar Arquivo",
+      "TITLE_CREATE": "Criar arquivo",
       "TITLE_UPDATE": "Atualizar Arquivo",
       "FILE_NAME": "Nome do arquivo:",
       "FILE_DESC": "Descrição do arquivo:",

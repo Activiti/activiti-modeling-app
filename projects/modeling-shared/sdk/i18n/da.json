@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Gem som ikon",
       "DOWNLOAD": "Downloade projekt",
       "VIEW_RELEASES": "Vis frigivelser",
-      "VERSION": "Version"
+      "VERSION": "Version",
+      "UNSAVED_DIALOG_TITLE": "Ikke-gemte modeller",
+      "UNSAVED_VALIDATE_MESSAGE": "Der er ikke-gemte ændringer i nogle af de åbnede modeller, gem dem før validering",
+      "UNSAVED_RELEASE_MESSAGE": "Der er ikke-gemte ændringer i nogle af de åbnede modeller, gem dem før frigivelse",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Der er ikke-gemte ændringer i nogle af de åbnede modeller, gem dem, før du går tilbage til dashboardet"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Påkrævet",
         "COLUMN_VALUE": "Værdi",
         "NO_PROPERTIES": "Vælg eller opret en variabel for at få vist dens egenskaber",
-        "CLEAR": "Ryd"
+        "CLEAR": "Ryd",
+        "ANALYTICS": "Analyse"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Værdi",
       "EXPRESSION_MAPPING": "Udtryk",
       "NONE": "Ingen",
-      "TYPE": "Type"
+      "TYPE": "Type",
+      "WRONG_OUTPUT_MAPPING": "Udgangsvisningen er ukorrekt. Ikke alle de tilføjede visninger viser et udtryk for en variabel"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Gem som",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Docgen-serviceopgave",
         "PARTICIPANT": "Proces",
         "FORM_FIELDS": "Formularfelter",
-        "FORM_VARIABLES": "Formularvariabler"
+        "FORM_VARIABLES": "Formularvariabler",
+        "CONTENT_SERVICE": "Indholdstjeneste"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",

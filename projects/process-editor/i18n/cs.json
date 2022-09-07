@@ -226,7 +226,7 @@
         "NO_PROPERTIES": "Vyberte nebo vytvořte proměnnou, jejíž vlastnosti chcete zobrazit"
       },
       "ERRORS": {
-        "EMPTY_NAME": "Název je povinný."
+        "EMPTY_NAME": "Název je povinný"
       }
     },
     "PALETTE": {

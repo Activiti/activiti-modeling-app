@@ -52,7 +52,7 @@
           "FILE": "Soubor",
           "SCRIPT": "skript",
           "TRIGGER": "Aktivační procedura",
-          "MODEL": "Model ACS",
+          "MODEL": "Model obsahu",
           "CUSTOM-FORM-WIDGET": "Widget formuláře"
         },
         "DELETE": {

@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "Bijgewerkt",
       "COLUMN_OPTIONS": "Opties",
       "COLUMN_ACTIONS": "Acties",
+      "COLUMN_COLLABORATORS": "Samenwerkers",
       "NO_ITEMS": "Maak of importeer een project om het in de lijst weer te geven.",
       "NO_FAV_PROCESSES": "Stel een proces in als favoriet om het hier beschikbaar te stellen.",
       "NO_FAV_PROJECTS": "Stel een project in als favoriet om het hier beschikbaar te stellen.",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "Modelleertool",
+    "NAME": "Modeling Application",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projecten",
       "CONTENT_MODEL_TITLE": "Contentmodellen",
       "DATA_MODELS_TITLE": "Gegevensmodellen",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mijn projecten",
         "LABEL": "Alle projecten",
         "TOOLTIP": "Alle gepubliceerde projecten",
         "ACTIONS": {
           "CREATE": "Project maken",
-          "UPLOAD": "Uploaden"
+          "UPLOAD": "Project uploaden"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "Mijn gedeelde modellen",
-        "LABEL": "Gedeelde modellen",
+        "LABEL": "Algemene modellen",
         "TOOLTIP": "Modellen gedeeld in de projecten",
         "ACTIONS": {
-          "CREATE": "Gedeeld model maken"
+          "CREATE": "Contentmodel maken"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "Mijn gegevensmodellen",
-        "LABEL": "Gegevensmodellen",
+        "LABEL": "Algemene modellen",
         "TOOLTIP": "Gepubliceerde gegevensmodellen",
         "ACTIONS": {
           "CREATE": "Gegevensmodel maken"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "Project verwijderd uit favorieten",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "Er is een probleem opgetreden bij het laden van de favoriete projecten. Vernieuw de pagina."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "Zoeken"
     }
   }
 }

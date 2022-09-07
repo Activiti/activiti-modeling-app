@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Icône Enregistrer sous",
       "DOWNLOAD": "Télécharger le projet",
       "VIEW_RELEASES": "Voir les versions",
-      "VERSION": "Version"
+      "VERSION": "Version",
+      "UNSAVED_DIALOG_TITLE": "Modèles non enregistrés",
+      "UNSAVED_VALIDATE_MESSAGE": "Il y a des changements non enregistrés dans certains des modèles ouverts, veuillez les enregistrer avant de valider.",
+      "UNSAVED_RELEASE_MESSAGE": "Il y a des changements non enregistrés dans certains des modèles ouverts, veuillez les enregistrer avant de publier.",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Il y a des changements non enregistrés dans certains des modèles ouverts, veuillez les enregistrer avant de revenir au tableau de bord."
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Requis",
         "COLUMN_VALUE": "Valeur",
         "NO_PROPERTIES": "Sélectionnez ou créez une variable pour afficher ses propriétés",
-        "CLEAR": "Supprimer"
+        "CLEAR": "Supprimer",
+        "ANALYTICS": "Analyse"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Valeur",
       "EXPRESSION_MAPPING": "Expression",
       "NONE": "Aucune",
-      "TYPE": "Type"
+      "TYPE": "Type",
+      "WRONG_OUTPUT_MAPPING": "Le mappage de sortie est incorrect. Les mappings ajoutés ne mappent pas tous une expression à une variable."
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Enregistrer sous",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Tâche de service Docgen",
         "PARTICIPANT": "Processus",
         "FORM_FIELDS": "champs de formulaire",
-        "FORM_VARIABLES": "Variables de formulaire"
+        "FORM_VARIABLES": "Variables de formulaire",
+        "CONTENT_SERVICE": "Content Services"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",

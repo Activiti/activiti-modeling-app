@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "حفظ كرمز",
       "DOWNLOAD": "تنزيل المشروع",
       "VIEW_RELEASES": "عرض الإصدارات",
-      "VERSION": "الإصدار"
+      "VERSION": "الإصدار",
+      "UNSAVED_DIALOG_TITLE": "النماذج غير المحفوظة",
+      "UNSAVED_VALIDATE_MESSAGE": "توجد تغييرات غير محفوظة في بعض النماذج المفتوحة ، يرجى حفظها قبل التحقق من صحتها",
+      "UNSAVED_RELEASE_MESSAGE": "توجد تغييرات غير محفوظة في بعض النماذج المفتوحة ، يرجى حفظها قبل الإصدار",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "توجد تغييرات غير محفوظة في بعض النماذج المفتوحة ، يرجى حفظها قبل العودة إلى لوحة معلومات"
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -36,7 +40,7 @@
     },
     "VARIABLES_EDITOR": {
       "ERRORS": {
-        "EMPTY_NAME": "مطلوب اسم",
+        "EMPTY_NAME": "مطلوب توفير اسم",
         "EMPTY_TYPE": "النوع مطلوب",
         "EMPTY_DISPLAY_NAME": "اسم العرض مطلوب",
         "INVALID_NAME": "اسم متغير غير صالح",
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "مطلوب",
         "COLUMN_VALUE": "القيمة",
         "NO_PROPERTIES": "حدد متغيرًا أو أنشئه لعرض خصائصه",
-        "CLEAR": "مسح"
+        "CLEAR": "مسح",
+        "ANALYTICS": "تحليلات"
       }
     },
     "VARIABLE_MAPPING": {
@@ -76,7 +81,7 @@
     "MESSAGES_EDITOR": {
       "TITLE": "رسائل المعالجة",
       "ERRORS": {
-        "EMPTY_NAME": "مطلوب اسم",
+        "EMPTY_NAME": "مطلوب توفير اسم",
         "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء الرسائل فريدة"
       },
       "TABLE": {
@@ -88,7 +93,7 @@
     "ERRORS_EDITOR": {
       "TITLE": "أخطاء العملية",
       "ERRORS": {
-        "EMPTY_NAME": "مطلوب اسم",
+        "EMPTY_NAME": "مطلوب توفير اسم",
         "EMPTY_CODE": "رمز الخطأ مطلوب",
         "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء أخطاء العملية فريدة"
       },
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "القيمة",
       "EXPRESSION_MAPPING": "التعبير",
       "NONE": "بلا",
-      "TYPE": "النوع"
+      "TYPE": "النوع",
+      "WRONG_OUTPUT_MAPPING": "تخطيط المخرجات غير صحيح. ليست كل التعيينات المضافة تعيّن تعبيرًا إلى متغير"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "حفظ باسم",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "مهمة خدمة Docgen",
         "PARTICIPANT": "العملية",
         "FORM_FIELDS": "حقول النموذج",
-        "FORM_VARIABLES": "متغيرات النموذج"
+        "FORM_VARIABLES": "متغيرات النموذج",
+        "CONTENT_SERVICE": "Content service"
       },
       "TOOLTIP": {
         "VARIABLE": "متغير",

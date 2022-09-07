@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "Päivitetty",
       "COLUMN_OPTIONS": "Asetukset",
       "COLUMN_ACTIONS": "Toiminnot",
+      "COLUMN_COLLABORATORS": "Yhteistyökumppanit",
       "NO_ITEMS": "Luo tai tuo projekti, jotta voit tarkastella sitä luettelossa.",
       "NO_FAV_PROCESSES": "Lisää prosessi suosikkeihin saattaaksesi sen käytettäväksi täällä.",
       "NO_FAV_PROJECTS": "Lisää projekti suosikkeihin saattaaksesi sen käytettäväksi täällä.",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "Mallintaja",
+    "NAME": "Mallinnussovellus",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projektit",
       "CONTENT_MODEL_TITLE": "Sisältömallit",
       "DATA_MODELS_TITLE": "Tietomallit",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Omat projektit",
         "LABEL": "Kaikki projektit",
         "TOOLTIP": "Kaikki julkaistut projektit",
         "ACTIONS": {
           "CREATE": "Luo projekti",
-          "UPLOAD": "Lataa"
+          "UPLOAD": "Lataa projekti palvelimelle"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "Omat jaetut mallit",
-        "LABEL": "Jaetut mallit",
+        "LABEL": "Globaalit mallit",
         "TOOLTIP": "Projektien kesken jaetut mallit",
         "ACTIONS": {
-          "CREATE": "Luo jaettu malli"
+          "CREATE": "Luo sisältömalli"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "Omat tietomallit",
-        "LABEL": "Tietomallit",
+        "LABEL": "Globaalit mallit",
         "TOOLTIP": "Julkaistut tietomallit",
         "ACTIONS": {
-          "CREATE": "Luo datamalli"
+          "CREATE": "Luo tietomalli"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "Projekti poistettiin suosikeista",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "SUosikkiprojektien lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "Hae"
     }
   }
 }

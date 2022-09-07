@@ -47,6 +47,7 @@
       "COLUMN_MODIFIED": "Actualizado",
       "COLUMN_OPTIONS": "Opciones",
       "COLUMN_ACTIONS": "Acciones",
+      "COLUMN_COLLABORATORS": "Colaboradores",
       "NO_ITEMS": "Crear o importar un proyecto para verlo en la lista.",
       "NO_FAV_PROCESSES": "Marque un proceso como favorito para que esté disponible aquí.",
       "NO_FAV_PROJECTS": "Marque un proyecto como favorito para que esté disponible aquí.",
@@ -61,18 +62,21 @@
     }
   },
   "NEW_STUDIO_DASHBOARD": {
-    "NAME": "Modelador",
+    "NAME": "Modeling Application",
     "NAVIGATION": {
       "PROJECT_TITLE": "Proyectos",
       "CONTENT_MODEL_TITLE": "Modelos de contenido",
       "DATA_MODELS_TITLE": "Modelos de datos",
+      "HXP_DOC_TYPES_TITLE": "HxP Document Types",
+      "HXP_MIXINS_TITLE": "HxP Mixins",
+      "HXP_SCHEMAS_TITLE": "HxP Schemas",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mis proyectos",
         "LABEL": "Todos los proyectos",
         "TOOLTIP": "Todos los proyectos publicados",
         "ACTIONS": {
           "CREATE": "Crear proyecto",
-          "UPLOAD": "Cargar"
+          "UPLOAD": "Cargar proyecto"
         }
       },
       "FAVORITE_PROJECTS": {
@@ -90,18 +94,42 @@
       },
       "SHARED_MODELS": {
         "HEADER_LABEL": "Mis modelos compartidos",
-        "LABEL": "Modelos compartidos",
+        "LABEL": "Modelos globales",
         "TOOLTIP": "Modelos compartidos por los proyectos",
         "ACTIONS": {
-          "CREATE": "Crear modelo compartido"
+          "CREATE": "Crear modelo de contenido"
         }
       },
       "DATA_MODELS": {
         "HEADER_LABEL": "Mis modelos de datos",
-        "LABEL": "Modelos de datos",
+        "LABEL": "Modelos globales",
         "TOOLTIP": "Modelos de datos publicados",
         "ACTIONS": {
           "CREATE": "Crear modelo de datos"
+        }
+      },
+      "HXP_DOC_TYPES": {
+        "HEADER_LABEL": "My HxP Document Types",
+        "LABEL": "Global HxP Document Types",
+        "TOOLTIP": "Published HxP Document Types",
+        "ACTIONS": {
+          "CREATE": "Create HxP Document Type"
+        }
+      },
+      "HXP_MIXINS": {
+        "HEADER_LABEL": "My HxP Mixins",
+        "LABEL": "Global HxP Mixins",
+        "TOOLTIP": "Published HxP Mixins",
+        "ACTIONS": {
+          "CREATE": "Create HxP Mixin"
+        }
+      },
+      "HXP_SCHEMAS": {
+        "HEADER_LABEL": "My HxP Schemas",
+        "LABEL": "Global HxP Schemas",
+        "TOOLTIP": "Published HxP Schemas",
+        "ACTIONS": {
+          "CREATE": "Create HxP Schema"
         }
       }
     },
@@ -113,6 +141,11 @@
     "REMOVE_FROM_FAVORITES": "Proyecto eliminado de los favoritos",
     "ERROR": {
       "LOAD_FAVORITE_PROJECTS": "Ha surgido un problema al cargar los proyectos de los favoritos. Intente actualizar la página."
+    }
+  },
+  "SEARCH": {
+    "BUTTON": {
+      "TOOLTIP": "Buscar"
     }
   }
 }

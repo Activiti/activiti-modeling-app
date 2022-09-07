@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Crea modello di contenuto",
-        "TITLE_UPDATE": "Aggiorna modello di contenuto",
-        "CONTENT_MODEL_NAME": "Nome modello di contenuto:",
-        "CONTENT_MODEL_DESC": "Descrizione modello di contenuto:",
-        "CONTENT_MODEL_CREATED": "Modello di contenuto creato",
-        "CONTENT_MODEL_DELETED": "Modello di contenuto eliminato",
-        "CONTENT_MODEL_UPDATED": "Modello di contenuto salvato"
+      "TITLE_CREATE": "Crea modello di contenuto",
+      "TITLE_UPDATE": "Aggiorna modello di contenuto",
+      "CONTENT_MODEL_NAME": "Nome modello di contenuto:",
+      "CONTENT_MODEL_DESC": "Descrizione modello di contenuto:",
+      "CONTENT_MODEL_CREATED": "Modello di contenuto creato",
+      "CONTENT_MODEL_DELETED": "Modello di contenuto eliminato",
+      "CONTENT_MODEL_UPDATED": "Modello di contenuto salvato"
     },
     "BACK_TO": "Torna ai progetti",
     "NAME": "Editor progetto",
@@ -34,6 +34,7 @@
       "CREATE": "Crea",
       "UPLOAD": "Carica",
       "IMPORT": "Importa",
+      "NO_ITEMS_TO_IMPORT": "Non sono presenti modelli da importare",
       "CREATE_PROCESS_TITLE": "Crea processo",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Processo",

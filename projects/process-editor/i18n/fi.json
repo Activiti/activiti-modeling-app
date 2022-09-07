@@ -9,7 +9,7 @@
     "SELECT_PROCESS_VARIABLE": "Valitse prosessimuuttuja",
     "SCRIPT_NAME": "Komentosarjan nimi",
     "PRIORITIES": {
-      "NONE": "Ei yhtään",
+      "NONE": "Ei ole",
       "LOW": "Matala",
       "MEDIUM": "Normaali",
       "HIGH": "Korkea"
@@ -21,7 +21,7 @@
       "DATE": "Päivämäärä"
     },
     "MULTI_INSTANCE_TYPES": {
-      "NONE": "Ei yhtään",
+      "NONE": "Ei ole",
       "PARALLEL": "Rinnakkainen",
       "SEQUENCE": "Peräkkäinen"
     },
@@ -73,7 +73,7 @@
       "IMPLEMENTATION": "Toteutus",
       "DECISION_TASK": "Päätöstehtävä",
       "DECISION_TABLE_NAME": "Päätöstaulukon nimi",
-      "INPUT_MAPPING": "Syötteen yhdistäminen",
+      "INPUT_MAPPING": "Sisääntulon kartoitus",
       "OUTPUT_MAPPING": "Tulosyhdistäminen",
       "INPUTS": "Syötteet",
       "OUTPUTS": "Tuotokset",

@@ -2,11 +2,11 @@
   "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "プロセスをダウンロード",
     "SAVE_PROCESS_IMAGE": "プロセス図を SVG として保存",
-    "VALIDATE_PROCESS": "プロセスを検証",
-    "SAVE_PROCESS": "プロセスを保存"
+    "VALIDATE_PROCESS": "プロセスの検証",
+    "SAVE_PROCESS": "プロセスの保存"
   },
   "PROCESS_EDITOR": {
-    "SELECT_PROCESS_VARIABLE": "プロセス変数を選択",
+    "SELECT_PROCESS_VARIABLE": "プロセス変数の選択",
     "SCRIPT_NAME": "スクリプト名",
     "PRIORITIES": {
       "NONE": "なし",
@@ -50,16 +50,16 @@
       "DIAGRAM_NAME": "図名",
       "SIGNAL": "シグナル",
       "ERROR": "エラー",
-      "MAPPING_TYPE": "マッピングの種類",
+      "MAPPING_TYPE": "マッピングタイプ",
       "MAP_VARIABLES": "変数の割り当て",
-      "SEND_ALL_VARIABLES": "すべての変数を送信",
-      "EDIT_EMAIL_TEMPLATE": "Eメールテンプレートを編集",
+      "SEND_ALL_VARIABLES": "すべての変数の送信",
+      "EDIT_EMAIL_TEMPLATE": "Eメールテンプレートの編集",
       "SEND_NO_VARIABLES": "変数を送信しない",
       "SIGNAL_NAME": "信号名",
       "ERROR_NAME": "エラー名",
       "ERROR_CODE": "エラーコード",
-      "CREATE_NEW_SIGNAL": "新しいシグナルを作成",
-      "CREATE_NEW_ERROR": "新しいエラーを作成",
+      "CREATE_NEW_SIGNAL": "新しいシグナルの作成",
+      "CREATE_NEW_ERROR": "新しいエラーの作成",
       "SCOPE": "範囲",
       "SCOPE_VALUES": {
         "GLOBAL": "グローバル",
@@ -89,8 +89,8 @@
       "ACTIVITY_NAME": "呼び出された要素",
       "PROCESS": "プロセス",
       "PROCESS_VARIABLE": "プロセス変数",
-      "FILTER_PROCESS_VARIABLE": "プロセス変数をフィルタ",
-      "USE_PROCESS_VARIABLE": "プロセス変数を使用",
+      "FILTER_PROCESS_VARIABLE": "プロセス変数のフィルタ",
+      "USE_PROCESS_VARIABLE": "プロセス変数の使用",
       "USE_STATIC_DATE": "静的な日付の使用",
       "USE_EXPRESSION": "式を使用",
       "USE_TIME_DURATION": "期間の使用",
@@ -112,19 +112,19 @@
       "INVALID_EXPRESSION": "無効な式 ${condition}",
       "MESSAGE": "メッセージ",
       "MESSAGE_NAME": "メッセージ名",
-      "CREATE_NEW_MESSAGE": "新しいメッセージを作成",
+      "CREATE_NEW_MESSAGE": "新しいメッセージの作成",
       "MAP_MESSAGE": "メッセージをプロセス変数にマップ",
       "CORRELATION_KEY": "関連付けキー",
       "CLASS": "クラス",
       "DELEGATE_EXPRESSION": "デリゲート式",
       "MESSAGE_EXPRESSION": "メッセージ式",
-      "USE_MESSAGE_EXPRESSION": "メッセージ式を使用",
+      "USE_MESSAGE_EXPRESSION": "メッセージ式の使用",
       "MESSAGE_EXPRESSION_REQUIRED": "メッセージ式が必要です",
       "MULTI_INSTANCE": {
         "CARDINALITY_NAME": "カーディナリティ",
         "COMPLETION_CONDITION": "完了条件",
         "COLLECTION": "コレクション",
-        "MULTI_INSTANCE_TYPE_NAME": "マルチインスタンスの種類",
+        "MULTI_INSTANCE_TYPE_NAME": "マルチインスタンスタイプ",
         "RESULT_COLLECTION": "結果コレクション",
         "RESULT_ELEMENT_VARIABLE": "結果要素変数"
       },
@@ -135,7 +135,7 @@
       "MESSAGE_PAYLOAD": {
         "TITLE": "メッセージペイロード",
         "ADD": "追加",
-        "CREATE_PROPERTY": "新しいプロパティを作成",
+        "CREATE_PROPERTY": "新しいプロパティの作成",
         "NO_PROPERTIES": "メッセージにペイロードがありません。メッセージのスローイベントにペイロードを追加してください。",
         "FORM": {
           "NAME": "名前",
@@ -153,7 +153,7 @@
         }
       },
       "TIMERS": {
-        "TIMER_TYPE": "タイマーの種類",
+        "TIMER_TYPE": "タイマータイプ",
         "TIMER_DEFINITION": "タイマー定義",
         "REQUIRED": "必須",
         "YEARS": "年",
@@ -167,14 +167,14 @@
         "DATE": "日付",
         "USE_PROCESS_VARIABLE": "プロセス変数を使用",
         "PROCESS_VARIABLE": "プロセス変数",
-        "USE_CRON_EXPRESSION": "cron 式を使用",
+        "USE_CRON_EXPRESSION": "cron 式の使用",
         "CRON_EXPRESSION": "Cron式",
         "INVALID_CRON_EXPRESSION": "無効な cron 式"
       },
       "TEXT_ANNOTATION": "テキスト注釈",
       "TASK_ASSIGNMENT": {
         "TITLE": "タスク割り当て",
-        "SUB_TITLE": "割りて当オプションを選択",
+        "SUB_TITLE": "割りて当てオプションの選択",
         "SINGLE_USER": "単一ユーザーにタスクを割り当て",
         "CANDIDATES": "候補にタスクを割り当て",
         "STATIC": "静的",
@@ -230,23 +230,23 @@
       }
     },
     "PALETTE": {
-      "CALL_ACTIVITY": "呼び出しアクティビティを作成",
+      "CALL_ACTIVITY": "呼び出しアクティビティの作成",
       "CONNECT_TOOL": "グローバル接続ツール",
       "CONTAINER": "専用サービス",
-      "END_EVENT": "終了イベントを作成",
-      "GATEWAY": "ゲートウェイを作成",
+      "END_EVENT": "終了イベントの作成",
+      "GATEWAY": "ゲートウェイの作成",
       "HAND_TOOL": "手のひらツール",
-      "INTERMEDIATE_CATCH_EVENT_SIGNAL": "シグナル中間キャッチイベントを作成",
-      "INTERMEDIATE_THROW_EVENT": "中間スローイベントを作成",
-      "INTERMEDIATE_THROW_EVENT_SIGNAL": "シグナル中間スローイベントを作成",
+      "INTERMEDIATE_CATCH_EVENT_SIGNAL": "シグナル中間キャッチイベントの作成",
+      "INTERMEDIATE_THROW_EVENT": "中間スローイベントの作成",
+      "INTERMEDIATE_THROW_EVENT_SIGNAL": "シグナル中間スローイベントの作成",
       "LASSO_TOOL": "Lasso ツール",
-      "PARTICIPANT": "プールを作成",
-      "SERVICE_TASK": "サービスタスクを作成",
+      "PARTICIPANT": "プールの作成",
+      "SERVICE_TASK": "サービスタスクの作成",
       "SPACE_TOOL": "スペース作成/削除ツール",
-      "START_EVENT": "開始イベントを作成",
-      "START_EVENT_SIGNAL": "シグナル開始イベントを作成",
-      "SUB_PROCESS": "サブプロセスを作成",
-      "USER_TASK": "ユーザータスクを作成"
+      "START_EVENT": "開始イベントの作成",
+      "START_EVENT_SIGNAL": "シグナル開始イベントの作成",
+      "SUB_PROCESS": "サブプロセスの作成",
+      "USER_TASK": "ユーザータスクの作成"
     }
   }
 }

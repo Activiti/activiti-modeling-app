@@ -7,7 +7,11 @@
       "SAVE_AS_ICON": "Salva come icona",
       "DOWNLOAD": "Scarica progetto",
       "VIEW_RELEASES": "Visualizza versioni",
-      "VERSION": "Versione"
+      "VERSION": "Versione",
+      "UNSAVED_DIALOG_TITLE": "Modelli non salvati",
+      "UNSAVED_VALIDATE_MESSAGE": "Sono presenti modifiche non salvate in alcuni dei modelli aperti. Salvarli prima della convalida.",
+      "UNSAVED_RELEASE_MESSAGE": "Sono presenti modifiche non salvate in alcuni dei modelli aperti. Salvarli prima del rilascio.",
+      "UNSAVED_BACK_TO_DASHBOARD_MESSAGE": "Sono presenti modifiche non salvate in alcuni dei modelli aperti. Salvarli prima di tornare al pannello di controllo."
     },
     "MODEL_EDITOR": {
       "DIALOG": {
@@ -54,7 +58,8 @@
         "COLUMN_REQUIRED": "Obbligatorio",
         "COLUMN_VALUE": "Valore",
         "NO_PROPERTIES": "Selezionare o creare una variabile per visualizzarne le proprietà",
-        "CLEAR": "Cancella"
+        "CLEAR": "Cancella",
+        "ANALYTICS": "Analisi"
       }
     },
     "VARIABLE_MAPPING": {
@@ -110,7 +115,8 @@
       "VALUE_MAPPING": "Valore",
       "EXPRESSION_MAPPING": "Espressione",
       "NONE": "Nessuna",
-      "TYPE": "Tipo"
+      "TYPE": "Tipo",
+      "WRONG_OUTPUT_MAPPING": "La mappatura di output non è corretta. Non tutte le mappature aggiunte consentono di mappare un'espressione a una variabile"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "Salva con nome",
@@ -153,7 +159,8 @@
         "DOCGEN_SERVICE": "Compito Servizio docgen",
         "PARTICIPANT": "Processo",
         "FORM_FIELDS": "Campi del modulo",
-        "FORM_VARIABLES": "Variabili del modulo"
+        "FORM_VARIABLES": "Variabili del modulo",
+        "CONTENT_SERVICE": "Servizio di contenuti"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabile",

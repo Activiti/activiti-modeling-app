@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "Opret indholdsmodel",
-        "TITLE_UPDATE": "Aktualiser indholdsmodel",
-        "CONTENT_MODEL_NAME": "Indholdsmodellens navn",
-        "CONTENT_MODEL_DESC": "Beskrivelse af indholdsmodel:",
-        "CONTENT_MODEL_CREATED": "Indholdsmodel oprettet",
-        "CONTENT_MODEL_DELETED": "Indholdsmodel blev slettet",
-        "CONTENT_MODEL_UPDATED": "Indholsmodel gemt"
+      "TITLE_CREATE": "Opret indholdsmodel",
+      "TITLE_UPDATE": "Aktualiser indholdsmodel",
+      "CONTENT_MODEL_NAME": "Indholdsmodellens navn",
+      "CONTENT_MODEL_DESC": "Beskrivelse af indholdsmodel:",
+      "CONTENT_MODEL_CREATED": "Indholdsmodel oprettet",
+      "CONTENT_MODEL_DELETED": "Indholdsmodel blev slettet",
+      "CONTENT_MODEL_UPDATED": "Indholsmodel gemt"
     },
     "BACK_TO": "Tilbage til projekter",
     "NAME": "Projekteditor",
@@ -34,6 +34,7 @@
       "CREATE": "Opret",
       "UPLOAD": "Upload",
       "IMPORT": "Importér",
+      "NO_ITEMS_TO_IMPORT": "Der er ingen modeller, der kan importeres",
       "CREATE_PROCESS_TITLE": "Opret proces",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "Proces",

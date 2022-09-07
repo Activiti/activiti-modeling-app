@@ -1,13 +1,13 @@
 {
   "PROJECT_EDITOR": {
     "CONTENT_MODEL_DIALOG": {
-        "TITLE_CREATE": "コンテンツモデルを作成",
-        "TITLE_UPDATE": "コンテンツモデルを更新",
-        "CONTENT_MODEL_NAME": "コンテンツモデル名:",
-        "CONTENT_MODEL_DESC": "コンテンツモデルの説明:",
-        "CONTENT_MODEL_CREATED": "コンテンツモデルが作成されました",
-        "CONTENT_MODEL_DELETED": "コンテンツモデルが削除されました",
-        "CONTENT_MODEL_UPDATED": "コンテンツモデルが保存されました"
+      "TITLE_CREATE": "コンテンツモデルの作成",
+      "TITLE_UPDATE": "コンテンツモデルの更新",
+      "CONTENT_MODEL_NAME": "コンテンツモデル名:",
+      "CONTENT_MODEL_DESC": "コンテンツモデルの説明:",
+      "CONTENT_MODEL_CREATED": "コンテンツモデルが作成されました",
+      "CONTENT_MODEL_DELETED": "コンテンツモデルが削除されました",
+      "CONTENT_MODEL_UPDATED": "コンテンツモデルが保存されました"
     },
     "BACK_TO": "プロジェクトに戻る",
     "NAME": "プロジェクトエディタ",
@@ -34,7 +34,8 @@
       "CREATE": "作成",
       "UPLOAD": "アップロード",
       "IMPORT": "インポート",
-      "CREATE_PROCESS_TITLE": "プロセスを作成",
+      "NO_ITEMS_TO_IMPORT": "インポートするモデルはありません",
+      "CREATE_PROCESS_TITLE": "プロセスの作成",
       "MENU_ITEMS": {
         "CREATE_PROCESS": "プロセス",
         "CREATE_CONNECTOR": "コネクタ",
@@ -67,8 +68,8 @@
       "FORM_WIDGETS": "フォームウィジェット"
     },
     "PROCESS_DIALOG": {
-      "TITLE_CREATE": "プロセスを作成",
-      "TITLE_UPDATE": "プロセスを更新",
+      "TITLE_CREATE": "プロセスの作成",
+      "TITLE_UPDATE": "プロセスの更新",
       "PROCESS_NAME": "プロセス名:",
       "PROCESS_DESC": "プロセスの説明:",
       "PROCESS_CREATED": "プロセスが作成されました",
@@ -76,7 +77,7 @@
       "PROCESS_UPDATED": "プロセスが保存されました"
     },
     "CONNECTOR_DIALOG": {
-      "TITLE_CREATE": "コネクタを作成",
+      "TITLE_CREATE": "コネクタの作成",
       "TITLE_UPDATE": "コネクタ更新",
       "CONNECTOR_NAME": "コネクタ名:",
       "CONNECTOR_DESC": "コネクタの説明:",
@@ -85,8 +86,8 @@
       "CONNECTOR_UPDATED": "コネクタが保存されました"
     },
     "FORM_DIALOG": {
-      "TITLE_CREATE": "フォームを作成",
-      "TITLE_UPDATE": "フォームを更新",
+      "TITLE_CREATE": "フォームの作成",
+      "TITLE_UPDATE": "フォームの更新",
       "FORM_NAME": "フォーム名:",
       "FORM_DESC": "フォームの説明:",
       "FORM_CREATED": "フォームが作成されました",
@@ -95,8 +96,8 @@
       "FORM_CONTENT_CREATED": "作成されたコンテンツモデルからの初期フォームコンテンツ"
     },
     "UI_DIALOG": {
-      "TITLE_CREATE": "UI を作成",
-      "TITLE_UPDATE": "UI を更新",
+      "TITLE_CREATE": "UI の作成",
+      "TITLE_UPDATE": "UI の更新",
       "UI_NAME": "UI 名:",
       "UI_DESC": "UI の説明:",
       "UI_CREATED": "UI が作成されました",
@@ -104,8 +105,8 @@
       "UI_UPDATED": "UI が保存されました"
     },
     "DATA_DIALOG": {
-      "TITLE_CREATE": "データオブジェクトを作成",
-      "TITLE_UPDATE": "データオブジェクトを更新",
+      "TITLE_CREATE": "データオブジェクトの作成",
+      "TITLE_UPDATE": "データオブジェクトの更新",
       "DATA_NAME": "データオブジェクト名:",
       "DATA_DESC": "データオブジェクトの説明:",
       "DATA_CREATED": "データオブジェクトが作成されました",
@@ -113,8 +114,8 @@
       "DATA_UPDATED": "データオブジェクトが保存されました"
     },
     "DECISION_TABLE_DIALOG": {
-      "TITLE_CREATE": "意思決定テーブルを作成",
-      "TITLE_UPDATE": "意思決定テーブルを更新",
+      "TITLE_CREATE": "意思決定テーブルの作成",
+      "TITLE_UPDATE": "意思決定テーブルの更新",
       "DECISION_TABLE_NAME": "意思決定テーブル名:",
       "DECISION_TABLE_DESC": "意思決定テーブルの説明:",
       "DECISION_TABLE_CREATED": "意思決定テーブルが作成されました",
@@ -122,8 +123,8 @@
       "DECISION_TABLE_UPDATED": "意思決定テーブルが保存されました"
     },
     "FILE_DIALOG": {
-      "TITLE_CREATE": "ファイルを作成",
-      "TITLE_UPDATE": "ファイルを更新",
+      "TITLE_CREATE": "ファイルの作成",
+      "TITLE_UPDATE": "ファイルの更新",
       "FILE_NAME": "ファイル名:",
       "FILE_DESC": "ファイルの説明:",
       "FILE_CREATED": "ファイルが作成されました",
@@ -133,8 +134,8 @@
       "PUBLIC_FILE": "公開"
     },
     "SCRIPT_DIALOG": {
-      "TITLE_CREATE": "スクリプトを作成",
-      "TITLE_UPDATE": "スクリプトを更新",
+      "TITLE_CREATE": "スクリプトの作成",
+      "TITLE_UPDATE": "スクリプトの更新",
       "SCRIPT_NAME": "スクリプト名:",
       "SCRIPT_DESC": "スクリプトの説明:",
       "SCRIPT_CREATED": "スクリプトが作成されました",
@@ -142,8 +143,8 @@
       "SCRIPT_UPDATED": "スクリプトが保存されました"
     },
     "TRIGGER_DIALOG": {
-      "TITLE_CREATE": "トリガーを作成",
-      "TITLE_UPDATE": "トリガーを更新",
+      "TITLE_CREATE": "トリガーの作成",
+      "TITLE_UPDATE": "トリガーの更新",
       "TRIGGER_NAME": "トリガー名:",
       "TRIGGER_DESC": "トリガーの説明:",
       "TRIGGER_CREATED": "トリガーが作成されました",
@@ -154,19 +155,19 @@
       "ACTION_DETAILS": "処理の詳細",
       "ACTION_NAME": "処理名",
       "ACTION_DESC": "処理の説明",
-      "ADD_ACTION": "処理を追加",
-      "DEL_ACTION": "処理を削除"
+      "ADD_ACTION": "処理の追加",
+      "DEL_ACTION": "処理の削除"
     },
     "EVENT_DIALOG": {
       "EVENT_DETAILS": "イベントの詳細",
       "EVENT_NAME": "イベント名",
       "EVENT_DESC": "イベントの説明",
-      "ADD_EVENT": "イベントを追加",
-      "DEL_EVENT": "イベントを削除"
+      "ADD_EVENT": "イベントの追加",
+      "DEL_EVENT": "イベントの削除"
     },
     "PROJECT_MODEL_DIALOG": {
-      "TITLE_CREATE": "コンテンツモデルを作成",
-      "TITLE_UPDATE": "コンテンツモデルを更新",
+      "TITLE_CREATE": "コンテンツモデルの作成",
+      "TITLE_UPDATE": "コンテンツモデルの更新",
       "PROJECT_MODEL_NAME": "コンテンツモデル名:",
       "PROJECT_MODEL_DESC": "コンテンツモデルの説明:",
       "PROJECT_MODEL_CREATED": "コンテンツモデルが作成されました",
@@ -174,8 +175,8 @@
       "PROJECT_MODEL_UPDATED": "コンテンツモデルが保存されました"
     },
     "FORM_WIDGET_DIALOG": {
-      "TITLE_CREATE": "フォームウィジェットを作成",
-      "TITLE_UPDATE": "フォームウィジェットを更新",
+      "TITLE_CREATE": "フォームウィジェットの作成",
+      "TITLE_UPDATE": "フォームウィジェットの更新",
       "FORM_WIDGET_NAME": "ウィジェット名:",
       "FORM_WIDGET_DESC": "ウィジェットの説明:",
       "FORM_WIDGET_CREATED": "フォームウィジェットが作成されました",

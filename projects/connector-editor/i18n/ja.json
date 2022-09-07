@@ -1,8 +1,8 @@
 {
   "ADV_CONNECTOR_EDITOR": {
     "DOWNLOAD_CONNECTOR": "コネクタをダウンロード",
-    "VALIDATE_CONNECTOR": "コネクタを検証",
-    "SAVE_CONNECTOR": "コネクタを保存",
+    "VALIDATE_CONNECTOR": "コネクタの検証",
+    "SAVE_CONNECTOR": "コネクタの保存",
     "CONNECTOR_VALID": "コネクタは有効です",
     "CONNECTOR_INVALID": "コネクタに検証エラーが含まれています。",
     "UPLOAD_SUCCESS": "コネクタがアップロードされました",
