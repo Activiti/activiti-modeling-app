@@ -93,12 +93,8 @@ mat-sidenav-container.studio-project-layout {
 
     .studio-project-layout-content, .studio-project-layout-content-rtl, .studio-project-layout-content-closed {
         display: flex;
-        flex: 1;
-        flex-direction: column;
-        height: 100%;
+        flex: 1 0 auto;
         min-height: 0;
-        overflow: auto;
-        position: unset;
 
         &-section {
             flex: 0 0;
