@@ -97,6 +97,8 @@ describe('ConnectorEntitiesReducer', () => {
         expect(newState.entities).toEqual({
             [connector.id]: connector
         });
+        expect(newState.draftEntities.entities['mock-id2']).toBeUndefined();
+        expect(newState.draftEntities.entityContents['mock-id2']).toBeUndefined();
     });
 
     it('should handle UPDATE_CONNECTOR_SUCCESS', () => {

@@ -98,6 +98,8 @@ function createConnector(state: ConnectorEntitiesState, action: CreateConnectorS
 function removeConnector(state: ConnectorEntitiesState, action: DeleteConnectorSuccessAction): ConnectorEntitiesState {
     const newState = { ...state, entityContents: { ...state.entityContents } };
     delete newState.entityContents[action.connectorId];
+    delete newState.draftEntities.entityContents[action.connectorId];
+    delete newState.draftEntities.entities[action.connectorId];
 
     return connectorEntityAdapter.removeOne(action.connectorId, state);
 }

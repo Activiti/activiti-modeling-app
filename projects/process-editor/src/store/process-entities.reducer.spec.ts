@@ -236,6 +236,8 @@ describe('ProcessEntitiesReducer', () => {
         expect(newState.entities).toEqual({
             [process.id]: process
         });
+        expect(newState.draftEntities.entities['mock-id2']).toBeUndefined();
+        expect(newState.draftEntities.entityContents['mock-id2']).toBeUndefined();
     });
 
     it('should handle UPDATE_PROCESS_SUCCESS', () => {

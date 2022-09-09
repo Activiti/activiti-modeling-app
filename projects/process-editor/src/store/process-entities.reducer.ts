@@ -387,6 +387,8 @@ function removeProcess(state: ProcessEntitiesState, action: DeleteProcessSuccess
     const newState = cloneDeep(state);
 
     newState.entityContents[action.processId] = null;
+    delete newState.draftEntities.entityContents[action.processId];
+    delete newState.draftEntities.entities[action.processId];
 
     return processAdapter.removeOne(action.processId, newState);
 }
