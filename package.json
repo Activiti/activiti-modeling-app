@@ -1,8 +1,8 @@
 {
   "name": "activiti-modeling-app",
   "description": "Activiti Modeling Application",
-  "commit": "<build-generated-commit>",
-  "version": "0.2.0",
+  "commit": "11f3087087c4e0bad1926f6a2058803fd6f6e260",
+  "version": "7.5.0",
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "postinstall": "ngcc",
