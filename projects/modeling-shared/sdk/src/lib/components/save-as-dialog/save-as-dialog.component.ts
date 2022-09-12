@@ -26,7 +26,13 @@ export interface SaveAsDialogPayload extends EntityDialogForm {
     sourceModelContent: any;
     sourceModelMetadata?: any;
     action?: any;
+    allowedCharacters?: AllowedCharacters;
 }
+
+const DEFAULT_ALLOWED_CHARACTERS = {
+    regex: MODELER_NAME_REGEX,
+    error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
+};
 
 @Component({
     templateUrl: './save-as-dialog.component.html',
@@ -36,7 +42,7 @@ export class SaveAsDialogComponent implements OnInit {
 
     name: string;
     description: string;
-    allowedCharacters: AllowedCharacters;
+    allowedCharacters: AllowedCharacters = DEFAULT_ALLOWED_CHARACTERS;
 
     constructor(
         private store: Store<AmaState>,
@@ -48,10 +54,7 @@ export class SaveAsDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.allowedCharacters = {
-            regex: MODELER_NAME_REGEX,
-            error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-        };
+        this.allowedCharacters = this.data.allowedCharacters ?? DEFAULT_ALLOWED_CHARACTERS;
         this.name = this.data.name;
         this.description = this.data.description;
     }

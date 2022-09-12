@@ -101,6 +101,7 @@ import {
     UpdateTabTitle,
     SetLogHistoryVisibilityAction,
     TabManagerService,
+    PROCESS_NAME_REGEX,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
@@ -471,6 +472,10 @@ export class ProcessEditorEffects {
     }
 
     private openSaveAsProcessDialog(data: SaveAsDialogPayload) {
+        data.allowedCharacters = {
+            regex: PROCESS_NAME_REGEX,
+            error: 'APP.DIALOGS.ERROR.PROCESS_NAME_VALIDATION'
+        };
         this.dialogService.openDialog(SaveAsDialogComponent, { data });
     }
 
