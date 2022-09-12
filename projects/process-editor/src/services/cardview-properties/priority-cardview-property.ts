@@ -28,6 +28,7 @@ export function createPriorityProperty({ element, appConfigService }: FactoryPro
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PRIORITY',
         options$: of(appConfigService.get('process-modeler.priorities')),
         value: ElementHelper.getProperty(element, propertyName) || 0,
+        displayNoneOption: false,
         key: propertyName,
         editable: true,
         data: { id: element.id }
