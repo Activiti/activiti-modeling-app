@@ -32,10 +32,12 @@ import {
 import { JsonSchemaEditorDialogComponent } from '../json-schema-editor-dialog/json-schema-editor-dialog.component';
 import { JsonSchemaEditorService } from '../../services/json-schema-editor.service';
 import { JSONSchemaInfoBasics } from '../../../../api/types';
+import { MODELINGSDK_ALLOWED_CHARACTERS_REGEXP } from '../../../../api/regex-patterns';
 import { PropertyTypeItem } from '../../../../variables/properties-viewer/property-type-item/models';
 import { Observable } from 'rxjs';
 import { MODELER_NAME_REGEX } from '../../../../helpers/utils/create-entries-names';
 import { map } from 'rxjs/operators';
+
 const isEqual = require('lodash/isEqual');
 const cloneDeep = require('lodash/cloneDeep');
 
@@ -103,7 +105,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
 
     get regex(): RegExp {
         if (this.enableKeyEdition) {
-            return /^[a-z]([-a-z0-9]{0,24}[-a-z0-9])?$/;
+            return MODELINGSDK_ALLOWED_CHARACTERS_REGEXP;
         } else {
             return /^(\w|\$)(\w|\$|-|_)*$/;
         }
