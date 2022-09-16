@@ -18,7 +18,7 @@
 import { Routes } from '@angular/router';
 import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
 import { SearchHeaderComponent } from '../components/search-header/search-header.component';
-import { DASHBOARD_ROUTES, MainNavigationHeaderComponent } from '@alfresco-dbp/modeling-shared/sdk';
+import { DASHBOARD_ROUTES, EditorFooterComponent, MainNavigationHeaderComponent } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const dashboardRoutes: Routes = [
     {
@@ -33,6 +33,11 @@ export const dashboardRoutes: Routes = [
                 path: '',
                 component: MainNavigationHeaderComponent,
                 outlet: 'content-header'
+            },
+            {
+                path: '',
+                component: EditorFooterComponent,
+                outlet: 'content-footer'
             },
             {
                 path: 'favorite-projects',

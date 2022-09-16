@@ -95,6 +95,7 @@ mat-sidenav-container.studio-project-layout {
         display: flex;
         flex: 1 0 auto;
         min-height: 0;
+        flex-direction: column;
 
         &-section {
             flex: 0 0;

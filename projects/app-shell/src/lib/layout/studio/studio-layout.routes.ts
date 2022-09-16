@@ -25,7 +25,8 @@ import {
     AUTHENTICATED_ROUTES,
     MainNavigationComponent,
     StudioHeaderComponent,
-    MODELING_ROLES
+    MODELING_ROLES,
+    EditorFooterComponent
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { StudioLayoutComponent } from './components/studio-layout/studio-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
@@ -86,7 +87,8 @@ export const studioLayoutRoutes: Routes = [
                         canActivate: [ SelectedProjectSetterGuard, ProjectLoaderGuard ],
                         children: []
                     },
-                    { path: '', component: StudioHeaderComponent, outlet: 'main-header'}
+                    { path: '', component: StudioHeaderComponent, outlet: 'main-header'},
+                    { path: '', component: EditorFooterComponent, outlet: 'content-footer'}
                 ]
             }
         ]

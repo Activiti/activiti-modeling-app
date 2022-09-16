@@ -16,4 +16,5 @@
  */
 
 export * from './log-history/log-history-entry/log-history-entry.component';
+export * from './editor-footer.component';
 export * from './editor-footer.module';

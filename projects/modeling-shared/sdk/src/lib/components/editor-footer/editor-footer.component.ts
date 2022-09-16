@@ -28,6 +28,7 @@ import { LOG_FILTER_ITEM_TOKEN } from '../../helpers/utils/log-filters';
     selector: 'modelingsdk-editor-footer',
     styleUrls: ['./editor-footer.component.scss'],
     templateUrl: './editor-footer.component.html',
+    host: { class: 'ama-editor-footer' },
     encapsulation: ViewEncapsulation.None
 })
 export class EditorFooterComponent {

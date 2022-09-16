@@ -21,11 +21,10 @@ import {
     MODEL_EDITOR_ROUTES,
     ModelLoaderGuard,
     ModelEditorRouterGuardData,
-    ModelHeaderBreadcrumbProxyComponent,
+
     TabManagerComponent,
     PROCESSES_ENTITY_KEY,
-    PROCESS
-} from '@alfresco-dbp/modeling-shared/sdk';
+    PROCESS} from '@alfresco-dbp/modeling-shared/sdk';
 import { PROCESS_ICON } from '../extension/processes-filter.extension';
 import { GetProcessAttemptAction } from '../store/process-editor.actions';
 import { ProcessesLoaderGuard } from './guards/processes-loader.guard';
@@ -48,14 +47,6 @@ export const processEditorTabRoutes: Routes = [
                             entityIcon: PROCESS_ICON,
                             actionClass: GetProcessAttemptAction
                         } as ModelEditorRouterGuardData
-                    },
-                    {
-                        path: '',
-                        component: ModelHeaderBreadcrumbProxyComponent,
-                        outlet: 'editors-headers',
-                        data: {
-                            modelType: PROCESSES_ENTITY_KEY
-                        }
                     }
                 ]
 

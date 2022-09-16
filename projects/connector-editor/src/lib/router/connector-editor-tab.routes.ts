@@ -21,13 +21,12 @@ import {
     MODEL_EDITOR_ROUTES,
     ModelLoaderGuard,
     ModelEditorRouterGuardData,
-    ModelHeaderBreadcrumbProxyComponent,
+
     TabManagerComponent,
     CONNECTORS_ENTITY_KEY,
     CONNECTOR_ICON,
     GetConnectorAttemptAction,
-    CONNECTOR
-} from '@alfresco-dbp/modeling-shared/sdk';
+    CONNECTOR} from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorsLoaderGuard } from './guards/connectors-loader.guard';
 
 
@@ -49,14 +48,6 @@ export const connectorEditorTabRoutes: Routes = [
                             entityIcon: CONNECTOR_ICON,
                             actionClass: GetConnectorAttemptAction
                         } as ModelEditorRouterGuardData
-                    },
-                    {
-                        path: '',
-                        component: ModelHeaderBreadcrumbProxyComponent,
-                        outlet: 'editors-headers',
-                        data: {
-                            modelType: CONNECTORS_ENTITY_KEY
-                        }
                     }
                 ]
 

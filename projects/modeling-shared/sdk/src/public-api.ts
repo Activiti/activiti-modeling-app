@@ -50,6 +50,7 @@ export * from './lib/components/save-as-dialog/public-api';
 export * from './lib/components/save-as-project-dialog/public-api';
 export * from './lib/components/variable-selectors/public-api';
 export * from './lib/components/tab-manager/public-api';
+export * from './lib/components/editor-footer/public-api';
 
 export * from './lib/api-implementations/acm-api/acm-api.module';
 export * from './lib/api-implementations/acm-api/request-api.helper';
