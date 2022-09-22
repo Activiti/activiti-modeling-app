@@ -133,14 +133,12 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should set timeDate as default timer type', () => {
+    it('should not display timer inputs if type is not selected', () => {
         const cycleInput = fixture.nativeElement.querySelector('div[class="timer-cycle"]');
+        const dateInput = fixture.nativeElement.querySelector('div[class="ama-timer-date"]');
         const durationInput = fixture.nativeElement.querySelector('div[class="ama-timer-duration"]');
-        const dateFormField = fixture.nativeElement.querySelector('div[class="ama-timer-date"]');
-        const dateInput = dateFormField.querySelector('mat-datetimepicker');
-
         expect(cycleInput).toBeNull();
-        expect(dateInput.getAttribute('type')).toEqual('datetime');
+        expect(dateInput).toBeNull();
         expect(durationInput).toBeNull();
     });
 

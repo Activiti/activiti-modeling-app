@@ -52,7 +52,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     timers = [];
     selectedTimer: Bpmn.DiagramElement;
     defaultTimerDefinition = '';
-    defaultTimerType = 'timeDate';
+    defaultTimerType = '';
     timerDefinitionForm: UntypedFormGroup;
     today = moment();
     eventType: string;
@@ -102,7 +102,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
 
     buildForm() {
         this.timerDefinitionForm = this.formBuilder.group({
-            timerType: new UntypedFormControl(this.defaultTimerType, [Validators.required]),
+            timerType: new UntypedFormControl(undefined, [Validators.required]),
             date: new UntypedFormControl(undefined, []),
             years: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
             months: new UntypedFormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
