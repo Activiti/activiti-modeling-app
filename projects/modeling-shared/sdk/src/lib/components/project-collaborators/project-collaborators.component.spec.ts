@@ -92,7 +92,7 @@ describe('ProjectCollaboratorsComponent', () => {
 
     it('should show the collaborators name initials if projects has less than 4 collaborators', () => {
         fixture.detectChanges();
-        const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-admin"] [id="user-initials-image"]');
+        const collaborator1: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-admin"] [data-automation-id="user-initials-image"]');
         expect(collaborator1.textContent).toBe('a');
         const collaborator2: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="collaborator-initial-hruser"]');
         expect(collaborator2.textContent).toBe('h');
