@@ -112,8 +112,8 @@ export class StudioHeaderComponent implements OnInit, OnDestroy {
         }
     }
 
-    openLogHistory(projectId: string) {
-        this.store.dispatch(new OpenLogHistory(projectId));
+    openLogHistory() {
+        this.store.dispatch(new OpenLogHistory());
     }
 
     saveAsProject(project: Partial<Project>) {

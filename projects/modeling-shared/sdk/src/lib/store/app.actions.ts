@@ -144,7 +144,7 @@ export class OpenAboutDialogAction implements Action {
 export const OPEN_LOG_HISTORY =  'OPEN_LOG_HISTORY';
 export class OpenLogHistory implements Action {
     readonly type = OPEN_LOG_HISTORY;
-    constructor(public projectId: string) {}
+    constructor() {}
 }
 
 
