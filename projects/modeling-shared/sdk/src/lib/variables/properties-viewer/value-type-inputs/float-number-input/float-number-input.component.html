@@ -1,0 +1,6 @@
+<mat-form-field floatLabel="never">
+    <input matInput [placeholder]="getPlaceholder() | translate"
+           [modelingsdk-allowed-characters]="regexInput" data-automation-id="properties-float-number-input" [formControl]="validatedInput"
+           [errorStateMatcher]="matcher">
+    <mat-error modelingsdk-input-error></mat-error>
+</mat-form-field>

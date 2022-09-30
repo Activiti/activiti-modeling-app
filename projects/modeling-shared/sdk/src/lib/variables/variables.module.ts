@@ -67,6 +67,7 @@ import { FocusInsideElementDirective } from './json-schema/components/json-schem
 import { JsonSchemaNodeSettingsComponent } from './json-schema/components/json-schema-node-settings/json-schema-node-settings.component';
 import { AccessorPipe } from './json-schema/components/json-schema-editor/accessor.pipe';
 import { PrimitivesModelingJsonSchemaProvider } from '../services/primitives-modeling-json-schema-provider.service';
+import { PropertiesViewerFloatNumberInputComponent } from './properties-viewer/value-type-inputs/float-number-input/float-number-input.component';
 
 @NgModule({
     imports: [
@@ -91,6 +92,7 @@ import { PrimitivesModelingJsonSchemaProvider } from '../services/primitives-mod
         PropertiesViewerFileInputComponent,
         PropertiesViewerModeledObjectInputComponent,
         PropertiesViewerArrayInputComponent,
+        PropertiesViewerFloatNumberInputComponent,
         ArrayInputDialogComponent,
         VariableValuePipe,
         VariableExpressionLanguagePipe,
@@ -129,6 +131,7 @@ import { PrimitivesModelingJsonSchemaProvider } from '../services/primitives-mod
         provideInputTypeItemHandler('folder', PropertiesViewerFolderInputComponent),
         provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
         provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent, 'json'),
+        provideInputTypeItemHandler('float-number', PropertiesViewerFloatNumberInputComponent),
         provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider),
         provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
         provideExpressionSyntaxHandler(JuelExpressionSyntax)

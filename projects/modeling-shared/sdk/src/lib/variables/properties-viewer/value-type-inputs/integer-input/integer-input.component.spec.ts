@@ -17,10 +17,8 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslationService, TranslationMock, CoreModule } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -28,6 +26,8 @@ import { PropertiesViewerIntegerInputComponent } from './integer-input.component
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { INPUT_TYPE_ITEM_HANDLER } from '../value-type-inputs';
 import { InputErrorDirective } from '../../input-error.directive';
+import { provideMockStore } from '@ngrx/store/testing';
+import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
 
 describe('PropertiesViewerIntegerInputComponent', () => {
     let component: PropertiesViewerIntegerInputComponent;
@@ -40,15 +40,19 @@ describe('PropertiesViewerIntegerInputComponent', () => {
                 TranslateModule.forRoot(),
                 FormsModule,
                 ReactiveFormsModule,
-                MatFormFieldModule,
-                CoreModule,
-                CommonModule,
                 MatInputModule
             ],
-            declarations: [PropertiesViewerIntegerInputComponent, InputErrorDirective],
+            declarations: [
+                PropertiesViewerIntegerInputComponent,
+                InputErrorDirective,
+                AllowedCharactersDirective
+            ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: {} },
+                provideMockStore({
+                    initialState: {},
+                })
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -57,21 +61,18 @@ describe('PropertiesViewerIntegerInputComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerIntegerInputComponent);
         component = fixture.componentInstance;
+        fixture.detectChanges();
     });
 
     describe('no model provided', () => {
-        beforeEach(() => {
-            component.ngOnInit();
-            fixture.detectChanges();
-        });
 
         it('should emit the changed value', () => {
             spyOn(component.change, 'emit');
 
             const stringInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
             stringInput.value = '11';
+            stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
-            stringInput.dispatchEvent(new Event('blur'));
 
             expect(component.change.emit).toHaveBeenCalledWith(11);
         });
@@ -85,7 +86,6 @@ describe('PropertiesViewerIntegerInputComponent', () => {
                 multipleOf: 2,
                 type: 'integer'
             };
-            component.ngOnInit();
             fixture.detectChanges();
         });
 
@@ -94,21 +94,21 @@ describe('PropertiesViewerIntegerInputComponent', () => {
 
             const stringInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
             stringInput.value = '12';
+            stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
-            stringInput.dispatchEvent(new Event('blur'));
 
             expect(component.change.emit).toHaveBeenCalledWith(12);
         });
 
-        it('should not emit the changed value when value is invalid', () => {
+        it('should emit null when value is invalid', () => {
             spyOn(component.change, 'emit');
 
             const stringInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
-            stringInput.value = '16';
+            stringInput.value = 'invalid';
+            stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
-            stringInput.dispatchEvent(new Event('blur'));
 
-            expect(component.change.emit).not.toHaveBeenCalled();
+            expect(component.change.emit).toHaveBeenCalledWith(null);
         });
 
         it('should display errors when validators are not met', () => {
@@ -118,30 +118,29 @@ describe('PropertiesViewerIntegerInputComponent', () => {
 
             const stringInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
             stringInput.value = '';
+            stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
-            stringInput.dispatchEvent(new Event('blur'));
-            fixture.detectChanges();
             fixture.detectChanges();
             let error: HTMLElement = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.REQUIRED');
 
             stringInput.value = '4';
+            stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
-            stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_VALUE');
 
             stringInput.value = '26';
+            stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
-            stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_VALUE');
 
             stringInput.value = '11';
+            stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
-            stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MULTIPLE_OF_VALUE');
