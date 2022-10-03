@@ -24,7 +24,7 @@ import { PROCESS_FILE_FORMAT } from '../../../helpers/utils/create-entries-names
 import { ModelContentSerializer } from '../model-content-serializer';
 import { ModelDataExtractor } from '../model-data-extractor';
 import { extractProcessData } from './model-data-extractors/process-data-extractor';
-const shortid = require('shortid');
+import { nanoid } from 'nanoid';
 
 @Injectable()
 export class ProcessApiVariation<M extends Process, C extends ProcessContent> implements ModelApiVariation<M, C> {
@@ -44,7 +44,7 @@ export class ProcessApiVariation<M extends Process, C extends ProcessContent> im
     }
 
     public createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
-        const processId = 'Process_' + shortid();
+        const processId = 'Process_' + nanoid(8);
 
         return {
             ...model,
