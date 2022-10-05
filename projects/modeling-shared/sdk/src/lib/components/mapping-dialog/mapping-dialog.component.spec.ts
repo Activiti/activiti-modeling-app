@@ -423,6 +423,21 @@ describe('MappingDialogComponent', () => {
 
             expect(tab).toBeFalsy();
         });
+
+
+        it('should hide the expression and value tab when the mappingType is output', async () => {
+            setUpTestBed(mockDialogDataOutputMapping);
+
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const expressionTab = fixture.debugElement.query(By.css('[data-automation-id="expression-mapping-tab"]'));
+            const valueTab = fixture.debugElement.query(By.css('[data-automation-id="value-mapping-tab"]'));
+
+            expect(expressionTab).toBeFalsy();
+            expect(valueTab).toBeFalsy();
+        });
     });
 
     describe('Init tabs', () => {
