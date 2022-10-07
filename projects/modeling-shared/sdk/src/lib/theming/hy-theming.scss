@@ -1,15 +1,48 @@
 $hy-black: #000000;
 $hy-white: #ffffff;
 
+$hy-coolGray-50: #f9fafb;
+$hy-coolGray-100: #f3f4f6;
+$hy-coolGray-200: #e5e7eb;
+$hy-coolGray-300: #d1d5db;
+$hy-coolGray-400: #9ca3af;
+$hy-coolGray-500: #6b7280;
+$hy-coolGray-600: #4b5563;
+$hy-coolGray-700: #374151;
+$hy-coolGray-800: #1f2937;
+$hy-coolGray-900: #111827;
+
+$hy-blue-50: #f1f8fe;
+$hy-blue-100: #e2eefa;
+$hy-blue-200: #b7d5f3;
+$hy-blue-300: #87b9ec;
+$hy-blue-400: #569de4;
+$hy-blue-500: #3288de;
+$hy-blue-600: #0e73d8;
+$hy-blue-700: #0a60ce;
+$hy-blue-800: #043cac;
+$hy-blue-900: #03318b;
+
+$hy-red-50: #fff4f3;
+$hy-red-100: #fedbd7;
+$hy-red-200: #fdc5bf;
+$hy-red-300: #fc9a8f;
+$hy-red-400: #fb6c5d;
+$hy-red-500: #f92d18;
+$hy-red-600: #da1500;
+$hy-red-700: #b71605;
+$hy-red-800: #941204;
+$hy-red-900: #720e03;
+
 // text
-$hy-text-black: mat-get($hy-coolGray, 900);
+$hy-text-black: $hy-coolGray-900;
 $hy-text-white: $hy-white;
-$hy-text-secondary: mat-get($hy-coolGray, 600);
-$hy-text-disabled: mat-get($hy-coolGray, 500);
+$hy-text-secondary: $hy-coolGray-600;
+$hy-text-disabled: $hy-coolGray-500;
 
 // feedback
-$hy-informational: mat-get($hy-coolGray, 500);
-$hy-error: mat-get($hy-red, 600);
+$hy-informational: $hy-coolGray-500;
+$hy-error: $hy-red-600;
 $hy-success: mat-get($hy-green, 600);
 $hy-warning: mat-get($hy-yellow, 400);
 
@@ -25,12 +58,12 @@ $hy-inactive-pressed: mat-get($hy-primary, 300);
 
 // functional
 $hy-functional-purple-bg: mat-get($hy-purple, 700);
-$hy-functional-blue-bg: mat-get($hy-blue, 700);
+$hy-functional-blue-bg: $hy-blue-700;
 $hy-functional-teal-bg: mat-get($hy-teal, 600);
 $hy-functional-green-bg: mat-get($hy-green, 600);
 $hy-functional-yellow-bg: mat-get($hy-yellow, 600);
 $hy-functional-orange-bg: mat-get($hy-orange, 600);
-$hy-functional-red-bg: mat-get($hy-red, 500);
+$hy-functional-red-bg: $hy-red-500;
 $hy-functional-pink-bg: mat-get($hy-pink, 600);
 
 // functionalText
@@ -40,7 +73,7 @@ $hy-functional-text-teal-bg: mat-get($hy-teal, 300);
 $hy-functional-text-lime-bg: mat-get($hy-lime, 400);
 $hy-functional-text-yellow-bg: mat-get($hy-yellow, 300);
 $hy-functional-text-orange-bg: mat-get($hy-orange, 400);
-$hy-functional-text-red-bg: mat-get($hy-red, 400);
+$hy-functional-text-red-bg: $hy-red-400;
 $hy-functional-text-orange-bg: mat-get($hy-orange, 400);
 $hy-functional-text-pink-bg: mat-get($hy-pink, 300);
 
@@ -61,29 +94,78 @@ $hy-bg-nav: #e5e7eb;
 $hy-bg-page: #ffffff;
 
 $hy-primary: (
-    50: mat-get($hy-blue, 50),
-    100: mat-get($hy-blue, 100),
-    200: mat-get($hy-blue, 200),
-    300: mat-get($hy-blue, 300),
-    400: mat-get($hy-blue, 400),
-    500: mat-get($hy-blue, 500),
-    600: mat-get($hy-blue, 600),
-    700: mat-get($hy-blue, 700),
-    800: mat-get($hy-blue, 800),
-    900: mat-get($hy-blue, 900),
+    50: $hy-blue-50,
+    100: $hy-blue-100,
+    200: $hy-blue-200,
+    300: $hy-blue-300,
+    400: $hy-blue-400,
+    500: $hy-blue-500,
+    600: $hy-blue-600,
+    700: $hy-blue-700,
+    800: $hy-blue-800,
+    900: $hy-blue-900,
+    contrast: (
+        50: $hy-coolGray-900,
+        100: $hy-coolGray-900,
+        200: $hy-coolGray-900,
+        300: $hy-coolGray-900,
+        400: $hy-coolGray-900,
+        500: $hy-coolGray-900,
+        600: $hy-white,
+        700: $hy-white,
+        800: $hy-white,
+        900: $hy-white
+    )
 );
 
 $hy-neutral: (
-    50: mat-get($hy-coolGray, 50),
-    100: mat-get($hy-coolGray, 100),
-    200: mat-get($hy-coolGray, 200),
-    300: mat-get($hy-coolGray, 300),
-    400: mat-get($hy-coolGray, 400),
-    500: mat-get($hy-coolGray, 500),
-    600: mat-get($hy-coolGray, 600),
-    700: mat-get($hy-coolGray, 700),
-    800: mat-get($hy-coolGray, 800),
-    900: mat-get($hy-coolGray, 900),
+    50: $hy-coolGray-50,
+    100: $hy-coolGray-100,
+    200: $hy-coolGray-200,
+    300: $hy-coolGray-300,
+    400: $hy-coolGray-400,
+    500: $hy-coolGray-500,
+    600: $hy-coolGray-600,
+    700: $hy-coolGray-700,
+    800: $hy-coolGray-800,
+    900: $hy-coolGray-900,
+    contrast: (
+        50: $hy-coolGray-900,
+        100: $hy-coolGray-900,
+        200: $hy-coolGray-900,
+        300: $hy-coolGray-900,
+        400: $hy-coolGray-900,
+        500: $hy-coolGray-900,
+        600: $hy-white,
+        700: $hy-white,
+        800: $hy-white,
+        900: $hy-white
+    )
+);
+
+$hy-warn: (
+    50: $hy-red-50,
+    100: $hy-red-100,
+    200: $hy-red-200,
+    300: $hy-red-300,
+    400: $hy-red-400,
+    500: $hy-red-500,
+    600: $hy-red-600,
+    700: $hy-red-700,
+    800: $hy-red-800,
+    900: $hy-red-900,
+    contrast: (
+        50: $hy-coolGray-900,
+        100: $hy-coolGray-900,
+        200: $hy-coolGray-900,
+        300: $hy-coolGray-900,
+        400: $hy-coolGray-900,
+        500: $hy-coolGray-900,
+        600: $hy-white,
+        700: $hy-white,
+        800: $hy-white,
+        900: $hy-white
+    )
 );
 
 $hy-blueGray: (
@@ -99,19 +181,6 @@ $hy-blueGray: (
     900: #0f172a
 );
 
-$hy-coolGray: (
-    50: #f9fafb,
-    100: #f3f4f6,
-    200: #e5e7eb,
-    300: #d1d5db,
-    400: #9ca3af,
-    500: #6b7280,
-    600: #4b5563,
-    700: #374151,
-    800: #1f2937,
-    900: #111827
-);
-
 $hy-gray: (
     50: #fafafa,
     100: #f4f4f5,
@@ -123,19 +192,6 @@ $hy-gray: (
     700: #3f3f46,
     800: #27272a,
     900: #18181b
-);
-
-$hy-blue: (
-    50: #f1f8fe,
-    100: #e2eefa,
-    200: #b7d5f3,
-    300: #87b9ec,
-    400: #569de4,
-    500: #3288de,
-    600: #0e73d8,
-    700: #0a60ce,
-    800: #043cac,
-    900: #03318b
 );
 
 $hy-trueGray: (
@@ -162,19 +218,6 @@ $hy-warmGray: (
     700: #44403c,
     800: #292524,
     900: #1c1917
-);
-
-$hy-red: (
-    50: #fff4f3,
-    100: #fedbd7,
-    200: #fdc5bf,
-    300: #fc9a8f,
-    400: #fb6c5d,
-    500: #f92d18,
-    600: #da1500,
-    700: #b71605,
-    800: #941204,
-    900: #720e03
 );
 
 $hy-orange: (
