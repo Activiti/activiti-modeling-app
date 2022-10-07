@@ -209,6 +209,10 @@ export class OutputMappingTableComponent implements OnChanges {
         return this.tableParameters[i]['processVariable'];
     }
 
+    isSystemVariable(index: number): boolean {
+        return this.tableParameters[index].system;
+    }
+
     private isExpression(parameter: ConnectorParameter): boolean {
         return parameter.mappingValueType && parameter.mappingValueType === EXPRESSION;
     }

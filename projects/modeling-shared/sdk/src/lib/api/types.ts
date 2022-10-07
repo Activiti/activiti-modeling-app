@@ -283,6 +283,7 @@ export interface EntityProperty {
     placeholder?: string;
     aggregatedTypes?: string[];
     analytics?: boolean;
+    system?: boolean;
 }
 
 export interface EntityProperties {

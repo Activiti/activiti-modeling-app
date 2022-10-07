@@ -16,9 +16,8 @@
  */
 
 import { Pipe, PipeTransform } from '@angular/core';
-/* cSpell:disable */
+
 @Pipe({ name: 'variablevalue' })
-/* cSpell:enable */
 export class VariableValuePipe implements PipeTransform {
     transform(value: any, limit?: number, isExpression?: boolean): string {
         if (value === undefined || value === null) {

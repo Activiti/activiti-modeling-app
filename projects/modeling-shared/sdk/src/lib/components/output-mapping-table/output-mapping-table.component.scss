@@ -57,6 +57,14 @@
     }
 }
 
+.modelingsdk-output-mapping-edit-button.mat-button-disabled {
+    .modelingsdk-output-mapping-table {
+        &__mapping-icon.mat-icon {
+            color: var(--theme-text-disabled-color);
+        }
+    }
+}
+
 .ama-help-icon {
     line-height: 10px;
     font-size: 16px;

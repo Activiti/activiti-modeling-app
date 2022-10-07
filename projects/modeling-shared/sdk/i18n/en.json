@@ -76,7 +76,8 @@
             "MAP_ALL": "Map all inputs/outputs variables",
             "MAP_ALL_INPUTS": "Map all inputs variables",
             "MAP_ALL_OUTPUTS": "Map all outputs variables",
-            "NONE": "None"
+            "NONE": "None",
+            "NOT_EDITABLE": "This is a system parameter. System parameters cannot be edited."
         },
         "MESSAGES_EDITOR": {
             "TITLE": "Process Messages",

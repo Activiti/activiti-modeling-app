@@ -16,25 +16,28 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ExpressionSyntax, MappingType, ProcessEditorElementWithVariables, ServiceParameterMapping } from '../../api/types';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { OutputMappingTableModule } from './output-mapping-table.module';
 import { MatDialog } from '@angular/material/dialog';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
-import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { mockDropDownFields, mockDropDownProcessVariable, mockValueMapping } from './output-mapping-table.component.mock';
 import { TranslateModule } from '@ngx-translate/core';
-import { of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS } from '../../services/process-editor-element-variables-provider.service';
 import { ProcessEditorElementVariablesService } from '../../services/process-editor-element-variables.service';
 import { VariableMappingType } from '../../services/mapping-dialog.service';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { MatTooltip } from '@angular/material/tooltip';
+import {
+    mockOutputParameters,
+    mockProcessVariables,
+    mockSystemTaskAssigneeParameter
+} from './mock/output-mapping.mock';
 
 describe('OutputMappingTableComponent', () => {
     let fixture: ComponentFixture<OutputMappingTableComponent>;
@@ -46,24 +49,15 @@ describe('OutputMappingTableComponent', () => {
             imports: [
                 CoreModule.forChild(),
                 OutputMappingTableModule,
-                NoopAnimationsModule,
-                FormsModule,
                 TranslateModule.forRoot()
             ],
             providers: [
-                {
-                    provide: Store,
-                    useValue: {
-                        select: jest.fn().mockImplementation(selector => {
-                            if (selector === selectSelectedTheme) {
-                                return of('vs-light');
-                            }
-
-                            return of({});
-                        }),
-                        dispatch: jest.fn()
-                    }
-                },
+                provideMockStore({
+                   initialState: {},
+                   selectors: [
+                       { selector: selectSelectedTheme, value: 'vs-light'}
+                   ]
+                }),
                 {
                     provide: TranslationService,
                     useClass: TranslationMock
@@ -72,7 +66,7 @@ describe('OutputMappingTableComponent', () => {
                 MatDialog,
                 { provide: PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS, useValue: [] },
                 ProcessEditorElementVariablesService
-            ], schemas: [NO_ERRORS_SCHEMA]
+            ]
         });
     });
 
@@ -80,42 +74,8 @@ describe('OutputMappingTableComponent', () => {
         dialogService = TestBed.inject(DialogService);
         fixture = TestBed.createComponent(OutputMappingTableComponent);
         component = fixture.componentInstance;
-        component.parameters = [{
-            id: 'id1',
-            name: 'name',
-            description: 'desc',
-            type: 'string'
-        }, {
-            id: 'idToFilter',
-            name: 'variables.filterMe',
-            description: 'this is the parameter that needs to be filtered',
-            type: 'string'
-        }];
-        component.processProperties = [
-            {
-                source: {
-                    name: 'Process',
-                    type: ProcessEditorElementWithVariables.Process
-                },
-                variables: [
-                    {
-                        id: '1',
-                        name: 'var1',
-                        type: 'string'
-                    },
-                    {
-                        id: '2',
-                        name: 'var2',
-                        type: 'date'
-                    },
-                    {
-                        id: 'stringVarId',
-                        name: 'stringVar',
-                        type: 'string'
-                    }
-                ]
-            }
-        ];
+        component.parameters = mockOutputParameters;
+        component.processProperties = mockProcessVariables;
         component.mapping = {};
 
         component.ngOnChanges();
@@ -254,5 +214,62 @@ describe('OutputMappingTableComponent', () => {
 
         expect(component.expressionSyntax).toEqual(ExpressionSyntax.JUEL);
         expect(dialogService.openDialog).toHaveBeenCalledWith(MappingDialogComponent, expectedData);
+    });
+
+    it('should edit button be disabled for system output parameters', () => {
+        component.parameters = [mockSystemTaskAssigneeParameter];
+        component.ngOnChanges();
+        fixture.detectChanges();
+        const editButton = fixture.debugElement.query(By.css('[data-automation-id="edit-output-mapping-button-sys_task_assignee"]'));
+
+        expect(editButton.nativeElement.disabled).toBeTruthy();
+    });
+
+    it('should display a tooltip in the edit icon that system output parameters are not editable', () => {
+        component.parameters = [mockSystemTaskAssigneeParameter];
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const editIcon = fixture.debugElement.query(By.css('[data-automation-id="edit-output-mapping-icon-sys_task_assignee"]'));
+        const tooltip = editIcon.injector.get(MatTooltip);
+
+        expect(tooltip.disabled).toEqual(false);
+        expect(tooltip.message).toEqual('SDK.VARIABLE_MAPPING.NOT_EDITABLE');
+    });
+
+    it('should not display a tooltip for non system output parameters in the edit icon', () => {
+        component.parameters = [mockDropDownFields[0]];
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const editIcon = fixture.debugElement.query(By.css('[data-automation-id="edit-output-mapping-icon-Dropdown009gay"]'));
+        const tooltip = editIcon.injector.get(MatTooltip);
+
+        expect(tooltip.disabled).toEqual(true);
+    });
+
+    it('should not be able to open an edit dialog when edit button is disabled', () => {
+        const openEditDialogSpy = spyOn(dialogService, 'openDialog');
+        component.parameters = [mockSystemTaskAssigneeParameter];
+        component.ngOnChanges();
+        fixture.detectChanges();
+        const editButton = fixture.debugElement.query(By.css('[data-automation-id="edit-output-mapping-button-sys_task_assignee"]'));
+        editButton.nativeElement.click();
+
+        expect(openEditDialogSpy).not.toHaveBeenCalled();
+    });
+
+    it('should be able to map a system output parameters to a process variable', () => {
+        const updateSpy = spyOn(component.update, 'emit');
+        component.parameters = [mockSystemTaskAssigneeParameter];
+        component.changeSelection(mockProcessVariables[0].variables[2], 0, component.parameters[0]);
+
+        const expectedData: ServiceParameterMapping = {
+            ['stringVar']: {
+                type: MappingType.variable,
+                value: mockSystemTaskAssigneeParameter.name
+            }
+        };
+        expect(updateSpy).toHaveBeenCalledWith(expectedData);
     });
 });

@@ -31,10 +31,19 @@
                 [variablesPanelWidth]="200"
                 [filterExpressionVariables]="true">
             </modelingsdk-variable-selector-dropdown>
-            <mat-icon (click)="edit(i)" class="modelingsdk-input-mapping-table__mapping-icon adf-textitem-action"
-                [attr.data-automation-id]="'edit-output-mapping-' + i">
-                edit
-            </mat-icon>
+            <button mat-icon-button
+                    class="modelingsdk-output-mapping-edit-button"
+                    [attr.data-automation-id]="'edit-output-mapping-button-' + parameter.id"
+                    [disabled]="isSystemVariable(i)"
+                    (click)="edit(i)">
+                <mat-icon class="modelingsdk-output-mapping-table__mapping-icon adf-textitem-action"
+                          [attr.data-automation-id]="'edit-output-mapping-icon-' + parameter.id"
+                          [matTooltipDisabled]="!isSystemVariable(i)"
+                          matTooltip="{{'SDK.VARIABLE_MAPPING.NOT_EDITABLE' | translate}}"
+                          matTooltipPosition="below">
+                    edit
+                </mat-icon>
+            </button>
         </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
