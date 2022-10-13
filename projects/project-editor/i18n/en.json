@@ -204,6 +204,8 @@
         "ERROR": {
             "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exists.",
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
+            "WRONG_UPLOADED_FILE": "We hit a problem uploading the file. Please verify if the file is valid and the file type is allowed, then try uploading it again.",
+            "UPLOADED_FILE_TOO_BIG": "We hit a problem uploading the file. Please verify if the file size is correct and try uploading it again.",
             "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",
             "ADD_TO_FAVORITES": "We hit a problem adding the project to favorites. Try adding it again.",
             "REMOVE_FROM_FAVORITES": "We hit a problem removing the project from favorites. Try removing it again.",

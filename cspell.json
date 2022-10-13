@@ -58,6 +58,9 @@
         "keycodes",
         "stylelint",
         "SQLSERVER",
-        "juel"
+        "juel",
+        "UNCATEGORIZED",
+        "Uncategorized",
+        "favoriting"
     ]
 }
