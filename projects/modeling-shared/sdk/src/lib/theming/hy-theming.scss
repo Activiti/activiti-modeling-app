@@ -1,3 +1,6 @@
+@import '@alfresco/adf-core/theming';
+@import '~@angular/material/theming';
+
 $hy-black: #000000;
 $hy-white: #ffffff;
 
@@ -11,6 +14,10 @@ $hy-coolGray-600: #4b5563;
 $hy-coolGray-700: #374151;
 $hy-coolGray-800: #1f2937;
 $hy-coolGray-900: #111827;
+$hy-coolGray-A100: #111827;
+$hy-coolGray-A200: #111827;
+$hy-coolGray-A400: #111827;
+$hy-coolGray-A700: #111827;
 
 $hy-blue-50: #f1f8fe;
 $hy-blue-100: #e2eefa;
@@ -22,6 +29,10 @@ $hy-blue-600: #0e73d8;
 $hy-blue-700: #0a60ce;
 $hy-blue-800: #043cac;
 $hy-blue-900: #03318b;
+$hy-blue-A100: #03318b;
+$hy-blue-A200: #03318b;
+$hy-blue-A400: #03318b;
+$hy-blue-A700: #03318b;
 
 $hy-red-50: #fff4f3;
 $hy-red-100: #fedbd7;
@@ -33,65 +44,10 @@ $hy-red-600: #da1500;
 $hy-red-700: #b71605;
 $hy-red-800: #941204;
 $hy-red-900: #720e03;
-
-// text
-$hy-text-black: $hy-coolGray-900;
-$hy-text-white: $hy-white;
-$hy-text-secondary: $hy-coolGray-600;
-$hy-text-disabled: $hy-coolGray-500;
-
-// feedback
-$hy-informational: $hy-coolGray-500;
-$hy-error: $hy-red-600;
-$hy-success: mat-get($hy-green, 600);
-$hy-warning: mat-get($hy-yellow, 400);
-
-// activeState
-$hy-active-focused: mat-get($hy-primary, 100);
-$hy-inactive-focused: mat-get($hy-primary, 100);
-$hy-active-unfocused: mat-get($hy-neutral, 100);
-$hy-inactive-hover: mat-get($hy-neutral, 100);
-$hy-keyboard-focus: $hy-black;
-$hy-active-hover: mat-get($hy-primary, 100);
-$hy-active-pressed: mat-get($hy-primary, 200);
-$hy-inactive-pressed: mat-get($hy-primary, 300);
-
-// functional
-$hy-functional-purple-bg: mat-get($hy-purple, 700);
-$hy-functional-blue-bg: $hy-blue-700;
-$hy-functional-teal-bg: mat-get($hy-teal, 600);
-$hy-functional-green-bg: mat-get($hy-green, 600);
-$hy-functional-yellow-bg: mat-get($hy-yellow, 600);
-$hy-functional-orange-bg: mat-get($hy-orange, 600);
-$hy-functional-red-bg: $hy-red-500;
-$hy-functional-pink-bg: mat-get($hy-pink, 600);
-
-// functionalText
-$hy-functional-text-purple-bg: mat-get($hy-purple, 300);
-$hy-functional-text-blue-bg: #3abff8;
-$hy-functional-text-teal-bg: mat-get($hy-teal, 300);
-$hy-functional-text-lime-bg: mat-get($hy-lime, 400);
-$hy-functional-text-yellow-bg: mat-get($hy-yellow, 300);
-$hy-functional-text-orange-bg: mat-get($hy-orange, 400);
-$hy-functional-text-red-bg: $hy-red-400;
-$hy-functional-text-orange-bg: mat-get($hy-orange, 400);
-$hy-functional-text-pink-bg: mat-get($hy-pink, 300);
-
-// buttonState
-$hy-btn-basic-hover: #0000000a;
-$hy-btn-basic-pressed: #00000017;
-$hy-btn-primary-hover: #0e73d80a;
-$hy-btn-primary-pressed: #0e73d81a;
-$hy-btn-warn-hover: #da15000a;
-$hy-btn-warn-pressed: #da15001a;
-$hy-flat-btn-blk-hover: #0000000a;
-$hy-flat-btn-blk-pressed: #0000001a;
-$hy-flat-btn-white-hover: #ffffff14;
-$hy-flat-btn-white-pressed: #ffffff1a;
-
-// background
-$hy-bg-nav: #e5e7eb;
-$hy-bg-page: #ffffff;
+$hy-red-A100 : #720e03;
+$hy-red-A200 : #720e03;
+$hy-red-A400 : #720e03;
+$hy-red-A700 : #720e03;
 
 $hy-primary: (
     50: $hy-blue-50,
@@ -104,6 +60,10 @@ $hy-primary: (
     700: $hy-blue-700,
     800: $hy-blue-800,
     900: $hy-blue-900,
+    A100: $hy-blue-A100,
+    A200: $hy-blue-A200,
+    A400: $hy-blue-A400,
+    A700: $hy-blue-A700,
     contrast: (
         50: $hy-coolGray-900,
         100: $hy-coolGray-900,
@@ -114,7 +74,11 @@ $hy-primary: (
         600: $hy-white,
         700: $hy-white,
         800: $hy-white,
-        900: $hy-white
+        900: $hy-white,
+        A100: $hy-white,
+        A200: $hy-white,
+        A400: $hy-white,
+        A700: $hy-white
     )
 );
 
@@ -129,6 +93,10 @@ $hy-neutral: (
     700: $hy-coolGray-700,
     800: $hy-coolGray-800,
     900: $hy-coolGray-900,
+    A100: $hy-coolGray-A100,
+    A200: $hy-coolGray-A200,
+    A400: $hy-coolGray-A400,
+    A700: $hy-coolGray-A700,
     contrast: (
         50: $hy-coolGray-900,
         100: $hy-coolGray-900,
@@ -139,7 +107,11 @@ $hy-neutral: (
         600: $hy-white,
         700: $hy-white,
         800: $hy-white,
-        900: $hy-white
+        900: $hy-white,
+        A100: $hy-white,
+        A200: $hy-white,
+        A400: $hy-white,
+        A700: $hy-white
     )
 );
 
@@ -154,6 +126,10 @@ $hy-warn: (
     700: $hy-red-700,
     800: $hy-red-800,
     900: $hy-red-900,
+    A100: $hy-red-A100,
+    A200: $hy-red-A200,
+    A400: $hy-red-A400,
+    A700: $hy-red-A700,
     contrast: (
         50: $hy-coolGray-900,
         100: $hy-coolGray-900,
@@ -164,7 +140,11 @@ $hy-warn: (
         600: $hy-white,
         700: $hy-white,
         800: $hy-white,
-        900: $hy-white
+        900: $hy-white,
+        A100: $hy-white,
+        A200: $hy-white,
+        A400: $hy-white,
+        A700: $hy-white
     )
 );
 
@@ -273,6 +253,19 @@ $hy-lime: (
 );
 
 $hy-lime: (
+    50: #f7fee7,
+    100: #ecfccb,
+    200: #d9f99d,
+    300: #bef264,
+    400: #a3e635,
+    500: #84cc16,
+    600: #65a30d,
+    700: #4d7c0f,
+    800: #3f6212,
+    900: #365314
+);
+
+$hy-green: (
     50: #e3f9e3,
     100: #cef4ce,
     200: #b9efb9,
@@ -414,3 +407,13 @@ $hy-rose: (
     800: #9f1239,
     900: #881337
 );
+
+$primary: mat-palette($hy-primary);
+$accent: mat-palette($hy-neutral);
+$warn: mat-palette($hy-warn);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+$dark-primary: mat-palette($hy-primary);
+$dark-accent: mat-palette($hy-neutral);
+$dark-warn: mat-palette($hy-warn);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);

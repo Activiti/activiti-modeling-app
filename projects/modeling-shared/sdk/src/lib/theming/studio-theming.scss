@@ -104,7 +104,6 @@ $studio-dark-warn: (
     )
 );
 
-
 $primary: mat-palette($studio-orange);
 $accent: mat-palette($mat-grey);
 $warn: mat-palette($studio-light-warn);
@@ -114,4 +113,3 @@ $dark-primary: mat-palette($studio-orange);
 $dark-accent: mat-palette($mat-grey);
 $dark-warn: mat-palette($studio-dark-warn);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-

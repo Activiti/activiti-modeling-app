@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import 'studio-theming.scss';
+@import 'hy-theming.scss';
 @import '@alfresco/adf-core/theming';
 
 @include mat.core($alfresco-typography);
@@ -29,11 +29,72 @@ $warn: map-get($theme, warn);
 $accent: map-get($theme, accent);
 $primary: map-get($theme, primary);
 
+// text
+$hy-text-black: $hy-coolGray-900;
+$hy-text-white: $hy-white;
+$hy-text-secondary: $hy-coolGray-600;
+$hy-text-disabled: $hy-coolGray-500;
+
+// feedback
+$hy-informational: $hy-coolGray-500;
+$hy-error: $hy-red-600;
+$hy-success: map-get($hy-green, 600);
+$hy-warning: map-get($hy-yellow, 400);
+
+// activeState
+$hy-active-focused: map-get($hy-primary, 100);
+$hy-inactive-focused: map-get($hy-primary, 100);
+$hy-active-unfocused: map-get($hy-neutral, 100);
+$hy-inactive-hover: map-get($hy-neutral, 100);
+$hy-keyboard-focus: $hy-black;
+$hy-active-hover: map-get($hy-primary, 100);
+$hy-active-pressed: map-get($hy-primary, 200);
+$hy-inactive-pressed: map-get($hy-primary, 300);
+
+// functional
+$hy-functional-purple-bg: map-get($hy-purple, 700);
+$hy-functional-blue-bg: $hy-blue-700;
+$hy-functional-teal-bg: map-get($hy-teal, 600);
+$hy-functional-green-bg: map-get($hy-green, 600);
+$hy-functional-yellow-bg: map-get($hy-yellow, 600);
+$hy-functional-orange-bg: map-get($hy-orange, 600);
+$hy-functional-red-bg: $hy-red-500;
+$hy-functional-pink-bg: map-get($hy-pink, 600);
+
+// functionalText
+$hy-functional-text-purple-bg: map-get($hy-purple, 300);
+$hy-functional-text-blue-bg: #3abff8;
+$hy-functional-text-teal-bg: map-get($hy-teal, 300);
+$hy-functional-text-lime-bg: map-get($hy-lime, 400);
+$hy-functional-text-yellow-bg: map-get($hy-yellow, 300);
+$hy-functional-text-orange-bg: map-get($hy-orange, 400);
+$hy-functional-text-red-bg: $hy-red-400;
+$hy-functional-text-orange-bg: map-get($hy-orange, 400);
+$hy-functional-text-pink-bg: map-get($hy-pink, 300);
+
+// buttonState
+$hy-btn-basic-hover: #0000000a;
+$hy-btn-basic-pressed: #00000017;
+$hy-btn-primary-hover: #0e73d80a;
+$hy-btn-primary-pressed: #0e73d81a;
+$hy-btn-warn-hover: #da15000a;
+$hy-btn-warn-pressed: #da15001a;
+$hy-flat-btn-blk-hover: #0000000a;
+$hy-flat-btn-blk-pressed: #0000001a;
+$hy-flat-btn-white-hover: #ffffff14;
+$hy-flat-btn-white-pressed: #ffffff1a;
+
+// background
+$hy-bg-nav: #e5e7eb;
+$hy-bg-page: #ffffff;
+$hy-background: map-get($hy-trueGray, 800);
+$hy-light-gray: map-get($hy-trueGray, 900);
+
 // map SCSS variables to expose as CSS variables
 $defaults: (
   --theme-primary-color: mat.get-color-from-palette($primary),
-  --theme-studio-background: mat.get-contrast-color-from-palette($primary, 50),
-  --theme-studio-gray-color: mat.get-contrast-color-from-palette($primary, 100),
+  --theme-studio-background: $hy-background,
+  --theme-studio-gray-color: $hy-light-gray,
   --theme-primary-color-default-contrast: mat.get-color-from-palette($primary, default-contrast),
   --theme-warn-color: mat.get-color-from-palette($warn),
   --theme-warn-color-default-contrast: mat.get-color-from-palette($warn, default-contrast),
@@ -43,8 +104,8 @@ $defaults: (
   --theme-text-color: mat.get-color-from-palette($foreground, text, 0.54),
   --theme-text-bold-color: mat.get-color-from-palette($foreground, text, 0.87),
   --theme-title-color: mat.get-color-from-palette($foreground, text, 0.87),
-  --theme-text-disabled-color: mat.get-color-from-palette($foreground, text, 0.38),
-  --theme-text-selection-color: mat.get-color-from-palette($primary, 100),
+  --theme-text-disabled-color: $hy-text-disabled,
+  --theme-text-selection-color: $hy-active-focused,
   --theme-border-color: mat.get-color-from-palette($foreground, text, 0.07),
   --theme-border-color-light: mat.get-color-from-palette($foreground, text, 0.2),
   --theme-card-background-color: mat.get-color-from-palette($background, card),
@@ -57,8 +118,8 @@ $defaults: (
   --theme-app-bar-bg-color: mat.get-color-from-palette($background, app-bar),
   --theme-status-bar-bg-color: mat.get-color-from-palette($background, status-bar, 0.7),
   --theme-unselected-chip-bg-color: mat.get-color-from-palette($background, unselected-chip),
-  --theme-disabled-text-color: mat.get-color-from-palette($foreground, disabled-text),
-  --theme-selected-button-bg-color: mat.get-color-from-palette($background, selected-button),
+  --theme-disabled-text-color: $hy-text-disabled,
+  --theme-selected-button-bg-color: $hy-btn-basic-hover,
   --theme-raised-button-bg-color: mat.get-color-from-palette($background, raised-button),
   --theme-icons-fg-color: mat.get-color-from-palette($foreground, icons),
   --theme-slider-off-fg-color: mat.get-color-from-palette($foreground, slider-off),
@@ -87,13 +148,8 @@ $defaults: (
   --adf-card-view-datetime-border-color: mat.get-color-from-palette($foreground, text, 0.42),
   --theme-document-color: #00953b,
   --theme-ama-log-panel-bg-color: mat.get-color-from-palette($foreground, text, 0.01),
-  --theme-dark-background-color: #424242,
-  --theme-dark-mat-drawer-background-color: #303030,
-  --theme-dark-header-toolbar-color: #212121,
-  --theme-dark-monoco-editor-color: black,
   --theme-light-monoco-editor-color: #fffffe,
   --theme-ama-border-color: #dce0e6,
-  --theme-tab-unfocused: mat.get-contrast-color-from-palette($primary, 50),
 
   // ADF components and services
   --adf-snackbar-error-bg-color: mat.get-color-from-palette($warn),
@@ -104,6 +160,11 @@ $defaults: (
   --adf-snackbar-info-action-color: white,
   --adf-header-text-color: mat.get-color-from-palette($primary, default-contrast),
   --adf-user-info-color: mat.get-color-from-palette($primary, 300),
+
+  // hy-theme
+  --theme-inactive-focused: $hy-inactive-focused,
+  --theme-text-white: $hy-text-white,
+  --theme-tab-unfocused: mat.get-color-from-palette($accent, 300)
 );
 
 // propagates SCSS variables into the CSS variables scope
@@ -135,28 +196,6 @@ body {
           padding: 20px 0 24px;
       }
   }
-}
-
-body.dark-theme {
-    @include mat.all-component-themes($dark-theme);
-    @include adf-core-theme($dark-theme);
-    background-color: var(--theme-dark-background-color);
-
-    .mat-drawer-content {
-      background-color: var(--theme-dark-mat-drawer-background-color);
-    }
-
-    .monaco-editor {
-      background-color: var(--theme-dark-monoco-editor-color);
-
-      &-background {
-        background-color: var(--theme-dark-monoco-editor-color);
-      }
-    }
-
-    .ama-model-header .mat-toolbar-single-row {
-      background: var(--theme-dark-header-toolbar-color);
-    }
 }
 
 .mat-icon {
