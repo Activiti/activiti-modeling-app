@@ -76,7 +76,8 @@
       "MAP_ALL": "Alle invoer-/uitvoervariabelen toewijzen",
       "MAP_ALL_INPUTS": "Alle invoervariabelen toewijzen",
       "MAP_ALL_OUTPUTS": "Alle uitvoervariabelen toewijzen",
-      "NONE": "Geen"
+      "NONE": "Geen",
+      "NOT_EDITABLE": "Dit is een systeemparameter. Systeemparameters kunnen niet worden bewerkt."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Procesberichten",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitieven",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Aangepaste invoer",
       "DATE": {
         "CURRENT_DATE": "Vandaag",
         "CLEAR_BUTTON": "Wissen"

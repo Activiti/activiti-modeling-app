@@ -76,7 +76,8 @@
       "MAP_ALL": "Tilordne alle inndata-/utdata-variabler",
       "MAP_ALL_INPUTS": "Tilordne alle inndatavariabler",
       "MAP_ALL_OUTPUTS": "Tilordne alle utdatavariabler",
-      "NONE": "Ingen"
+      "NONE": "Ingen",
+      "NOT_EDITABLE": "Dette er et systemparameter. Systemparametere kan ikke redigeres."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Prosessmeldinger",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitiver",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Egendefinerte inndata",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Fjern"

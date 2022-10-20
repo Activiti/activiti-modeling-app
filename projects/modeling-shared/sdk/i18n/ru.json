@@ -76,7 +76,8 @@
       "MAP_ALL": "Сопоставить все входные/выходные переменные",
       "MAP_ALL_INPUTS": "Сопоставить все входные переменные",
       "MAP_ALL_OUTPUTS": "Сопоставить все выходные переменные",
-      "NONE": "Нет"
+      "NONE": "Нет",
+      "NOT_EDITABLE": "Это системный параметр. Системные параметры невозможно изменить."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Сообщения процесса",
@@ -136,7 +137,7 @@
       "OPEN_TESTER": "Открыть средство тестирования",
       "CLOSE_TESTER": "Закрыть средство тестирования",
       "SET_VARIABLES_VALUES": "Установить значения переменной",
-      "SET_VARIABLES_VALUES_TOOLTIP": "Выберите переменную, чтобы установиь ее значение в тесте",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Выберите переменную, чтобы установить ее значение в тесте",
       "DELETE_VARIABLE_FROM_TEST": "Удалить переменную из теста"
     },
     "VARIABLES_SELECTORS": {
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Примитивы",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Пользовательский ввод",
       "DATE": {
         "CURRENT_DATE": "Сегодня",
         "CLEAR_BUTTON": "Очистить"

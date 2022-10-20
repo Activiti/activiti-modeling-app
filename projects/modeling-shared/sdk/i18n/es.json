@@ -76,7 +76,8 @@
       "MAP_ALL": "Asignar todas las variables de entradas/salidas",
       "MAP_ALL_INPUTS": "Asignar todas las variables de entradas",
       "MAP_ALL_OUTPUTS": "Asignar todas las variables de salidas",
-      "NONE": "Ninguna"
+      "NONE": "Ninguna",
+      "NOT_EDITABLE": "Esto es un parámetro del sistema. Los parámetros del sistema no se pueden editar."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Mensajes del proceso",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitivas",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Entradas personalizadas",
       "DATE": {
         "CURRENT_DATE": "Hoy",
         "CLEAR_BUTTON": "Borrar"

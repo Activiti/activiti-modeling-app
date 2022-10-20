@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} Gruppen",
         "ASSIGN": "Zuweisen",
         "CLOSE": "Schließen",
+        "STRATEGY": "Zuweisungstyp",
         "EXPRESSION": {
           "TITLE": "Ausdruck",
           "CANDIDATE_EMPTY": "Kandidaten können nicht leer sein. Geben Sie entweder Kandidatenbenutzer oder Kandidatengruppen ein.",

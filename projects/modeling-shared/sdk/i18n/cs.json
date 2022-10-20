@@ -76,7 +76,8 @@
       "MAP_ALL": "Mapovat všechny vstupní/výstupní proměnné",
       "MAP_ALL_INPUTS": "Mapovat všechny vstupní proměnné",
       "MAP_ALL_OUTPUTS": "Mapovat všechny výstupní proměnné",
-      "NONE": "Žádný"
+      "NONE": "Žádný",
+      "NOT_EDITABLE": "Toto je systémový parametr. Systémové parametry nelze upravit."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Zpráva procesu",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitivy",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Vlastní vstupy",
       "DATE": {
         "CURRENT_DATE": "Dnes",
         "CLEAR_BUTTON": "Vymazat"

@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} grupper",
         "ASSIGN": "Tildel",
         "CLOSE": "Luk",
+        "STRATEGY": "Tildelingstype",
         "EXPRESSION": {
           "TITLE": "Udtryk",
           "CANDIDATE_EMPTY": "Kandidater kan ikke være tomme, angiv enten kandidatbrugere eller kandidatgrupper",

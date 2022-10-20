@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} grupper",
         "ASSIGN": "Tilordne",
         "CLOSE": "Lukk",
+        "STRATEGY": "Tilordningstype",
         "EXPRESSION": {
           "TITLE": "Uttrykk",
           "CANDIDATE_EMPTY": "Kandidater kan ikke stå tomt – oppgi enten kandidatbrukere eller kandidatgrupper",

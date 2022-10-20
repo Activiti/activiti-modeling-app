@@ -76,7 +76,8 @@
       "MAP_ALL": "Odzworuj wszystkie zmienne wejściowe/wyjściowe",
       "MAP_ALL_INPUTS": "Odwzoruj wszystkie zmienne wejściowe",
       "MAP_ALL_OUTPUTS": "Odwzoruj wszystkie zmienne wyjściowe",
-      "NONE": "Brak"
+      "NONE": "Brak",
+      "NOT_EDITABLE": "To jest parametr systemowy. Parametrów systemowych nie można edytować."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Komunikaty procesu",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Wartości pierwotne",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Niestandardowe dane wejściowe",
       "DATE": {
         "CURRENT_DATE": "Dzisiaj",
         "CLEAR_BUTTON": "Wyczyść"

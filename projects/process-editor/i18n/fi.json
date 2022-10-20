@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} ryhmää",
         "ASSIGN": "Määritä",
         "CLOSE": "Sulje",
+        "STRATEGY": "Määrityksen tyyppi",
         "EXPRESSION": {
           "TITLE": "Lauseke",
           "CANDIDATE_EMPTY": "Kandidaattikentät eivät voi olla tyhjiä, anna joko candidateUsers tai candidateGroups",

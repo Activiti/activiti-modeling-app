@@ -76,7 +76,8 @@
       "MAP_ALL": "Mapper toutes les variables d'entrée/sortie",
       "MAP_ALL_INPUTS": "Mapper toutes les variables d'entrée",
       "MAP_ALL_OUTPUTS": "Mapper toutes les variables de sortie",
-      "NONE": "Aucune"
+      "NONE": "Aucune",
+      "NOT_EDITABLE": "Ceci est un paramètre système. Les paramètres système ne peuvent pas être modifiés."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Messages de processus",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitives",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Entrées personnalisées",
       "DATE": {
         "CURRENT_DATE": "Aujourd'hui",
         "CLEAR_BUTTON": "Supprimer"

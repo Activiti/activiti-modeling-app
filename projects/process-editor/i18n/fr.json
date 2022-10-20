@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} groupes",
         "ASSIGN": "Assigner",
         "CLOSE": "Fermer",
+        "STRATEGY": "Type d'affectation",
         "EXPRESSION": {
           "TITLE": "Expression",
           "CANDIDATE_EMPTY": "Les champs des candidats ne peuvent pas être vides. Renseignez soit Utilisateurs candidats soit Groupes candidats",

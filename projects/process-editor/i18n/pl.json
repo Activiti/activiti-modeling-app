@@ -190,6 +190,7 @@
         "GROUPS": "Liczba grup: {{count}}",
         "ASSIGN": "Przypisz",
         "CLOSE": "Zamknij",
+        "STRATEGY": "Typ przypisania",
         "EXPRESSION": {
           "TITLE": "Wyrażenie",
           "CANDIDATE_EMPTY": "Pole kandydatów nie może być puste. Wprowadź wartość w polu candidateUsers lub candidateGroups",

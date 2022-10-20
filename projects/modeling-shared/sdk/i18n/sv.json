@@ -76,7 +76,8 @@
       "MAP_ALL": "Mappa alla inmatningar/utmatningar variabler",
       "MAP_ALL_INPUTS": "Mappa alla inmatningar variabler",
       "MAP_ALL_OUTPUTS": "Mappa alla utmatningar variabler",
-      "NONE": "Ingen"
+      "NONE": "Ingen",
+      "NOT_EDITABLE": "Detta är en systemparameter. Systemparametrar kan inte redigeras."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Processmeddelanden",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitiva",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Anpassad inmatning",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Rensa"

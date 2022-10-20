@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} Grupos",
         "ASSIGN": "Atribuir",
         "CLOSE": "Fechar",
+        "STRATEGY": "Tipo de atribuição",
         "EXPRESSION": {
           "TITLE": "Expressão",
           "CANDIDATE_EMPTY": "Os candidatos não podem estar vazios, forneça candidateUsers ou candidateGroups",

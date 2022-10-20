@@ -76,7 +76,8 @@
       "MAP_ALL": "Mappa tutte le variabili di input/output",
       "MAP_ALL_INPUTS": "Mappa tutte le variabili di input",
       "MAP_ALL_OUTPUTS": "Mappa tutte le variabili di output",
-      "NONE": "Nessuna"
+      "NONE": "Nessuna",
+      "NOT_EDITABLE": "Questo è un parametro di sistema. I parametri di sistema non possono essere modificati."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Messaggi di processo",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitive",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Input personalizzati",
       "DATE": {
         "CURRENT_DATE": "Oggi",
         "CLEAR_BUTTON": "Cancella"

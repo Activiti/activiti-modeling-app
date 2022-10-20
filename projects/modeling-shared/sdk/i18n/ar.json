@@ -76,7 +76,8 @@
       "MAP_ALL": "قم بتخطيط جميع المدخلات / المخرجات",
       "MAP_ALL_INPUTS": "تخطيط جميع متغيرات المدخلات",
       "MAP_ALL_OUTPUTS": "تخطيط جميع متغيرات المخرجات",
-      "NONE": "بلا"
+      "NONE": "بلا",
+      "NOT_EDITABLE": "هذه معلمة نظام. لا يمكن تحرير معلمات النظام."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "رسائل المعالجة",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "البدائية",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "مدخلات مخصصة",
       "DATE": {
         "CURRENT_DATE": "اليوم",
         "CLEAR_BUTTON": "مسح"

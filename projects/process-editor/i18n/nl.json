@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} groepen",
         "ASSIGN": "Toewijzen",
         "CLOSE": "Sluiten",
+        "STRATEGY": "Toewijzingstype",
         "EXPRESSION": {
           "TITLE": "Expressie",
           "CANDIDATE_EMPTY": "Kandidaten mag niet leeg zijn. Voer Kandidaatgebruikers of Kandidaatgroepen in.",

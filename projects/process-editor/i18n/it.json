@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} gruppi",
         "ASSIGN": "Assegna",
         "CLOSE": "Chiudi",
+        "STRATEGY": "Tipo di assegnazione",
         "EXPRESSION": {
           "TITLE": "Espressione",
           "CANDIDATE_EMPTY": "Il campo dei candidati non può essere vuoto. Immettere un valore per Utenti candidati o Gruppi candidati.",

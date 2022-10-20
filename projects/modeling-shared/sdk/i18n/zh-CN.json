@@ -76,7 +76,8 @@
       "MAP_ALL": "映射所有的输入/输出变量",
       "MAP_ALL_INPUTS": "映射所有的输入变量",
       "MAP_ALL_OUTPUTS": "映射所有的输出变量",
-      "NONE": "无"
+      "NONE": "无",
+      "NOT_EDITABLE": "这是一个系统参数。系统参数不能被编辑。"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "流程消息",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "基元",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "自定义输入",
       "DATE": {
         "CURRENT_DATE": "今天",
         "CLEAR_BUTTON": "清除"

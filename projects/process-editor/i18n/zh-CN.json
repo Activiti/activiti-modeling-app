@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} 组",
         "ASSIGN": "指派",
         "CLOSE": "关闭",
+        "STRATEGY": "指派类型",
         "EXPRESSION": {
           "TITLE": "表达式",
           "CANDIDATE_EMPTY": "候选用户不能为空，请提供候选用户或候选组",

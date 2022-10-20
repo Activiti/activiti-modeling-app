@@ -76,7 +76,8 @@
       "MAP_ALL": "すべての入力/出力変数をマップ",
       "MAP_ALL_INPUTS": "すべての入力変数をマップ",
       "MAP_ALL_OUTPUTS": "すべての出力変数をマップ",
-      "NONE": "なし"
+      "NONE": "なし",
+      "NOT_EDITABLE": "これはシステムパラメーターです。システムパラメータを編集することはできません。"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "プロセスメッセージ",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "プリミティブ",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "カスタム入力",
       "DATE": {
         "CURRENT_DATE": "今日",
         "CLEAR_BUTTON": "消去"

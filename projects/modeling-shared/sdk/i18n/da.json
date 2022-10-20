@@ -76,7 +76,8 @@
       "MAP_ALL": "Kortlæg alle indgangs-/udgangsvariabler",
       "MAP_ALL_INPUTS": "Kortlæg alle indgangsvariabler",
       "MAP_ALL_OUTPUTS": "Kortlæg alle udgangsvariabler",
-      "NONE": "Ingen"
+      "NONE": "Ingen",
+      "NOT_EDITABLE": "Dette er en systemparameter. Systemparametre kan ikke redigeres."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Procesmeddelelser",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Stamfunktioner",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Tilpasset input",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Ryd"

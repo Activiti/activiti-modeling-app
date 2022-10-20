@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} grupper",
         "ASSIGN": "Tilldela",
         "CLOSE": "Stäng",
+        "STRATEGY": "Uppgiftstyp",
         "EXPRESSION": {
           "TITLE": "Uttryck",
           "CANDIDATE_EMPTY": "Kandidater kan inte vara tomma, ange antingen kandidatanvändare eller kandidatgrupper",

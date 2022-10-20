@@ -190,6 +190,7 @@
         "GROUPS": "{{count}} グループ",
         "ASSIGN": "割り当て",
         "CLOSE": "閉じる",
+        "STRATEGY": "割り当てタイプ",
         "EXPRESSION": {
           "TITLE": "式",
           "CANDIDATE_EMPTY": "候補を空にすることはできません。candidateUsers または candidateGroups のどちらかを入力してください",

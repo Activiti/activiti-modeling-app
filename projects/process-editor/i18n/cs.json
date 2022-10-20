@@ -190,6 +190,7 @@
         "GROUPS": "Počet skupin: {{count}}",
         "ASSIGN": "Přiřadit",
         "CLOSE": "Zavřít",
+        "STRATEGY": "Typ přidělení",
         "EXPRESSION": {
           "TITLE": "Výraz",
           "CANDIDATE_EMPTY": "Pole Kandidáti nesmí být prázdné. Zadejte hodnotu Uživatelé kandidáti nebo Skupiny kandidátů.",

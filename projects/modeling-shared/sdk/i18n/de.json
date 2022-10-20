@@ -76,7 +76,8 @@
       "MAP_ALL": "Alle Eingabe-/Ausgabevariablen zuordnen",
       "MAP_ALL_INPUTS": "Alle Eingabevariablen zuordnen",
       "MAP_ALL_OUTPUTS": "Alle Ausgabevariablen zuordnen",
-      "NONE": "Keine"
+      "NONE": "Keine",
+      "NOT_EDITABLE": "Dies ist ein Systemparameter. Systemparameter können nicht bearbeitet werden."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Prozessnachrichten",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Basiswerte",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Benutzerdefinierte Eingaben",
       "DATE": {
         "CURRENT_DATE": "Heute",
         "CLEAR_BUTTON": "Löschen"

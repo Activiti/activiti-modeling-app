@@ -76,7 +76,8 @@
       "MAP_ALL": "Yhdistä kaikki syöttö-/tuottomuuttujat",
       "MAP_ALL_INPUTS": "Yhdistä kaikki syöttömuuttujat",
       "MAP_ALL_OUTPUTS": "Yhdistä kaikki tuottomuuttujat",
-      "NONE": "Ei ole"
+      "NONE": "Ei ole",
+      "NOT_EDITABLE": "Tämä on järjestelmäparametri. Järjestelmäparametrejä ei voi muokata."
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Prosessiviestit",
@@ -181,6 +182,7 @@
     },
     "VARIABLE_TYPE_INPUT": {
       "PRIMITIVE_PROPERTIES_TYPES": "Primitiivit",
+      "CUSTOM_INPUTS_PROPERTIES_TYPES": "Mukautetut syötöt",
       "DATE": {
         "CURRENT_DATE": "Tänään",
         "CLEAR_BUTTON": "Tyhjennä"
