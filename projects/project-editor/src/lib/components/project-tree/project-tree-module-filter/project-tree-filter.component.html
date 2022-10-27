@@ -65,7 +65,8 @@
                     <mat-icon>add</mat-icon>
                     <span>Create</span>
                 </button>
-                <button *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)" mat-menu-item [disableRipple]="true">
+                <button *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)"
+                        mat-menu-item [disableRipple]="true" class="ama-project-tree-filter__upload_button">
                     <ama-upload-file-button [attr.data-automation-id]="'upload-' + filter.type" [projectId]="projectId"
                         [type]="filter.type">
                     </ama-upload-file-button>

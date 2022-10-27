@@ -137,6 +137,14 @@
         }
     }
 
+    &__upload_button {
+        ama-upload-file-button {
+            .ama-upload-button .ama-default-upload-button {
+                padding-left: 0;
+            }
+        }
+    }
+
     &__category {
         padding-left: 34px;
         padding-bottom: 8px;
