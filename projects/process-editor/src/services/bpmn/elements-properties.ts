@@ -58,7 +58,8 @@ export const elementsProperties = {
         BpmnProperty.category,
         BpmnCompositeProperty.properties,
         BpmnCompositeProperty.messages,
-        BpmnCompositeProperty.errors
+        BpmnCompositeProperty.errors,
+        BpmnCompositeProperty.candidateStarters
     ],
     [BpmnElement.Collaboration]: [
         BpmnProperty.modelName,
@@ -190,7 +191,8 @@ export const elementsProperties = {
             BpmnProperty.isExecutable,
             BpmnCompositeProperty.properties,
             BpmnCompositeProperty.messages,
-            BpmnCompositeProperty.errors
+            BpmnCompositeProperty.errors,
+            BpmnCompositeProperty.candidateStarters
         ] : []),
         BpmnProperty.id,
         BpmnProperty.documentation

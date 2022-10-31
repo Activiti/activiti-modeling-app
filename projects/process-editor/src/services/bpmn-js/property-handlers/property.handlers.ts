@@ -52,6 +52,9 @@ import { loopDataOutputRef } from './loop-data-output-ref.handler';
 import { emailServiceTaskHandler } from './email-service-task.handler';
 import { inheritBusinessKeyHandler } from './inherit-business-key.handler';
 import { versionHandler } from './version.handler';
+import { processCandidateStartersHandler } from './candidate-starters.handler';
+import { candidateStarterUsersHandler } from './candidate-starter-user.handler';
+import { candidateStarterGroupsHandler } from './candidate-starter-group.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -89,5 +92,8 @@ export const handlers = {
     [BpmnProperty.loopCharacteristics]: loopCharacteristics,
     [BpmnProperty.loopDataOutputRef]: loopDataOutputRef,
     [BpmnProperty.emailServiceTask]: emailServiceTaskHandler,
-    [BpmnProperty.inheritBusinessKey]: inheritBusinessKeyHandler
+    [BpmnProperty.inheritBusinessKey]: inheritBusinessKeyHandler,
+    [BpmnCompositeProperty.candidateStarters]: processCandidateStartersHandler,
+    [BpmnProperty.candidateStarterUsers]: candidateStarterUsersHandler,
+    [BpmnProperty.candidateStarterGroups]: candidateStarterGroupsHandler
 };

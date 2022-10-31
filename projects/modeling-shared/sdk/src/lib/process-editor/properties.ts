@@ -55,7 +55,9 @@ export enum BpmnProperty {
     emailServiceTask = 'emailServiceTask',
     docgenServiceTask = 'docgenServiceTask',
     contentServiceTask = 'contentServiceTask',
-    inheritBusinessKey = 'inheritBusinessKey'
+    inheritBusinessKey = 'inheritBusinessKey',
+    candidateStarterUsers = 'candidateStarterUsers',
+    candidateStarterGroups = 'candidateStarterGroups'
 }
 
 export enum BpmnCompositeProperty {
@@ -63,7 +65,8 @@ export enum BpmnCompositeProperty {
     properties = 'properties',
     messages = 'messages',
     errors = 'errors',
-    emailTemplate = 'emailTemplate'
+    emailTemplate = 'emailTemplate',
+    candidateStarters = 'candidateStarters'
 }
 
 export const PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS = new InjectionToken<ProcessEditorCustomProperty[]>('process-editor-custom-property-handlers');

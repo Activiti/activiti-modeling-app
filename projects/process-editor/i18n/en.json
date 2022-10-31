@@ -100,6 +100,10 @@
                 "HOURS": "Hours",
                 "MINUTES": "Minutes"
             },
+            "CANDIDATE_STARTERS": "Candidate starters",
+            "CANDIDATE_STARTER_GROUPS": "Candidate starter groups",
+            "CANDIDATE_STARTER_USERS": "Candidate starter users",
+            "CANDIDATE_STARTERS_DIALOG_TITLE": "Edit Candidate Starters",
             "PROCESS_VARIABLES": "Process variables",
             "EXPRESSION": "Condition expression",
             "FORM_SELECTOR": "Form name",

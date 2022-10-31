@@ -55,6 +55,9 @@ import { createDocgenServiceTaskProperty } from './docgen-service-task-cardview-
 import { createContentServiceTaskProperty } from './content-service-task-cardview-property';
 import { createInheritBusinessKeyProperty } from './inherit-business-key-cardview-property';
 import { createModelVersionProperty } from './model-version-cardview-property';
+import { createCandidateStartersProperty } from './candidate-starters-cardview-property';
+import { createCandidateStarterGroupsProperty } from './candidate-starter-groups-cardview-property';
+import { createCandidateStarterUsersProperty } from './candidate-starter-users-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -95,5 +98,8 @@ export const bpmn2cardView = {
     [BpmnProperty.emailServiceTask]: createEmailServiceTaskProperty,
     [BpmnProperty.docgenServiceTask]: createDocgenServiceTaskProperty,
     [BpmnProperty.contentServiceTask]: createContentServiceTaskProperty,
-    [BpmnProperty.inheritBusinessKey]: createInheritBusinessKeyProperty
+    [BpmnProperty.inheritBusinessKey]: createInheritBusinessKeyProperty,
+    [BpmnCompositeProperty.candidateStarters]: createCandidateStartersProperty,
+    [BpmnProperty.candidateStarterUsers]: createCandidateStarterUsersProperty,
+    [BpmnProperty.candidateStarterGroups]: createCandidateStarterGroupsProperty
 };
