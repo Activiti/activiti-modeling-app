@@ -1,46 +1,46 @@
 
 <h2 mat-dialog-title>{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTERS_DIALOG_TITLE' | translate }}</h2>
 <form [formGroup]="candidateStartersForm" *ngIf="!loadingForm">
-    <mat-dialog-content class="ama-candidate-starters-content">
-        <adf-cloud-people 
-            [preSelectUsers]="candidateStarterUsers"
-            [userChipsCtrl]="candidateStarterUsersChipsIdentityControl"
-            [searchUserCtrl]="candidateStarterUsersIdentityControl"
-            [roles]="roles"
-            [validate]="false"
-            [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_USERS'"
-            (changedUsers)="onCandidateStarterUsersChange($event)"
-            [mode]="'multiple'">
-        </adf-cloud-people>
-        <adf-cloud-group
-            [preSelectGroups]="candidateStarterGroups"
-            [groupChipsCtrl]="candidateStarterGroupsChipsIdentityControl"
-            [searchGroupsControl]="candidateStarterGroupsIdentityControl"
-            [roles]="roles"
-            [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_GROUPS'"
-            [mode]="'multiple'"
-            (changedGroups)="onCandidateStarterGroupsChange($event)">
-        </adf-cloud-group>
-        <mat-error *ngIf="candidatesIdentityFormGroup.hasError('custom')">
-            <mat-icon class="">warning</mat-icon>
-            {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_WARNING' | translate }}
-        </mat-error>
-    </mat-dialog-content>
+<mat-dialog-content class="ama-candidate-starters-content">
+    <adf-cloud-people 
+        [preSelectUsers]="candidateStarterUsers"
+        [userChipsCtrl]="candidateStarterUsersChipsIdentityControl"
+        [searchUserCtrl]="candidateStarterUsersIdentityControl"
+        [roles]="roles"
+        [validate]="false"
+        [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_USERS'"
+        (changedUsers)="onCandidateStarterUsersChange($event)"
+        [mode]="'multiple'">
+    </adf-cloud-people>
+    <adf-cloud-group
+        [preSelectGroups]="candidateStarterGroups"
+        [groupChipsCtrl]="candidateStarterGroupsChipsIdentityControl"
+        [searchGroupsControl]="candidateStarterGroupsIdentityControl"
+        [roles]="roles"
+        [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_GROUPS'"
+        [mode]="'multiple'"
+        (changedGroups)="onCandidateStarterGroupsChange($event)">
+    </adf-cloud-group>
+    <mat-error *ngIf="candidatesIdentityFormGroup.hasError('custom')">
+        <mat-icon class="">warning</mat-icon>
+        {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_WARNING' | translate }}
+    </mat-error>
+</mat-dialog-content>
 
-    <mat-dialog-actions align="end">
-        <button
-            mat-button
-            id="ama-close-button"
-            (click)="onClose()">
-            {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CLOSE' | translate }}
-        </button>
-        <button
-            mat-button
-            color="primary"
-            id="ama-assign-button"
-            [disabled]="!candidateStartersFormEnabled"
-            (click)="onAssign()">
-            {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.ASSIGN' | translate }}
-        </button>
-    </mat-dialog-actions>
-</form>
+<mat-dialog-actions align="end">
+    <button
+        mat-button
+        id="ama-close-button"
+        (click)="onClose()">
+        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CLOSE' | translate }}
+    </button>
+    <button
+        *ngIf="!loadingForm"
+        mat-button
+        color="primary"
+        id="ama-assign-button"
+        [disabled]="!candidateStartersFormEnabled"
+        (click)="onAssign()">
+        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTERS_DIALOG_SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

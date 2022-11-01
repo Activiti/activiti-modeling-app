@@ -67,8 +67,12 @@ export interface Project {
     version: string;
     favorite: boolean;
     collaborators: Collaborator[];
+    configuration?: ProjectConfiguration;
 }
 
+export interface ProjectConfiguration {
+    enableCandidateStarters: boolean;
+}
 export type CustomModelStatus = 'ACTIVE' | 'DRAFT';
 export const ACTIVE_STATUS: CustomModelStatus = 'ACTIVE';
 export const INACTIVE_STATUS: CustomModelStatus = 'DRAFT';

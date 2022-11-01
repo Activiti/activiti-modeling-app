@@ -1,4 +1,8 @@
-<button (click)="openCandidateStartersDialog()" mat-raised-button data-automation-id="edit-candidate-starters">
-    <mat-icon class="ama-candidate-icon">person</mat-icon>
-    {{ 'APP.DIALOGS.EDIT_CANDIDATE_STARTERS' | translate }}
-</button>
+<ng-container *ngIf="project$ | async as project;">
+    <div [matTooltip]="project.configuration?.enableCandidateStarters ? ('PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTERS_DISABLED_TOOLTIP' | translate) : ''">
+        <button (click)="openCandidateStartersDialog()" mat-raised-button data-automation-id="edit-candidate-starters" [disabled]="project.configuration?.enableCandidateStarters">
+            <mat-icon class="ama-candidate-icon">person</mat-icon>
+            {{ 'APP.DIALOGS.EDIT_CANDIDATE_STARTERS' | translate }}
+        </button>
+    </div>
+</ng-container>

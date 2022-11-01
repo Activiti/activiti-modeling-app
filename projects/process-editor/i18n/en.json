@@ -104,6 +104,8 @@
             "CANDIDATE_STARTER_GROUPS": "Candidate starter groups",
             "CANDIDATE_STARTER_USERS": "Candidate starter users",
             "CANDIDATE_STARTERS_DIALOG_TITLE": "Edit Candidate Starters",
+            "CANDIDATE_STARTERS_DIALOG_SAVE": "Save",
+            "CANDIDATE_STARTERS_DISABLED_TOOLTIP": "Enable the project configuration's enable-candidate-starters property to edit",
             "PROCESS_VARIABLES": "Process variables",
             "EXPRESSION": "Condition expression",
             "FORM_SELECTOR": "Form name",
