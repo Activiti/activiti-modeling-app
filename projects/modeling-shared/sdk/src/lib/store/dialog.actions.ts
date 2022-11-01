@@ -19,7 +19,7 @@ import { Action } from '@ngrx/store';
 import { TemplateRef } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal';
-import { EntityDialogPayload } from '../helpers/common';
+import { EntityDialogPayload, ProjectEntityDialogForm } from '../helpers/common';
 
 export const OPEN_DIALOG = 'OPEN_DIALOG';
 export class OpenDialogAction<T> implements Action {
@@ -55,4 +55,10 @@ export class OverrideProjectNameDialogAction implements Action {
 export const IMPORT_PROJECT_DIALOG = 'IMPORT_PROJECT_DIALOG';
 export class ImportProjectDialogAction implements Action {
     readonly type = IMPORT_PROJECT_DIALOG;
+}
+
+export const EDIT_PROJECT_DIALOG = 'EDIT_PROJECT_DIALOG';
+export class EditProjectDialogAction implements Action {
+    readonly type = EDIT_PROJECT_DIALOG;
+    constructor(public payload: ProjectEntityDialogForm) {}
 }

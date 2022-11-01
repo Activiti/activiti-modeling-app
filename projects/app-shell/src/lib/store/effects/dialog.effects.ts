@@ -43,7 +43,10 @@ import {
     OpenInfoDialogAction,
     OPEN_SETTINGS_DIALOG,
     OpenAboutDialogAction,
-    OPEN_ABOUT_DIALOG
+    OPEN_ABOUT_DIALOG,
+    EDIT_PROJECT_DIALOG,
+    EditProjectDialogAction,
+    EditProjectDialogComponent
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService, DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Action, Store } from '@ngrx/store';
@@ -132,12 +135,19 @@ export class DialogEffects {
         map(() => this.dialogService.openDialog(AboutComponent, { width: '700px'}))
     ), { dispatch: false });
 
+    editProjectDialogEffect$ = createEffect(() => this.actions$.pipe(
+        ofType<EditProjectDialogAction>(EDIT_PROJECT_DIALOG),
+        map(action => action.payload),
+        map(data =>
+            this.dialogService.openDialog(data.dialog ? data.dialog : EditProjectDialogComponent, { data })
+        )
+    ), { dispatch: false });
 
     createProject$ = createEffect(() => this.actions$.pipe(
         ofType<CreateProjectDialogAction>(CREATE_PROJECT_DIALOG),
         map(
             () =>
-                new OpenEntityDialogAction({
+                new EditProjectDialogAction({
                     title: 'DASHBOARD.NEW_MENU.CREATE_PROJECT_TITLE',
                     nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
                     descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',

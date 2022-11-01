@@ -265,6 +265,9 @@
         },
         "PREFER_BUTTON" : {
             "ARIA_LABEL" : "Toggle for preferred"
+        },
+        "ENABLE_CANDIDATE_STARTERS": {
+            "TOGGLE_TITLE": "Enable candidate starters"
         }
     }
 }

@@ -22,11 +22,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { map, takeUntil } from 'rxjs/operators';
 import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
-    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS,
+    SearchQuery, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS,
     ProjectContextMenuActionClass, selectLoading, selectPagination, selectProjectSummaries,
     GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
     SaveAsProjectAttemptAction, ExportProjectAction,
-    GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries, LayoutService, OpenCollaboratorsDialogAction
+    GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries, LayoutService, OpenCollaboratorsDialogAction, EditProjectDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
@@ -178,13 +178,14 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     }
 
     editRow(item: Partial<Project>): void {
-        const { id, name, description } = item;
+        const { id, name, description, configuration } = item;
 
-        this.store.dispatch(new OpenEntityDialogAction({
+        this.store.dispatch(new EditProjectDialogAction({
             title: 'DASHBOARD.NEW_MENU.EDIT_PROJECT_TITLE',
             nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
             descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',
             values: { id, name, description },
+            enableCandidateStarters: configuration?.enableCandidateStarters,
             action: UpdateProjectAttemptAction,
             allowedCharacters: {
                 regex: MODELER_NAME_REGEX,

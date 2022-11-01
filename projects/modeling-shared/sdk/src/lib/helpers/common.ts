@@ -44,3 +44,7 @@ export interface EntityDialogPayload {
     callback?: () => any;
     dialog?: any;
 }
+
+export interface ProjectEntityDialogForm extends EntityDialogPayload {
+    enableCandidateStarters?: boolean;
+}

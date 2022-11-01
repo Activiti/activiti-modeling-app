@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { EntityDialogForm } from '../helpers/common';
+import { EntityDialogForm, ProjectEntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
 import { Release, ServerSideSorting, SearchQuery, Project, FetchQueries, ReleaseInfo } from '../api/types';
 import { Update } from '@ngrx/entity';
@@ -26,7 +26,7 @@ import { ModelIdentifier } from './ama-store.interfaces';
 export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
 export class CreateProjectAttemptAction implements Action {
     readonly type = CREATE_PROJECT_ATTEMPT;
-    constructor(public payload: Partial<EntityDialogForm>) {}
+    constructor(public payload: Partial<ProjectEntityDialogForm>) {}
 }
 
 export const OVERRIDE_PROJECT_ATTEMPT = 'OVERRIDE_PROJECT_ATTEMPT';
@@ -92,6 +92,7 @@ export class UploadProjectAttemptAction implements Action {
 export interface EditProjectPayload {
     id: string;
     form: Partial<EntityDialogForm>;
+    enableCandidateStarters?: boolean;
 }
 
 export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS';

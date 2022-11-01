@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PaginatedEntries } from '@alfresco/js-api';
-import { Project, AmaApi, EntityDialogForm, ServerSideSorting, FetchQueries, SearchQuery } from '@alfresco-dbp/modeling-shared/sdk';
+import { Project, AmaApi, EntityDialogForm, ServerSideSorting, FetchQueries, SearchQuery, ProjectEntityDialogForm } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
@@ -28,12 +28,12 @@ export class DashboardService {
         return this.amaApi.Project.getAll(pagination, sorting, search, fetchFavorites);
     }
 
-    createProject(form: Partial<EntityDialogForm>): Observable<Partial<Project>> {
-        return this.amaApi.Project.create(form);
+    createProject(form: Partial<ProjectEntityDialogForm>): Observable<Partial<Project>> {
+        return this.amaApi.Project.create({...form, configuration: { enableCandidateStarters: form.enableCandidateStarters}});
     }
 
-    updateProject(projectId: string, form: Partial<EntityDialogForm>): Observable<Partial<Project>> {
-        return this.amaApi.Project.update(projectId, form);
+    updateProject(projectId: string, form: Partial<EntityDialogForm>, enableCandidateStarters?: boolean): Observable<Partial<Project>> {
+        return this.amaApi.Project.update(projectId, {...form, configuration: { enableCandidateStarters }});
     }
 
     deleteProject(projectId: string): Observable<void> {

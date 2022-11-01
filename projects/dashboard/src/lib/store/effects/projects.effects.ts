@@ -64,6 +64,7 @@ import {
     GetFavoriteProjectsAttemptAction,
     GET_FAVORITE_PROJECTS_ATTEMPT,
     GetFavoriteProjectsSuccessAction,
+    ProjectEntityDialogForm,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 
@@ -107,7 +108,7 @@ export class ProjectsEffects {
     updateProjectAttemptEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateProjectAttemptAction>(UPDATE_PROJECT_ATTEMPT),
         map(action => action.payload),
-        mergeMap(payload => this.updateProject(payload.id, payload.form))
+        mergeMap(payload => this.updateProject(payload.id, payload.form, payload.enableCandidateStarters))
     ));
 
 
@@ -172,8 +173,8 @@ export class ProjectsEffects {
         );
     }
 
-    private updateProject(projectId: string, form: Partial<EntityDialogForm>) {
-        return this.dashboardService.updateProject(projectId, form).pipe(
+    private updateProject(projectId: string, form: Partial<EntityDialogForm>, enableCandidateStarters?: boolean) {
+        return this.dashboardService.updateProject(projectId, form, enableCandidateStarters).pipe(
             switchMap(project => [
                 new UpdateProjectSuccessAction({ id: project.id, changes: project }),
                 new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_UPDATED')
@@ -182,7 +183,7 @@ export class ProjectsEffects {
         );
     }
 
-    private createProject(form: Partial<EntityDialogForm>) {
+    private createProject(form: Partial<ProjectEntityDialogForm>) {
         return this.dashboardService.createProject(form).pipe(
             switchMap(project => [
                 new CreateProjectSuccessAction(project),
