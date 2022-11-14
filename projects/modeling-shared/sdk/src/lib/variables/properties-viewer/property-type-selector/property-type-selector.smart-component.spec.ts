@@ -28,7 +28,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { EntityProperty } from '../../../api/types';
 import { exampleJSONSchema } from '../../../mocks/json-schema.mock';
-import { expectedCreateModelItems, expectedHierarchy, expectedPrimitivesInputsItems } from '../../../mocks/modeling-json-schema.service.mock';
+import {
+    expectedCreateModelItems,
+    expectedCustomJSONProvider,
+    expectedHierarchy,
+    expectedPrimitivesInputsItems,
+    MockModelingJsonSchemaProvider
+} from '../../../mocks/modeling-json-schema.service.mock';
 import { provideModelingJsonSchemaProvider } from '../../../services/modeling-json-schema-provider.service';
 import { PrimitivesModelingJsonSchemaProvider } from '../../../services/primitives-modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../../services/registered-inputs-modeling-json-schema-provider.service';
@@ -66,6 +72,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
             ],
             declarations: [PropertyTypeSelectorSmartComponent, PropertyTypeItemUiComponent, AutomationIdPipe],
             providers: [
+                MockModelingJsonSchemaProvider,
                 { provide: TranslationService, useClass: TranslationMock },
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
@@ -74,7 +81,8 @@ describe('PropertyTypeSelectorSmartComponent', () => {
                 provideInputTypeItemHandler('employee', PropertiesViewerJsonInputComponent, 'json', exampleJSONSchema),
                 provideInputTypeItemHandler('other-boolean', PropertiesViewerBooleanInputComponent, 'boolean'),
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
-                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider)
+                provideModelingJsonSchemaProvider(PrimitivesModelingJsonSchemaProvider),
+                provideModelingJsonSchemaProvider(MockModelingJsonSchemaProvider)
             ]
         });
     });
@@ -100,7 +108,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         component.ngOnChanges({ onlyPrimitiveTypes: { currentValue: true, previousValue: false, firstChange: false, isFirstChange: () => false } });
         fixture.detectChanges();
 
-        expect(component.hierarchy).toEqual([expectedPrimitivesInputsItems, expectedCreateModelItems]);
+        expect(component.hierarchy).toEqual([expectedPrimitivesInputsItems, expectedCustomJSONProvider, expectedCreateModelItems]);
     });
 
     it('should update values when selection changes', () => {
@@ -151,6 +159,38 @@ describe('PropertyTypeSelectorSmartComponent', () => {
             type: 'other-boolean',
             model: {
                 $ref: '#/$defs/primitive/other-boolean',
+            }
+        };
+
+        expect(component.change.emit).toHaveBeenCalledWith(expectedProperty);
+    });
+
+    it('should emit the proper type for the custom JSON schema provider when only primitive schemas is false', () => {
+        spyOn(component.change, 'emit');
+        component.onlyPrimitiveTypes = false;
+        component.onSelectionChanges(expectedHierarchy[2].children[0]);
+
+        const expectedProperty = {
+            ...component.property,
+            type: 'json',
+            model: {
+                $ref: '#/$defs/mock-json-schema-provider/sample',
+            }
+        };
+
+        expect(component.change.emit).toHaveBeenCalledWith(expectedProperty);
+    });
+
+    it('should emit the proper type for the custom JSON schema provider when only primitive schemas is true', () => {
+        spyOn(component.change, 'emit');
+        component.onlyPrimitiveTypes = true;
+        component.onSelectionChanges(expectedHierarchy[2].children[0]);
+
+        const expectedProperty = {
+            ...component.property,
+            type: 'json',
+            model: {
+                $ref: '#/$defs/mock-json-schema-provider/sample',
             }
         };
 
@@ -263,7 +303,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
     });
 
     it('should include custom edit item if is custom model', () => {
-        const hierarchWithAddCustomModel = [expectedPrimitivesInputsItems];
+        const hierarchWithAddCustomModel = [expectedPrimitivesInputsItems, expectedCustomJSONProvider];
         hierarchWithAddCustomModel.push({
             displayName: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL',
             description: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL_DESCRIPTION',
@@ -274,7 +314,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         });
         component.onlyPrimitiveTypes = true;
 
-        component.property = { ...property, model: { type: 'object' }};
+        component.property = { ...property, model: { type: 'object' } };
 
         component.ngOnChanges({
             onlyPrimitiveTypes: {

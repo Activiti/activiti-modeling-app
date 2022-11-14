@@ -264,16 +264,21 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     }
 
     private updatePropertyModel($event: PropertyTypeItem) {
-        const primitiveType = this.modelingJSONSchemaService.getPrimitiveTypes($event.value);
-        if (this.onlyPrimitiveTypes || !$event.typeId) {
-            if (primitiveType.length > 1) {
-                this.property.aggregatedTypes = primitiveType;
-                this.property.type = 'json';
-            } else {
-                this.property.type = primitiveType[0];
-            }
+        let primitiveType: string[] = [];
+
+        if (!this.onlyPrimitiveTypes && $event.provider === RegisteredInputsModelingJsonSchemaProvider.PROVIDER_NAME && $event.typeId) {
+            primitiveType = $event.typeId;
         } else {
-            this.property.type = $event.typeId[0];
+            primitiveType = this.modelingJSONSchemaService.getPrimitiveTypes($event.value);
+        }
+
+        if (primitiveType.length > 1) {
+            this.property.aggregatedTypes = primitiveType;
+            this.property.type = 'json';
+        } else if (primitiveType.length === 1) {
+            this.property.type = primitiveType[0];
+        } else {
+            this.property.type = 'json';
         }
         this.property.model = $event.value;
 
