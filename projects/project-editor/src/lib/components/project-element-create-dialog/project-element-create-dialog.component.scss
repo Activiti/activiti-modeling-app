@@ -5,6 +5,7 @@
     justify-content: stretch;
     padding: 0;
     margin: 0;
+    height: 100%;
 
     &-title {
         display: flex;
@@ -23,6 +24,7 @@
     &-content {
         padding: 0;
         margin: 0;
+        height: 100%;
     }
 
     .mat-dialog-container {

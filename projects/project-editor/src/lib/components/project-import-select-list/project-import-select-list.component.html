@@ -1,26 +1,34 @@
 <div class="ama-model-importer" *ngIf="!(isLoading | async); else loading">
-    <mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="onModelTypeChange()" class="ama-model-importer-tab-group">
-        <mat-tab *ngFor="let importer of importers">
-            <ng-template mat-tab-label>
-                <span [attr.id]="'item-importer-'+importer.type"
-                      [attr.data-automation-id]="'item-importer-'+importer.type">
-                    {{importer.name | translate}}
-                </span>
-            </ng-template>
-            <ng-template matTabContent>
-                <ng-container *ngIf="items.length; else noDataTemplate">
-                <mat-selection-list [multiple]="false" [attr.data-automation-id]="'item-importer-'+importer.type+'-list'">
-                    <mat-list-option *ngFor="let item of items"
-                        [value]="item.id" matTooltip="{{item.description}}"
-                        [attr.data-automation-id]="'item-' + getDataAutomationFromDisplayName(item.displayName, importer)"
-                        (click)="onImport(item.id, importer)">
-                        <mat-icon mat-list-icon>{{item.iconName}}</mat-icon>
-                        <span>{{item.displayName}}</span>
-                    </mat-list-option>
-                </mat-selection-list>
-                </ng-container>
-            </ng-template>
-        </mat-tab>
+    <mat-tab-group
+        [(selectedIndex)]="selectedTabIndex"
+        (selectedTabChange)="onModelTypeChange()"
+        class="ama-model-importer-tab-group">
+            <mat-tab *ngFor="let importer of importers">
+                <ng-template mat-tab-label>
+                    <span
+                        [attr.id]="'item-importer-'+importer.type"
+                        [attr.data-automation-id]="'item-importer-'+importer.type">
+                            {{importer.name | translate}}
+                    </span>
+                </ng-template>
+                <ng-template matTabContent>
+                    <ng-container *ngIf="items.length; else noDataTemplate">
+                        <mat-selection-list
+                            [multiple]="false"
+                            [attr.data-automation-id]="'item-importer-'+importer.type+'-list'">
+                                <mat-list-option
+                                    *ngFor="let item of items"
+                                    [value]="item.id"
+                                    matTooltip="{{item.description}}"
+                                    [attr.data-automation-id]="'item-' + getDataAutomationFromDisplayName(item.displayName, importer)"
+                                    (click)="onImport(item.id, importer)">
+                                        <mat-icon mat-list-icon>{{item.iconName}}</mat-icon>
+                                        <span>{{item.displayName}}</span>
+                                </mat-list-option>
+                        </mat-selection-list>
+                    </ng-container>
+                </ng-template>
+            </mat-tab>
       </mat-tab-group>
 </div>
 

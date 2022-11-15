@@ -7,7 +7,7 @@
                 mat-icon-button
                 routerLink="/"
                 [title]="'PROJECT_EDITOR.BACK_TO' | translate">
-                <mat-icon>home</mat-icon>
+                    <mat-icon>home</mat-icon>
             </button>
             <span class="ama-project-name">{{ project.name }} ({{ project.version }})</span>
         </adf-toolbar-title>
@@ -19,7 +19,7 @@
             data-automation-id="project-validate-button"
             [title]="'APP.VALIDATE_PROJECT' | translate"
             (click)="validateApp(project.id)">
-            <mat-icon>done</mat-icon>
+                <mat-icon>done</mat-icon>
         </button>
 
         <button
@@ -27,7 +27,7 @@
             data-automation-id="project-download-button"
             [title]="'APP.DOWNLOAD_PROJECT' | translate"
             (click)="downloadApp(project)">
-            <mat-icon>file_download</mat-icon>
+                <mat-icon>file_download</mat-icon>
         </button>
 
         <button
@@ -36,14 +36,20 @@
             [matMenuTriggerFor]="menu"
             [attr.data-automation-id]="'project-context-' + project.id"
             [title]="'APP.MORE_ACTIONS' | translate">
-            <mat-icon>more_vert</mat-icon>
+                <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="project-context-menu">
-            <button mat-menu-item (click)="saveAsProject(project)" [attr.data-automation-id]="'project-save-as-' + project.id">
-                <mat-icon svgIcon="save_as"></mat-icon> <span>{{ 'APP.MENU.SAVE_AS' | translate }}</span>
+            <button
+                mat-menu-item (click)="saveAsProject(project)"
+                [attr.data-automation-id]="'project-save-as-' + project.id">
+                    <mat-icon svgIcon="save_as"></mat-icon> <span>{{ 'APP.MENU.SAVE_AS' | translate }}</span>
             </button>
-            <button *ngFor="let button of buttons" mat-menu-item (click)="handleClick(button.actionClass, project.id)" [attr.data-automation-id]="'project-' + button.automationId + '-' + project.id">
-                <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
+            <button
+                *ngFor="let button of buttons"
+                mat-menu-item
+                (click)="handleClick(button.actionClass, project.id)"
+                [attr.data-automation-id]="'project-' + button.automationId + '-' + project.id">
+                    <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
             </button>
         </mat-menu>
     </ng-container>

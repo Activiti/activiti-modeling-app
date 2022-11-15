@@ -2,29 +2,57 @@
     <mat-drawer-container class="ama-project-creator-drawer">
         <mat-drawer mode="side" opened>
             <mat-selection-list [multiple]="false" #filters>
-                <mat-list-option role="listitem" class="ama-project-creator-drawer-action" selected [value]="ActionTypes.CREATE_ACTION"
-                                 data-automation-id="ama-project-creator-create-section">
-                    <button mat-button class="ama-project-creator-drawer-action-button">
-                        <mat-icon class="ama-project-creator-drawer-action-icon" aria-hidden="false"
-                            aria-label="Create new element">add</mat-icon>
-                        {{'PROJECT_EDITOR.NEW_MENU.CREATE' | translate }}
-                    </button>
+                <mat-list-option
+                    role="listitem"
+                    class="ama-project-creator-drawer-action"
+                    selected
+                    [value]="ActionTypes.CREATE_ACTION"
+                    data-automation-id="ama-project-creator-create-section">
+                        <button
+                            mat-button
+                            class="ama-project-creator-drawer-action-button">
+                                <mat-icon
+                                    class="ama-project-creator-drawer-action-icon"
+                                    aria-hidden="false"
+                                    aria-label="Create new element">
+                                        add
+                                </mat-icon>
+                                {{'PROJECT_EDITOR.NEW_MENU.CREATE' | translate }}
+                        </button>
                 </mat-list-option>
-                <mat-list-option role="listitem" class="ama-project-creator-drawer-action" [value]="ActionTypes.UPLOAD_ACTION"
-                                 data-automation-id="ama-project-creator-upload-section">
-                    <button mat-button class="ama-project-creator-drawer-action-button">
-                        <mat-icon class="ama-project-creator-drawer-action-icon" aria-hidden="false"
-                            aria-label="Create new element">file_upload</mat-icon>
-                        {{'PROJECT_EDITOR.NEW_MENU.UPLOAD' | translate }}
-                    </button>
+                <mat-list-option
+                    role="listitem"
+                    class="ama-project-creator-drawer-action"
+                    [value]="ActionTypes.UPLOAD_ACTION"
+                    data-automation-id="ama-project-creator-upload-section">
+                        <button
+                            mat-button
+                            class="ama-project-creator-drawer-action-button">
+                                <mat-icon
+                                    class="ama-project-creator-drawer-action-icon"
+                                    aria-hidden="false"
+                                    aria-label="Create new element">
+                                        file_upload
+                                </mat-icon>
+                                {{'PROJECT_EDITOR.NEW_MENU.UPLOAD' | translate }}
+                        </button>
                 </mat-list-option>
-                <mat-list-option role="listitem" class="ama-project-creator-drawer-action" [value]="ActionTypes.IMPORT_ACTION"
-                                 data-automation-id="ama-project-creator-import-section">
-                    <button mat-button class="ama-project-creator-drawer-action-button">
-                        <mat-icon class="ama-project-creator-drawer-action-icon" aria-hidden="false"
-                            aria-label="Create new element">swap_vert</mat-icon>
-                        {{'PROJECT_EDITOR.NEW_MENU.IMPORT' | translate }}
-                    </button>
+                <mat-list-option
+                    role="listitem"
+                    class="ama-project-creator-drawer-action"
+                    [value]="ActionTypes.IMPORT_ACTION"
+                    data-automation-id="ama-project-creator-import-section">
+                        <button
+                            mat-button
+                            class="ama-project-creator-drawer-action-button">
+                                <mat-icon
+                                    class="ama-project-creator-drawer-action-icon"
+                                    aria-hidden="false"
+                                    aria-label="Create new element">
+                                        swap_vert
+                                </mat-icon>
+                                {{'PROJECT_EDITOR.NEW_MENU.IMPORT' | translate }}
+                        </button>
                 </mat-list-option>
             </mat-selection-list>
         </mat-drawer>
@@ -48,14 +76,17 @@
 <ng-template #createList>
     <mat-selection-list [multiple]="false" class="ama-project-creator-filter-list">
         <ng-container *ngFor="let creator of creators">
-            <mat-list-option *ngIf="isAllowed(creator, ActionTypes.CREATE_ACTION)"
+            <mat-list-option
+                *ngIf="isAllowed(creator, ActionTypes.CREATE_ACTION)"
                 [attr.data-automation-id]="'app-navigation-create-' + getKey(creator)" [value]="creator.type"
                 (click)="onCreateElementClicked(creator)"
                 class="ama-project-creator-filter-list-item">
-                <mat-icon class="ama-project-creator-filter-icon">
-                    {{ creator.icon }}
-                </mat-icon>
-                <span class="ama-project-creator-filter-name">{{ creator.name | translate }}</span>
+                    <mat-icon class="ama-project-creator-filter-icon">
+                        {{ creator.icon }}
+                    </mat-icon>
+                    <span class="ama-project-creator-filter-name">
+                        {{ creator.name | translate }}
+                    </span>
             </mat-list-option>
         </ng-container>
     </mat-selection-list>
@@ -64,14 +95,19 @@
 <ng-template #uploadList>
     <mat-selection-list class="ama-project-upload-button-list">
         <ng-container *ngFor="let creator of creators">
-            <ama-upload-file-button role="option" class="mat-list-option ama-project-upload-button-list-main" *ngIf="isAllowed(creator, ActionTypes.UPLOAD_ACTION)"
+            <ama-upload-file-button
+                *ngIf="isAllowed(creator, ActionTypes.UPLOAD_ACTION)"
                 [attr.data-automation-id]="'app-navigation-upload-' + getKey(creator)" [type]="getKey(creator)"
-                [projectId]="selectedProjectId$ | async"
-                (fileUploaded)="onExecute()">
-                <mat-icon class="ama-project-upload-button-list-filter-icon">
-                    {{ creator.icon }}
-                </mat-icon>
-                <span class="ama-project-upload-button-list-filter-name">{{ creator.name | translate }}</span>
+                (fileUploaded)="onExecute()"
+                class="mat-list-option ama-project-upload-button-list-main"
+                role="option"
+                [projectId]="selectedProjectId$ | async">
+                    <mat-icon class="ama-project-upload-button-list-filter-icon">
+                        {{ creator.icon }}
+                    </mat-icon>
+                    <span class="ama-project-upload-button-list-filter-name">
+                        {{ creator.name | translate }}
+                    </span>
             </ama-upload-file-button>
         </ng-container>
     </mat-selection-list>

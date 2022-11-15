@@ -1,15 +1,30 @@
 <div class="ama-upload-button">
 
     <div>
-        <div #ref (click)="onClick($event)" data-automation-id="upload-button-ref" class="ama-upload-button-ref"><ng-content></ng-content></div>
+        <div
+            #ref
+            (click)="onClick($event)"
+            data-automation-id="upload-button-ref"
+            class="ama-upload-button-ref">
+                <ng-content></ng-content>
+        </div>
 
         <div *ngIf="!ref.innerHTML.trim()">
-            <button class="ama-default-upload-button" (click)="onClick($event)" data-automation-id="upload-button-menu">
-                <mat-icon>file_upload</mat-icon> {{'PROJECT_EDITOR.UPLOAD' | translate }}
+            <button
+                class="ama-default-upload-button"
+                (click)="onClick($event)"
+                data-automation-id="upload-button-menu">
+                    <mat-icon>file_upload</mat-icon> {{'PROJECT_EDITOR.UPLOAD' | translate }}
             </button>
         </div>
     </div>
 
-    <input type="file" #fileInput (click)="$event.stopPropagation()" (change)="onUpload($any($event).target.files)" accept="{{ acceptedFileTypes }}"
-        class="ama-upload-button__file-input" data-automation-id="upload-input"/>
+    <input
+        type="file"
+        #fileInput
+        (click)="$event.stopPropagation()"
+        (change)="onUpload($any($event).target.files)"
+        accept="{{ acceptedFileTypes }}"
+        class="ama-upload-button__file-input"
+        data-automation-id="upload-input"/>
 </div>

@@ -1,6 +1,8 @@
 .ama-project-creator {
+    height: 100%;
+
     &-drawer {
-        height: 350px;
+        height: 100%;
         width: 100%;
 
         &-action {
@@ -14,9 +16,14 @@
                 padding-right: 6px;
             }
         }
+
+        .mat-list-base {
+            padding-top: 0;
+        }
     }
 
     &-main-content {
+        height: 100%;
         overflow: hidden;
 
         .mat-list-base {
@@ -32,13 +39,13 @@
             flex-wrap: wrap;
             width: 100%;
             justify-content: space-evenly;
+            height: 100%;
 
             .mat-list-option {
                 display: flex;
                 justify-content: space-evenly;
                 flex: 1 1 30%;
                 margin: 8px;
-                padding-top: 15px;
             }
         }
 
@@ -61,6 +68,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    height: 100%;
 
     &-main {
         display: flex;

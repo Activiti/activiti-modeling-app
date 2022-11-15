@@ -1,14 +1,21 @@
 <div class="app-navigation" data-automation-id="ama-navigation">
 
-    <div class="app-navigation__section app-navigation__section--new adf-sidebar-action-menu"
+    <div
+        class="app-navigation__section app-navigation__section--new adf-sidebar-action-menu"
         [ngClass]="{ 'ama-section--new--mini': !(expanded$ | async) }">
-        <button mat-button data-automation-id="create-button" class="app-create-new-button" (click)="openCreateDialog()">
-            <mat-icon class="app-navigation-new-button-icon">add</mat-icon>
-            <p class="app-navigation-new-button-label">{{ 'PROJECT_EDITOR.NEW_MENU.LABEL' | translate }}</p>
-        </button>
-        <button mat-icon-button attr.aria-label="{{'PROJECT_EDITOR.SEARCH' | translate}}" (click)="openSearchDialog()">
-            <mat-icon>search</mat-icon>
-        </button>
+            <button
+                mat-button data-automation-id="create-button"
+                class="app-create-new-button"
+                (click)="openCreateDialog()">
+                    <mat-icon class="app-navigation-new-button-icon">add</mat-icon>
+                    <p class="app-navigation-new-button-label">{{ 'PROJECT_EDITOR.NEW_MENU.LABEL' | translate }}</p>
+            </button>
+            <button
+                mat-icon-button
+                attr.aria-label="{{'PROJECT_EDITOR.SEARCH' | translate}}"
+                (click)="openSearchDialog()">
+                    <mat-icon>search</mat-icon>
+            </button>
     </div>
 
     <div class="app-navigation__section app-navigation__section--menu">
