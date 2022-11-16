@@ -1,10 +1,21 @@
 <mat-dialog-content>
     <div class="ama-about-container">
-        <adf-environment-info 
+        <adf-environment-info
             *adf-feature="'canary'"
             [ngClass]="isMobileScreenSize ? 'ama-environment-info-small' : 'ama-environment-info-large'"
         ></adf-environment-info>
-        <adf-about [dev]="dev" [pkg]="pkg"></adf-about>
+        <adf-about>
+            <adf-about-panel *ngIf="dev" [label]="'ABOUT.SERVER_SETTINGS.TITLE' | translate">
+                <ng-template>
+                    <adf-about-server-settings></adf-about-server-settings>
+                </ng-template>
+            </adf-about-panel>
+            <adf-about-panel *ngIf="dev" [label]="'ABOUT.PACKAGES.TITLE' | translate">
+                <ng-template>
+                    <adf-about-package-list [dependencies]="pkg?.dependencies"></adf-about-package-list>
+                </ng-template>
+            </adf-about-panel>
+        </adf-about>
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="adf-dialog-buttons">
