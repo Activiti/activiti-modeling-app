@@ -55,6 +55,7 @@ export enum BpmnProperty {
     emailServiceTask = 'emailServiceTask',
     docgenServiceTask = 'docgenServiceTask',
     contentServiceTask = 'contentServiceTask',
+    hxpContentServiceTask = 'hxpContentServiceTask',
     inheritBusinessKey = 'inheritBusinessKey',
     candidateStarterUsers = 'candidateStarterUsers',
     candidateStarterGroups = 'candidateStarterGroups'

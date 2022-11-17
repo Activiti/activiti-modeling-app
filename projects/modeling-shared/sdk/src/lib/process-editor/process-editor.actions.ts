@@ -29,7 +29,7 @@ export class UpdateServiceParametersAction implements Action {
     constructor(
         public modelId: string,
         public processId: string,
-        public serviceId: string,
+        public serviceId: string | undefined,
         public serviceParameterMappings: ServiceParameterMappings,
         public constants?: ServicesParameterConstants
     ) { }

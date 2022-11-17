@@ -24,6 +24,7 @@ export const EMAIL_SERVICE_NAME = 'email-service';
 export const DOCGEN_SERVICE_GENERATE_TASK_IMPLEMENTATION = 'docgen-service.GENERATE';
 export const DOCGEN_SERVICE_NAME = 'docgen-service';
 export const CONTENT_SERVICE_NAME = 'content-service';
+export const HXP_CONTENT_SERVICE_NAME = 'hxp-content-service';
 export const AUTHENTICATION_INPUT_PARAM_NAME = 'authentication';
 
 export const OOTB_SERVICE_TASK_DESCRIPTORS = {
