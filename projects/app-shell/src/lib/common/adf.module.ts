@@ -24,10 +24,10 @@ import { ProcessServicesCloudModule } from '@alfresco/adf-process-services-cloud
         CoreModule.forRoot(),
         ProcessServicesCloudModule
     ],
-    exports: [ CoreModule, ProcessServicesCloudModule ],
+    exports: [CoreModule, ProcessServicesCloudModule],
     providers: [
         { provide: AppConfigService, useClass: DebugAppConfigService },
         { provide: TRANSLATION_PROVIDER, multi: true, useValue: { name: 'app', source: 'resources' } }
     ]
 })
-export class AdfModule {}
+export class AdfModule { }
