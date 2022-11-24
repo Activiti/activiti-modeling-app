@@ -1187,4 +1187,35 @@ describe('JSONSchemaToEntityPropertyService', () => {
 
         expect(results).toEqual(expectedProperties);
     });
+
+    it('should maintain extra properties when getting the entity properties of a schema with references and properties', () => {
+        const model = {
+            type: 'object',
+            properties: {
+                employee: {
+                    $ref: '#/$defs/primitive/employee',
+                    extraProp: true
+                }
+            }
+        };
+
+        const expectedProperties = [
+            {
+                id: 'employee',
+                name: 'employee',
+                label: 'employee',
+                type: 'employee',
+                readOnly: false,
+                required: false,
+                model: {
+                    $ref: '#/$defs/primitive/employee',
+                    extraProp: true
+                }
+            }
+        ];
+
+        const results = service.getEntityPropertiesFromJSONSchema(model);
+
+        expect(results).toEqual(expectedProperties);
+    });
 });

@@ -183,7 +183,7 @@ export class JSONSchemaToEntityPropertyService {
                 } else if (jsonSchema.$ref && jsonSchema.$ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH)) {
                     const type = jsonSchema.$ref.substring(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH.length + 1);
                     entityProperty.type = type;
-                    entityProperty.model = type === 'json' ? null : { $ref: jsonSchema.$ref };
+                    entityProperty.model = type === 'json' ? null : jsonSchema;
                 } else if (!jsonSchema.enum) {
                     entityProperty = {
                         id: name,

@@ -25,6 +25,7 @@ import { AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT } from '../../../helpers/p
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { JSONSchemaInfoBasics } from '../../../api/types';
 
 @Component({
     template: `
@@ -68,19 +69,29 @@ export class PropertiesViewerDateTimeInputComponent implements OnChanges {
     @Input() value: string;
     @Input() disabled: boolean;
     @Input() placeholder;
-    @Input() extendedProperties: { allowExpressions: boolean } = { allowExpressions: true };
+    @Input() extendedProperties: { allowExpressions?: boolean, format?: string } = { allowExpressions: true };
+    @Input() model: JSONSchemaInfoBasics;
 
     today = new Date();
     currentDateTime = false;
     clearButton = false;
+    format = MOMENT_DATETIME_FORMAT;
 
     ngOnChanges() {
         this.showCheckboxOrDatepicker();
+        this.setDateFormat();
     }
 
     showCheckboxOrDatepicker() {
         this.currentDateTime = this.value === '${now()}' ? true : false;
         this.clearButton = this.value ? !this.currentDateTime : false;
+    }
+
+    setDateFormat() {
+        this.format = this.extendedProperties?.format || this.model?.pattern || MOMENT_DATETIME_FORMAT;
+        if (!moment(moment().format(this.format)).isValid()) {
+            this.format = MOMENT_DATETIME_FORMAT;
+        }
     }
 
     onDateClear(event: Event) {
@@ -91,7 +102,7 @@ export class PropertiesViewerDateTimeInputComponent implements OnChanges {
     }
 
     get pickerDate(): UntypedFormControl {
-        return new UntypedFormControl({ value: this.value ? moment(this.value, MOMENT_DATETIME_FORMAT) : '', disabled: this.disabled });
+        return new UntypedFormControl({ value: this.value ? moment(this.value, this.format) : '', disabled: this.disabled });
     }
 
     onChange(event: MatDatepickerInputEvent<Date> | MatCheckboxChange) {
@@ -104,7 +115,7 @@ export class PropertiesViewerDateTimeInputComponent implements OnChanges {
                 this.clearButton = false;
             }
         } else {
-            res = moment(event.value).format(MOMENT_DATETIME_FORMAT);
+            res = moment(event.value).format(this.format);
             this.currentDateTime = false;
             this.clearButton = true;
         }

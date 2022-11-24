@@ -22,6 +22,7 @@ import { UntypedFormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { JSONSchemaInfoBasics } from '../../../api/types';
 
 @Component({
     template: `
@@ -70,24 +71,34 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 
 export class PropertiesViewerDateInputComponent implements OnChanges {
 
+    private static DEFAULT_FORMAT = 'YYYY-MM-DD';
+
     // eslint-disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled: boolean;
     @Input() placeholder;
-    @Input() extendedProperties: { allowExpressions: boolean } = { allowExpressions: true };
+    @Input() extendedProperties: { allowExpressions?: boolean, format?: string } = { allowExpressions: true };
+    @Input() model: JSONSchemaInfoBasics;
 
-    format = 'YYYY-MM-DD';
+    format = PropertiesViewerDateInputComponent.DEFAULT_FORMAT;
     currentDate = false;
     clearButton = false;
 
     ngOnChanges() {
         this.showCheckboxOrDatepicker();
+        this.setDateFormat();
     }
 
     showCheckboxOrDatepicker() {
         this.currentDate = this.value === '${now()}' ? true : false;
         this.clearButton = this.value ? !this.currentDate : false;
+    }
+    setDateFormat() {
+        this.format = this.extendedProperties?.format || this.model?.pattern || PropertiesViewerDateInputComponent.DEFAULT_FORMAT;
+        if (!moment(moment().format(this.format)).isValid()) {
+            this.format = PropertiesViewerDateInputComponent.DEFAULT_FORMAT;
+        }
     }
 
     onDateClear(event: Event) {

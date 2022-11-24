@@ -21,7 +21,7 @@ import { TranslationService, TranslationMock, CoreModule } from '@alfresco/adf-c
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
@@ -118,6 +118,28 @@ describe('PropertiesViewerDateInputComponent', () => {
 
             expect(checkboxDateTime).toBeNull();
             expect(inputDateTime).not.toBeNull();
+        });
+    });
+
+    describe('Using custom date pattern', () => {
+        it('should emit the value using the default pattern when pattern is invalid', () => {
+            spyOn(component.change, 'emit');
+            component.model = { pattern: 'MMM Do YY' };
+            component.ngOnChanges();
+            component.onChange({ value: new Date(2022, 10, 28, 12, 30, 0) } as undefined as MatDatepickerInputEvent<Date>);
+
+            expect(component.change.emit).toHaveBeenCalledWith('2022-11-28T12:30:00');
+
+        });
+
+        it('should emit the value using the provided pattern when pattern is valid', () => {
+            spyOn(component.change, 'emit');
+            component.model = { pattern: 'YYYY-MM-DDTHH:mm:ss[Z]' };
+            component.ngOnChanges();
+            component.onChange({ value: new Date(2022, 10, 28, 12, 30, 0) } as undefined as MatDatepickerInputEvent<Date>);
+
+            expect(component.change.emit).toHaveBeenCalledWith('2022-11-28T12:30:00Z');
+
         });
     });
 });

@@ -43,6 +43,10 @@ module.exports = {
         "target": APP_CONFIG_BPM_HOST,
         "secure": false,
         "changeOrigin": true,
+        onProxyReq: function(request) {
+            if(request["method"] === "GET")
+            request.setHeader("referer", APP_CONFIG_BPM_HOST + '/modeling/');
+        },
         "pathRewrite": {
             "^/identity-adapter-service/identity-adapter-service": ""
         },
