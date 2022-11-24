@@ -17,7 +17,8 @@
     "@nrwl/angular:application": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "karma"
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "none"
     },
     "@nrwl/angular:library": {
       "linter": "eslint",
