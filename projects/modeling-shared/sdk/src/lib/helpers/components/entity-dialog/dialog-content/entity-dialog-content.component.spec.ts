@@ -65,6 +65,28 @@ describe('EntityDialogContentComponent', () => {
         component.data = mockDialogData;
     });
 
+    it('should provide default value for field when field is NOT touched', () => {
+        spyOn(component.submit, 'emit');
+
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+
+        fixture.detectChanges();
+        component.dialogForm.get('name').setValue('fake-name');
+
+        submitBtn.triggerEventHandler('click', null);
+
+        expect(component.submit.emit).toHaveBeenCalledWith({
+            payload: {
+                description: '',
+                name: 'fake-name'
+            },
+            navigateTo: true,
+            callback: component.data.callback
+        });
+
+        expect(component.dialogForm.get('description').value).toBe('');
+    });
+
     it('should emit on create entity', () => {
         fixture.detectChanges();
         spyOn(component.submit, 'emit');

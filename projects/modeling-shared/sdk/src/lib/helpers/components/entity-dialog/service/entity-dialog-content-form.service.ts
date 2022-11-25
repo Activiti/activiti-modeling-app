@@ -24,19 +24,30 @@ export class EntityDialogContentFormService {
 
     constructor(private formBuilder: FormBuilder) {}
 
+    readonly DEFAULT_STRING = '';
+    readonly DEFAULT_NUMBER = 0;
+
     createForm(modelCreatorDialogFields: ModelFieldProperty[]): FormGroup {
         let formControls = {};
         for (const formField of modelCreatorDialogFields) {
-            const formControl = Object.assign({});
-            formControl[formField.key] = this.createController(formField?.default, formField?.validators);
+            const formControl = {};
+            const defaultValue = this.getDefaultFromType(formField.default, formField.type);
+            formControl[formField.key] = this.createController(defaultValue, formField?.validators);
             formControls = { ...formControls, ...formControl };
         }
 
         return this.formBuilder.group(formControls);
     }
 
-    private createController(defaultValue?: any, validators?: FieldValidator[]): FormControl {
+    private createController(defaultValue: any, validators?: FieldValidator[]): FormControl {
         const controller = new FormControl(defaultValue);
+
+        this.addValidation(controller, validators);
+
+        return controller;
+    }
+
+    private addValidation(controller: FormControl, validators: FieldValidator[]) {
         if(validators) {
             validators.forEach((validator: FieldValidator) => {
                 switch(validator.type) {
@@ -48,9 +59,18 @@ export class EntityDialogContentFormService {
                         break;
                 }
             });
-        }
 
-        controller.updateValueAndValidity();
-        return controller;
+            controller.updateValueAndValidity();
+        }
+    }
+
+    private getDefaultFromType(defaultValue: any, type: string): any {
+        switch(type) {
+            case 'text':
+            case 'textarea':
+                return defaultValue ?? this.DEFAULT_STRING;
+            case 'number':
+                return defaultValue ?? this.DEFAULT_NUMBER;
+        }
     }
 }
