@@ -24,33 +24,31 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
-import { EntityDialogPayload } from '../../common';
 import { By } from '@angular/platform-browser';
 import { EntityDialogContentComponent } from './dialog-content/entity-dialog-content.component';
+import { EntityDialogContentFormService } from './service/entity-dialog-content-form.service';
+import { FormBuilder } from '@angular/forms';
+import { EntityDialogPayload } from '../../common';
+import { mockModelCreatorDialogFields, mockValuesProperty } from './mock/entity-dialog.mock';
 
 describe('EntityDialogComponent', () => {
     let component: EntityDialogComponent;
     let fixture: ComponentFixture<EntityDialogComponent>;
     let store: Store<AmaState>;
 
-    const callback = jest.fn();
-    const createProjectAttemptActionImplementationMock = jest.fn();
-    const createProjectAttemptActionMock = jest.fn().mockImplementation(() => createProjectAttemptActionImplementationMock);
-
     const mockDialog = {
         close: jest.fn()
     };
 
-    const mockDialogData: EntityDialogPayload = {
-        title: 'mock-title',
-        nameField: 'name',
-        descriptionField: 'desc',
+    const createProjectAttemptActionImplementationMock = jest.fn();
+    const callback = jest.fn();
+    const createProjectAttemptActionMock = jest.fn().mockImplementation(() => createProjectAttemptActionImplementationMock);
+
+    const mockDialogDataWithValues: EntityDialogPayload = {
+        title: 'fake-title',
+        fields: mockModelCreatorDialogFields,
         action: createProjectAttemptActionMock,
-        values: {
-            id: 'id',
-            name: 'name',
-            description: 'description',
-        },
+        values: mockValuesProperty,
         callback
     };
 
@@ -62,7 +60,9 @@ describe('EntityDialogComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: Store, useValue: { dispatch: jest.fn() } },
                 { provide: MatDialogRef, useValue: mockDialog },
-                { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
+                { provide: MAT_DIALOG_DATA, useValue: mockDialogDataWithValues },
+                EntityDialogContentFormService,
+                FormBuilder
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -86,10 +86,12 @@ describe('EntityDialogComponent', () => {
 
         const payload = {
             form: {
-                name: 'name',
-                description: 'description'
+                name: 'fake-values-name',
+                description: 'fake-values-description'
             },
-            id: 'id'
+            description: 'fake-values-description',
+            name: 'fake-values-name',
+            id: 'fake-values-id'
         };
 
         expect(component.data.action).toHaveBeenCalledWith(payload, true, callback);

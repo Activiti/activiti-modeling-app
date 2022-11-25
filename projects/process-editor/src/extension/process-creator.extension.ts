@@ -27,13 +27,32 @@ export function createProcessCreator(callback = () => {}): ModelCreator {
         type: PROCESS,
         order: 0,
         dialog: {
-            allowedCharacters: {
-                regex: PROCESS_NAME_REGEX,
-                error: 'APP.DIALOGS.ERROR.PROCESS_NAME_VALIDATION'
-            },
             title: 'PROJECT_EDITOR.PROCESS_DIALOG.TITLE_CREATE',
-            nameField: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_NAME',
-            descriptionField: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_DESC',
+            fields: [
+                {
+                    key: 'name',
+                    label: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_NAME',
+                    type: 'text',
+                    validators: [
+                        {
+                            type: 'required',
+                            value: true,
+                            error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
+                        },
+                        {
+                            type: 'pattern',
+                            value: PROCESS_NAME_REGEX,
+                            error: 'APP.DIALOGS.ERROR.PROCESS_NAME_VALIDATION'
+                        }
+                    ]
+                },
+                {
+                    key: 'description',
+                    label: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_DESC',
+                    type: 'textarea'
+                }
+            ],
+            submitText: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_SUBMIT_TEXT',
             action: CreateProcessAttemptAction,
             callback: callback,
             dialog: CreateProcessDialogComponent,

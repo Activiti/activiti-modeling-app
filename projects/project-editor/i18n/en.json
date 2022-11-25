@@ -3,11 +3,12 @@
         "CONTENT_MODEL_DIALOG": {
             "TITLE_CREATE": "Create Content Model",
             "TITLE_UPDATE": "Update Content Model",
-            "CONTENT_MODEL_NAME": "Content Model name:",
-            "CONTENT_MODEL_DESC": "Content Model description:",
+            "CONTENT_MODEL_NAME": "Content Model name",
+            "CONTENT_MODEL_DESC": "Content Model description",
             "CONTENT_MODEL_CREATED": "Content Model created",
             "CONTENT_MODEL_DELETED": "Content Model deleted",
-            "CONTENT_MODEL_UPDATED": "Content Model saved"
+            "CONTENT_MODEL_UPDATED": "Content Model saved",
+            "CONTENT_MODEL_SUBMIT_TEXT": "Create Content Model"
         },
         "BACK_TO": "Back to projects",
         "NAME": "Project Editor",
@@ -70,45 +71,49 @@
         "PROCESS_DIALOG": {
             "TITLE_CREATE": "Create Process",
             "TITLE_UPDATE": "Update Process",
-            "PROCESS_NAME": "Process name:",
-            "PROCESS_DESC": "Process documentation:",
+            "PROCESS_NAME": "Process name",
+            "PROCESS_DESC": "Process documentation",
             "PROCESS_CREATED": "Process created",
             "PROCESS_DELETED": "Process deleted",
-            "PROCESS_UPDATED": "Process saved"
+            "PROCESS_UPDATED": "Process saved",
+            "PROCESS_SUBMIT_TEXT": "Create Process"
         },
         "CONNECTOR_DIALOG": {
             "TITLE_CREATE": "Create Connector",
             "TITLE_UPDATE": "Update Connector",
-            "CONNECTOR_NAME": "Connector name:",
-            "CONNECTOR_DESC": "Connector description:",
+            "CONNECTOR_NAME": "Connector name",
+            "CONNECTOR_DESC": "Connector description",
             "CONNECTOR_CREATED": "Connector created",
             "CONNECTOR_DELETED": "Connector deleted",
-            "CONNECTOR_UPDATED": "Connector saved"
+            "CONNECTOR_UPDATED": "Connector saved",
+            "CONNECTOR_SUBMIT_TEXT": "Create Connector"
         },
         "FORM_DIALOG": {
             "TITLE_CREATE": "Create Form",
             "TITLE_UPDATE": "Update Form",
-            "FORM_NAME": "Form name:",
-            "FORM_DESC": "Form description:",
+            "FORM_NAME": "Form name",
+            "FORM_DESC": "Form description",
             "FORM_CREATED": "Form created",
             "FORM_DELETED": "Form deleted",
             "FORM_UPDATED": "Form saved",
-            "FORM_CONTENT_CREATED": "Initial form content from content model created"
+            "FORM_CONTENT_CREATED": "Initial form content from content model created",
+            "FORM_SUBMIT_TEXT": "Create Form"
         },
         "UI_DIALOG": {
             "TITLE_CREATE": "Create UI",
             "TITLE_UPDATE": "Update UI",
-            "UI_NAME": "UI name:",
-            "UI_DESC": "UI description:",
+            "UI_NAME": "UI name",
+            "UI_DESC": "UI description",
             "UI_CREATED": "UI created",
             "UI_DELETED": "UI deleted",
-            "UI_UPDATED": "UI saved"
+            "UI_UPDATED": "UI saved",
+            "UI_SUBMIT_TEXT": "Create UI"
         },
         "DATA_DIALOG": {
             "TITLE_CREATE": "Create Data Object",
             "TITLE_UPDATE": "Update Data Object",
-            "DATA_NAME": "Data object name:",
-            "DATA_DESC": "Data object description:",
+            "DATA_NAME": "Data object name",
+            "DATA_DESC": "Data object description",
             "DATA_CREATED": "Data object created",
             "DATA_DELETED": "Data object deleted",
             "DATA_UPDATED": "Data object saved"
@@ -116,40 +121,44 @@
         "DECISION_TABLE_DIALOG": {
             "TITLE_CREATE": "Create Decision Table",
             "TITLE_UPDATE": "Update Decision Table",
-            "DECISION_TABLE_NAME": "Decision table name:",
-            "DECISION_TABLE_DESC": "Decision table description:",
+            "DECISION_TABLE_NAME": "Decision table name",
+            "DECISION_TABLE_DESC": "Decision table description",
             "DECISION_TABLE_CREATED": "Decision table created",
             "DECISION_TABLE_DELETED": "Decision table deleted",
-            "DECISION_TABLE_UPDATED": "Decision table saved"
+            "DECISION_TABLE_UPDATED": "Decision table saved",
+            "DECISION_TABLE_SUBMIT_TEXT": "Create Decision Table"
         },
         "FILE_DIALOG": {
             "TITLE_CREATE": "Create File",
             "TITLE_UPDATE": "Update File",
-            "FILE_NAME": "File name:",
-            "FILE_DESC": "FIle description:",
+            "FILE_NAME": "File name",
+            "FILE_DESC": "FIle description",
             "FILE_CREATED": "File created",
             "FILE_DELETED": "File deleted",
             "FILE_UPDATED": "File saved",
             "PRIVATE_FILE": "Private",
-            "PUBLIC_FILE": "Public"
+            "PUBLIC_FILE": "Public",
+            "FILE_SUBMIT_TEXT": "Create File"
         },
         "SCRIPT_DIALOG": {
             "TITLE_CREATE": "Create Script",
             "TITLE_UPDATE": "Update Script",
-            "SCRIPT_NAME": "Script name:",
-            "SCRIPT_DESC": "Script description:",
+            "SCRIPT_NAME": "Script name",
+            "SCRIPT_DESC": "Script description",
             "SCRIPT_CREATED": "Script created",
             "SCRIPT_DELETED": "Script deleted",
-            "SCRIPT_UPDATED": "Script saved"
+            "SCRIPT_UPDATED": "Script saved",
+            "SCRIPT_SUBMIT_TEXT": "Create Script"
         },
         "TRIGGER_DIALOG": {
             "TITLE_CREATE": "Create Trigger",
             "TITLE_UPDATE": "Update Trigger",
-            "TRIGGER_NAME": "Trigger name:",
-            "TRIGGER_DESC": "Trigger description:",
+            "TRIGGER_NAME": "Trigger name",
+            "TRIGGER_DESC": "Trigger description",
             "TRIGGER_CREATED": "Trigger created",
             "TRIGGER_DELETED": "Trigger deleted",
-            "TRIGGER_UPDATED": "Trigger saved"
+            "TRIGGER_UPDATED": "Trigger saved",
+            "TRIGGER_SUBMIT_TEXT": "Create Trigger"
         },
         "ACTION_DIALOG": {
             "ACTION_DETAILS": "Action details",
@@ -168,20 +177,22 @@
         "PROJECT_MODEL_DIALOG": {
             "TITLE_CREATE": "Create Content Model",
             "TITLE_UPDATE": "Update Content Model",
-            "PROJECT_MODEL_NAME": "Content Model name:",
-            "PROJECT_MODEL_DESC": "Content Model description:",
+            "PROJECT_MODEL_NAME": "Content Model name",
+            "PROJECT_MODEL_DESC": "Content Model description",
             "PROJECT_MODEL_CREATED": "Content Model created",
             "PROJECT_MODEL_DELETED": "Content Model deleted",
-            "PROJECT_MODEL_UPDATED": "Content Model saved"
+            "PROJECT_MODEL_UPDATED": "Content Model saved",
+            "PROJECT_MODEL_SUBMIT_TEXT": "Create Content Model"
         },
         "FORM_WIDGET_DIALOG": {
             "TITLE_CREATE": "Create Form Widget",
             "TITLE_UPDATE": "Update Form Widget",
-            "FORM_WIDGET_NAME": "Widget name:",
-            "FORM_WIDGET_DESC": "Widget description:",
+            "FORM_WIDGET_NAME": "Widget name",
+            "FORM_WIDGET_DESC": "Widget description",
             "FORM_WIDGET_CREATED": "Form Widget created",
             "FORM_WIDGET_DELETED": "Form Widget deleted",
-            "FORM_WIDGET_UPDATED": "Form Widget saved"
+            "FORM_WIDGET_UPDATED": "Form Widget saved",
+            "FORM_WIDGET_SUBMIT_TEXT": "Create Form Widget"
         },
         "DATA_MODEL_DIALOG": {
             "TITLE_CREATE": "Create Data Model",
@@ -190,7 +201,8 @@
             "DATA_MODEL_DESC": "Data Model description",
             "DATA_MODEL_CREATED": "Data Model created",
             "DATA_MODEL_DELETED": "Data Model deleted",
-            "DATA_MODEL_UPDATED": "Data Model saved"
+            "DATA_MODEL_UPDATED": "Data Model saved",
+            "DATA_MODEL_SUBMIT_TEXT": "Create Data Model"
         },
         "AUTHENTICATION_DIALOG": {
             "TITLE_CREATE": "Create Authentication",
@@ -199,7 +211,8 @@
             "AUTHENTICATION_DESC": "Authentication description",
             "AUTHENTICATION_CREATED": "Authentication created",
             "AUTHENTICATION_DELETED": "Authentication deleted",
-            "AUTHENTICATION_UPDATED": "Authentication saved"
+            "AUTHENTICATION_UPDATED": "Authentication saved",
+            "AUTHENTICATION_SUBMIT_TEXT": "Create Authentication"
         },
         "ERROR": {
             "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exists.",

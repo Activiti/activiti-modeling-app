@@ -7,7 +7,7 @@
         <input matInput
                required
                placeholder="{{ 'SDK.SAVE_AS_DIALOG.FIELD_PROPERTIES.NAME' | translate }}"
-               data-automation-id="name-field"
+               data-automation-id="ama-model-input-name"
                [(ngModel)]="name" (keydown.enter)="submit()">
     </mat-form-field>
     <mat-error data-automation-id="error-validation" *ngIf="name && !validate()">{{ allowedCharacters.error | translate }}</mat-error>
@@ -15,7 +15,7 @@
     <mat-form-field class="adf-full-width">
         <textarea matInput
             placeholder="{{ 'SDK.SAVE_AS_DIALOG.FIELD_PROPERTIES.DESCRIPTION' | translate }}"
-            data-automation-id="desc-field"
+            data-automation-id="ama-model-input-description"
             [(ngModel)]="description">
         </textarea>
     </mat-form-field>

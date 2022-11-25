@@ -149,13 +149,32 @@ export class DialogEffects {
             () =>
                 new EditProjectDialogAction({
                     title: 'DASHBOARD.NEW_MENU.CREATE_PROJECT_TITLE',
-                    nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
-                    descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',
-                    action: CreateProjectAttemptAction,
-                    allowedCharacters: {
-                        regex: MODELER_NAME_REGEX,
-                        error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-                    }
+                    fields: [
+                        {
+                            key: 'name',
+                            label: 'DASHBOARD.DIALOGS.PROJECT_NAME',
+                            type: 'text',
+                            validators: [
+                                {
+                                    type: 'required',
+                                    value: true,
+                                    error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
+                                },
+                                {
+                                    type: 'pattern',
+                                    value: MODELER_NAME_REGEX,
+                                    error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
+                                }
+                            ]
+                        },
+                        {
+                            key: 'description',
+                            label: 'DASHBOARD.DIALOGS.PROJECT_DESC',
+                            type: 'textarea'
+                        }
+                    ],
+                    submitText: 'DASHBOARD.DIALOGS.PROJECT_SUBMIT_TEXT',
+                    action: CreateProjectAttemptAction
                 })
         )
     ));
@@ -167,16 +186,35 @@ export class DialogEffects {
             (action) =>
                 new OpenEntityDialogAction({
                     title: 'DASHBOARD.NEW_MENU.OVERRIDE_PROJECT_TITLE',
-                    nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
-                    descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',
+                    fields: [
+                        {
+                            key: 'name',
+                            label: 'DASHBOARD.DIALOGS.PROJECT_NAME',
+                            type: 'text',
+                            validators: [
+                                {
+                                    type: 'required',
+                                    value: true,
+                                    error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
+                                },
+                                {
+                                    type: 'pattern',
+                                    value: MODELER_NAME_REGEX,
+                                    error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
+                                }
+                            ]
+                        },
+                        {
+                            key: 'description',
+                            label: 'DASHBOARD.DIALOGS.PROJECT_DESC',
+                            type: 'textarea'
+                        }
+                    ],
+                    submitText: 'DASHBOARD.DIALOGS.PROJECT_SUBMIT_TEXT',
                     submitData: {
                         file: action.file
                     },
-                    action: OverrideProjectAttemptAction,
-                    allowedCharacters: {
-                        regex: MODELER_NAME_REGEX,
-                        error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-                    }
+                    action: OverrideProjectAttemptAction
                 })
         )
     ));

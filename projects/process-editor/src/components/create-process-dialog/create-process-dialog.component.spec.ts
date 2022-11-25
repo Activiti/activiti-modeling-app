@@ -22,12 +22,20 @@ import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { AmaState, EntityDialogPayload, EntityDialogContentComponent } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    AmaState,
+    EntityDialogContentComponent,
+    EntityDialogContentFormService,
+    EntityDialogPayload,
+    mockModelCreatorDialogFields,
+    mockValuesProperty
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { CreateProcessDialogComponent } from './create-process-dialog.component';
 import { ProcessCategorySelectorComponent } from '../process-category-selector/process-category-selector.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { selectProcessCategories } from '../../store/process-editor.selectors';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormBuilder } from '@angular/forms';
 
 describe('CreateProcessDialogComponent', () => {
     let fixture: ComponentFixture<CreateProcessDialogComponent>;
@@ -35,20 +43,15 @@ describe('CreateProcessDialogComponent', () => {
     let categorySelectorDebugElement: DebugElement;
     let store: MockStore<AmaState>;
 
-    const callback = jest.fn();
     const createProjectAttemptActionImplementationMock = jest.fn();
+    const callback = jest.fn();
     const createProjectAttemptActionMock = jest.fn().mockImplementation(() => createProjectAttemptActionImplementationMock);
 
-    const mockDialogData: EntityDialogPayload = {
-        title: 'mock-title',
-        nameField: 'name',
-        descriptionField: 'desc',
+    const mockDialogDataWithValues: EntityDialogPayload = {
+        title: 'fake-title',
+        fields: mockModelCreatorDialogFields,
         action: createProjectAttemptActionMock,
-        values: {
-            id: 'id',
-            name: 'name',
-            description: 'description',
-        },
+        values: mockValuesProperty,
         callback
     };
 
@@ -73,7 +76,9 @@ describe('CreateProcessDialogComponent', () => {
                 }),
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: MatDialogRef, useValue: { close: jest.fn() } },
-                { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
+                { provide: MAT_DIALOG_DATA, useValue: mockDialogDataWithValues },
+                EntityDialogContentFormService,
+                FormBuilder
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -104,10 +109,12 @@ describe('CreateProcessDialogComponent', () => {
 
         const payload = {
             form: {
-                name: 'name',
-                description: 'description'
+                name: 'fake-values-name',
+                description: 'fake-values-description'
             },
-            id: 'id',
+            id: 'fake-values-id',
+            description: 'fake-values-description',
+            name: 'fake-values-name',
             category: ''
         };
 
@@ -128,10 +135,12 @@ describe('CreateProcessDialogComponent', () => {
 
         const payload = {
             form: {
-                name: 'name',
-                description: 'description'
+                name: 'fake-values-name',
+                description: 'fake-values-description'
             },
-            id: 'id',
+            id: 'fake-values-id',
+            description: 'fake-values-description',
+            name: 'fake-values-name',
             category: newCategory
         };
 

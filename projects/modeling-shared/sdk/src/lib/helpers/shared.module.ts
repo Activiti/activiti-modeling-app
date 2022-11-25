@@ -26,21 +26,19 @@ import { PaletteOverlayDirective } from './directives/palette-overlay.directive'
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { EntityDialogContentComponent } from './components/entity-dialog/dialog-content/entity-dialog-content.component';
 import { ActiveClassDirective } from './directives/active-class.directive';
+import { EntityDialogContentFormService } from './components/entity-dialog/service/entity-dialog-content-form.service';
+import { EntityDialogInputsGeneratorComponent } from './components/entity-dialog/inputs-generator/entity-dialog-inputs-generator.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MatIconModule,
-        RouterModule,
-        CoreModule.forChild(),
-    ],
+    imports: [CommonModule, MatIconModule, RouterModule, CoreModule.forChild()],
     declarations: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
         EntityDialogContentComponent,
         AllowedCharactersDirective,
         PaletteOverlayDirective,
-        ActiveClassDirective
+        ActiveClassDirective,
+        EntityDialogInputsGeneratorComponent,
     ],
     exports: [
         HeaderBreadcrumbsComponent,
@@ -48,7 +46,10 @@ import { ActiveClassDirective } from './directives/active-class.directive';
         EntityDialogContentComponent,
         AllowedCharactersDirective,
         PaletteOverlayDirective,
-        ActiveClassDirective
+        ActiveClassDirective,
+    ],
+    providers: [
+        EntityDialogContentFormService
     ]
 })
-export class SharedModule { }
+export class SharedModule {}

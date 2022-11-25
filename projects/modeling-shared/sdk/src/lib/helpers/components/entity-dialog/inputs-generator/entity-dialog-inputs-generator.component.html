@@ -1,0 +1,31 @@
+<ng-container [formGroup]="formGroup">
+    <div class="ama-model-generator-inputs-container">
+        <mat-form-field *ngFor="let field of fieldProperty"
+                        [attr.data-automation-id]="field.key">
+            <mat-label>{{ field.label | translate }}</mat-label>
+            <input
+                *ngIf="field.type !== 'textarea'; else displayTextArea"
+                matInput
+                [attr.data-automation-id]="'ama-model-input-' + field.key"
+                [placeholder]="field.label | translate"
+                [type]="field.type"
+                [formControl]="getInputFormControl(field.key)"/>
+
+            <ng-template #displayTextArea>
+                <textarea
+                matInput
+                [attr.data-automation-id]="'ama-model-input-' + field.key"
+                [placeholder]="field.label | translate"
+                [type]="field.type"
+                [formControl]="getInputFormControl(field.key)"></textarea>
+            </ng-template>
+
+            <mat-error *ngFor="let validator of field.validators">
+                <mat-error *ngIf="getInputFormControl(field.key).hasError(validator.type)"
+                    [attr.data-automation-id]="'ama-error-' + validator.type + '-' + field.key">
+                    {{ getErrorMessage(validator, field.label) }}
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+    </div>
+</ng-container>

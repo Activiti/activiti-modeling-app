@@ -30,12 +30,31 @@ export function createConnectorCreator(callback = (_param) => {}): ModelCreator 
         type: CONNECTOR,
         dialog: {
             title: 'PROJECT_EDITOR.CONNECTOR_DIALOG.TITLE_CREATE',
-            nameField: 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_NAME',
-            descriptionField: 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_DESC',
-            allowedCharacters: {
-                regex: MODELER_NAME_REGEX,
-                error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-            },
+            fields: [
+                {
+                    key: 'name',
+                    label: 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_NAME',
+                    type: 'text',
+                    validators: [
+                        {
+                            type: 'required',
+                            value: true,
+                            error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
+                        },
+                        {
+                            type: 'pattern',
+                            value: MODELER_NAME_REGEX,
+                            error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
+                        }
+                    ]
+                },
+                {
+                    key: 'description',
+                    label: 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_DESC',
+                    type: 'textarea'
+                }
+            ],
+            submitText: 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_SUBMIT_TEXT',
             action: CreateConnectorAttemptAction,
             callback: callback
         }

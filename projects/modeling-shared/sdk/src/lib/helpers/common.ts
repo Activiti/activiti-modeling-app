@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+import { ModelFieldProperty } from '../interfaces/model-creator.interface';
+
 export interface EntityDialogForm {
     id?: string;
     name: string;
@@ -34,10 +36,12 @@ export interface AllowedCharacters {
 
 export interface EntityDialogPayload {
     title: string;
-    nameField: string;
-    descriptionField: string;
+    nameField?: string;
+    descriptionField?: string;
+    fields: ModelFieldProperty[];
     values?: EntityDialogForm;
     allowedCharacters?: AllowedCharacters;
+    submitText?: string;
     action: any;
     submitData?: any;
     navigateTo?: boolean;

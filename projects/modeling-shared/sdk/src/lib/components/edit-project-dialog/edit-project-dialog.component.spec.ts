@@ -25,31 +25,33 @@ import { By } from '@angular/platform-browser';
 import { EditProjectDialogComponent } from './edit-project-dialog.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AmaState } from '../../store/app.state';
-import { ProjectEntityDialogForm } from '../../helpers/common';
+import { EntityDialogPayload, ProjectEntityDialogForm } from '../../helpers/common';
 import { EntityDialogContentComponent } from '../../helpers/components/entity-dialog/dialog-content/entity-dialog-content.component';
 import { Store } from '@ngrx/store';
+import { EntityDialogContentFormService } from '../../helpers/components/entity-dialog/service/entity-dialog-content-form.service';
+import { FormBuilder } from '@angular/forms';
+import { mockModelCreatorDialogFields, mockValuesProperty } from '../../helpers/components/entity-dialog/mock/entity-dialog.mock';
 
 describe('EditProjectDialogComponent', () => {
     let fixture: ComponentFixture<EditProjectDialogComponent>;
     let editProjectDialogComponent: EditProjectDialogComponent;
     let store: Store<AmaState>;
 
-    const callback = jest.fn();
     const createProjectAttemptActionImplementationMock = jest.fn();
+    const callback = jest.fn();
     const createProjectAttemptActionMock = jest.fn().mockImplementation(() => createProjectAttemptActionImplementationMock);
 
-    const mockDialogData: ProjectEntityDialogForm = {
-        title: 'mock-title',
-        nameField: 'name',
-        descriptionField: 'desc',
+    const mockDialogDataWithValues: EntityDialogPayload = {
+        title: 'fake-title',
+        fields: mockModelCreatorDialogFields,
         action: createProjectAttemptActionMock,
-        values: {
-            id: 'id',
-            name: 'name',
-            description: 'description',
-        },
-        enableCandidateStarters: true,
+        values: mockValuesProperty,
         callback
+    };
+
+    const mockDialogData: ProjectEntityDialogForm = {
+        ...mockDialogDataWithValues,
+        enableCandidateStarters: true
     };
 
     beforeEach(async () => {
@@ -69,6 +71,8 @@ describe('EditProjectDialogComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: MatDialogRef, useValue: { close: jest.fn() } },
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
+                EntityDialogContentFormService,
+                FormBuilder
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -99,10 +103,12 @@ describe('EditProjectDialogComponent', () => {
 
         const payload = {
             form: {
-                name: 'name',
-                description: 'description'
+                name: 'fake-values-name',
+                description: 'fake-values-description'
             },
-            id: 'id',
+            id: 'fake-values-id',
+            name: 'fake-values-name',
+            description: 'fake-values-description',
             enableCandidateStarters: true
         };
 

@@ -15,9 +15,11 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, HostListener, ViewChild, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { EntityDialogPayload, AllowedCharacters, EntityDialogForm } from '../../../common';
-import { MODELER_NAME_REGEX } from '../../../utils/create-entries-names';
+import { Component, OnInit, HostListener, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ModelFieldProperty } from '../../../../interfaces/model-creator.interface';
+import { EntityDialogPayload, EntityDialogForm } from '../../../common';
+import { EntityDialogContentFormService } from '../service/entity-dialog-content-form.service';
 
 interface EditActionSubmitPayload {
     id: string;
@@ -50,53 +52,80 @@ export class EntityDialogContentComponent implements OnInit {
     submit = new EventEmitter<EntityDialogContentSubmitData>();
 
     submitButton: string;
-    allowedCharacters: AllowedCharacters;
-    form: Partial<EntityDialogForm>;
-    ENTER_KEY = 13;
+    dialogForm: FormGroup;
+    prefilledFormValues: Partial<EntityDialogForm>;
+    payload: EntityDialogContentSubmitPayload;
 
-    @ViewChild('entityName', { static: true })
-    private entityNameField: ElementRef<HTMLElement>;
-
-    @ViewChild('buttonSubmit', { static: true })
-    private submitButtonField: ElementRef<HTMLElement>;
+    constructor(private entityDialogContentFormService: EntityDialogContentFormService) {}
 
     ngOnInit() {
-        const { values, allowedCharacters } = this.data;
-        this.submitButton = values ? 'APP.DIALOGS.SAVE' : 'APP.DIALOGS.CREATE';
-        this.allowedCharacters = allowedCharacters || {
-            regex: MODELER_NAME_REGEX,
-            error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-        };
-        this.form = {
-            name: values?.name ? values.name : '',
-            description: values?.description ? values.description : ''
-        };
+        this.dialogForm = this.entityDialogContentFormService.createForm(this.data.fields);
+
+        this.setupSubmitButton();
+        this.getPrefilledFormValues();
     }
 
-    validate(): boolean {
-        return this.allowedCharacters.regex.test(this.form.name);
+    getPrefilledFormValues() {
+        const values = this.data.values;
+
+        this.prefilledFormValues = {
+            name: values?.name ?? '',
+            description: values?.description ?? ''
+        };
+
+        this.prefillFormValues();
+        this.payload = values ? { id: values.id, form: this.prefilledFormValues } : this.prefilledFormValues;
+    }
+
+    prefillFormValues() {
+        if (this.prefilledFormValues?.name) {
+            this.dialogForm.get('name').setValue(this.prefilledFormValues.name);
+        }
+
+        if (this.prefilledFormValues?.description) {
+            this.dialogForm.get('description').setValue(this.prefilledFormValues.description);
+        }
+    }
+
+    getDialogFieldsData() {
+        if(this.data?.fields?.length > 0) {
+            this.data.fields.forEach((field: ModelFieldProperty) => {
+                this.payload[field.key] = this.dialogForm.get(field.key).value;
+            });
+        }
+    }
+
+    setupSubmitButton() {
+        const { values, submitText } = this.data;
+        this.submitButton = values ? 'APP.DIALOGS.SAVE' : submitText;
+    }
+
+    createSubmitPayload() {
+        if (this.data?.submitData) {
+            this.payload.submitData = this.data.submitData;
+        }
     }
 
     onSubmit(): void {
-        const { values } = this.data;
-        const payload: EntityDialogContentSubmitPayload =
-            values ? { id: values.id, form: this.form } : this.form;
+        this.createSubmitPayload();
+        this.getDialogFieldsData();
 
-        if (this.data.submitData) {
-            payload.submitData = this.data.submitData;
-        }
+        const navigateTo = this.data.navigateTo ?? true;
 
-        const navigateTo = this.data.navigateTo !== undefined ? this.data.navigateTo : true;
         this.submit.emit({
-            payload,
+            payload: this.payload,
             navigateTo,
             callback: this.data.callback
         });
     }
 
+    isValid(): boolean {
+        return this.dialogForm.valid;
+    }
+
     @HostListener('document:keydown.enter', ['$event.target'])
-    keyEvent(element: HTMLElement) {
-        if (this.validate() && (element === this.entityNameField.nativeElement || element === this.submitButtonField.nativeElement)) {
+    keyEvent() {
+        if (this.isValid()) {
             this.onSubmit();
         }
     }

@@ -182,15 +182,34 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
         this.store.dispatch(new EditProjectDialogAction({
             title: 'DASHBOARD.NEW_MENU.EDIT_PROJECT_TITLE',
-            nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
-            descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',
+            fields: [
+                {
+                    key: 'name',
+                    label: 'DASHBOARD.DIALOGS.PROJECT_NAME',
+                    type: 'text',
+                    validators: [
+                        {
+                            type: 'required',
+                            value: true,
+                            error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
+                        },
+                        {
+                            type: 'pattern',
+                            value: MODELER_NAME_REGEX,
+                            error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
+                        }
+                    ]
+                },
+                {
+                    key: 'description',
+                    label: 'DASHBOARD.DIALOGS.PROJECT_DESC',
+                    type: 'textarea'
+                }
+            ],
+            submitText: 'DASHBOARD.DIALOGS.PROJECT_SUBMIT_TEXT',
             values: { id, name, description },
             enableCandidateStarters: configuration?.enableCandidateStarters,
-            action: UpdateProjectAttemptAction,
-            allowedCharacters: {
-                regex: MODELER_NAME_REGEX,
-                error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-            }
+            action: UpdateProjectAttemptAction
         }));
     }
 

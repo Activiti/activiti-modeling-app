@@ -17,8 +17,9 @@
             }
         },
         "DIALOGS": {
-            "PROJECT_NAME": "Project name:",
-            "PROJECT_DESC": "Project description:"
+            "PROJECT_NAME": "Project name",
+            "PROJECT_DESC": "Project description",
+            "PROJECT_SUBMIT_TEXT": "Create Project"
         },
         "NAVIGATION": {
             "PROJECTS": {
@@ -68,7 +69,7 @@
             "CONTENT_MODEL_TITLE": "Content Models",
             "DATA_MODELS_TITLE": "Data Models",
             "HXP_DOC_TYPES_TITLE": "HxP Document Types",
-            "HXP_MIXINS_TITLE": "HxP Mixins",
+            "HXP_MIXINS_TITLE": "Mixins",
             "HXP_SCHEMAS_TITLE": "HxP Schemas",
             "ALL_PROJECTS": {
                 "HEADER_LABEL": "My projects",
@@ -117,11 +118,11 @@
                 }
             },
             "HXP_MIXINS": {
-                "HEADER_LABEL": "My HxP Mixins",
-                "LABEL": "Global HxP Mixins",
-                "TOOLTIP": "Published HxP Mixins",
+                "HEADER_LABEL": "My Mixins",
+                "LABEL": "Global Mixins",
+                "TOOLTIP": "Published Mixins",
                 "ACTIONS": {
-                    "CREATE": "Create HxP Mixin"
+                    "CREATE": "Create Mixin"
                 }
             },
             "HXP_SCHEMAS": {

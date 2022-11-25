@@ -24,9 +24,11 @@ export type ActionConstructor = new (...args: any[]) => Action;
 
 export interface ModelCreatorDialogParams {
     title: string;
-    nameField: string;
-    descriptionField: string;
-    allowedCharacters?: AllowedCharacters;
+    nameField?: string,
+    descriptionField?: string,
+    allowedCharacters?: AllowedCharacters,
+    fields: ModelFieldProperty[];
+    submitText?: string;
     action: ActionConstructor;
     callback: (param?: any) => any;
     dialog?: any;
@@ -41,6 +43,20 @@ export interface ModelCreator {
     disableCreate?: boolean;
     disableUpload?: boolean;
     key?: string;
+}
+
+export interface FieldValidator {
+    type: string;
+    value: any;
+    error: string;
+}
+
+export interface ModelFieldProperty {
+    key: string;
+    label: string;
+    type: string;
+    default?: any;
+    validators?: FieldValidator[];
 }
 
 export const MODEL_CREATORS = new InjectionToken<ModelCreator[]>('model-creators');

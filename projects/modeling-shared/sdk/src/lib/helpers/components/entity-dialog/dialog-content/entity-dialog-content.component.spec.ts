@@ -21,20 +21,26 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CreateProjectAttemptAction } from '../../../../store/project.actions';
 import { By } from '@angular/platform-browser';
 import { EntityDialogContentComponent } from './entity-dialog-content.component';
+import { EntityDialogContentFormService } from '../service/entity-dialog-content-form.service';
+import { FormBuilder } from '@angular/forms';
+import { mockFormGroup, mockModelCreatorDialogFields, mockValuesProperty } from '../mock/entity-dialog.mock';
 import { EntityDialogPayload } from '../../../common';
 
 describe('EntityDialogContentComponent', () => {
     let component: EntityDialogContentComponent;
     let fixture: ComponentFixture<EntityDialogContentComponent>;
+    let entityDialogContentFormService: EntityDialogContentFormService;
+
+    const createProjectAttemptActionImplementationMock = jest.fn();
+    const createProjectAttemptActionMock = jest.fn().mockImplementation(() => createProjectAttemptActionImplementationMock);
 
     const mockDialogData: EntityDialogPayload = {
-        title: 'mock-title',
-        nameField: 'name',
-        descriptionField: 'desc',
-        action: CreateProjectAttemptAction
+        title: 'fake-title',
+        fields: mockModelCreatorDialogFields,
+        action: createProjectAttemptActionMock,
+        submitText: 'fake-submit'
     };
 
     beforeEach(() => {
@@ -44,6 +50,8 @@ describe('EntityDialogContentComponent', () => {
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
+                EntityDialogContentFormService,
+                FormBuilder
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -51,34 +59,28 @@ describe('EntityDialogContentComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EntityDialogContentComponent);
+        entityDialogContentFormService = TestBed.inject(EntityDialogContentFormService);
         component = fixture.componentInstance;
+        spyOn(entityDialogContentFormService, 'createForm').and.returnValue(mockFormGroup);
         component.data = mockDialogData;
-        fixture.detectChanges();
-    });
-
-    it('should render input placeholders', () => {
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
-        const descField = fixture.debugElement.query(By.css('[data-automation-id="desc-field"]'));
-
-        expect(nameField.nativeElement.placeholder).toBe(mockDialogData.nameField);
-        expect(descField.nativeElement.placeholder).toBe(mockDialogData.descriptionField);
     });
 
     it('should emit on create entity', () => {
+        fixture.detectChanges();
         spyOn(component.submit, 'emit');
 
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
 
-        component.form.name = 'name';
-        component.form.description = 'test-desc';
+        component.dialogForm.get('name').setValue('fake-name');
+        component.dialogForm.get('description').setValue('fake-description');
         fixture.detectChanges();
 
         submitBtn.triggerEventHandler('click', null);
 
         expect(component.submit.emit).toHaveBeenCalledWith({
             payload: {
-                description: 'test-desc',
-                name: 'name',
+                description: 'fake-description',
+                name: 'fake-name'
             },
             navigateTo: true,
             callback: component.data.callback
@@ -86,51 +88,32 @@ describe('EntityDialogContentComponent', () => {
     });
 
     it('should emit on enter keydown of submit button', () => {
+        fixture.detectChanges();
         spyOn(component.submit, 'emit');
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        component.form.name = 'name';
-        component.form.description = 'test-desc';
+        component.dialogForm.get('name').setValue('fake-name');
+        component.dialogForm.get('description').setValue('fake-description');
 
         submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
 
         expect(component.submit.emit).toHaveBeenCalledTimes(1);
     });
 
-    it('should emit on enter keydown of name field', () => {
-        spyOn(component.submit, 'emit');
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
-        component.form.name = 'name';
-        component.form.description = 'test-desc';
-
-        nameField.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
-
-        expect(component.submit.emit).toHaveBeenCalledTimes(1);
-    });
-
     it('should not emit on enter keydown if the form is not valid', () => {
+        fixture.detectChanges();
         spyOn(component.submit, 'emit');
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
-        component.form.name = 'not_valid-name';
-        component.form.description = 'test-desc';
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        component.dialogForm.get('name').setValue('invalid_name');
+        component.dialogForm.get('description').setValue('fake-description');
 
-        nameField.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
+        submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
 
         expect(component.submit.emit).not.toHaveBeenCalled();
     });
 
-    it('should render input values', () => {
-        const mockValues = { id: 'id', name: 'name', description: 'desc' };
-        component.data = { ...mockDialogData, values: mockValues };
-        component.ngOnInit();
+    it('should emit on submit button', () => {
+        component.data = { ...mockDialogData, values: mockValuesProperty };
         fixture.detectChanges();
-
-        expect(component.form.name).toBe(mockValues.name);
-        expect(component.form.description).toBe(mockValues.description);
-    });
-
-    it('should emit on submit button', async () => {
-        const mockValues = { id: 'id', name: 'name', description: 'desc' };
-        component.data = { ...mockDialogData, values: mockValues };
         spyOn(component.submit, 'emit');
 
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
@@ -138,52 +121,26 @@ describe('EntityDialogContentComponent', () => {
 
         expect(component.submit.emit).toHaveBeenCalledWith({
             payload: {
-                id: 'id',
-                form: component.form
+                id: 'fake-values-id',
+                form: component.prefilledFormValues,
+                name: 'fake-values-name',
+                description: 'fake-values-description'
             },
             navigateTo: true,
             callback: component.data.navigateTo,
         });
     });
 
-    it('should validate name field value', () => {
-        component.form.name = '@$#&* {}[],=-().+;\'/';
+    it('should display custom submit text when values property is NOT provided', () => {
         fixture.detectChanges();
-        const errorMessage = fixture.debugElement.query(By.css('[data-automation-id="error-validation"]'));
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+        expect(submitBtn.nativeElement.textContent.trim()).toBe('fake-submit');
+    });
 
-        /* cspell: disable-next-line */
-        component.form.name = 'Testautomation';
+    it('should display default submit text when values property is provided', () => {
+        component.data = { ...mockDialogData, values: mockValuesProperty };
         fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
-
-        component.form.name = 'testAutomation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
-
-        component.form.name = 'test-automation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement).not.toBeNull();
-        expect(submitBtn.nativeElement.disabled).toBeFalsy();
-
-        component.form.name = 'test1automation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement).not.toBeNull();
-        expect(submitBtn.nativeElement.disabled).toBeFalsy();
-
-        component.form.name = 'test_automation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
-
-        /* cSpell:disable */
-        component.form.name = 'testautomationlengthmorethan26';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        expect(submitBtn.nativeElement.textContent.trim()).toBe('APP.DIALOGS.SAVE');
     });
 });

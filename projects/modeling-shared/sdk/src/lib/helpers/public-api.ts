@@ -33,3 +33,5 @@ export * from './header-breadcrumbs/public-api';
 export * from './utils/instant-error-state-matcher';
 export * from './directives/active-class.directive';
 export * from './utils/empty-script';
+export * from './components/entity-dialog/service/entity-dialog-content-form.service';
+export * from './components/entity-dialog/mock/entity-dialog.mock';
