@@ -107,8 +107,6 @@ describe('EditProjectDialogComponent', () => {
                 description: 'fake-values-description'
             },
             id: 'fake-values-id',
-            name: 'fake-values-name',
-            description: 'fake-values-description',
             enableCandidateStarters: true
         };
 

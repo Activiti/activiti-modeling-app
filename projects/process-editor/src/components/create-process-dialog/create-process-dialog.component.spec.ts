@@ -113,8 +113,6 @@ describe('CreateProcessDialogComponent', () => {
                 description: 'fake-values-description'
             },
             id: 'fake-values-id',
-            description: 'fake-values-description',
-            name: 'fake-values-name',
             category: ''
         };
 
@@ -139,8 +137,6 @@ describe('CreateProcessDialogComponent', () => {
                 description: 'fake-values-description'
             },
             id: 'fake-values-id',
-            description: 'fake-values-description',
-            name: 'fake-values-name',
             category: newCategory
         };
 

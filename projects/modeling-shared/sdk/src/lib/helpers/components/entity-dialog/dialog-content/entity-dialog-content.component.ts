@@ -22,8 +22,8 @@ import { EntityDialogPayload, EntityDialogForm } from '../../../common';
 import { EntityDialogContentFormService } from '../service/entity-dialog-content-form.service';
 
 interface EditActionSubmitPayload {
-    id: string;
-    form: Partial<EntityDialogForm>;
+    id?: string;
+    form?: Partial<EntityDialogForm>;
     submitData?: any;
 }
 
@@ -31,7 +31,7 @@ interface CreateActionSubmitPayload extends Partial<EntityDialogForm> {
     submitData?: any;
 }
 
-type EntityDialogContentSubmitPayload = CreateActionSubmitPayload | EditActionSubmitPayload;
+type EntityDialogContentSubmitPayload = CreateActionSubmitPayload & EditActionSubmitPayload;
 
 export interface EntityDialogContentSubmitData {
     payload: EntityDialogContentSubmitPayload;
@@ -90,7 +90,12 @@ export class EntityDialogContentComponent implements OnInit {
     getDialogFieldsData() {
         if(this.data?.fields?.length > 0) {
             this.data.fields.forEach((field: ModelFieldProperty) => {
-                this.payload[field.key] = this.dialogForm.get(field.key).value;
+                const value = this.dialogForm.get(field.key).value;
+                if (this.data.values) {
+                    this.payload.form[field.key] = value;
+                } else {
+                    this.payload[field.key] = value;
+                }
             });
         }
     }

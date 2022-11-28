@@ -133,7 +133,7 @@ describe('EntityDialogContentComponent', () => {
         expect(component.submit.emit).not.toHaveBeenCalled();
     });
 
-    it('should emit on submit button', () => {
+    it('should create proper payload with form entry if data has the values property', () => {
         component.data = { ...mockDialogData, values: mockValuesProperty };
         fixture.detectChanges();
         spyOn(component.submit, 'emit');
@@ -144,7 +144,23 @@ describe('EntityDialogContentComponent', () => {
         expect(component.submit.emit).toHaveBeenCalledWith({
             payload: {
                 id: 'fake-values-id',
-                form: component.prefilledFormValues,
+                form: component.prefilledFormValues
+            },
+            navigateTo: true,
+            callback: component.data.navigateTo,
+        });
+    });
+
+    it('should create proper payload with form entry if data does NOT have the values property', () => {
+        component.data = mockDialogData;
+        fixture.detectChanges();
+        spyOn(component.submit, 'emit');
+
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        submitBtn.triggerEventHandler('click', null);
+
+        expect(component.submit.emit).toHaveBeenCalledWith({
+            payload: {
                 name: 'fake-values-name',
                 description: 'fake-values-description'
             },

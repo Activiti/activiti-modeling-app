@@ -9,6 +9,7 @@
                 [attr.data-automation-id]="'ama-model-input-' + field.key"
                 [placeholder]="field.label | translate"
                 [type]="field.type"
+                [errorStateMatcher]="matcher"
                 [formControl]="getInputFormControl(field.key)"/>
 
             <ng-template #displayTextArea>
@@ -17,11 +18,12 @@
                 [attr.data-automation-id]="'ama-model-input-' + field.key"
                 [placeholder]="field.label | translate"
                 [type]="field.type"
+                [errorStateMatcher]="matcher"
                 [formControl]="getInputFormControl(field.key)"></textarea>
             </ng-template>
 
             <mat-error *ngFor="let validator of field.validators">
-                <mat-error *ngIf="getInputFormControl(field.key).hasError(validator.type)"
+                <mat-error *ngIf="displayError(field.key, validator.type)"
                     [attr.data-automation-id]="'ama-error-' + validator.type + '-' + field.key">
                     {{ getErrorMessage(validator, field.label) }}
                 </mat-error>

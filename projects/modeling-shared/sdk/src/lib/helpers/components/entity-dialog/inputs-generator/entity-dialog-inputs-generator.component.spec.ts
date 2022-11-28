@@ -106,7 +106,7 @@ describe('EntityDialogInputsGeneratorComponent', () => {
         nameControl.setValue('');
         expect(nameControl.valid).toBe(false);
 
-        nameField.nativeElement.dispatchEvent(new Event('blur'));
+        nameField.nativeElement.dispatchEvent(new Event('input'));
         fixture.detectChanges();
 
         const requiredError = fixture.debugElement.query(By.css('[data-automation-id="ama-error-required-name"]'));
@@ -121,7 +121,7 @@ describe('EntityDialogInputsGeneratorComponent', () => {
         nameControl.setValue('');
         expect(nameControl.valid).toBe(false);
 
-        nameField.nativeElement.dispatchEvent(new Event('blur'));
+        nameField.nativeElement.dispatchEvent(new Event('input'));
         fixture.detectChanges();
 
         const requiredError = fixture.debugElement.query(By.css('[data-automation-id="ama-error-required-name"]'));
@@ -133,7 +133,7 @@ describe('EntityDialogInputsGeneratorComponent', () => {
         nameControl.setValue('invalid-');
         expect(nameControl.valid).toBe(false);
 
-        nameField.nativeElement.dispatchEvent(new Event('blur'));
+        nameField.nativeElement.dispatchEvent(new Event('input'));
         fixture.detectChanges();
 
         const patternError = fixture.debugElement.query(By.css('[data-automation-id="ama-error-pattern-name"]'));

@@ -19,6 +19,7 @@ import { TranslationService } from '@alfresco/adf-core';
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FieldValidator, ModelFieldProperty } from '../../../../interfaces/model-creator.interface';
+import { InstantErrorStateMatcher } from '../../../utils/instant-error-state-matcher';
 
 @Component({
     selector: 'modelingsdk-entity-dialog-inputs-generator',
@@ -33,10 +34,16 @@ export class EntityDialogInputsGeneratorComponent {
     @Input()
     fieldProperty: ModelFieldProperty[];
 
+    matcher = new InstantErrorStateMatcher();
+
     constructor(private translationService: TranslationService) {}
 
     getInputFormControl(fieldKey: string): FormControl {
         return this.formGroup.get(fieldKey) as FormControl;
+    }
+
+    displayError(fieldKey: string, errorType: string): boolean {
+        return this.getInputFormControl(fieldKey).hasError(errorType);
     }
 
     getErrorMessage(validator?: FieldValidator, label?: string) {

@@ -89,8 +89,6 @@ describe('EntityDialogComponent', () => {
                 name: 'fake-values-name',
                 description: 'fake-values-description'
             },
-            description: 'fake-values-description',
-            name: 'fake-values-name',
             id: 'fake-values-id'
         };
 
