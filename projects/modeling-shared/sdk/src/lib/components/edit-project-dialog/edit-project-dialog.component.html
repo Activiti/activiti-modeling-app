@@ -2,11 +2,4 @@
     [data]="data"
     (submit)="submit($event)"
 >
-    <mat-slide-toggle
-        color="primary"
-        data-automation-id="ama-candidate-selector-toggle"
-        class="ama-enable-candidate-starters"
-        [(ngModel)]="candidateStartersEnabled">
-    {{ 'SDK.ENABLE_CANDIDATE_STARTERS.TOGGLE_TITLE' | translate }}
-    </mat-slide-toggle>
 </modelingsdk-entity-dialog-content>

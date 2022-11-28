@@ -21,10 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
 import { EditProjectDialogComponent } from './edit-project-dialog.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { AmaState } from '../../store/app.state';
 import { EntityDialogPayload, ProjectEntityDialogForm } from '../../helpers/common';
 import { EntityDialogContentComponent } from '../../helpers/components/entity-dialog/dialog-content/entity-dialog-content.component';
 import { Store } from '@ngrx/store';
@@ -34,8 +32,6 @@ import { mockModelCreatorDialogFields, mockValuesProperty } from '../../helpers/
 
 describe('EditProjectDialogComponent', () => {
     let fixture: ComponentFixture<EditProjectDialogComponent>;
-    let editProjectDialogComponent: EditProjectDialogComponent;
-    let store: Store<AmaState>;
 
     const createProjectAttemptActionImplementationMock = jest.fn();
     const callback = jest.fn();
@@ -80,9 +76,6 @@ describe('EditProjectDialogComponent', () => {
         createProjectAttemptActionMock.mockClear();
 
         fixture = TestBed.createComponent(EditProjectDialogComponent);
-        editProjectDialogComponent = fixture.componentInstance;
-
-        store = TestBed.inject(Store);
 
         fixture.detectChanges();
         await fixture.whenStable();
@@ -93,24 +86,4 @@ describe('EditProjectDialogComponent', () => {
         expect(app).toBeTruthy();
     });
 
-    it('should dispatch action on submit', async () => {
-        spyOn(store, 'dispatch');
-
-        expect(editProjectDialogComponent.candidateStartersEnabled).toBe(true);
-        const submitButton = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-
-        submitButton.triggerEventHandler('click', null);
-
-        const payload = {
-            form: {
-                name: 'fake-values-name',
-                description: 'fake-values-description'
-            },
-            id: 'fake-values-id',
-            enableCandidateStarters: true
-        };
-
-        expect(editProjectDialogComponent.data.action).toHaveBeenCalledWith(payload, true, callback);
-        expect(store.dispatch).toHaveBeenCalledWith(createProjectAttemptActionImplementationMock);
-    });
 });

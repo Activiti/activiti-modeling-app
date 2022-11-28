@@ -131,7 +131,6 @@ import { processEditorTabRoutes } from './router/process-editor-tab.routes';
 import { ProcessesLoaderGuard } from './router/guards/processes-loader.guard';
 import { ProcessDeactivateGuard } from './router/guards/process-deactivate.guard';
 import { AssignmentStrategySelectorComponent } from './components/assignment/assignment-strategy-selector/assignment-strategy-selector.component';
-import { CardViewCandidateStartersItemComponent } from './services/cardview-properties/candidate-starters-item/candidate-starters-item.component';
 import { CandidateStartersDialogComponent } from './components/candidate-starters-dialog/candidate-starters-dialog.component';
 import { ProcessCandidateStartersEffects } from './store/process-candidate-starters.effects';
 import { CandidateStartersService } from './services/cardview-properties/candidate-starters-item/candidate-starters-item.service';
@@ -208,8 +207,7 @@ import { CandidateStartersService } from './services/cardview-properties/candida
         ProcessCategorySelectorComponent,
         CardProcessVersionItemComponent,
         AssignmentStrategySelectorComponent,
-        CandidateStartersDialogComponent,
-        CardViewCandidateStartersItemComponent
+        CandidateStartersDialogComponent
     ],
     providers: [
         DeleteProcessCommand,
@@ -256,7 +254,6 @@ import { CandidateStartersService } from './services/cardview-properties/candida
         providePropertyHandler(BpmnProperty.conditionExpression, CardViewConditionExpressionItemComponent),
         providePropertyHandler(BpmnProperty.category, CardProcessCategoryItemComponent),
         providePropertyHandler(BpmnProperty.version, CardProcessVersionItemComponent),
-        providePropertyHandler(BpmnCompositeProperty.candidateStarters, CardViewCandidateStartersItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),

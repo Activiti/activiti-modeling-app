@@ -26,7 +26,6 @@ import { AmaState } from '../../store/app.state';
     templateUrl: './edit-project-dialog.component.html',
 })
 export class EditProjectDialogComponent {
-    candidateStartersEnabled = false;
 
     constructor(
         @Optional()
@@ -36,7 +35,6 @@ export class EditProjectDialogComponent {
         public dialog: MatDialogRef<EditProjectDialogComponent>,
         private store: Store<AmaState>,
     ) {
-        this.candidateStartersEnabled = this.data.enableCandidateStarters ?? false;
     }
 
     submit($event: EntityDialogContentSubmitData): void {
@@ -46,7 +44,7 @@ export class EditProjectDialogComponent {
             callback
         } = $event;
 
-        this.store.dispatch(new this.data.action({...payload, enableCandidateStarters: this.candidateStartersEnabled }, navigateTo, callback));
+        this.store.dispatch(new this.data.action({...payload }, navigateTo, callback));
         this.dialog.close();
     }
 }
