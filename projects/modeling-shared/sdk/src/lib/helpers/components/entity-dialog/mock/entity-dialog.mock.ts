@@ -44,6 +44,50 @@ export const mockModelCreatorDialogFields: ModelFieldProperty[] = [
     }
 ];
 
+export const mockModelCreatorDialogFieldsWithDefaultValues: ModelFieldProperty[] = [
+    {
+        key: 'name',
+        label: 'fake-name',
+        type: 'text',
+        default: 'fake-default-name',
+        validators: [
+            {
+                type: 'required',
+                value: true,
+                error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
+            },
+            {
+                type: 'pattern',
+                value: MODELER_NAME_REGEX,
+                error: 'fake-pattern-error-message'
+            }
+        ]
+    },
+    {
+        key: 'description',
+        label: 'fake-description',
+        type: 'textarea',
+        default: 'fake-default-description'
+    }
+];
+
+export const mockModelCreatorDialogFieldNumberType: ModelFieldProperty[] = [
+    {
+        key: 'index',
+        label: 'fake-index',
+        type: 'number',
+        default: 99
+    }
+];
+
+export const mockModelCreatorDialogFieldEmptyNumberType: ModelFieldProperty[] = [
+    {
+        key: 'index',
+        label: 'fake-index',
+        type: 'number'
+    }
+];
+
 export const mockModelCreatorDialogFieldWithoutLabel: ModelFieldProperty[] = [
     {
         key: 'name',
