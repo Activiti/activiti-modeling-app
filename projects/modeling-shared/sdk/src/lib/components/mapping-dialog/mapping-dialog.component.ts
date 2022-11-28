@@ -110,7 +110,7 @@ export class MappingDialogComponent implements OnInit {
 
     ngOnInit() {
         this.dataSourceInit(this.mappingType);
-        if (this.selectedRow) {
+        if (this.selectedRow != null) {
             this.extendedProperties = this.getExtendedProperties(this.dataSource[this.selectedRow].type);
         }
         this.initSelectedRow();
@@ -361,6 +361,7 @@ export class MappingDialogComponent implements OnInit {
         let extendedProperties;
         switch (inputType) {
         case 'content-metadata':
+        case 'schema-selector':
             extendedProperties = { editorVariables: this.editorVariables };
             break;
         case 'expression-mapping':

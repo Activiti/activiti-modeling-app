@@ -68,7 +68,7 @@ export abstract class ModelingJsonSchemaProvider<T> {
         return schemas;
     }
 
-    getModelingSchemasForProvider(projectId: string) {
+    getModelingSchemasForProvider(projectId: string): Observable<ModelingJsonSchema[]> {
         return this.retrieveModels(projectId).pipe(
             map(models => {
                 let jsonSchemas: ModelingJsonSchema[] = [];
