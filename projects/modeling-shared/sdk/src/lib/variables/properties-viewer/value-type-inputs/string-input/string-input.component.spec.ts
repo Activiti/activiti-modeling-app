@@ -144,28 +144,28 @@ describe('PropertiesViewerStringInputComponent', () => {
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
-            let error: HTMLElement = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            let error: HTMLElement = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.REQUIRED');
 
             stringInput.value = 'NoPattern!';
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
-            error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_FORMAT');
 
             stringInput.value = 'short';
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
-            error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_LENGTH');
 
             stringInput.value = 'this1input2is3too4long';
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
-            error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_LENGTH');
         });
     });

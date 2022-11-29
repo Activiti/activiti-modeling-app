@@ -2,5 +2,5 @@
     <input matInput [step]="step" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"
         [modelingsdk-allowed-characters]="regexInput" data-automation-id="variable-value" [formControl]="validatedInput"
         [errorStateMatcher]="matcher">
-    <mat-error modelingsdk-input-error></mat-error>
+    <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
 </mat-form-field>

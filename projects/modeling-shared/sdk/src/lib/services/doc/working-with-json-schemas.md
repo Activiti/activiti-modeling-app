@@ -95,7 +95,7 @@ import { PropertiesViewerModelValidatedInputComponent } from '../../variables/pr
             [formControl]="validatedInput"
             [errorStateMatcher]="matcher"
         />
-        <mat-error modelingsdk-input-error></mat-error>
+        <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
     </mat-form-field>
     `
 })

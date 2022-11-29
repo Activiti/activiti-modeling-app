@@ -5,5 +5,5 @@
     <textarea *ngIf="useTextArea" matInput [formControl]="validatedInput" [errorStateMatcher]="matcher" data-automation-id="variable-value"
         [readonly]="readonly" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"></textarea>
 
-    <mat-error modelingsdk-input-error></mat-error>
+    <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
 </mat-form-field>

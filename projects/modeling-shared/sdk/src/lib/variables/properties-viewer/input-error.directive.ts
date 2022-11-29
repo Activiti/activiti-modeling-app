@@ -20,7 +20,7 @@ import { AfterViewInit, Directive, ElementRef, Injector, OnDestroy, Renderer2 } 
 import { MatFormField, MatFormFieldControl } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 @Directive({
     selector: '[modelingsdk-input-error]'
@@ -41,7 +41,7 @@ export class InputErrorDirective implements AfterViewInit, OnDestroy {
         const container = this._inj.get(MatFormField);
         this.inputRef = container._control;
 
-        this.inputRef.ngControl.statusChanges.pipe(takeUntil(this.onDestroy$)).subscribe(state => this.updateErrors(state));
+        this.inputRef.ngControl.statusChanges.pipe(startWith(this.inputRef.ngControl.status), takeUntil(this.onDestroy$)).subscribe(state => this.updateErrors(state));
     }
 
     private updateErrors = (state: 'VALID' | 'INVALID') => {

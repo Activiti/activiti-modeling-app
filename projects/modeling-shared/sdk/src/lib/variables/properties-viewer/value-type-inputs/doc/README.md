@@ -117,7 +117,7 @@ In the [Working with JSON schemas documentation](../../../../services/doc/workin
             [formControl]="validatedInput"
             [errorStateMatcher]="matcher"
         />
-        <mat-error modelingsdk-input-error></mat-error>
+         <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
     </mat-form-field>
     `
 })

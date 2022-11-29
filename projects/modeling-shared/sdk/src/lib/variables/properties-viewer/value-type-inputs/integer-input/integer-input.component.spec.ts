@@ -121,28 +121,28 @@ describe('PropertiesViewerIntegerInputComponent', () => {
             stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
             fixture.detectChanges();
-            let error: HTMLElement = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            let error: HTMLElement = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.REQUIRED');
 
             stringInput.value = '4';
             stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
             fixture.detectChanges();
-            error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_VALUE');
 
             stringInput.value = '26';
             stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
             fixture.detectChanges();
-            error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_VALUE');
 
             stringInput.value = '11';
             stringInput.dispatchEvent(new Event('keypress'));
             stringInput.dispatchEvent(new Event('input'));
             fixture.detectChanges();
-            error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
+            error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MULTIPLE_OF_VALUE');
         });
     });
