@@ -49,7 +49,7 @@
             </ng-container>
         </div>
     </mat-expansion-panel>
-    <div class="ama-add-more-container" [class.ama-add-more-container-visible]="isMenuOpen">
+    <div class="ama-add-more-container" [class.ama-add-more-container-visible]="isMenuOpen" *ngIf="isAllowed(filter.type)">
         <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
             [attr.data-automation-id]="'menu-' + filter.type" (menuOpened)="isMenuOpen=true" (menuClosed)="isMenuOpen=false"
             [disableRipple]="false">

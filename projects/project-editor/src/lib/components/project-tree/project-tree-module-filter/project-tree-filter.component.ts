@@ -113,7 +113,7 @@ export class ProjectTreeFilterComponent implements OnInit, OnChanges {
     }
 
     private isCustomConnectorsEnabled(): boolean {
-        return this.appConfig.get('enableCustomConnectors') === false ? false : true;
+        return !(this.appConfig.get('enableCustomConnectors') === false);
     }
 
 }

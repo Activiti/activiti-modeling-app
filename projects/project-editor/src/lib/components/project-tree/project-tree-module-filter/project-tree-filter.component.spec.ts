@@ -327,10 +327,10 @@ describe('ProjectTreeFilterComponent ', () => {
         expect(contentsByCategory[0].children[0].nativeElement.textContent.trim()).toBe('newCategory');
     });
 
-    it('should not display connector add and upload options when enableCustomConnectors is false', () => {
+    it('should not display connector menu button when enableCustomConnectors is false', () => {
         setUpComponentForEnableCustomConnectors(false);
-        const connectorUploadInput = getUploadConnectorInput();
-        expect(connectorUploadInput).toBeNull();
+        const connectorMenuButton = getConnectorMenuButton();
+        expect(connectorMenuButton).toBeNull();
     });
 
     it('should display connector add and upload options when enableCustomConnectors is true', () => {
@@ -346,13 +346,19 @@ describe('ProjectTreeFilterComponent ', () => {
     });
 
     function getUploadConnectorInput(): DebugElement {
+        const menuButton = getConnectorMenuButton();
+        menuButton.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        return fixture.debugElement.query(By.css('[data-automation-id="upload-connector"]'));
+    }
+
+    function getConnectorMenuButton(): Element {
         const filterElement = fixture.debugElement.nativeElement.querySelector(`[data-automation-id="project-filter-connector"]`);
         filterElement.dispatchEvent(new Event('mouseenter'));
         fixture.detectChanges();
         const menuButton = fixture.debugElement.nativeElement.querySelector(`[data-automation-id="menu-connector"]`);
-        menuButton.dispatchEvent(new Event('click'));
-        fixture.detectChanges();
-        return fixture.debugElement.query(By.css('[data-automation-id="upload-connector"]'));
+
+        return menuButton;
     }
 
     function setUpComponentForEnableCustomConnectors(enable: boolean): void {
