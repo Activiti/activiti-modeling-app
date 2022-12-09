@@ -286,4 +286,12 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         expect(component.optionsForParams['timeDate'][0].name).toBe('foobar');
         expect(component.optionsForParams['timeDate'][1].name).toBe('foobar1');
     });
+
+    it('should set null to field date when timer type is date and useProcessVariable set to true', () => {
+        component.timerType.setValue('timeDate');
+        component.useProcessVariable.setValue(true);
+
+        fixture.detectChanges();
+        expect(component.date.value).toBeNull();
+    });
 });

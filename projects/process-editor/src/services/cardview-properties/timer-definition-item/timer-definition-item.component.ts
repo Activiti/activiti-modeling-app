@@ -29,6 +29,7 @@ import { TimerDefinitionItemModel } from './timer-definition-item.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DatetimeAdapter, MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     selector: 'ama-process-timer-definition',
@@ -348,5 +349,11 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.onDestroy$.next();
         this.onDestroy$.complete();
+    }
+
+    clearDateWhenProcessVariableUsed(changeEvent: MatCheckboxChange) {
+        if(changeEvent.checked && this.timerType.value === 'timeDate'){
+            this.date.setValue(null);
+        }
     }
 }

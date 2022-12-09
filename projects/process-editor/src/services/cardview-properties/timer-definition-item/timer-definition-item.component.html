@@ -14,7 +14,7 @@
         </div>
 
         <div *ngIf="isProcessVariableAvailable()" class="timer-variable">
-            <mat-checkbox [formControl]="useProcessVariable" data-automation-id="use-process-variable">
+            <mat-checkbox [formControl]="useProcessVariable" data-automation-id="use-process-variable" (change)="clearDateWhenProcessVariableUsed($event)">
                 {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.USE_PROCESS_VARIABLE' | translate}}
             </mat-checkbox>
             <ng-container *ngIf="useProcessVariable.value">
