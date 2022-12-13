@@ -148,7 +148,9 @@ import { PropertiesViewerFloatNumberInputComponent } from './properties-viewer/v
         FocusInsideElementDirective,
         PropertiesViewerModeledObjectInputComponent,
         ExpressionCodeEditorComponent,
-        InputErrorDirective
+        InputErrorDirective,
+        IsAnyTypePipe,
+        AccessorPipe
     ]
 })
 export class VariablesModule { }
