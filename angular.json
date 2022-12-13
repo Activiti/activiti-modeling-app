@@ -268,7 +268,7 @@
                 "pretest": {
                     "executor": "nx:run-commands",
                     "options": {
-                      "command": "nx run shared-unit-testing:build"
+                        "command": "nx run shared-unit-testing:build"
                     }
                 },
                 "test": {
@@ -311,7 +311,7 @@
                 "pretest": {
                     "executor": "nx:run-commands",
                     "options": {
-                      "command": "nx run shared-unit-testing:build"
+                        "command": "nx run shared-unit-testing:build"
                     }
                 },
                 "test": {
@@ -359,7 +359,7 @@
                 "pretest": {
                     "executor": "nx:run-commands",
                     "options": {
-                      "command": "nx run shared-unit-testing:build"
+                        "command": "nx run shared-unit-testing:build"
                     }
                 },
                 "test": {
@@ -405,7 +405,7 @@
                 "pretest": {
                     "executor": "nx:run-commands",
                     "options": {
-                      "command": "nx run shared-unit-testing:build"
+                        "command": "nx run shared-unit-testing:build"
                     }
                 },
                 "test": {
@@ -452,7 +452,7 @@
                 "pretest": {
                     "executor": "nx:run-commands",
                     "options": {
-                      "command": "nx run shared-unit-testing:build"
+                        "command": "nx run shared-unit-testing:build"
                     }
                 },
                 "test": {
@@ -499,7 +499,7 @@
                 "pretest": {
                     "executor": "nx:run-commands",
                     "options": {
-                      "command": "nx run shared-unit-testing:build"
+                        "command": "nx run shared-unit-testing:build"
                     }
                 },
                 "test": {
