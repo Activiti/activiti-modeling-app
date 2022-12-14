@@ -4,7 +4,7 @@ ama-process-palette .mat-card {
     border-radius: 6px;
     box-sizing: content-box;
     padding: 0;
-    background: var(--theme-ama-palette-bg-color);
+    background: white;
 
     .ama-palette-header {
         height: 12px;
@@ -28,6 +28,7 @@ ama-process-palette .mat-card {
     .ama-palette-body {
         padding: 6px;
         display: none;
+        background: var(--theme-ama-palette-bg-color);
 
         &.ama-opened {
             display: block;
