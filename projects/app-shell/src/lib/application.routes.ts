@@ -18,7 +18,6 @@
 import { Routes } from '@angular/router';
 import { BlankPageComponent } from '@alfresco/adf-core';
 import { AppLoginComponent } from './common/components/app-login/app-login.component';
-import { HostSettingsComponent } from './common/components/host-settings/host-settings.component';
 
 export const getApplicationRoutes = (layoutRoutes: Routes) => [
     {
@@ -28,10 +27,6 @@ export const getApplicationRoutes = (layoutRoutes: Routes) => [
     {
         path: 'login',
         component: AppLoginComponent
-    },
-    {
-        path: 'settings',
-        component: HostSettingsComponent
     },
     ...layoutRoutes,
     {

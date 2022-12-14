@@ -17,7 +17,6 @@
 
 import { SettingsDialogComponent } from './common/components/settings/settings-dialog.component';
 import { ErrorContentComponent } from './common/components/error/error-content.component';
-import { HostSettingsComponent } from './common/components/host-settings/host-settings.component';
 import { CustomIconsModule } from './common/custom-icons.module';
 import { AppLoginComponent } from './common/components/app-login/app-login.component';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
@@ -59,8 +58,7 @@ import { getApplicationRoutes } from './application.routes';
     declarations: [
         AppLoginComponent,
         ErrorContentComponent,
-        SettingsDialogComponent,
-        HostSettingsComponent
+        SettingsDialogComponent
     ],
     providers: [
         provideLogFilter(getBackendLogInitiator()),
