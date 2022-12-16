@@ -90,6 +90,10 @@ $hy-bg-page: #ffffff;
 $hy-background: map-get($hy-trueGray, 800);
 $hy-light-gray: map-get($hy-trueGray, 900);
 
+// loader
+$hy-loader-spinner: map-get($hy-primary, 700);
+$hy-loader-text: map-get($hy-neutral, 900);
+
 // map SCSS variables to expose as CSS variables
 $defaults: (
   --theme-primary-color: mat.get-color-from-palette($primary),
@@ -128,11 +132,13 @@ $defaults: (
   --theme-ama-palette-separator-color: mat.get-color-from-palette($foreground, text, 0.05),
   --theme-ama-var-selector-bg-color: mat.get-color-from-palette($foreground, text, 0.05),
   --theme-ama-studio-bg-color: var(--adf-snackbar-info-action-color),
-  --theme-ama-var-selector-selected-text-bg-color: mat.get-color-from-palette($foreground, text, 0.1),
+  --theme-ama-var-selector-selected-text-bg-color:
+    mat.get-color-from-palette($foreground, text, 0.1),
   --theme-ama-form-editor-btn-color: mat.get-color-from-palette($foreground, text, 0.25),
   --theme-ama-form-editor-btn-hover-color: mat.get-color-from-palette($foreground, text, 1),
   --theme-ama-form-editor-text-drag-color: mat.get-color-from-palette($foreground, text, 0.4),
-  --theme-ama-condition-builder-primary-text-color: mat.get-color-from-palette($primary, text, 0.75),
+  --theme-ama-condition-builder-primary-text-color:
+    mat.get-color-from-palette($primary, text, 0.75),
   --theme-ama-condition-builder-accent-text-color: mat.get-color-from-palette($accent, text, 0.75),
   --theme-disabled-bg-color: mat.get-color-from-palette($foreground, text, 0.05),
   --theme-hint-bg-color: mat.get-color-from-palette($foreground, text, 0.5),
@@ -150,6 +156,8 @@ $defaults: (
   --theme-ama-log-panel-bg-color: mat.get-color-from-palette($foreground, text, 0.01),
   --theme-light-monoco-editor-color: #fffffe,
   --theme-ama-border-color: #dce0e6,
+  --theme-ama-loader-spinner: $hy-loader-spinner,
+  --theme-ama-loader-text: $hy-loader-text,
 
   // ADF components and services
   --adf-snackbar-error-bg-color: mat.get-color-from-palette($warn),
