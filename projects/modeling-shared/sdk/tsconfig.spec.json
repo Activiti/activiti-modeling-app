@@ -1,7 +1,7 @@
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "../../../out-tsc/modelig-sdk-spec"
+        "outDir": "../../../out-tsc/modeling-sdk-spec"
     },
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,

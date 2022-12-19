@@ -6,7 +6,7 @@
   * [Properties](#properties)
   * [Events](#events)
 - [Creating a new expression syntax](#creating-a-new-expression-syntax)
-  * [Add JEXL expression resolving suppor to the project](#add-jexl-expression-resolving-suppor-to-the-project)
+  * [Add JEXL expression resolving support to the project](#add-jexl-expression-resolving-support-to-the-project)
   * [Add the JEXL expression syntax to the `ExpressionSyntax` enumeration](#add-the-jexl-expression-syntax-to-the-expressionsyntax-enumeration)
   * [Implement the `ExpressionSyntaxProvider` for JEXL](#implement-the-expressionsyntaxprovider-for-jexl)
   * [Register the expression syntax inside a module](#register-the-expression-syntax-inside-a-module)
@@ -84,7 +84,7 @@ An example of how to include the Expression Editor in a template could be:
 
 As mentioned before, we can set the expression language syntax to the Expression Editor, so in this section we are going to provide an example on how it could be done, for example, to support [JEXL](https://commons.apache.org/proper/commons-jexl/) (Java Expression Language).
 
-### Add JEXL expression resolving suppor to the project
+### Add JEXL expression resolving support to the project
 
 For this example, we are going to use a third party library such as [this](https://www.npmjs.com/package/jexl) to support resolving JEXL expressions, so in order to do that, we must execute in the console the following command to install the dependency
 

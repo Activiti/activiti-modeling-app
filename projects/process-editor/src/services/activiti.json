@@ -105,7 +105,7 @@
             ]
         },
         {
-            "name": "JobPriorized",
+            "name": "JobPrioritized",
             "isAbstract": true,
             "extends": [
                 "bpmn:Process",
@@ -485,7 +485,7 @@
             ]
         },
         {
-            "name": "TaskPriorized",
+            "name": "TaskPrioritized",
             "extends": [
                 "bpmn:Process",
                 "activiti:ExternalCapable"
