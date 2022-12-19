@@ -135,6 +135,7 @@ export interface Collaborator {
 export interface MinimalModelSummary {
     name: string;
     description?: string;
+    prefix?: string;
 }
 
 export interface Model extends MinimalModelSummary {

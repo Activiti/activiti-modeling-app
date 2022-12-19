@@ -49,7 +49,7 @@ export class HxPSchemaApiVariation<M extends HxPSchema, C extends JSONSchemaInfo
         return <C>{
             description: model.description,
             type: 'object',
-            $id: model.name
+            $id: model.prefix
         };
     }
 

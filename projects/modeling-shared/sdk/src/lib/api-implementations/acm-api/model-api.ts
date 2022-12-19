@@ -70,13 +70,17 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .pipe(
                 map(response => response.entry),
                 concatMap(createdEntity => {
-                    // Patch: BE does not return the description...
-                    const createdEntityWithDescription: T = <T>{
+                    // Patch: BE does not return the description nor prefix...
+                    const createdEntityWithPrefixAndDescription: T = <T>{
                         description: model.description,
+                        prefix: model.prefix,
                         ...createdEntity
                     };
 
-                    return this.updateContent(createdEntityWithDescription, this.modelVariation.createInitialContent(createdEntityWithDescription));
+                    return this.updateContent(
+                        createdEntityWithPrefixAndDescription,
+                        this.modelVariation.createInitialContent(createdEntityWithPrefixAndDescription)
+                    );
                 }),
                 map(createdEntity => this.createEntity(createdEntity))
             );
