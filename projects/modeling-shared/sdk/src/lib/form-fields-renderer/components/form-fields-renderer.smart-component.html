@@ -1,0 +1,33 @@
+<ng-container *ngIf="formGroup" [formGroup]="formGroup">
+    <div class="ama-form-fields-renderer-container">
+        <mat-form-field *ngFor="let field of formFields"
+                        [ngSwitch]="field.type"
+                        [attr.data-automation-id]="field.key">
+            <mat-label>{{ field.label | translate }}</mat-label>
+            <input
+                *ngSwitchCase="'text'"
+                matInput
+                [attr.data-automation-id]="'ama-form-fields-renderer-input-' + field.key"
+                [placeholder]="field.label | translate"
+                [type]="field.type"
+                [errorStateMatcher]="matcher"
+                [formControl]="getInputFormControl(field.key)"/>
+
+            <textarea
+                      matInput
+                      *ngSwitchCase="'textarea'"
+                      [attr.data-automation-id]="'ama-form-fields-renderer-textarea-' + field.key"
+                      [placeholder]="field.label | translate"
+                      [type]="field.type"
+                      [errorStateMatcher]="matcher"
+                      [formControl]="getInputFormControl(field.key)"></textarea>
+
+            <ng-container *ngFor="let validator of field.validators">
+                <mat-error *ngIf="getInputFormControl(field.key) | formRendererFieldHasError: validator.type"
+                    [attr.data-automation-id]="'ama-form-fields-renderer-error-' + validator.type + '-' + field.key">
+                    {{ field.label | formRendererFieldErrorMessage: validator }}
+                </mat-error>
+            </ng-container>
+        </mat-form-field>
+    </div>
+</ng-container>

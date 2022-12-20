@@ -132,6 +132,12 @@
                 "DEFAULT_REQUIRED": "This field is required"
             }
         },
+        "FORM_FIELDS_RENDERER": {
+            "ERROR": {
+                "REQUIRED": "{{fieldLabel}} is required",
+                "DEFAULT_REQUIRED": "This field is required"
+            }
+        },
         "EXPRESSION_CODE_EDITOR": {
             "EDIT_IN_DIALOG": "Edit in dialog",
             "EXPRESSION_EDITOR": "Expression editor",

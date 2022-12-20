@@ -1,0 +1,9 @@
+.ama-form-fields-renderer-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1 1px;
+
+    mat-form-field {
+        margin-bottom: 6px;
+    }
+}
