@@ -1,5 +1,5 @@
 language: node_js
-dist: bionic
+dist: jammy
 arch: arm64-graviton2
 node_js:
   - '14.15.4'
