@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CardItemTypeService } from '@alfresco/adf-core';
 import { ProcessEntitiesState } from '../../../store/process-entities.state';
 import { OpenCandidateStartersDialogAction } from '../../../store/process-candidate-starters.action';
-import { Observable } from 'rxjs';
-import { Project, selectProject } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     /* cspell: disable-next-line */
@@ -32,15 +30,8 @@ import { Project, selectProject } from '@alfresco-dbp/modeling-shared/sdk';
     providers: [CardItemTypeService]
 })
 
-export class CardViewCandidateStartersItemComponent{
-
-    @Input() property;
-
-    project$: Observable<Partial<Project>>;
-
-    constructor(private store: Store<ProcessEntitiesState>) {
-        this.project$ = this.store.select(selectProject);
-    }
+export class CardViewCandidateStartersItemComponent {
+    constructor(private store: Store<ProcessEntitiesState>) { }
 
     openCandidateStartersDialog(): void {
         this.store.dispatch(new OpenCandidateStartersDialogAction());
