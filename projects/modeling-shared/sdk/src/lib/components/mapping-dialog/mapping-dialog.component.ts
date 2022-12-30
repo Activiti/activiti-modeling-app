@@ -362,6 +362,8 @@ export class MappingDialogComponent implements OnInit {
         switch (inputType) {
         case 'content-metadata':
         case 'schema-selector':
+        case 'file-mapping-type':
+        case 'folder-mapping-type':
             extendedProperties = { editorVariables: this.editorVariables };
             break;
         case 'expression-mapping':

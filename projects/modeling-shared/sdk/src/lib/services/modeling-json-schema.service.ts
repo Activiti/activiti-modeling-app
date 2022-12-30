@@ -268,18 +268,18 @@ export class ModelingJSONSchemaService {
         let type = 'json';
 
         switch (jsonSchemaType) {
-        case 'number':
-            type = 'string';
-            break;
-        case 'object':
-            type = 'json';
-            break;
-        case 'execution':
-            type = 'execution';
-            break;
-        default:
-            type = this.getMappingPrimitiveTypeForString(jsonSchemaType);
-            break;
+            case 'number':
+                type = 'string';
+                break;
+            case 'object':
+                type = 'json';
+                break;
+            case 'execution':
+                type = 'execution';
+                break;
+            default:
+                type = this.getMappingPrimitiveTypeForString(jsonSchemaType);
+                break;
         }
 
         return type;
@@ -441,5 +441,119 @@ export class ModelingJSONSchemaService {
             }
             return copy;
         }
+    }
+
+    schemaExtendsFromReferencedSchema(schema: JSONSchemaInfoBasics, ref: string, originalSchema?: JSONSchemaInfoBasics): boolean {
+        const schemaOriginal = originalSchema ? originalSchema : schema;
+        if (schema && ref) {
+            if (schema.$ref && schema.$ref.startsWith(ref)) {
+                return true;
+            }
+
+            if (schema?.allOf) {
+                for (let index = 0; index < schema.allOf.length; index++) {
+                    const element = schema.allOf[index];
+                    if (element.$ref) {
+                        if (element.$ref.startsWith(ref)) {
+                            return true;
+                        } else {
+                            const referencedSchema = this.getSchemaFromReference(element.$ref, originalSchema || schema);
+                            if(this.schemaExtendsFromReferencedSchema(referencedSchema, ref, schemaOriginal)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (schema?.anyOf) {
+                for (let index = 0; index < schema.anyOf.length; index++) {
+                    const element = schema.anyOf[index];
+                    if (element.$ref) {
+                        if (element.$ref.startsWith(ref)) {
+                            return true;
+                        } else {
+                            const referencedSchema = this.getSchemaFromReference(element.$ref, originalSchema || schema);
+                            if(this.schemaExtendsFromReferencedSchema(referencedSchema, ref, schemaOriginal)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (schema?.oneOf) {
+                for (let index = 0; index < schema.oneOf.length; index++) {
+                    const element = schema.oneOf[index];
+                    if (element.$ref) {
+                        if (element.$ref.startsWith(ref)) {
+                            return true;
+                        } else {
+                            const referencedSchema = this.getSchemaFromReference(element.$ref, originalSchema || schema);
+                            if(this.schemaExtendsFromReferencedSchema(referencedSchema, ref, schemaOriginal)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    getIncludedSchemasByType(schema: JSONSchemaInfoBasics, type: string[], originalSchema?: JSONSchemaInfoBasics): string[] {
+        let result: string[] = [];
+
+        if (schema && type) {
+            const referencePrefix = ModelingJSONSchemaService.DEFINITIONS_PATH + '/' + type.join('/');
+
+            if (schema.$ref && schema.$ref.startsWith(referencePrefix)) {
+                result.push(schema.$ref);
+            }
+
+            if (schema?.allOf) {
+                for (let index = 0; index < schema.allOf.length; index++) {
+                    const element = schema.allOf[index];
+                    if (element.$ref) {
+                        if (element.$ref.startsWith(referencePrefix)) {
+                            result.push(element.$ref);
+                        } else {
+                            const referencedSchema = this.getSchemaFromReference(element.$ref, originalSchema || schema);
+                            result = result.concat(this.getIncludedSchemasByType(referencedSchema, type));
+                        }
+                    }
+                }
+            }
+
+            if (schema?.anyOf) {
+                for (let index = 0; index < schema.anyOf.length; index++) {
+                    const element = schema.anyOf[index];
+                    if (element.$ref) {
+                        if (element.$ref.startsWith(referencePrefix)) {
+                            result.push(element.$ref);
+                        } else {
+                            const referencedSchema = this.getSchemaFromReference(element.$ref, originalSchema || schema);
+                            result = result.concat(this.getIncludedSchemasByType(referencedSchema, type));
+                        }
+                    }
+                }
+            }
+
+            if (schema?.oneOf) {
+                for (let index = 0; index < schema.oneOf.length; index++) {
+                    const element = schema.oneOf[index];
+                    if (element.$ref) {
+                        if (element.$ref.startsWith(referencePrefix)) {
+                            result.push(element.$ref);
+                        } else {
+                            const referencedSchema = this.getSchemaFromReference(element.$ref, originalSchema || schema);
+                            result = result.concat(this.getIncludedSchemasByType(referencedSchema, type));
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 }

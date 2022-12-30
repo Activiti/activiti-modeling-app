@@ -140,7 +140,7 @@
                 </button>
                 <button mat-button mat-icon-button matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.REMOVE_NODE' | translate}}"
                     [attr.data-automation-id]="'json-schema-editor-remove-child-btn'" *ngIf="compositionIndex > -1"
-                    (click)="onRemoveChild(key,compositionIndex)">
+                    (click)="onRemoveChild(key,compositionIndex)" [disabled]="customizations?.deletion?.disabled">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>

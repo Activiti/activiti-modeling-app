@@ -289,6 +289,47 @@ describe('ModelingJSONSchemaService', () => {
         expect(notification).toEqual(expectedNotification);
     });
 
+    /* cspell: disable */
+    describe('schema extends referenced schema', () => {
+        it('should return true when schema is referenced', () => {
+            const testSchema = {
+                description: '',
+                allOf: [
+                    { $ref: '#/$defs/hxp-ootb-document-types/File' },
+                    { $ref: '#/$defs/hxp-ootb-mixins/Folderish' },
+                    { $ref: '#/$defs/hxp-schemas/schema1' },
+                ],
+            };
+
+            const testRef = '#/$defs/hxp-ootb-document-types/File';
+            const result = service.schemaExtendsFromReferencedSchema(
+                testSchema,
+                testRef
+            );
+
+            expect(result).toEqual(true);
+        });
+
+        it('should return false when schema is not referenced', () => {
+            const testSchema = {
+                description: '',
+                allOf: [
+                    { $ref: '#/$defs/hxp-ootb-document-types/File' },
+                    { $ref: '#/$defs/hxp-ootb-mixins/Folderish' },
+                    { $ref: '#/$defs/hxp-schemas/schema1' },
+                ],
+            };
+
+            const testRef = '#/$defs/hxp-document-types/other';
+            const result = service.schemaExtendsFromReferencedSchema(
+                testSchema,
+                testRef
+            );
+
+            expect(result).toEqual(false);
+        });
+    });
+
     it('should return execution as modeling type when is type is execution', () => {
         expect(service.getModelingTypeFromJSONSchemaType('execution')).toEqual('execution');
     });

@@ -155,6 +155,9 @@ export interface JsonNodeCustomization {
         oneOf: string;
         property: string;
         definition: string;
+    },
+    deletion?: {
+        disabled: boolean;
     }
 }
 

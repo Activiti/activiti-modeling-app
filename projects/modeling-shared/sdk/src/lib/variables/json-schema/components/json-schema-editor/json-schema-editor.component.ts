@@ -128,9 +128,9 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
 
             this.type = this.jsonSchemaEditorService.getTypes(this.dataModelType, this.schema, this.accessor);
             this.isNodeSelected = isEqual(this.accessor, this.nodeSelectedAccessor);
+            this.getDefinitionsInSchema();
             this.customizeNode();
             this.initProperties();
-            this.getDefinitionsInSchema();
         }
     }
 
@@ -161,7 +161,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor, OnChange
 
     private getCustomHierarchy(hierarchy: Observable<PropertyTypeItem[]>, references: { whiteList?: string[], blacklist?: string[] }): Observable<PropertyTypeItem[]> {
         return hierarchy.pipe(map(initialHierarchy => {
-            const result: PropertyTypeItem[] = [...initialHierarchy];
+            const result: PropertyTypeItem[] = cloneDeep(initialHierarchy);
 
             if (references?.whiteList) {
                 this.filterReferencesStartingWith(result, references.whiteList, true);
