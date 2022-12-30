@@ -1,0 +1,35 @@
+.ama-dual-list {
+    padding: 0;
+    border: solid 1px;
+    border-color: var(--theme-colors-mat-grey-dark);
+    min-height: 100px;
+    overflow: hidden;
+
+    &-item {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        overflow: hidden;
+
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        &-name {
+            margin-left: 5px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    &-empty {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+}

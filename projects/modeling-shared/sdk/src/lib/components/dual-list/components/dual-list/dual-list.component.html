@@ -1,0 +1,28 @@
+<div class="ama-dual-list-wrapper">
+    <div class="ama-dual-list-container">
+        <div class="ama-dual-list-heading-container">
+            <p class="ama-dual-list-heading">{{ "SDK.DUAL_LIST.DEFAULT_NOT_SELECTED_LABEL" | translate }}</p>
+            <button type="button" mat-button class="ama-dual-list-heading-button" (click)="selectAll()">
+                {{ "SDK.DUAL_LIST.SELECT_ALL" | translate }}
+            </button>
+        </div>
+        <modelingsdk-dual-list-items
+            [listItems]="unselectedItems"
+            [endRowIcon]="selectIcon"
+            (selectItem)="onSelectItem($event)">
+        </modelingsdk-dual-list-items>
+    </div>
+    <div class="ama-dual-list-container">
+        <div class="ama-dual-list-heading-container">
+            <p class="ama-dual-list-heading">{{ "SDK.DUAL_LIST.DEFAULT_SELECTED_LABEL" | translate }}</p>
+            <button type="button" mat-button class="ama-dual-list-heading-button" (click)="unselectAll()">
+                {{ "SDK.DUAL_LIST.REMOVE_ALL" | translate }}
+            </button>
+        </div>
+        <modelingsdk-dual-list-items
+            [listItems]="selectedItems"
+            [endRowIcon]="removeIcon"
+            (selectItem)="onUnselectItem($event)">
+        </modelingsdk-dual-list-items>
+    </div>
+</div>

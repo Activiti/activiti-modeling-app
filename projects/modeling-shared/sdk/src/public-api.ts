@@ -32,6 +32,7 @@ export * from './lib/components/prefer-project-button/public-api';
 export * from './lib/components/editor-footer/public-api';
 export * from './lib/components/project-collaborators/public-api';
 export * from './lib/components/edit-project-dialog/public-api';
+export * from './lib/components/dual-list/public-api';
 export * from './lib/process-editor/public-api';
 export * from './lib/connector-editor/public-api';
 export * from './lib/connector-editor/public-api';

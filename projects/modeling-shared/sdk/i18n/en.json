@@ -277,6 +277,12 @@
         },
         "PREFER_BUTTON" : {
             "ARIA_LABEL" : "Toggle for preferred"
+        },
+        "DUAL_LIST": {
+            "DEFAULT_NOT_SELECTED_LABEL": "Unselected Items",
+            "DEFAULT_SELECTED_LABEL": "Selected Items",
+            "SELECT_ALL": "Select All",
+            "REMOVE_ALL": "Remove All"
         }
     }
 }

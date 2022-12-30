@@ -40,6 +40,7 @@ export const IDENTIFIER_REGEX = /^[a-zA-Z0-9][a-zA-Z0-9\w!@#£$%^?&*)(+[\]{}=/._
 export const PROCESS_NAME_REGEX = /^[\w!@#£$%^?&*)(+[\]=/._-]([\Wa-zA-Z0-9_]{0,24}[\Wa-zA-Z0-9_])?$/;
 // eslint-disable-next-line max-len
 export const ISO_8601_TIME_DURATION_REGEX = /^P(?!$)(\d+(?:\.\d+)?Y)?(\d+(?:\.\d+)?M)?(\d+(?:\.\d+)?W)?(\d+(?:\.\d+)?D)?(T(?=\d)(\d+(?:\.\d+)?H)?(\d+(?:\.\d+)?M)?(\d+(?:\.\d+)?S)?)?$/;
+export const SCHEMA_NAME_REFERENCE_REGEX = /([^/]+$)/;
 
 export const sanitizeString = (text: string) => {
     const pastedText = text,

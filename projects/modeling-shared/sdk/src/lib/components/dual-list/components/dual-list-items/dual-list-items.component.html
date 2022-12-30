@@ -1,0 +1,11 @@
+<mat-nav-list class="ama-dual-list" data-automation-id="ama-dual-list">
+    <mat-list-item *ngFor="let item of listItems" (click)="onSelectItem(item)">
+        <div class="ama-dual-list-item-wrapper">
+            <div class="ama-dual-list-item" [attr.data-automation-id]="'ama-dual-list-item-' + item.name">
+                <mat-icon *ngIf="item.icon" [attr.data-automation-id]="'ama-dual-list-item-icon-' + item.icon">{{ item.icon }}</mat-icon>
+                <div class="ama-dual-list-item-name">{{ item.name }}</div>
+            </div>
+            <mat-icon [attr.data-automation-id]="'ama-dual-list-end-row-icon-' + endRowIcon">{{ endRowIcon }}</mat-icon>
+        </div>
+    </mat-list-item>
+</mat-nav-list>

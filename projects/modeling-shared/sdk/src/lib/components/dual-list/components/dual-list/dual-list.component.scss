@@ -1,0 +1,33 @@
+.ama-dual-list-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    .ama-dual-list-container {
+        flex: 0 0 100%;
+        display: flex;
+        flex-direction: column;
+        max-width: 50%;
+        min-width: 50%;
+        padding: 10px 20px 10px 0;
+        box-sizing: border-box;
+
+        .ama-dual-list-heading-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .ama-dual-list-heading {
+                margin: 0;
+                padding: 0 6px;
+
+                &-button {
+                    color: var(--theme-primary-color);
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}
