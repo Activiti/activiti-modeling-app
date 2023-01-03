@@ -27,8 +27,8 @@ import {
     EntityDialogContentComponent,
     EntityDialogContentFormService,
     EntityDialogPayload,
-    mockModelCreatorDialogFields,
-    mockValuesProperty
+    MODELER_NAME_REGEX,
+    ModelFieldProperty
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { CreateProcessDialogComponent } from './create-process-dialog.component';
 import { ProcessCategorySelectorComponent } from '../process-category-selector/process-category-selector.component';
@@ -46,6 +46,34 @@ describe('CreateProcessDialogComponent', () => {
     const createProjectAttemptActionImplementationMock = jest.fn();
     const callback = jest.fn();
     const createProjectAttemptActionMock = jest.fn().mockImplementation(() => createProjectAttemptActionImplementationMock);
+
+    const mockValuesProperty = { id: 'fake-values-id', name: 'fake-values-name', description: 'fake-values-description' };
+
+    const mockModelCreatorDialogFields: ModelFieldProperty[] = [
+        {
+            key: 'name',
+            label: 'fake-name',
+            type: 'text',
+            validators: [
+                {
+                    type: 'required',
+                    value: true,
+                    error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
+                },
+                {
+                    type: 'pattern',
+                    value: MODELER_NAME_REGEX,
+                    error: 'fake-pattern-error-message'
+                }
+            ]
+        },
+        {
+            key: 'description',
+            label: 'fake-description',
+            type: 'textarea'
+        }
+    ];
+
 
     const mockDialogDataWithValues: EntityDialogPayload = {
         title: 'fake-title',
