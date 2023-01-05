@@ -91,7 +91,8 @@
 
 <ng-container *ngIf="showForm; else noProjectsTemplate">
     <div class="ama-properties-form {{!allowExpressions ? 'ama-space-top' : ''}}">
-        <mat-form-field floatLabel="never">
+        <mat-form-field floatLabel="never"
+            [ngClass]="{'mat-form-field-has-error':(form.name.length && !isValid(form.name)) || (!form.name.length)}">
             <input
                 matInput
                 placeholder="Name"
@@ -152,7 +153,7 @@
             </mat-button-toggle-group>
 
             <div *ngIf="form.display" class="ama-visible-column">
-                <mat-form-field>
+                <mat-form-field [ngClass]="{'mat-form-field-has-error':!form.displayName}">
                     <mat-label>{{ 'SDK.DISPLAY_NAME_VISIBILITY.ENTER_DISPLAY_NAME' | translate }}</mat-label>
                     <input matInput
                         [(ngModel)]="form.displayName"

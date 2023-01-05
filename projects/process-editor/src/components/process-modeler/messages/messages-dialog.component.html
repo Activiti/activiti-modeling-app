@@ -49,7 +49,7 @@
                     <div class="adf-messages-form-label">{{'SDK.MESSAGES_EDITOR.TABLE.COLUMN_ID' | translate}}</div>
                     <input matInput [(ngModel)]="selectedMessage.id" data-automation-id="message-id" disabled>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field [ngClass]="{'mat-form-field-has-error':!selectedMessage.name.length}">
                     <div class="adf-property-label">{{'SDK.MESSAGES_EDITOR.TABLE.COLUMN_NAME' | translate}}</div>
                     <input matInput [(ngModel)]="selectedMessage.name" data-automation-id="message-name" (keyup)="onMessageChanged()">
                 </mat-form-field>

@@ -209,3 +209,102 @@ body {
 .mat-icon {
     overflow: unset !important;
 }
+
+//inputs
+.mat-form-field {
+    //inactive
+    .mat-form-field-infix {
+        .mat-input-element {
+            color: map-get($hy-neutral, 500);
+        }
+    }
+
+    .mat-form-field-wrapper {
+        .mat-form-field-suffix {
+            .mat-icon {
+                color: $hy-text-black;
+            }
+        }
+        .mat-form-field-underline {
+            background-color:map-get($hy-neutral, 500);
+            color: map-get($hy-neutral, 500);
+        }
+    }
+    //disabled
+    &.mat-form-field-disabled.adf-property-field,
+    &.mat-form-field-disabled {
+        .mat-form-field-infix {
+            .mat-input-element {
+                color: map-get($hy-neutral, 500);
+            }
+        }
+
+        .mat-form-field-wrapper {
+            .mat-form-field-suffix {
+                .mat-icon {
+                    color: $hy-text-disabled;
+                }
+            }
+            .mat-form-field-underline {
+                color: map-get($hy-neutral, 500);
+                display: block;
+            }
+        }
+    }
+    //active
+    &.mat-focused {
+        .mat-form-field-infix {
+            .mat-input-element {
+                color: map-get($hy-primary, 700);
+            }
+        }
+
+        .mat-form-field-wrapper {
+            .mat-form-field-suffix {
+                .mat-icon {
+                    color: $hy-text-black;
+                }
+            }
+
+            .mat-form-field-underline {
+                .mat-form-field-ripple {
+                    background-color: map-get($hy-primary, 700);
+                }
+            }
+        }
+    }
+    //error
+    &.adf-property-field-has-error,
+    &.mat-form-field-has-error,
+    & + .mat-error,
+    &.mat-form-field-invalid {
+        .mat-form-field-infix {
+            .ama-mat-error,
+            .mat-input-element {
+                color: $hy-error;
+            }
+        }
+
+        .mat-form-field-wrapper {
+            .mat-form-field-underline {
+                background-color: $hy-error;
+                .mat-form-field-ripple {
+                    background-color: $hy-error;
+                }
+            }
+        }
+    }
+}
+
+div.adf-property-list {
+    .adf-property {
+        .ama-process-properties-version-title,
+        .adf-property-label {
+            color: $hy-text-black;
+        }
+        .ama-process-properties-version-value,
+        .adf-property-value {
+            color: map-get($hy-neutral, 500);
+        }
+    }
+}
