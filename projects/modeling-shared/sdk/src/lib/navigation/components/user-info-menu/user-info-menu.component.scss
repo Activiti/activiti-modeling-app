@@ -13,8 +13,15 @@
             line-height: 32px !important;
             text-align: center;
             vertical-align: middle;
-            background: var(--theme-primary-color);
+            background: var(--theme-user-initials-bg);
+            color:var(--theme-user-initials-text);
             border: none;
+            &:hover {
+                background-color: var(--theme-user-initials-bg-hover);
+            }
+            &:active {
+                background-color: var(--theme-user-initials-bg-pressed);
+            }
         }
 
         .ama-user-initials.ama-details {

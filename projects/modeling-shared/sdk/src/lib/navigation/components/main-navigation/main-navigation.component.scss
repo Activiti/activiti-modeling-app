@@ -1,7 +1,7 @@
 .studio-main-navigation {
     width: 288px;
     height: calc(100% - 15px);
-    background: var(--theme-ama-var-selector-bg-color);
+    background: var(--theme-main-navigation-bg);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -15,29 +15,29 @@
 
     &-header {
         width: 100%;
-        display:flex;
+        display: flex;
         justify-content: space-between;
         align-items: flex-start;
 
         &-title {
-            display:flex;
+            display: flex;
             align-items: center;
             width: 100%;
 
             .studio-logo {
-                display:flex;
+                display: flex;
 
                 &-circle {
                     width: 22px;
                     height: 22px;
-                    background-color:  var(--theme-primary-color);
+                    background-color: var(--theme-logo-circle-bg);
                     border-radius: 11px;
                 }
 
                 &-square {
                     width: 18px;
                     height: 18px;
-                    background-color: #ff9015;
+                    background-color: var(--theme-logo-square-bg);
                     border-radius: 2px;
                     position: relative;
                     left: -8px;
@@ -47,6 +47,9 @@
             }
 
             &-text {
+                color: var(
+                    --theme-main-navigation-header-title-text
+                );
                 font-size: 16px;
                 line-height: 22px;
                 margin-left: 12px;
@@ -73,8 +76,27 @@
             justify-content: space-around;
 
             adf-notification-history {
+                button {
+                    &:hover {
+                        background-color: var(
+                            --theme-main-navigation-header-controls-icon-hover
+                        );
+                    }
+                    &:active {
+                        background-color: var(
+                            --theme-main-navigation-header-controls-icon-pressed
+                        );
+                    }
+                }
+                .mat-icon {
+                    color: var(
+                        --theme-main-navigation-header-controls-icon
+                    );
+                }
                 .mat-badge-content {
-                    background: var(--theme-primary-color);
+                    background: var(
+                        --theme-main-navigation-header-controls-badge
+                    );
                 }
             }
         }
@@ -88,6 +110,7 @@
     }
 
     &-main-title {
+        color: var(--theme-main-navigation-main-title);
         font-family: var(--theme-font-family);
         font-style: normal;
         font-weight: 500;
@@ -107,6 +130,7 @@
         width: 100%;
 
         &-element {
+            color: var(--theme-main-navigation-menu-element);
             font-style: normal;
             font-weight: normal;
             font-size: 14px;
@@ -128,7 +152,9 @@
             }
 
             &-active {
-                color: var(--theme-primary-color);
+                color: var(
+                    --theme-main-navigation-menu-element-active
+                );
             }
         }
     }
@@ -137,6 +163,4 @@
         width: 195px;
         padding-left: 15px;
     }
-
-
 }

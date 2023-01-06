@@ -136,7 +136,8 @@ $defaults: (
     mat.get-color-from-palette($foreground, text, 0.1),
   --theme-ama-form-editor-btn-color: mat.get-color-from-palette($foreground, text, 0.25),
   --theme-ama-form-editor-btn-hover-color: mat.get-color-from-palette($foreground, text, 1),
-  --theme-ama-form-editor-text-drag-color: mat.get-color-from-palette($foreground, text, 0.4),
+  --theme-ama-form-editor-text-drag-color:
+    mat.get-color-from-palette($foreground, text, 0.4),
   --theme-ama-condition-builder-primary-text-color:
     mat.get-color-from-palette($primary, text, 0.75),
   --theme-ama-condition-builder-accent-text-color: mat.get-color-from-palette($accent, text, 0.75),
@@ -158,6 +159,24 @@ $defaults: (
   --theme-ama-border-color: #dce0e6,
   --theme-ama-loader-spinner: $hy-loader-spinner,
   --theme-ama-loader-text: $hy-loader-text,
+
+  --theme-logo-circle-bg: map-get($hy-primary, 400),
+  --theme-logo-square-bg: map-get($hy-primary, 700),
+
+  --theme-main-navigation-bg: map-get($hy-neutral, 100),
+  --theme-main-navigation-main-title: $hy-text-secondary,
+  --theme-main-navigation-menu-element: $hy-text-black,
+  --theme-main-navigation-menu-element-active: map-get($hy-primary, 700),
+  --theme-main-navigation-header-title-text: $hy-text-black,
+  --theme-main-navigation-header-controls-icon: $hy-text-black,
+  --theme-main-navigation-header-controls-icon-hover: $hy-btn-basic-hover,
+  --theme-main-navigation-header-controls-icon-pressed: $hy-btn-basic-pressed,
+  --theme-main-navigation-header-controls-badge: map-get($hy-primary, 700),
+
+  --theme-user-initials-bg: map-get($hy-neutral, 200),
+  --theme-user-initials-bg-hover: $hy-btn-basic-hover,
+  --theme-user-initials-bg-pressed: $hy-btn-basic-pressed,
+  --theme-user-initials-text: $hy-text-black,
 
   // ADF components and services
   --adf-snackbar-error-bg-color: mat.get-color-from-palette($warn),
