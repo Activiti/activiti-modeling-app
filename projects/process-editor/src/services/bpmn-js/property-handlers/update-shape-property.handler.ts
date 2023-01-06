@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-const isValid = (value: any) => value || value === 0;
+const isValid = (value: any) => value || value === 0 || value === '';
 
 export const updateShapeProperty = (element: Bpmn.DiagramElement, propertyKey: string, value: any) => {
     if (isValid(value)) {

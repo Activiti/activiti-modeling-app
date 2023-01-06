@@ -103,7 +103,6 @@
             "CANDIDATE_STARTERS": "Candidate starters",
             "CANDIDATE_STARTER_GROUPS": "Candidate starter groups",
             "CANDIDATE_STARTER_USERS": "Candidate starter users",
-            "CANDIDATE_STARTERS_DIALOG_TITLE": "Edit Candidate Starters",
             "CANDIDATE_STARTERS_DIALOG_SAVE": "Save",
             "PROCESS_VARIABLES": "Process variables",
             "EXPRESSION": "Condition expression",
@@ -253,6 +252,12 @@
             "START_EVENT_SIGNAL": "Create signal start event",
             "SUB_PROCESS": "Create sub-process",
             "USER_TASK": "Create user task"
+        }, 
+        "PROCESS_PERMISSIONS": {
+            "TITLE": "Process Permissions",
+            "NOBODY": "Nobody can start it",
+            "EVERYONE": "Everyone can start it",
+            "SPECIFIC": "Specific users/groups"
         }
     }
 }

@@ -23,7 +23,7 @@ import { CoreModule, TranslationService, TranslationMock, AlfrescoApiService } f
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CandidateStartersDialogComponent } from './candidate-starters-dialog.component';
+import { CandidateStartersDialogComponent, PermissionLevelTypes } from './candidate-starters-dialog.component';
 import { ProcessServicesCloudModule } from '@alfresco/adf-process-services-cloud';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { MatIconModule } from '@angular/material/icon';
@@ -93,6 +93,7 @@ describe('CandidateStartersDialogComponent', () => {
         component = fixture.componentInstance;
         alfrescoApiService = TestBed.inject(AlfrescoApiService);
         component.settings = mockDialogData;
+        component.selectedPermissionLevel = PermissionLevelTypes.SPECIFIC;
         spyOn(alfrescoApiService, 'getInstance').and.returnValue(mockOauthApi);
     });
 
@@ -100,24 +101,24 @@ describe('CandidateStartersDialogComponent', () => {
         TestBed.resetTestingModule();
     });
 
-    it('Should be disable assign button if the candidate user is invalid', async () => {
+    it('should be disable save button if the candidate user is invalid', async () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
-        const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-        const assigneeInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
+        const saveButton = fixture.debugElement.query(By.css('[data-automation-id="ama-save-button"]'));
+        const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
 
-        assigneeInput.nativeElement.value = 'assignee user';
-        assigneeInput.nativeElement.dispatchEvent(new Event('input'));
+        candidateUserInput.nativeElement.value = 'assignee user';
+        candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
 
-        expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        expect(saveButton.nativeElement['disabled']).toBeTruthy();
     });
 
-    it('Should be disable assign button if one of the candidates user/group is invalid', async () => {
+    it('should be disable save button if one of the candidates user/group is invalid', async () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
-        const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+        const saveButton = fixture.debugElement.query(By.css('[data-automation-id="ama-save-button"]'));
         const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
         const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
 
@@ -127,10 +128,10 @@ describe('CandidateStartersDialogComponent', () => {
         candidateGroupInput.nativeElement.value = 'Candidate group';
         candidateGroupInput.nativeElement.dispatchEvent(new Event('input'));
 
-        expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        expect(saveButton.nativeElement['disabled']).toBeTruthy();
     });
 
-    it('Should show warning message on candidate assignment if the value is not correct', async () => {
+    it('should show warning message on candidate assignment if the value is not correct', async () => {
         fixture.detectChanges();
         await fixture.whenStable();
 

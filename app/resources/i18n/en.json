@@ -29,7 +29,7 @@
             "EDIT_PROCESS_ERRORS": "Edit Errors",
             "EDIT_FORM_PROPERTIES": "Edit Form Variables",
             "EDIT_VISIBILITY_CONDITIONS": "Edit Visibility Conditions",
-            "EDIT_CANDIDATE_STARTERS": "Edit Candidate starters",
+            "EDIT_PROCESS_PERMISSIONS": "Edit Process Permissions",
             "ERROR": {
                 "TITLE": "Do you want to save it anyway?",
                 "SUBTITLE": "Validation errors:",

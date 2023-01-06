@@ -1,3 +1,12 @@
 .ama-candidate-starters-content {
-    height: 26vh;
+    height: 18vh;
+
+    .mat-error {
+        display: flex;
+        align-items: center;
+        .mat-icon {
+            font-size: 20px;
+        }
+    }
 }
+

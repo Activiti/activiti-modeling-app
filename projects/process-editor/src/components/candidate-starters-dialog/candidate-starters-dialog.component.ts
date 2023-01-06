@@ -20,9 +20,9 @@ import { IdentityGroupModel, IdentityUserModel } from '@alfresco/adf-process-ser
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelectChange } from '@angular/material/select';
 import { Subject } from 'rxjs';
 import { AssignmentModel, AssignmentParams, identityCandidateValidator } from '../assignment/assignment-dialog.component';
-
 
 export interface CandidateStartersSettings {
     candidateStarterUsers: string[];
@@ -30,6 +30,12 @@ export interface CandidateStartersSettings {
     candidateStartersUpdate$?: Subject<any>;
     shapeId?: string;
     processId?: string;
+}
+
+export enum PermissionLevelTypes {
+    EVERYONE = 'everyone',
+    NOBODY = 'nobody',
+    SPECIFIC = 'specific',
 }
 
 @Component({
@@ -44,6 +50,24 @@ export class CandidateStartersDialogComponent implements OnInit {
     candidateStartersPayload: any;
     candidateStartersForm: FormGroup;
     loadingForm = true;
+    permissionLevels = [
+        {
+            key: PermissionLevelTypes.EVERYONE,
+            label:
+                'PROCESS_EDITOR.PROCESS_PERMISSIONS.EVERYONE'
+        },
+        {
+            key: PermissionLevelTypes.NOBODY,
+            label:
+                'PROCESS_EDITOR.PROCESS_PERMISSIONS.NOBODY'
+        },
+        {
+            key: PermissionLevelTypes.SPECIFIC,
+            label:
+                'PROCESS_EDITOR.PROCESS_PERMISSIONS.SPECIFIC'
+        }
+    ];
+    selectedPermissionLevel = PermissionLevelTypes.EVERYONE;
 
     roles = ['ACTIVITI_USER'];
     constructor(
@@ -69,7 +93,7 @@ export class CandidateStartersDialogComponent implements OnInit {
     }
 
     get candidateStarterUsersChipsIdentityControl(): FormControl {
-        return this.candidateUserIdentityFormGroup.get('candidateStarterUsersChips') as FormControl;
+        return this.candidateUserIdentityFormGroup.get('candidateUsersChips') as FormControl;
     }
 
     get candidateGroupIdentityFormGroup(): FormGroup {
@@ -77,11 +101,19 @@ export class CandidateStartersDialogComponent implements OnInit {
     }
 
     get candidateStarterGroupsChipsIdentityControl(): FormControl {
-        return this.candidateGroupIdentityFormGroup.get('candidateStarterGroupsChips') as FormControl;
+        return this.candidateGroupIdentityFormGroup.get('candidateGroupsChips') as FormControl;
     }
 
     get candidateStarterGroupsIdentityControl(): FormControl {
         return this.candidateGroupIdentityFormGroup.get('candidateStarterGroups') as FormControl;
+    }
+
+    get isCandidateStarterGroupAssigned(): boolean {
+        return this.candidateStarterGroups && this.candidateStarterGroups.length > 0;
+    }
+
+    get isCandidateStarterUserAssigned(): boolean {
+        return this.candidateStarterUsers && this.candidateStarterUsers.length > 0;
     }
 
 
@@ -89,12 +121,42 @@ export class CandidateStartersDialogComponent implements OnInit {
         this.createCandidateStartersForm();
     }
 
-    createCandidateStartersForm() {
+    onSelect({value}: MatSelectChange) {
+        this.selectedPermissionLevel = value;
+        this.candidateStartersPayload = undefined;
+        if (this.selectedPermissionLevel === PermissionLevelTypes.NOBODY) {
+            this.candidateStartersPayload = this.buildPayloadWithNoUsersGroups();
+        }
+    }
+
+    onCandidateStarterUsersChange(candidateStarterUsers: IdentityUserModel[]) {
+        this.candidateStarterUsers = [...candidateStarterUsers];
+        this.updatePayloadWithIdentityValues();
+    }
+
+    onCandidateStarterGroupsChange(candidateStarterGroups: IdentityGroupModel[]) {
+        this.candidateStarterGroups = [...candidateStarterGroups];
+        this.updatePayloadWithIdentityValues();
+    }
+
+    onClose() {
+        this.settings.candidateStartersUpdate$.complete();
+        this.dialogRef.close();
+    }
+
+    onSave() {
+        if (this.candidateStartersPayload) {
+            this.settings.candidateStartersUpdate$.next(this.candidateStartersPayload);
+        }
+        this.settings.candidateStartersUpdate$.complete();
+        this.dialogRef.close();
+    }
+
+    private createCandidateStartersForm() {
         this.candidateStartersForm = this.formBuilder.group({
             identityForm: this.formBuilder.group({}),
         });
         this.createChildrenFormControls();
-        this.setIdentityAssignments();
         this.loadingForm = false;
     }
 
@@ -133,7 +195,7 @@ export class CandidateStartersDialogComponent implements OnInit {
         return this.formBuilder.group(
             {
                 'candidateStarterUsers': '',
-                'candidateStarterUsersChips': ''
+                'candidateUsersChips': ''
             });
     }
 
@@ -141,44 +203,9 @@ export class CandidateStartersDialogComponent implements OnInit {
         return this.formBuilder.group(
             {
                 'candidateStarterGroups': '',
-                'candidateStarterGroupsChips': ''
+                'candidateGroupsChips': ''
             });
     }
-
-    private setIdentityAssignments() {
-        if (
-            this.settings.candidateStarterUsers &&
-            !this.isExpressionValid(this.settings.candidateStarterUsers.join())
-        ) {
-            this.candidateStarterUsers = this.settings.candidateStarterUsers.map(
-                (username: string) => ({ username: username })
-            );
-        }
-
-        if (
-            this.settings.candidateStarterGroups &&
-            !this.isExpressionValid(this.settings.candidateStarterGroups.join())
-        ) {
-            this.candidateStarterGroups = this.settings.candidateStarterGroups.map(
-                groupName => ({ name: groupName })
-            );
-        }
-    }
-
-    isExpressionValid(value: string) {
-        return /\${([^}]+)}/.test(value);
-    }
-
-    onCandidateStarterUsersChange(candidateStarterUsers: IdentityUserModel[]) {
-        this.candidateStarterUsers = [...candidateStarterUsers];
-        this.updatePayloadWithIdentityValues();
-    }
-
-    onCandidateStarterGroupsChange(candidateStarterGroups: IdentityGroupModel[]) {
-        this.candidateStarterGroups = [...candidateStarterGroups];
-        this.updatePayloadWithIdentityValues();
-    }
-
 
     private updatePayloadWithIdentityValues() {
         this.candidateStartersPayload = this.buildPayloadWithIdentityValues({
@@ -187,13 +214,9 @@ export class CandidateStartersDialogComponent implements OnInit {
         });
     }
 
-    onClose() {
-        this.settings.candidateStartersUpdate$.complete();
-        this.dialogRef.close();
-    }
-
-    get candidateStartersFormEnabled() {
-        return this.candidateStartersForm.valid && !this.candidateStartersForm.pristine;
+    get candidateStartersFormEnabled(): boolean {
+        return (this.selectedPermissionLevel === PermissionLevelTypes.EVERYONE || this.selectedPermissionLevel === PermissionLevelTypes.NOBODY) ||
+            this.candidateStartersForm.valid && !this.candidateStartersForm.pristine;
     }
 
     private buildPayloadWithIdentityValues({
@@ -223,11 +246,18 @@ export class CandidateStartersDialogComponent implements OnInit {
         };
     }
 
-    onAssign() {
-        if (this.candidateStartersPayload) {
-            this.settings.candidateStartersUpdate$.next(this.candidateStartersPayload);
-            this.settings.candidateStartersUpdate$.complete();
-            this.dialogRef.close();
-        }
+    private buildPayloadWithNoUsersGroups(): AssignmentModel {
+        return <AssignmentModel>{
+            assignments: <AssignmentParams[]>[
+                {
+                    key: BpmnProperty.candidateStarterUsers,
+                    value: ''
+                },
+                {
+                    key: BpmnProperty.candidateStarterGroups,
+                    value: ''
+                }
+            ]
+        };
     }
 }

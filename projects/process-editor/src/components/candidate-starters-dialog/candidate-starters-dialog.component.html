@@ -1,36 +1,50 @@
 
-<h2 mat-dialog-title>{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTERS_DIALOG_TITLE' | translate }}</h2>
+<h2 mat-dialog-title>{{'PROCESS_EDITOR.PROCESS_PERMISSIONS.TITLE' | translate }}</h2>
 <form [formGroup]="candidateStartersForm" *ngIf="!loadingForm">
-<mat-dialog-content class="ama-candidate-starters-content">
-    <adf-cloud-people 
-        [preSelectUsers]="candidateStarterUsers"
-        [userChipsCtrl]="candidateStarterUsersChipsIdentityControl"
-        [searchUserCtrl]="candidateStarterUsersIdentityControl"
-        [roles]="roles"
-        [validate]="false"
-        [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_USERS'"
-        (changedUsers)="onCandidateStarterUsersChange($event)"
-        [mode]="'multiple'">
-    </adf-cloud-people>
-    <adf-cloud-group
-        [preSelectGroups]="candidateStarterGroups"
-        [groupChipsCtrl]="candidateStarterGroupsChipsIdentityControl"
-        [searchGroupsControl]="candidateStarterGroupsIdentityControl"
-        [roles]="roles"
-        [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_GROUPS'"
-        [mode]="'multiple'"
-        (changedGroups)="onCandidateStarterGroupsChange($event)">
-    </adf-cloud-group>
-    <mat-error *ngIf="candidatesIdentityFormGroup.hasError('custom')">
-        <mat-icon class="">warning</mat-icon>
-        {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_WARNING' | translate }}
-    </mat-error>
-</mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Permission Level</mat-label>
+        <mat-select [value]="selectedPermissionLevel" (selectionChange)="onSelect($event)">
+            <mat-option
+                *ngFor="let permissionLevel of permissionLevels"
+                [attr.data-automation-id]="'ama-permission-level-option-' + permissionLevel.key"
+                [value]=permissionLevel.key>
+                {{ permissionLevel.label | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-dialog-content class="ama-candidate-starters-content">
+            <ng-container *ngIf="selectedPermissionLevel === 'specific'">
+                <adf-cloud-people 
+                    [preSelectUsers]="candidateStarterUsers"
+                    [userChipsCtrl]="candidateStarterUsersChipsIdentityControl"
+                    [searchUserCtrl]="candidateStarterUsersIdentityControl"
+                    [roles]="roles"
+                    [validate]="false"
+                    [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_USERS'"
+                    (changedUsers)="onCandidateStarterUsersChange($event)"
+                    [mode]="'multiple'">
+                </adf-cloud-people>
+                <adf-cloud-group
+                    [preSelectGroups]="candidateStarterGroups"
+                    [groupChipsCtrl]="candidateStarterGroupsChipsIdentityControl"
+                    [searchGroupsControl]="candidateStarterGroupsIdentityControl"
+                    [roles]="roles"
+                    [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTER_GROUPS'"
+                    [mode]="'multiple'"
+                    (changedGroups)="onCandidateStarterGroupsChange($event)">
+                </adf-cloud-group>
+                <mat-error *ngIf="candidatesIdentityFormGroup.hasError('custom')">
+                    <mat-icon class="">warning</mat-icon>
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_WARNING' | translate }}
+                </mat-error>
+            </ng-container>
+    </mat-dialog-content>
 
 <mat-dialog-actions align="end">
     <button
         mat-button
-        id="ama-close-button"
+        data-automation-id="ama-close-button"
         (click)="onClose()">
         {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CLOSE' | translate }}
     </button>
@@ -38,9 +52,9 @@
         *ngIf="!loadingForm"
         mat-button
         color="primary"
-        id="ama-assign-button"
+        data-automation-id="ama-save-button"
         [disabled]="!candidateStartersFormEnabled"
-        (click)="onAssign()">
+        (click)="onSave()">
         {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_STARTERS_DIALOG_SAVE' | translate }}
     </button>
 </mat-dialog-actions>
