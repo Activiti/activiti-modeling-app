@@ -95,16 +95,14 @@ describe('CandidateStartersDialogComponent', () => {
         component.settings = mockDialogData;
         component.selectedPermissionLevel = PermissionLevelTypes.SPECIFIC;
         spyOn(alfrescoApiService, 'getInstance').and.returnValue(mockOauthApi);
+        fixture.detectChanges();
     });
 
     afterEach(() => {
         TestBed.resetTestingModule();
     });
 
-    it('should be disable save button if the candidate user is invalid', async () => {
-        fixture.detectChanges();
-        await fixture.whenStable();
-
+    it('should be disable save button if the candidate user is invalid', () => {
         const saveButton = fixture.debugElement.query(By.css('[data-automation-id="ama-save-button"]'));
         const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
 
@@ -114,10 +112,7 @@ describe('CandidateStartersDialogComponent', () => {
         expect(saveButton.nativeElement['disabled']).toBeTruthy();
     });
 
-    it('should be disable save button if one of the candidates user/group is invalid', async () => {
-        fixture.detectChanges();
-        await fixture.whenStable();
-
+    it('should be disable save button if one of the candidates user/group is invalid', () => {
         const saveButton = fixture.debugElement.query(By.css('[data-automation-id="ama-save-button"]'));
         const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
         const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
@@ -131,10 +126,7 @@ describe('CandidateStartersDialogComponent', () => {
         expect(saveButton.nativeElement['disabled']).toBeTruthy();
     });
 
-    it('should show warning message on candidate assignment if the value is not correct', async () => {
-        fixture.detectChanges();
-        await fixture.whenStable();
-
+    it('should show warning message on candidate assignment if the value is not correct', () => {
         const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
         candidateUserInput.nativeElement.value = ' ';
         candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
@@ -143,5 +135,55 @@ describe('CandidateStartersDialogComponent', () => {
 
         const warningMessage = fixture.debugElement.query(By.css(`[data-automation-id="invalid-users-typing-error"] .adf-error-text`));
         expect(warningMessage.nativeElement.textContent).toBe('ADF_CLOUD_USERS.ERROR.NOT_FOUND');
+    });
+
+    it('should update payload when nobody can start the process', () => {
+        const candidateStarterStrategySelectEl = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-starter-strategy-select"]'));
+        candidateStarterStrategySelectEl.nativeElement.click();
+        fixture.detectChanges();
+
+        const selectCandidateStarterStrategyOptionEl = fixture.debugElement.query(By.css(`[data-automation-id="ama-permission-level-option-nobody"]`));
+        selectCandidateStarterStrategyOptionEl.nativeElement.click();
+        fixture.detectChanges();
+
+        expect(component.candidateStartersPayload).toEqual({
+            assignments: [
+                {
+                    key: 'candidateStarterUsers',
+                    value: ''
+                },
+                {
+                    key: 'candidateStarterGroups',
+                    value: ''
+                }
+            ]});
+    });
+
+    it('should update payload when specific users/groups can start the process', () => {
+        const expectedPayload = {
+            assignments: [
+                { key: 'candidateStarterUsers', value: 'mock candidateUser' },
+                { key: 'candidateStarterGroups', value: 'mock candidateGroup' }
+            ]
+        };
+
+        component.onCandidateStarterGroupsChange([{ name: 'mock candidateGroup' }]);
+        component.onCandidateStarterUsersChange([{ username: 'mock candidateUser' }]);
+
+        fixture.detectChanges();
+
+        expect(component.candidateStartersPayload).toEqual(expectedPayload);
+    });
+
+    it('should update payload when everyone can start the process', () => {
+        const candidateStarterStrategySelectEl = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-starter-strategy-select"]'));
+        candidateStarterStrategySelectEl.nativeElement.click();
+        fixture.detectChanges();
+
+        const selectCandidateStarterStrategyOptionEl = fixture.debugElement.query(By.css(`[data-automation-id="ama-permission-level-option-everyone"]`));
+        selectCandidateStarterStrategyOptionEl.nativeElement.click();
+        fixture.detectChanges();
+
+        expect(component.candidateStartersPayload).toBeUndefined();
     });
 });

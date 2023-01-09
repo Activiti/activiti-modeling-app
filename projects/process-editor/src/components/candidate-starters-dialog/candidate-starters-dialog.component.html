@@ -3,7 +3,10 @@
 <form [formGroup]="candidateStartersForm" *ngIf="!loadingForm">
     <mat-form-field appearance="fill">
         <mat-label>Permission Level</mat-label>
-        <mat-select [value]="selectedPermissionLevel" (selectionChange)="onSelect($event)">
+        <mat-select
+            [value]="selectedPermissionLevel"
+            [attr.data-automation-id]="'ama-candidate-starter-strategy-select'"
+            (selectionChange)="onSelect($event)">
             <mat-option
                 *ngFor="let permissionLevel of permissionLevels"
                 [attr.data-automation-id]="'ama-permission-level-option-' + permissionLevel.key"

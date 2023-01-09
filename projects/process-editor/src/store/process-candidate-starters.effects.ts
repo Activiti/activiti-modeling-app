@@ -20,7 +20,8 @@ import {
     ProcessModelerServiceToken,
     ProcessModelerService,
     AmaState,
-    SetAppDirtyStateAction
+    SetAppDirtyStateAction,
+    BpmnProperty
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
@@ -57,16 +58,33 @@ export class ProcessCandidateStartersEffects {
     ), { dispatch: false });
 
 
-    updateTaskAssignmentEffect = createEffect(() => this.actions$.pipe(
+    updateCandidateStartersEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateCandidateStartersAction>(UPDATE_CANDIDATE_STARTERS_VARIABLES),
         map((action: UpdateCandidateStartersAction) => {
             const shapeId = action.payload.id;
-            action.payload.data.assignments.forEach((assignment: AssignmentParams) => {
-                this.processModelerService.updateElementProperty(shapeId, assignment.key, assignment.value);
-            });
+            this.updateCandidateStartersXmlProperty(action, shapeId);
         }),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
     ));
+
+    private updateCandidateStartersXmlProperty(action: UpdateCandidateStartersAction, shapeId: string) {
+        if (!action.payload.data) {
+            this.removeCandidateStartersPropertyFromXml(shapeId);
+        } else {
+            this.updateCandidateStartersProperty(action, shapeId);
+        }
+    }
+
+    private updateCandidateStartersProperty(action: UpdateCandidateStartersAction, shapeId: string) {
+        action.payload.data.assignments.forEach((assignment: AssignmentParams) => {
+            this.processModelerService.updateElementProperty(shapeId, assignment.key, assignment.value);
+        });
+    }
+
+    private removeCandidateStartersPropertyFromXml(shapeId: string) {
+        this.processModelerService.updateElementProperty(shapeId, BpmnProperty.candidateStarterUsers, undefined);
+        this.processModelerService.updateElementProperty(shapeId, BpmnProperty.candidateStarterGroups, undefined);
+    }
 
     private openCandidateStartersDialog(element: Bpmn.DiagramElement) {
         const processId = element.businessObject.$parent.id;

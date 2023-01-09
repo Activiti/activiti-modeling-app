@@ -121,7 +121,7 @@ export class CandidateStartersDialogComponent implements OnInit {
         this.createCandidateStartersForm();
     }
 
-    onSelect({value}: MatSelectChange) {
+    onSelect({value}: MatSelectChange): void {
         this.selectedPermissionLevel = value;
         this.candidateStartersPayload = undefined;
         if (this.selectedPermissionLevel === PermissionLevelTypes.NOBODY) {
@@ -129,30 +129,28 @@ export class CandidateStartersDialogComponent implements OnInit {
         }
     }
 
-    onCandidateStarterUsersChange(candidateStarterUsers: IdentityUserModel[]) {
+    onCandidateStarterUsersChange(candidateStarterUsers: IdentityUserModel[]): void {
         this.candidateStarterUsers = [...candidateStarterUsers];
         this.updatePayloadWithIdentityValues();
     }
 
-    onCandidateStarterGroupsChange(candidateStarterGroups: IdentityGroupModel[]) {
+    onCandidateStarterGroupsChange(candidateStarterGroups: IdentityGroupModel[]): void {
         this.candidateStarterGroups = [...candidateStarterGroups];
         this.updatePayloadWithIdentityValues();
     }
 
-    onClose() {
+    onClose(): void {
         this.settings.candidateStartersUpdate$.complete();
         this.dialogRef.close();
     }
 
-    onSave() {
-        if (this.candidateStartersPayload) {
-            this.settings.candidateStartersUpdate$.next(this.candidateStartersPayload);
-        }
+    onSave(): void {
+        this.settings.candidateStartersUpdate$.next(this.candidateStartersPayload);
         this.settings.candidateStartersUpdate$.complete();
         this.dialogRef.close();
     }
 
-    private createCandidateStartersForm() {
+    private createCandidateStartersForm(): void {
         this.candidateStartersForm = this.formBuilder.group({
             identityForm: this.formBuilder.group({}),
         });
@@ -160,18 +158,18 @@ export class CandidateStartersDialogComponent implements OnInit {
         this.loadingForm = false;
     }
 
-    private createChildrenFormControls () {
+    private createChildrenFormControls (): void {
         this.candidateStartersFormClean();
         this.createIdentityForm();
         this.candidateStartersForm.updateValueAndValidity();
     }
 
-    private candidateStartersFormClean() {
+    private candidateStartersFormClean(): void {
         this.identityForm.controls = {};
         this.candidateStartersForm.reset();
     }
 
-    private createIdentityForm() {
+    private createIdentityForm(): void {
         this.createAssigneeCandidateForm(this.identityForm);
     }
 
@@ -207,7 +205,7 @@ export class CandidateStartersDialogComponent implements OnInit {
             });
     }
 
-    private updatePayloadWithIdentityValues() {
+    private updatePayloadWithIdentityValues(): void {
         this.candidateStartersPayload = this.buildPayloadWithIdentityValues({
             candidateStarterUsers: this.candidateStarterUsers,
             candidateStarterGroups: this.candidateStarterGroups
