@@ -25,8 +25,8 @@ import { Subject } from 'rxjs';
 import { AssignmentModel, AssignmentParams, identityCandidateValidator } from '../assignment/assignment-dialog.component';
 
 export interface CandidateStartersSettings {
-    candidateStarterUsers: string[];
-    candidateStarterGroups: string[];
+    candidateStarterUsers: string | string[] | undefined;
+    candidateStarterGroups: string | string[] | undefined;
     candidateStartersUpdate$?: Subject<any>;
     shapeId?: string;
     processId?: string;
@@ -67,7 +67,7 @@ export class CandidateStartersDialogComponent implements OnInit {
                 'PROCESS_EDITOR.PROCESS_PERMISSIONS.SPECIFIC'
         }
     ];
-    selectedPermissionLevel = PermissionLevelTypes.EVERYONE;
+    selectedPermissionLevel: string;
 
     roles = ['ACTIVITI_USER'];
     constructor(
@@ -116,8 +116,8 @@ export class CandidateStartersDialogComponent implements OnInit {
         return this.candidateStarterUsers && this.candidateStarterUsers.length > 0;
     }
 
-
     ngOnInit() {
+        this.setCurrentCandidateStartersAssignmentStrategy();
         this.createCandidateStartersForm();
     }
 
@@ -257,5 +257,17 @@ export class CandidateStartersDialogComponent implements OnInit {
                 }
             ]
         };
+    }
+
+    private setCurrentCandidateStartersAssignmentStrategy() {
+        if (this.settings.candidateStarterUsers === undefined && this.settings.candidateStarterGroups === undefined) {
+            this.selectedPermissionLevel = PermissionLevelTypes.EVERYONE;
+        } else if (this.settings.candidateStarterUsers === '' && this.settings.candidateStarterGroups === '') {
+            this.selectedPermissionLevel = PermissionLevelTypes.NOBODY;
+        } else {
+            this.selectedPermissionLevel = PermissionLevelTypes.SPECIFIC;
+            this.candidateStarterUsers = Array.isArray(this.settings.candidateStarterUsers) && this.settings.candidateStarterUsers.map(username => ({ username }));
+            this.candidateStarterGroups = Array.isArray(this.settings.candidateStarterGroups) && this.settings.candidateStarterGroups.map(name => ({ name }));
+        }
     }
 }

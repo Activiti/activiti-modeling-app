@@ -186,4 +186,35 @@ describe('CandidateStartersDialogComponent', () => {
 
         expect(component.candidateStartersPayload).toBeUndefined();
     });
+
+    it('should display the previous selected option as identity users/groups when opening the dialog', () => {
+        component.settings.candidateStarterUsers = ['hruser', 'salesuser'];
+        component.settings.candidateStarterGroups = ['hr'];
+
+        component.ngOnInit();
+
+        expect(component.selectedPermissionLevel).toBe(PermissionLevelTypes.SPECIFIC);
+        expect(component.candidateStarterUsers).toEqual([
+            {
+                username: 'hruser'
+            },
+            {
+                username: 'salesuser'
+            }
+        ]);
+        expect(component.candidateStarterGroups).toEqual([
+            {
+                name: 'hr'
+            }
+        ]);
+    });
+
+    it('should display the previous selected option as nobody when opening the dialog', () => {
+        component.settings.candidateStarterUsers = '';
+        component.settings.candidateStarterGroups = '';
+
+        component.ngOnInit();
+
+        expect(component.selectedPermissionLevel).toBe(PermissionLevelTypes.NOBODY);
+    });
 });

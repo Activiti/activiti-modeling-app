@@ -24,13 +24,16 @@ import { CandidateStartersSettings } from '../../../components/candidate-starter
 export class CandidateStartersService {
 
     getCandidateStarters(element: Bpmn.DiagramElement): CandidateStartersSettings {
+        const users = ElementHelper.getProperty(element, BpmnProperty.candidateStarterUsers);
+        const groups = ElementHelper.getProperty(element, BpmnProperty.candidateStarterGroups);
+
         return {
-            candidateStarterUsers: this.convertStringToArray(ElementHelper.getProperty(element, BpmnProperty.candidateStarterUsers)),
-            candidateStarterGroups: this.convertStringToArray(ElementHelper.getProperty(element, BpmnProperty.candidateStarterGroups))
+            candidateStarterUsers: this.convertStringToArray(users),
+            candidateStarterGroups: this.convertStringToArray(groups)
         };
     }
 
-    private convertStringToArray(value: string): string[] {
-        return value ? value.split(',') : [];
+    private convertStringToArray(value: string): string | string[] | undefined {
+        return !value ? value : value.split(',');
     }
 }
