@@ -56,7 +56,8 @@ import {
     createExtensionsObject,
     SAVE_AS_PROJECT_ATTEMPT,
     UpdateUserTaskTemplateAction,
-    UPDATE_TASK_TEMPLATE
+    UPDATE_TASK_TEMPLATE,
+    Process
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
@@ -309,8 +310,10 @@ function isInputAndOutputsEmpty(mappings) {
 }
 
 function updateProcessVariablesMapping(state: ProcessEntitiesState, action: UpdateServiceParametersAction): ProcessEntitiesState {
+    const activeProcessEntity = getActiveProcessEntity(state, action.modelId);
+
     const actionMappings = cloneDeep(action.serviceParameterMappings);
-    const oldExtensions = cloneDeep(state.entities[action.modelId].extensions);
+    const oldExtensions = cloneDeep(activeProcessEntity.extensions);
     const processExtensionsModel = new ProcessExtensionsModel(oldExtensions);
     let newExtensions = processExtensionsModel.setMappings(action.processId, action.serviceId, action.serviceParameterMappings);
     const newProcessExtensions = newExtensions[action.processId];
@@ -350,6 +353,13 @@ function updateProcessVariablesMapping(state: ProcessEntitiesState, action: Upda
         },
         draftEntities: draftEntities
     };
+}
+
+function getActiveProcessEntity(state: ProcessEntitiesState, modelId: string): Process {
+    const draftEntity = state.draftEntities.entities[modelId];
+    const persistedEntity = state.entities[modelId];
+
+    return draftEntity ? draftEntity : persistedEntity;
 }
 
 function updateProcessTaskAssignments(state: ProcessEntitiesState, action: UpdateServiceAssignmentAction): ProcessEntitiesState {

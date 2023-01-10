@@ -45,6 +45,7 @@ import {
 import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcessModel, mappings } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
+import { mockProcessEntitiesState, mockProcessEntityWithProperties } from '../mock/process-entities-state.mock';
 
 describe('ProcessEntitiesReducer', () => {
     let initialState: ProcessEntitiesState;
@@ -333,6 +334,22 @@ describe('ProcessEntitiesReducer', () => {
             description: 'desc2',
             version: '0.0.5'
         });
+    });
+
+    it('should use draft entity when it is present over the persisted entity', () => {
+        const state = mockProcessEntitiesState;
+        const updateParametersAction = <UpdateServiceParametersAction> {
+            modelId: '01182f5e-1c9d-4be4-b10f-8777a7dd8a7b',
+            processId: 'Process_N8lZYocU',
+            serviceId: 'Task_0chj03w',
+            serviceParameterMappings: {},
+            type: '[ProcessEditor] Update Service Parameters'
+        };
+        const newState = processEntitiesReducer(state, updateParametersAction);
+        const actualExtensionProperties = newState.entities[updateParametersAction.modelId].extensions['Process_N8lZYocU'].properties;
+        const expectedExtensionProperties = mockProcessEntityWithProperties.extensions['Process_N8lZYocU'].properties;
+
+        expect(actualExtensionProperties).toEqual(expectedExtensionProperties);
     });
 
     describe('GET_PROCESS_SUCCESS', () => {
