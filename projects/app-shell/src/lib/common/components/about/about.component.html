@@ -1,6 +1,7 @@
 <mat-dialog-content>
     <div class="ama-about-container">
         <adf-environment-info
+            data-automation-id="ama-about-environment-info"
             *adf-feature="'canary'"
             [ngClass]="isMobileScreenSize ? 'ama-environment-info-small' : 'ama-environment-info-large'"
         ></adf-environment-info>
@@ -13,6 +14,11 @@
             <adf-about-panel *ngIf="dev" [label]="'ABOUT.PACKAGES.TITLE' | translate">
                 <ng-template>
                     <adf-about-package-list [dependencies]="pkg?.dependencies"></adf-about-package-list>
+                </ng-template>
+            </adf-about-panel>
+            <adf-about-panel [label]="'ABOUT.VERSION' | translate">
+                <ng-template>
+                    {{ pkg?.version }}
                 </ng-template>
             </adf-about-panel>
         </adf-about>
