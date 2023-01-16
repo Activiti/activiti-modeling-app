@@ -217,4 +217,67 @@ describe('CandidateStartersDialogComponent', () => {
 
         expect(component.selectedPermissionLevel).toBe(PermissionLevelTypes.NOBODY);
     });
+
+    it('should update payload when opening the dialog [settings.candidateStarterUsers=emptyString, settings.candidateStarterGroups=emptyString]', () => {
+        component.settings.candidateStarterUsers = '';
+        component.settings.candidateStarterGroups = '';
+        const expectedPayload = {
+            assignments: [
+                { key: 'candidateStarterUsers', value: '' },
+                { key: 'candidateStarterGroups', value: '' }
+            ]
+        };
+
+        component.ngOnInit();
+
+        expect(component.candidateStartersPayload).toEqual(expectedPayload);
+    });
+
+    it('should display the previous selected option as nobody when opening the dialog [settings.candidateStarterUsers=emptyString]', () => {
+        component.settings.candidateStarterUsers = '';
+        component.settings.candidateStarterGroups = undefined;
+
+        component.ngOnInit();
+
+        expect(component.selectedPermissionLevel).toBe(PermissionLevelTypes.NOBODY);
+    });
+
+    it('should display the previous selected option as nobody when opening the dialog [settings.candidateStarterGroups=emptyString]', () => {
+        component.settings.candidateStarterUsers = undefined;
+        component.settings.candidateStarterGroups = '';
+
+        component.ngOnInit();
+
+        expect(component.selectedPermissionLevel).toBe(PermissionLevelTypes.NOBODY);
+    });
+
+    it('should update payload when opening the dialog [settings.candidateStarterGroups=emptyString]', () => {
+        component.settings.candidateStarterUsers = undefined;
+        component.settings.candidateStarterGroups = '';
+        const expectedPayload = {
+            assignments: [
+                { key: 'candidateStarterUsers', value: '' },
+                { key: 'candidateStarterGroups', value: '' }
+            ]
+        };
+
+        component.ngOnInit();
+
+        expect(component.candidateStartersPayload).toEqual(expectedPayload);
+    });
+
+    it('should update payload when opening the dialog [settings.candidateStarterUsers=emptyString]', () => {
+        component.settings.candidateStarterUsers = '';
+        component.settings.candidateStarterGroups = undefined;
+        const expectedPayload = {
+            assignments: [
+                { key: 'candidateStarterUsers', value: '' },
+                { key: 'candidateStarterGroups', value: '' }
+            ]
+        };
+
+        component.ngOnInit();
+
+        expect(component.candidateStartersPayload).toEqual(expectedPayload);
+    });
 });

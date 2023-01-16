@@ -259,15 +259,26 @@ export class CandidateStartersDialogComponent implements OnInit {
         };
     }
 
-    private setCurrentCandidateStartersAssignmentStrategy() {
-        if (this.settings.candidateStarterUsers === undefined && this.settings.candidateStarterGroups === undefined) {
+    private setCurrentCandidateStartersAssignmentStrategy(): void {
+        if (this.canEveryoneStartProcess()) {
             this.selectedPermissionLevel = PermissionLevelTypes.EVERYONE;
-        } else if (this.settings.candidateStarterUsers === '' && this.settings.candidateStarterGroups === '') {
+        } else if (this.canNobodyStartProcess()) {
             this.selectedPermissionLevel = PermissionLevelTypes.NOBODY;
+            this.candidateStartersPayload = this.buildPayloadWithNoUsersGroups();
         } else {
             this.selectedPermissionLevel = PermissionLevelTypes.SPECIFIC;
             this.candidateStarterUsers = Array.isArray(this.settings.candidateStarterUsers) && this.settings.candidateStarterUsers.map(username => ({ username }));
             this.candidateStarterGroups = Array.isArray(this.settings.candidateStarterGroups) && this.settings.candidateStarterGroups.map(name => ({ name }));
         }
+    }
+
+    private canNobodyStartProcess(): boolean {
+        return (this.settings.candidateStarterUsers === '' && this.settings.candidateStarterGroups === '') ||
+        (this.settings.candidateStarterUsers === undefined && this.settings.candidateStarterGroups === '') ||
+        (this.settings.candidateStarterUsers === '' && this.settings.candidateStarterGroups === undefined);
+    }
+
+    private canEveryoneStartProcess(): boolean {
+        return (this.settings.candidateStarterUsers === undefined && this.settings.candidateStarterGroups === undefined);
     }
 }
