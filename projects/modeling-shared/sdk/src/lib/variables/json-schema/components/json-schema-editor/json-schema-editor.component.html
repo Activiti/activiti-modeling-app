@@ -149,7 +149,7 @@
                 </button>
             </div>
         </div>
-        <div class="modelingsdk-json-schema-editor-childs">
+        <div class="modelingsdk-json-schema-editor-children">
             <div *ngIf="!collapsed && properties.length > 0">
                 <div *ngFor="let item of properties; let i = index;">
                     <modelingsdk-json-schema-editor [(ngModel)]="properties[i].definition" [key]="properties[i].key"

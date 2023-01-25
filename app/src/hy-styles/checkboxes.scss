@@ -1,0 +1,44 @@
+mat-checkbox.mat-checkbox {
+    //unchecked
+    .mat-checkbox-inner-container {
+        .mat-checkbox-frame {
+            border-color: $hy-text-black;
+        }
+    }
+    .mat-checkbox-label {
+        color: $hy-text-black;
+        .adf-property-label {
+            color: $hy-text-black;
+        }
+    }
+
+    //checked
+    &.mat-checkbox-checked {
+        .mat-checkbox-inner-container {
+            .mat-checkbox-background {
+                background-color: map-get($hy-primary, 700);
+            }
+        }
+    }
+
+    //disabled
+    &.mat-checkbox-disabled {
+        .mat-checkbox-inner-container {
+            .mat-checkbox-frame {
+                border-color: $hy-text-disabled;
+            }
+        }
+        .mat-checkbox-label {
+            color: $hy-text-disabled;
+            .adf-property-label {
+                color: $hy-text-disabled;
+            }
+        }
+        //disabled & checked
+        &.mat-checkbox-checked {
+            .mat-checkbox-background {
+                background-color: $hy-text-disabled;
+            }
+        }
+    }
+}

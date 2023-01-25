@@ -5,10 +5,11 @@
 @include mat.core($alfresco-typography);
 
 $studio-typography: mat.define-typography-config(
-    $font-family: 'Inter'
+    $font-family: 'Inter',
 );
 
-body, html {
+body,
+html {
     margin: 0;
     height: 100%;
     overflow: hidden;
@@ -21,7 +22,9 @@ body {
     overflow: auto;
 }
 
-.adf-full-width { width: 100%; }
+.adf-full-width {
+    width: 100%;
+}
 
 $foreground: map-get($theme, foreground);
 $background: map-get($theme, background);
@@ -96,109 +99,133 @@ $hy-loader-text: map-get($hy-neutral, 900);
 
 // map SCSS variables to expose as CSS variables
 $defaults: (
-  --theme-primary-color: mat.get-color-from-palette($primary),
-  --theme-studio-background: $hy-background,
-  --theme-studio-gray-color: $hy-light-gray,
-  --theme-primary-color-default-contrast: mat.get-color-from-palette($primary, default-contrast),
-  --theme-warn-color: mat.get-color-from-palette($warn),
-  --theme-warn-color-default-contrast: mat.get-color-from-palette($warn, default-contrast),
-  --theme-accent-color: mat.get-color-from-palette($accent),
-  --theme-background-color: mat.get-color-from-palette($background, background),
-  --theme-text-fg-color: mat.get-color-from-palette($foreground, text),
-  --theme-text-color: mat.get-color-from-palette($foreground, text, 0.54),
-  --theme-text-bold-color: mat.get-color-from-palette($foreground, text, 0.87),
-  --theme-title-color: mat.get-color-from-palette($foreground, text, 0.87),
-  --theme-text-disabled-color: $hy-text-disabled,
-  --theme-text-selection-color: $hy-active-focused,
-  --theme-border-color: mat.get-color-from-palette($foreground, text, 0.07),
-  --theme-border-color-light: mat.get-color-from-palette($foreground, text, 0.2),
-  --theme-card-background-color: mat.get-color-from-palette($background, card),
-  --theme-foreground-text-color: mat.get-color-from-palette($foreground, text, 0.72),
-  --theme-foreground-text-bold-color: mat.get-color-from-palette($foreground, text, 0.87),
-  --theme-secondary-text-color: mat.get-color-from-palette($foreground, secondary-text),
-  --theme-divider-color: mat.get-color-from-palette($foreground, divider, 0.07),
-  --theme-divider-color-light: lighten(mat.get-color-from-palette($foreground, divider, 0.07), 30),
-  --theme-dialog-bg-color: mat.get-color-from-palette($background, dialog),
-  --theme-app-bar-bg-color: mat.get-color-from-palette($background, app-bar),
-  --theme-status-bar-bg-color: mat.get-color-from-palette($background, status-bar, 0.7),
-  --theme-unselected-chip-bg-color: mat.get-color-from-palette($background, unselected-chip),
-  --theme-disabled-text-color: $hy-text-disabled,
-  --theme-selected-button-bg-color: $hy-btn-basic-hover,
-  --theme-raised-button-bg-color: mat.get-color-from-palette($background, raised-button),
-  --theme-icons-fg-color: mat.get-color-from-palette($foreground, icons),
-  --theme-slider-off-fg-color: mat.get-color-from-palette($foreground, slider-off),
-  --theme-ama-palette-header-bg-color: mat.get-color-from-palette($foreground, text, 0.08),
-  --theme-ama-palette-bg-color: mat.get-color-from-palette($foreground, text, 0.03),
-  --theme-ama-palette-separator-color: mat.get-color-from-palette($foreground, text, 0.05),
-  --theme-ama-var-selector-bg-color: mat.get-color-from-palette($foreground, text, 0.05),
-  --theme-ama-studio-bg-color: var(--adf-snackbar-info-action-color),
-  --theme-ama-var-selector-selected-text-bg-color:
-    mat.get-color-from-palette($foreground, text, 0.1),
-  --theme-ama-form-editor-btn-color: mat.get-color-from-palette($foreground, text, 0.25),
-  --theme-ama-form-editor-btn-hover-color: mat.get-color-from-palette($foreground, text, 1),
-  --theme-ama-form-editor-text-drag-color:
-    mat.get-color-from-palette($foreground, text, 0.4),
-  --theme-ama-condition-builder-primary-text-color:
-    mat.get-color-from-palette($primary, text, 0.75),
-  --theme-ama-condition-builder-accent-text-color: mat.get-color-from-palette($accent, text, 0.75),
-  --theme-disabled-bg-color: mat.get-color-from-palette($foreground, text, 0.05),
-  --theme-hint-bg-color: mat.get-color-from-palette($foreground, text, 0.5),
-  --theme-font-family: mat.font-family($studio-typography),
-  --theme-body-1-font-size: mat.font-size($alfresco-typography, body-1),
-  --theme-body-1-line-height: mat.line-height($alfresco-typography, body-1),
-  --theme-caption-font-size: mat.font-size($alfresco-typography, caption),
-  --theme-title-font-size: mat.font-size($alfresco-typography, title),
-  --theme-subheading-2-font-size: mat.font-size($alfresco-typography, subheading-2),
-  --theme-headline-line-height: mat.line-height($alfresco-typography, headline),
-  --theme-card-bg-color: mat.get-color-from-palette($background, card),
-  --theme-colors-mat-grey-dark: mat.get-color-from-palette(mat.$grey-palette, A400),
-  --adf-card-view-datetime-border-color: mat.get-color-from-palette($foreground, text, 0.42),
-  --theme-document-color: #00953b,
-  --theme-ama-log-panel-bg-color: mat.get-color-from-palette($foreground, text, 0.01),
-  --theme-light-monoco-editor-color: #fffffe,
-  --theme-ama-border-color: #dce0e6,
-  --theme-ama-loader-spinner: $hy-loader-spinner,
-  --theme-ama-loader-text: $hy-loader-text,
+    --theme-primary-color: mat.get-color-from-palette($primary),
+    --theme-studio-background: $hy-background,
+    --theme-studio-gray-color: $hy-light-gray,
+    --theme-primary-color-default-contrast:
+        mat.get-color-from-palette($primary, default-contrast),
+    --theme-warn-color: mat.get-color-from-palette($warn),
+    --theme-warn-color-default-contrast:
+        mat.get-color-from-palette($warn, default-contrast),
+    --theme-accent-color: mat.get-color-from-palette($accent),
+    --theme-background-color:
+        mat.get-color-from-palette($background, background),
+    --theme-text-fg-color: mat.get-color-from-palette($foreground, text),
+    --theme-text-color: mat.get-color-from-palette($foreground, text, 0.54),
+    --theme-text-bold-color: mat.get-color-from-palette($foreground, text, 0.87),
+    --theme-title-color: mat.get-color-from-palette($foreground, text, 0.87),
+    --theme-text-disabled-color: $hy-text-disabled,
+    --theme-text-selection-color: $hy-active-focused,
+    --theme-border-color: mat.get-color-from-palette($foreground, text, 0.07),
+    --theme-border-color-light:
+        mat.get-color-from-palette($foreground, text, 0.2),
+    --theme-card-background-color: mat.get-color-from-palette($background, card),
+    --theme-foreground-text-color:
+        mat.get-color-from-palette($foreground, text, 0.72),
+    --theme-foreground-text-bold-color:
+        mat.get-color-from-palette($foreground, text, 0.87),
+    --theme-secondary-text-color:
+        mat.get-color-from-palette($foreground, secondary-text),
+    --theme-divider-color:
+        mat.get-color-from-palette($foreground, divider, 0.07),
+    --theme-divider-color-light:
+        lighten(mat.get-color-from-palette($foreground, divider, 0.07), 30),
+    --theme-dialog-bg-color: mat.get-color-from-palette($background, dialog),
+    --theme-app-bar-bg-color: mat.get-color-from-palette($background, app-bar),
+    --theme-status-bar-bg-color:
+        mat.get-color-from-palette($background, status-bar, 0.7),
+    --theme-unselected-chip-bg-color:
+        mat.get-color-from-palette($background, unselected-chip),
+    --theme-disabled-text-color: $hy-text-disabled,
+    --theme-selected-button-bg-color: $hy-btn-basic-hover,
+    --theme-raised-button-bg-color:
+        mat.get-color-from-palette($background, raised-button),
+    --theme-icons-fg-color: mat.get-color-from-palette($foreground, icons),
+    --theme-slider-off-fg-color:
+        mat.get-color-from-palette($foreground, slider-off),
+    --theme-ama-palette-header-bg-color:
+        mat.get-color-from-palette($foreground, text, 0.08),
+    --theme-ama-palette-bg-color:
+        mat.get-color-from-palette($foreground, text, 0.03),
+    --theme-ama-palette-separator-color:
+        mat.get-color-from-palette($foreground, text, 0.05),
+    --theme-ama-var-selector-bg-color:
+        mat.get-color-from-palette($foreground, text, 0.05),
+    --theme-ama-studio-bg-color: var(--adf-snackbar-info-action-color),
+    --theme-ama-var-selector-selected-text-bg-color:
+        mat.get-color-from-palette($foreground, text, 0.1),
+    --theme-ama-form-editor-btn-color:
+        mat.get-color-from-palette($foreground, text, 0.25),
+    --theme-ama-form-editor-btn-hover-color:
+        mat.get-color-from-palette($foreground, text, 1),
+    --theme-ama-form-editor-text-drag-color:
+        mat.get-color-from-palette($foreground, text, 0.4),
+    --theme-ama-condition-builder-primary-text-color:
+        mat.get-color-from-palette($primary, text, 0.75),
+    --theme-ama-condition-builder-accent-text-color:
+        mat.get-color-from-palette($accent, text, 0.75),
+    --theme-disabled-bg-color:
+        mat.get-color-from-palette($foreground, text, 0.05),
+    --theme-hint-bg-color: mat.get-color-from-palette($foreground, text, 0.5),
+    --theme-font-family: mat.font-family($studio-typography),
+    --theme-body-1-font-size: mat.font-size($alfresco-typography, body-1),
+    --theme-body-1-line-height: mat.line-height($alfresco-typography, body-1),
+    --theme-caption-font-size: mat.font-size($alfresco-typography, caption),
+    --theme-title-font-size: mat.font-size($alfresco-typography, title),
+    --theme-subheading-2-font-size:
+        mat.font-size($alfresco-typography, subheading-2),
+    --theme-headline-line-height:
+        mat.line-height($alfresco-typography, headline),
+    --theme-card-bg-color: mat.get-color-from-palette($background, card),
+    --theme-colors-mat-grey-dark:
+        mat.get-color-from-palette(mat.$grey-palette, A400),
+    --adf-card-view-datetime-border-color:
+        mat.get-color-from-palette($foreground, text, 0.42),
+    --theme-document-color: #00953b,
+    --theme-ama-log-panel-bg-color:
+        mat.get-color-from-palette($foreground, text, 0.01),
+    --theme-light-monoco-editor-color: #fffffe,
+    --theme-ama-border-color: #dce0e6,
+    --theme-ama-loader-spinner: $hy-loader-spinner,
+    --theme-ama-loader-text: $hy-loader-text,
 
-  --theme-logo-circle-bg: map-get($hy-primary, 400),
-  --theme-logo-square-bg: map-get($hy-primary, 700),
+    --theme-logo-circle-bg: map-get($hy-primary, 400),
+    --theme-logo-square-bg: map-get($hy-primary, 700),
+    --theme-main-navigation-bg: map-get($hy-neutral, 100),
+    --theme-main-navigation-main-title: $hy-text-secondary,
+    --theme-main-navigation-menu-element: $hy-text-black,
+    --theme-main-navigation-menu-element-active: map-get($hy-primary, 700),
+    --theme-main-navigation-header-title-text: $hy-text-black,
+    --theme-main-navigation-header-controls-icon: $hy-text-black,
+    --theme-main-navigation-header-controls-icon-hover: $hy-btn-basic-hover,
+    --theme-main-navigation-header-controls-icon-pressed: $hy-btn-basic-pressed,
+    --theme-main-navigation-header-controls-badge: map-get($hy-primary, 700),
+    --theme-user-initials-bg: map-get($hy-neutral, 200),
+    --theme-user-initials-bg-hover: $hy-btn-basic-hover,
+    --theme-user-initials-bg-pressed: $hy-btn-basic-pressed,
+    --theme-user-initials-text: $hy-text-black,
 
-  --theme-main-navigation-bg: map-get($hy-neutral, 100),
-  --theme-main-navigation-main-title: $hy-text-secondary,
-  --theme-main-navigation-menu-element: $hy-text-black,
-  --theme-main-navigation-menu-element-active: map-get($hy-primary, 700),
-  --theme-main-navigation-header-title-text: $hy-text-black,
-  --theme-main-navigation-header-controls-icon: $hy-text-black,
-  --theme-main-navigation-header-controls-icon-hover: $hy-btn-basic-hover,
-  --theme-main-navigation-header-controls-icon-pressed: $hy-btn-basic-pressed,
-  --theme-main-navigation-header-controls-badge: map-get($hy-primary, 700),
-
-  --theme-user-initials-bg: map-get($hy-neutral, 200),
-  --theme-user-initials-bg-hover: $hy-btn-basic-hover,
-  --theme-user-initials-bg-pressed: $hy-btn-basic-pressed,
-  --theme-user-initials-text: $hy-text-black,
-
-  // ADF components and services
-  --adf-snackbar-error-bg-color: mat.get-color-from-palette($warn),
-  --adf-snackbar-error-action-color: white,
-  --adf-snackbar-warning-bg-color: mat.get-color-from-palette($accent),
-  --adf-snackbar-warning-action-color: white,
-  --adf-snackbar-info-bg-color: mat.get-color-from-palette($primary),
-  --adf-snackbar-info-action-color: white,
-  --adf-header-text-color: mat.get-color-from-palette($primary, default-contrast),
-  --adf-user-info-color: mat.get-color-from-palette($primary, 300),
-
-  // hy-theme
-  --theme-inactive-focused: $hy-inactive-focused,
-  --theme-text-white: $hy-text-white,
-  --theme-tab-unfocused: mat.get-color-from-palette($accent, 300)
+    // ADF components and services
+    --adf-snackbar-error-bg-color: mat.get-color-from-palette($warn),
+    --adf-snackbar-error-action-color: white,
+    --adf-snackbar-warning-bg-color: mat.get-color-from-palette($accent),
+    --adf-snackbar-warning-action-color: white,
+    --adf-snackbar-info-bg-color: mat.get-color-from-palette($primary),
+    --adf-snackbar-info-action-color: white,
+    --adf-header-text-color:
+        mat.get-color-from-palette($primary, default-contrast),
+    --adf-user-info-color: mat.get-color-from-palette($primary, 300),
+    // hy-theme
+    --theme-inactive-focused: $hy-inactive-focused,
+    --theme-text-white: $hy-text-white,
+    --theme-tab-unfocused: mat.get-color-from-palette($accent, 300),
 );
 
 // propagates SCSS variables into the CSS variables scope
 :root {
-  @each $name, $value in $defaults {
-    #{$name}: #{$value};
-  }
+    @each $name, $value in $defaults {
+        #{$name}: #{$value};
+    }
 }
 
 body {
@@ -206,170 +233,31 @@ body {
     @include adf-core-theme($theme);
     background-color: var(--adf-snackbar-info-action-color);
     .mat-drawer-content {
-      background-color: var(--adf-snackbar-info-action-color);
+        background-color: var(--adf-snackbar-info-action-color);
     }
 
     .monaco-editor {
-      background-color: var(--theme-light-monoco-editor-color);
+        background-color: var(--theme-light-monoco-editor-color);
     }
 
     .ama-model-header .mat-toolbar-single-row {
-      background-color: var(--theme-card-bg-color);
+        background-color: var(--theme-card-bg-color);
     }
 
     .ama-collaborators-dialog-container {
-      .mat-dialog-container {
-          border-radius: 12px;
-          padding: 20px 0 24px;
-      }
-  }
+        .mat-dialog-container {
+            border-radius: 12px;
+            padding: 20px 0 24px;
+        }
+    }
 }
 
 .mat-icon {
     overflow: unset !important;
 }
 
-//inputs
-.mat-form-field {
-    //inactive
-    .mat-form-field-infix {
-        .mat-input-element {
-            color: map-get($hy-neutral, 500);
-        }
-    }
-
-    .mat-form-field-wrapper {
-        .mat-form-field-suffix {
-            .mat-icon {
-                color: $hy-text-black;
-            }
-        }
-        .mat-form-field-underline {
-            background-color:map-get($hy-neutral, 500);
-            color: map-get($hy-neutral, 500);
-        }
-    }
-    //disabled
-    &.mat-form-field-disabled.adf-property-field,
-    &.mat-form-field-disabled {
-        .mat-form-field-infix {
-            .mat-input-element {
-                color: map-get($hy-neutral, 500);
-            }
-        }
-
-        .mat-form-field-wrapper {
-            .mat-form-field-suffix {
-                .mat-icon {
-                    color: $hy-text-disabled;
-                }
-            }
-            .mat-form-field-underline {
-                color: map-get($hy-neutral, 500);
-                display: block;
-            }
-        }
-    }
-    //active
-    &.mat-focused {
-        .mat-form-field-infix {
-            .mat-input-element {
-                color: map-get($hy-primary, 700);
-            }
-        }
-
-        .mat-form-field-wrapper {
-            .mat-form-field-suffix {
-                .mat-icon {
-                    color: $hy-text-black;
-                }
-            }
-
-            .mat-form-field-underline {
-                .mat-form-field-ripple {
-                    background-color: map-get($hy-primary, 700);
-                }
-            }
-        }
-    }
-    //error
-    &.adf-property-field-has-error,
-    &.mat-form-field-has-error,
-    & + .mat-error,
-    &.mat-form-field-invalid {
-        .mat-form-field-infix {
-            .ama-mat-error,
-            .mat-input-element {
-                color: $hy-error;
-            }
-        }
-
-        .mat-form-field-wrapper {
-            .mat-form-field-underline {
-                background-color: $hy-error;
-                .mat-form-field-ripple {
-                    background-color: $hy-error;
-                }
-            }
-        }
-    }
-}
-
-div.adf-property-list {
-    .adf-property {
-        .ama-process-properties-version-title,
-        .adf-property-label {
-            color: $hy-text-black;
-        }
-        .ama-process-properties-version-value,
-        .adf-property-value {
-            color: map-get($hy-neutral, 500);
-        }
-    }
-}
-
-//checkboxes
-mat-checkbox.mat-checkbox {
-    //unchecked
-    .mat-checkbox-inner-container {
-        .mat-checkbox-frame {
-            border-color: $hy-text-black;
-        }
-    }
-    .mat-checkbox-label {
-        color: $hy-text-black;
-        .adf-property-label {
-            color: $hy-text-black;
-        }
-    }
-
-    //checked
-    &.mat-checkbox-checked {
-        .mat-checkbox-inner-container {
-            .mat-checkbox-background {
-                background-color: map-get($hy-primary, 700);
-            }
-        }
-    }
-
-    //disabled
-    &.mat-checkbox-disabled {
-        .mat-checkbox-inner-container {
-            .mat-checkbox-frame {
-                border-color: $hy-text-disabled;
-            }
-        }
-        .mat-checkbox-label {
-            color: $hy-text-disabled;
-            .adf-property-label {
-                color: $hy-text-disabled;
-            }
-        }
-        //disabled & checked
-        &.mat-checkbox-checked {
-            .mat-checkbox-background {
-                background-color: $hy-text-disabled;
-            }
-        }
-    }
-}
+@import 'hy-styles/checkboxes.scss';
+@import 'hy-styles/data-models.scss';
+@import 'hy-styles/document-types.scss';
+@import 'hy-styles/inputs.scss';
+@import 'hy-styles/mixins.scss';

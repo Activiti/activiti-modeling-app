@@ -1,0 +1,120 @@
+.modelingsdk-json-schema-editor-children {
+    .modelingsdk-json-schema-editor-node-inputs-id {
+        .mat-input-element:disabled {
+            color: $hy-text-disabled;
+        }
+        .mat-form-field.mat-form-field-disabled {
+            .mat-form-field-wrapper {
+                .mat-form-field-underline {
+                    background-image: linear-gradient(
+                        to right,
+                        map-get($hy-neutral, 500) 0%,
+                        map-get($hy-neutral, 500) 33%,
+                        transparent 0%
+                    );
+                }
+            }
+        }
+    }
+    .modelingsdk-json-schema-editor-node-inputs-type,
+    .modelingsdk-json-schema-editor-node-actions {
+        .mat-icon {
+            color: $hy-text-black;
+        }
+        .mat-form-field-appearance-legacy {
+            .mat-form-field-label {
+                color: $hy-text-disabled !important;
+            }
+        }
+        .mat-form-field-autofill-control {
+            color: $hy-text-black;
+        }
+        .mat-form-field-underline {
+            background-color: map-get($hy-neutral, 500);
+        }
+    }
+
+    .modelingsdk-json-schema-editor-node-inputs-type {
+        .mat-form-field {
+            color: $hy-text-black;
+        }
+    }
+}
+.modelingsdk-json-schema-editor-parent {
+    .modelingsdk-json-schema-editor-node-actions {
+        .mat-icon-button:not(.mat-button-disabled) {
+            color: $hy-text-black;
+        }
+        .mat-icon-button.mat-button-disabled {
+            color: $hy-text-disabled;
+        }
+    }
+}
+
+modelingsdk-json-schema-editor {
+    .modelingsdk-json-schema-editor-component::before {
+        border-left: 1px solid map-get($hy-neutral, 500);
+        border-bottom: 1px solid map-get($hy-neutral, 500);
+    }
+    .mat-form-field .mat-form-field-infix .mat-input-element {
+        color: $hy-text-black;
+    }
+}
+
+body {
+    .mat-select-arrow {
+        color: $hy-text-black;
+    }
+    .modelingsdk-json-schema-editor-component {
+        .mat-button.mat-primary {
+            color: $hy-text-black;
+        }
+    }
+}
+
+.modelingsdk-json-schema-editor-component {
+    .modelingsdk-json-schema-editor-node.ama-selected {
+        background-color: map-get($hy-neutral, 100);
+    }
+}
+
+.mat-card-content {
+    .adf-property-label {
+        color: $hy-text-black;
+    }
+}
+
+//Document type modal
+.ama-model-generator-inputs-container {
+    .mat-form-field {
+        color: $hy-text-black;
+        .mat-form-field-underline {
+            background-color: map-get($hy-neutral, 500);
+        }
+
+        &.mat-focused {
+            .mat-form-field-underline {
+                .mat-form-field-ripple {
+                    background-color: map-get($hy-primary, 700);
+                }
+            }
+        }
+    }
+}
+
+// data table
+body {
+    .mat-header-cell,
+    .mat-sort-header-arrow,
+    .mat-sort-header-content {
+        color: $hy-text-secondary;
+    }
+    .mat-cell {
+        color: $hy-text-black;
+    }
+    .mat-column-thumbnail {
+        .mat-icon {
+            color: $hy-text-black;
+        }
+    }
+}

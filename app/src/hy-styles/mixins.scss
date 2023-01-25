@@ -1,0 +1,25 @@
+hxp-mixin-editor-container {
+    color: $hy-text-black;
+}
+
+body .mat-list-base .mat-list-item {
+    color: $hy-text-black;
+}
+
+.ama-dual-list-wrapper {
+    .ama-dual-list-container {
+        .ama-dual-list-heading-container {
+            .ama-dual-list-heading-button {
+                color: map-get($hy-primary, 700) !important;
+                &:hover {
+                    color: map-get($hy-primary, 600) !important;
+                    background-color: $hy-btn-primary-hover;
+                }
+                &:active {
+                    color: map-get($hy-primary, 600) !important;
+                    background-color: $hy-btn-primary-pressed;
+                }
+            }
+        }
+    }
+}
