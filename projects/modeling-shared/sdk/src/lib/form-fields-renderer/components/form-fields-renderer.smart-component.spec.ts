@@ -15,32 +15,34 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { DebugElement } from '@angular/core';
+import { DebugElement, SimpleChange } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldsRendererSmartComponent } from './form-fields-renderer.smart-component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormFieldsRendererService } from '../service/form-fields-renderer.service';
 import {
     mockFormGroup,
+    mockFormGroupWithDropdownField,
+    mockFormGroupWithNumberField,
+    mockFormRendererFieldDropdownType,
+    mockFormRendererFieldNumberTypeWithMinMaxValidators,
     mockFormRendererFields,
     mockFormRendererFieldWithoutLabel,
+    mockFormRendererTextFieldWithIncorrectPattern
 } from '../mock/form-fields-renderer.mock';
 import { FormRendererFieldHasErrorPipe } from '../pipes/form-renderer-field-has-error.pipe';
 import { FormRendererFieldErrorMessagePipe } from '../pipes/form-renderer-field-error-message.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('FormFieldsRendererSmartComponent', () => {
     let component: FormFieldsRendererSmartComponent;
     let fixture: ComponentFixture<FormFieldsRendererSmartComponent>;
-
-    let nameField: DebugElement;
-    let descriptionField: DebugElement;
-    let nameControl: AbstractControl;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -49,7 +51,9 @@ describe('FormFieldsRendererSmartComponent', () => {
                 NoopAnimationsModule,
                 MatFormFieldModule,
                 ReactiveFormsModule,
-                MatInputModule
+                MatInputModule,
+                MatSelectModule,
+                FormsModule
             ],
             declarations: [
                 FormFieldsRendererSmartComponent,
@@ -69,88 +73,275 @@ describe('FormFieldsRendererSmartComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FormFieldsRendererSmartComponent);
         component = fixture.componentInstance;
-        component.formGroup = mockFormGroup;
-        component.formFields = mockFormRendererFields;
-        fixture.detectChanges();
-
-        nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-input-name"]'));
-        descriptionField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-textarea-description"]'));
-        nameControl = component.formGroup.get('name');
     });
 
-    it('should render input placeholders', () => {
-        expect(nameField.nativeElement.placeholder).toBe('fake-name');
-        expect(descriptionField.nativeElement.placeholder).toBe('fake-description');
+    describe('text field', () => {
+        let nameField: DebugElement;
+        let nameControl: AbstractControl;
+
+        beforeEach(() => {
+            component.formGroup = mockFormGroup;
+            component.formFields = mockFormRendererFields;
+            fixture.detectChanges();
+
+            nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-input-name"]'));
+            nameControl = component.formGroup.get('name');
+        });
+
+        it('should display text field', () => {
+            expect(nameField).toBeTruthy();
+            expect(nameField.nativeElement.placeholder).toBe('fake-name');
+            expect(nameField.nativeElement.type).toBe('text');
+            expect(nameField.nativeElement.value).toBe('');
+        });
+
+        it('should validate pattern', () => {
+            const validationChangesSpy = spyOn(component.validationChanges, 'emit');
+
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererTextFieldWithIncorrectPattern, false) });
+            expect(validationChangesSpy).toHaveBeenCalledWith(false);
+
+            nameControl.setValue('valid-name');
+            expect(nameControl.valid).toBe(true);
+
+            nameControl.setValue('valid');
+            expect(nameControl.valid).toBe(true);
+
+            nameControl.setValue('invalid-name-');
+            expect(nameControl.valid).toBe(false);
+
+            nameControl.setValue('invalidName');
+            expect(nameControl.valid).toBe(false);
+
+            nameControl.setValue('test-name-length-more-than-twenty-six-characters');
+            expect(nameControl.valid).toBe(false);
+        });
+
+        it('should validate required', () => {
+            const validationChangesSpy = spyOn(component.validationChanges, 'emit');
+
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFields, false) });
+            expect(validationChangesSpy).toHaveBeenCalledWith(false);
+
+            expect(nameControl.valid).toBe(false);
+
+            nameControl.setValue('valid');
+            expect(nameControl.valid).toBe(true);
+
+            nameControl.setValue('');
+            expect(nameControl.valid).toBe(false);
+        });
+
+        it('should display required error', () => {
+            nameControl.setValue('');
+            expect(nameControl.valid).toBe(false);
+
+            nameField.nativeElement.dispatchEvent(new Event('input'));
+            fixture.detectChanges();
+
+            const requiredError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-required-name"]'));
+            expect(requiredError).toBeTruthy();
+            expect(requiredError.nativeElement.textContent.trim()).toBe('SDK.FORM_FIELDS_RENDERER.ERROR.REQUIRED');
+        });
+
+        it('should display default required error if label is not provided', () => {
+            component.formFields = mockFormRendererFieldWithoutLabel;
+            fixture.detectChanges();
+
+            nameControl.setValue('');
+            expect(nameControl.valid).toBe(false);
+
+            nameField.nativeElement.dispatchEvent(new Event('input'));
+            fixture.detectChanges();
+
+            const requiredError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-required-name"]'));
+            expect(requiredError).toBeTruthy();
+            expect(requiredError.nativeElement.textContent.trim()).toBe('SDK.FORM_FIELDS_RENDERER.ERROR.DEFAULT_REQUIRED');
+        });
+
+        it('should display pattern error', () => {
+            nameControl.setValue('invalid-');
+            nameField.nativeElement.dispatchEvent(new Event('input'));
+            expect(nameControl.valid).toBe(false);
+
+            fixture.detectChanges();
+
+            const patternError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-pattern-name"]'));
+            expect(patternError).toBeTruthy();
+            expect(patternError.nativeElement.textContent.trim()).toBe('fake-pattern-error-message');
+        });
+
+        it('should emit value changes', fakeAsync(() => {
+            const valueChangesSpy = spyOn(component.valueChanges, 'emit');
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFields, false) });
+
+            nameControl = component.formGroup.get('name');
+            nameControl.setValue('new-value');
+            tick(450);
+            expect(valueChangesSpy).not.toHaveBeenCalled();
+            tick(50);
+
+            expect(valueChangesSpy).toHaveBeenCalledWith({ description: '', name: 'new-value' });
+        }));
     });
 
-    it('should render proper input type', () => {
-        expect(nameField.nativeElement.type).toBe('text');
-        expect(descriptionField.nativeElement.type).toBe('textarea');
+    describe('number field', () => {
+        let numberField: DebugElement;
+        let numberControl: AbstractControl;
+
+        beforeEach(() => {
+            component.formGroup = mockFormGroupWithNumberField;
+            component.formFields = mockFormRendererFieldNumberTypeWithMinMaxValidators;
+            fixture.detectChanges();
+
+            numberField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-number-index"]'));
+            numberControl = component.formGroup.get('index');
+        });
+        it('should display number field', () => {
+            expect(numberField).toBeTruthy();
+            expect(numberField.nativeElement.placeholder).toBe('fake-index');
+            expect(numberField.nativeElement.type).toBe('number');
+            expect(numberField.nativeElement.value).toBe('99');
+        });
+
+        it('should validate min', () => {
+            const validationChangesSpy = spyOn(component.validationChanges, 'emit');
+
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFieldNumberTypeWithMinMaxValidators[0].defaultValue = 89, false) });
+            expect(validationChangesSpy).toHaveBeenCalledWith(false);
+
+            numberControl.setValue(90);
+            expect(numberControl.valid).toBe(true);
+
+            numberControl.setValue(89);
+            expect(numberControl.valid).toBe(false);
+        });
+
+        it('should validate max', () => {
+            const validationChangesSpy = spyOn(component.validationChanges, 'emit');
+
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFieldNumberTypeWithMinMaxValidators[0].defaultValue = 101 , false) });
+            expect(validationChangesSpy).toHaveBeenCalledWith(false);
+
+            numberControl.setValue(100);
+            expect(numberControl.valid).toBe(true);
+
+            numberControl.setValue(101);
+            expect(numberControl.valid).toBe(false);
+        });
+
+        it('should display min error', () => {
+            numberControl.setValue(89);
+            expect(numberControl.valid).toBe(false);
+
+            numberField.nativeElement.dispatchEvent(new Event('input'));
+            fixture.detectChanges();
+
+            const minError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-min-index"]'));
+            expect(minError).toBeTruthy();
+            expect(minError.nativeElement.textContent.trim()).toBe('fake-min-error-message');
+        });
+
+        it('should display max error', () => {
+            numberControl.setValue(101);
+            expect(numberControl.valid).toBe(false);
+
+            numberField.nativeElement.dispatchEvent(new Event('input'));
+            fixture.detectChanges();
+
+            const maxError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-max-index"]'));
+            expect(maxError).toBeTruthy();
+            expect(maxError.nativeElement.textContent.trim()).toBe('fake-max-error-message');
+        });
+
+        it('should emit value changes', fakeAsync(() => {
+            const valueChangesSpy = spyOn(component.valueChanges, 'emit');
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormGroupWithNumberField, false) });
+
+            numberControl = component.formGroup.get('index');
+            numberControl.setValue(5);
+            tick(450);
+            expect(valueChangesSpy).not.toHaveBeenCalled();
+            tick(50);
+
+            expect(valueChangesSpy).toHaveBeenCalledWith({ index: 5 });
+        }));
     });
 
-    it('should validate pattern', () => {
-        nameControl.setValue('valid-name');
-        expect(nameControl.valid).toBe(true);
+    describe('textarea field', () => {
+        let descriptionField: DebugElement;
 
-        nameControl.setValue('valid');
-        expect(nameControl.valid).toBe(true);
+        beforeEach(() => {
+            component.formGroup = mockFormGroup;
+            component.formFields = mockFormRendererFields;
+            fixture.detectChanges();
 
-        nameControl.setValue('invalid-name-');
-        expect(nameControl.valid).toBe(false);
+            descriptionField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-textarea-description"]'));
+        });
 
-        nameControl.setValue('invalidName');
-        expect(nameControl.valid).toBe(false);
+        it('should display textarea field', () => {
+            expect(descriptionField).toBeTruthy();
+            expect(descriptionField.nativeElement.placeholder).toBe('fake-description');
+            expect(descriptionField.nativeElement.type).toBe('textarea');
+            expect(descriptionField.nativeElement.value).toBe('');
+        });
 
-        nameControl.setValue('test-name-length-more-than-twenty-six-characters');
-        expect(nameControl.valid).toBe(false);
+        it('should emit value changes', fakeAsync(() => {
+            const valueChangesSpy = spyOn(component.valueChanges, 'emit');
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFields, false) });
+
+            const descriptionControl = component.formGroup.get('description');
+            descriptionControl.setValue('new-description');
+            tick(450);
+            expect(valueChangesSpy).not.toHaveBeenCalled();
+            tick(50);
+
+            expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'new-description', name: '' });
+        }));
     });
 
-    it('should validate required', () => {
-        expect(nameControl.valid).toBe(false);
+    describe('dropdown field', () => {
+        let dropdownField: DebugElement;
 
-        nameControl.setValue('valid');
-        expect(nameControl.valid).toBe(true);
+        beforeEach(() => {
+            component.formGroup = mockFormGroupWithDropdownField;
+            component.formFields = mockFormRendererFieldDropdownType;
+            fixture.detectChanges();
 
-        nameControl.setValue('');
-        expect(nameControl.valid).toBe(false);
-    });
+            dropdownField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-dropdown-drink"]'));
+        });
 
-    it('should display required error', () => {
-        nameControl.setValue('');
-        expect(nameControl.valid).toBe(false);
+        it('should display dropdown field', () => {
+            expect(dropdownField).toBeTruthy();
+            expect(dropdownField.nativeElement.textContent).toBe('Choose mock drink item');
+            expect(dropdownField.nativeElement.value).toBeUndefined();
+        });
 
-        nameField.nativeElement.dispatchEvent(new Event('input'));
-        fixture.detectChanges();
+        it('should display dropdown options', () => {
+            const dropdownTrigger = fixture.debugElement.query(By.css('.mat-select-trigger'));
+            dropdownTrigger.nativeElement.dispatchEvent(new Event('click'));
+            fixture.detectChanges();
 
-        const requiredError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-required-name"]'));
-        expect(requiredError).toBeTruthy();
-        expect(requiredError.nativeElement.textContent.trim()).toBe('SDK.FORM_FIELDS_RENDERER.ERROR.REQUIRED');
-    });
+            const options = fixture.debugElement.queryAll(By.css('mat-option'));
 
-    it('should display default required error if label is not provided', () => {
-        component.formFields = mockFormRendererFieldWithoutLabel;
-        fixture.detectChanges();
+            expect(options.length).toBe(4);
+            expect(options[0].nativeElement.textContent.trim()).toBe('No drink');
+            expect(options[1].nativeElement.textContent.trim()).toBe('Coca cola');
+            expect(options[2].nativeElement.textContent.trim()).toBe('Orange juice');
+            expect(options[3].nativeElement.textContent.trim()).toBe('Lemonade');
+        });
 
-        nameControl.setValue('');
-        expect(nameControl.valid).toBe(false);
+        it('should emit value changes', fakeAsync(() => {
+            const valueChangesSpy = spyOn(component.valueChanges, 'emit');
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFieldDropdownType, false) });
 
-        nameField.nativeElement.dispatchEvent(new Event('input'));
-        fixture.detectChanges();
+            const dropdownControl = component.formGroup.get('drink');
+            dropdownControl.setValue(1);
+            tick(450);
+            expect(valueChangesSpy).not.toHaveBeenCalled();
+            tick(50);
 
-        const requiredError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-required-name"]'));
-        expect(requiredError).toBeTruthy();
-        expect(requiredError.nativeElement.textContent.trim()).toBe('SDK.FORM_FIELDS_RENDERER.ERROR.DEFAULT_REQUIRED');
-    });
-
-    it('should display pattern error', () => {
-        nameControl.setValue('invalid-');
-        nameField.nativeElement.dispatchEvent(new Event('input'));
-        expect(nameControl.valid).toBe(false);
-
-        fixture.detectChanges();
-
-        const patternError = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-error-pattern-name"]'));
-        expect(patternError).toBeTruthy();
-        expect(patternError.nativeElement.textContent.trim()).toBe('fake-pattern-error-message');
+            expect(valueChangesSpy).toHaveBeenCalledWith({ drink: 1 });
+        }));
     });
 });

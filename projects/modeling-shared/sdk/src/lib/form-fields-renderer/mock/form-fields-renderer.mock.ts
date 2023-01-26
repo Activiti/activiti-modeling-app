@@ -25,6 +25,14 @@ export const mockFormGroup: FormGroup = new FormGroup({
     description: new FormControl('')
 });
 
+export const mockFormGroupWithNumberField: FormGroup = new FormGroup({
+    index: new FormControl(99, [Validators.min(90), Validators.max(100)])
+});
+
+export const mockFormGroupWithDropdownField: FormGroup = new FormGroup({
+    drink: new FormControl(2)
+});
+
 export const mockRequiredValidator: FormRendererFieldValidator = {
     type: 'required',
     value: true,
@@ -35,6 +43,18 @@ export const mockPatternValidator: FormRendererFieldValidator = {
     type: 'pattern',
     value: mockRegex,
     error: 'fake-pattern-error-message'
+};
+
+export const mockMinValidator: FormRendererFieldValidator = {
+    type: 'min',
+    value: 90,
+    error: 'fake-min-error-message'
+};
+
+export const mockMaxValidator: FormRendererFieldValidator = {
+    type: 'max',
+    value: 100,
+    error: 'fake-max-error-message'
 };
 
 export const mockFormRendererFields: FormRendererField[] = [
@@ -66,6 +86,17 @@ export const mockFormRendererFieldWithoutLabel: FormRendererField[] = [
     }
 ];
 
+export const mockFormRendererTextFieldWithIncorrectPattern: FormRendererField[] = [
+    {
+        key: 'name',
+        label: '',
+        type: 'text',
+        validators: [
+            mockPatternValidator
+        ]
+    }
+];
+
 export const mockFormRendererFieldEmptyNumberType: FormRendererField[] = [
     {
         key: 'index',
@@ -80,6 +111,35 @@ export const mockFormRendererFieldNumberType: FormRendererField[] = [
         label: 'fake-index',
         type: 'number',
         defaultValue: 99
+    }
+];
+
+export const mockFormRendererFieldDropdownType: FormRendererField[] = [
+    {
+        key: 'drink',
+        label: 'Choose mock drink item',
+        type: 'dropdown',
+        options: [
+            { label: 'No drink', value: undefined },
+            { label: 'Coca cola', value: 1 },
+            { label: 'Orange juice', value: 2 },
+            { label: 'Lemonade', value: 3 }
+        ]
+    }
+];
+
+export const mockFormRendererFieldDropdownTypeWithDefaultValue: FormRendererField[] = [
+    {
+        key: 'drink',
+        label: 'Choose mock drink item',
+        type: 'dropdown',
+        defaultValue: 2,
+        options: [
+            { label: 'No drink', value: undefined },
+            { label: 'Coca cola', value: 1 },
+            { label: 'Orange juice', value: 2 },
+            { label: 'Lemonade', value: 3 }
+        ]
     }
 ];
 
@@ -99,5 +159,18 @@ export const mockFormRendererFieldsWithDefaultValues: FormRendererField[] = [
         label: 'fake-description',
         type: 'textarea',
         defaultValue: 'fake-default-description'
+    }
+];
+
+export const mockFormRendererFieldNumberTypeWithMinMaxValidators: FormRendererField[] = [
+    {
+        key: 'index',
+        label: 'fake-index',
+        type: 'number',
+        defaultValue: 99,
+        validators: [
+            mockMinValidator,
+            mockMaxValidator
+        ]
     }
 ];

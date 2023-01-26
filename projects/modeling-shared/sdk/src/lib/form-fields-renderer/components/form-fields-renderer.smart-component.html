@@ -1,9 +1,11 @@
 <ng-container *ngIf="formGroup" [formGroup]="formGroup">
     <div class="ama-form-fields-renderer-container">
         <mat-form-field *ngFor="let field of formFields"
+                        [floatLabel]="'auto'"
                         [ngSwitch]="field.type"
                         [attr.data-automation-id]="field.key">
             <mat-label>{{ field.label | translate }}</mat-label>
+
             <input
                 *ngSwitchCase="'text'"
                 matInput
@@ -13,21 +15,43 @@
                 [errorStateMatcher]="matcher"
                 [formControl]="getInputFormControl(field.key)"/>
 
-            <textarea
-                      matInput
-                      *ngSwitchCase="'textarea'"
-                      [attr.data-automation-id]="'ama-form-fields-renderer-textarea-' + field.key"
-                      [placeholder]="field.label | translate"
-                      [type]="field.type"
-                      [errorStateMatcher]="matcher"
-                      [formControl]="getInputFormControl(field.key)"></textarea>
+            <input
+                *ngSwitchCase="'number'"
+                matInput
+                [attr.data-automation-id]="'ama-form-fields-renderer-number-' + field.key"
+                [placeholder]="field.label | translate"
+                [type]="field.type"
+                [errorStateMatcher]="matcher"
+                [formControl]="getInputFormControl(field.key)"/>
 
-            <ng-container *ngFor="let validator of field.validators">
-                <mat-error *ngIf="getInputFormControl(field.key) | formRendererFieldHasError: validator.type"
+            <textarea
+                *ngSwitchCase="'textarea'"
+                matInput
+                [attr.data-automation-id]="'ama-form-fields-renderer-textarea-' + field.key"
+                [placeholder]="field.label | translate"
+                [type]="field.type"
+                [errorStateMatcher]="matcher"
+                [formControl]="getInputFormControl(field.key)"></textarea>
+
+            <mat-select
+                *ngSwitchCase="'dropdown'"
+                [attr.data-automation-id]="'ama-form-fields-renderer-dropdown-' + field.key"
+                [placeholder]="field.label | translate"
+                [value]="field.defaultValue"
+                [formControl]="getInputFormControl(field.key)">
+                <mat-option
+                    [attr.data-automation-id]="'ama-form-fields-renderer-dropdown-option-' + option.label"
+                    *ngFor="let option of field.options" [value]="option.value">
+                        {{ option.label }}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngFor="let validator of field.validators">
+                <div *ngIf="getInputFormControl(field.key) | formRendererFieldHasError: validator.type"
                     [attr.data-automation-id]="'ama-form-fields-renderer-error-' + validator.type + '-' + field.key">
                     {{ field.label | formRendererFieldErrorMessage: validator }}
-                </mat-error>
-            </ng-container>
+                </div>
+            </mat-error>
         </mat-form-field>
     </div>
 </ng-container>

@@ -25,12 +25,14 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormRendererFieldErrorMessagePipe } from './pipes/form-renderer-field-error-message.pipe';
 import { FormRendererFieldHasErrorPipe } from './pipes/form-renderer-field-has-error.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
         CommonModule,
         MatInputModule,
         MatFormFieldModule,
+        MatSelectModule,
         ReactiveFormsModule,
         TranslateModule
     ],

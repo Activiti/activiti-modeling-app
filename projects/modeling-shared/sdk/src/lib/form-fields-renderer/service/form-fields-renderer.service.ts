@@ -29,6 +29,7 @@ export class FormFieldsRendererService {
 
     readonly DEFAULT_STRING = '';
     readonly DEFAULT_NUMBER = 0;
+    readonly DEFAULT_OPTION = null;
 
     createForm(formFields: FormRendererField[]): FormGroup {
         const formControls = formFields.reduce((controls, formField) => {
@@ -43,24 +44,33 @@ export class FormFieldsRendererService {
 
     private getValidators(formFieldValidators: FormRendererFieldValidator[]): ValidatorFn[] {
         return formFieldValidators?.reduce((validators, formFieldValidator) => {
-            switch(formFieldValidator.type) {
+            switch (formFieldValidator.type) {
                 case 'required':
                     validators.push(Validators.required);
                     break;
                 case 'pattern':
                     validators.push(Validators.pattern(new RegExp(formFieldValidator.value)));
+                    break;
+                case 'min':
+                    validators.push(Validators.min(formFieldValidator.value));
+                    break;
+                case 'max':
+                    validators.push(Validators.max(formFieldValidator.value));
+                    break;
             }
             return validators;
         }, []);
     }
 
     private getDefaultFromType(defaultValue: any, type: string): any {
-        switch(type) {
+        switch (type) {
             case 'text':
             case 'textarea':
                 return defaultValue ?? this.DEFAULT_STRING;
             case 'number':
                 return defaultValue ?? this.DEFAULT_NUMBER;
+            case 'dropdown':
+                return defaultValue ?? this.DEFAULT_OPTION;
         }
     }
 }

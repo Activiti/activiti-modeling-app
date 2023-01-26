@@ -15,6 +15,11 @@
  * limitations under the License.
  */
 
+interface DropdownOptions {
+    label: string;
+    value: any;
+}
+
 export interface FormRendererFieldValidator {
     type: string;
     value: any;
@@ -24,7 +29,8 @@ export interface FormRendererFieldValidator {
 export interface FormRendererField {
     key: string;
     label: string;
-    type: 'text' | 'textarea' | 'number';
+    type: 'text' | 'textarea' | 'number' | 'dropdown';
     defaultValue?: any;
+    options?: DropdownOptions[];
     validators?: FormRendererFieldValidator[];
 }

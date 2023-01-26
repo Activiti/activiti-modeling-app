@@ -19,6 +19,8 @@ import { TestBed } from '@angular/core/testing';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormFieldsRendererService } from '../service/form-fields-renderer.service';
 import {
+    mockFormRendererFieldDropdownType,
+    mockFormRendererFieldDropdownTypeWithDefaultValue,
     mockFormRendererFieldEmptyNumberType,
     mockFormRendererFieldNumberType,
     mockFormRendererFields,
@@ -87,5 +89,21 @@ describe('FormFieldsRendererService', () => {
 
         expect(formGroup).toBeDefined();
         expect(formGroupControls[0].value).toBe(0);
+    });
+
+    it('should create a formControl with dropdown default value if default value is provided', () => {
+        const formGroup = service.createForm(mockFormRendererFieldDropdownTypeWithDefaultValue);
+        const formGroupControls = Object.values(formGroup.controls);
+
+        expect(formGroup).toBeDefined();
+        expect(formGroupControls[0].value).toBe(2);
+    });
+
+    it('should create a formControl with default value (null) if default value is NOT provided', () => {
+        const formGroup = service.createForm(mockFormRendererFieldDropdownType);
+        const formGroupControls = Object.values(formGroup.controls);
+
+        expect(formGroup).toBeDefined();
+        expect(formGroupControls[0].value).toBe(null);
     });
 });
