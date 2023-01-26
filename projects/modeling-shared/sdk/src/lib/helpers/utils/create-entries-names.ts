@@ -35,6 +35,7 @@ export const HXP_DOC_TYPE_FILE_FORMAT = '.json';
 export const HXP_MIXIN_FILE_FORMAT = '.json';
 export const HXP_SCHEMA_FILE_FORMAT = '.json';
 export const MODELER_NAME_REGEX = /^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$/;
+export const PROPERTY_VIEWER_INTEGER_INPUT_FORMAT = /^-?[0-9]*$/;
 export const FIELD_VARIABLE_NAME_REGEX = /^[a-z][a-z0-9_]*$/i;
 export const IDENTIFIER_REGEX = /^[a-zA-Z0-9][a-zA-Z0-9\w!@#£$%^?&*)(+[\]{}=/._-]*$/;
 export const PROCESS_NAME_REGEX = /^[\w!@#£$%^?&*)(+[\]=/._-]([\Wa-zA-Z0-9_]{0,24}[\Wa-zA-Z0-9_])?$/;

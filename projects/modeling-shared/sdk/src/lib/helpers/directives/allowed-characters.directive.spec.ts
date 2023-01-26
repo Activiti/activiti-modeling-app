@@ -23,7 +23,7 @@ import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { MODELER_NAME_REGEX } from '../utils/create-entries-names';
+import { MODELER_NAME_REGEX, PROPERTY_VIEWER_INTEGER_INPUT_FORMAT } from '../utils/create-entries-names';
 
 @Component({
     template: `<input #input type="text" [modelingsdk-allowed-characters]="regex" />`
@@ -99,5 +99,13 @@ describe('AllowedCharactersDirective', () => {
         expect(component.directive.onKeyPress({key: '-' , target: {value: text, selectionStart: 2 }})).toBe(true);
         expect(component.directive.onKeyPress({key: '-' , target: {value: text, selectionStart: text.length }})).toBe(false);
         expect(component.directive.onKeyPress({key: '*' , target: {value: text, selectionStart: 2 }})).toBe(false);
+    });
+
+    it('should filter based on PROPERTY_VIEWER_INTEGER_INPUT_FORMAT', () => {
+        component.regex = PROPERTY_VIEWER_INTEGER_INPUT_FORMAT;
+        fixture.detectChanges();
+        const text = '-2';
+        expect(component.directive.onKeyPress({key: '2' , target: {value: text, selectionStart: 1 }})).toBe(true);
+        expect(component.directive.onKeyPress({key: '2' , target: {value: text, selectionStart: 0 }})).toBe(false);
     });
 });

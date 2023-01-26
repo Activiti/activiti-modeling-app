@@ -16,6 +16,7 @@
  */
 
 import { Component, Input } from '@angular/core';
+import { PROPERTY_VIEWER_INTEGER_INPUT_FORMAT } from '../../../../helpers/utils/create-entries-names';
 import { VariablesService } from '../../../variables.service';
 import { PropertiesViewerModelValidatedInputComponent } from '../../model-validated-input.component';
 
@@ -26,7 +27,7 @@ import { PropertiesViewerModelValidatedInputComponent } from '../../model-valida
 export class PropertiesViewerIntegerInputComponent extends PropertiesViewerModelValidatedInputComponent {
 
     @Input() step: number = null;
-    regexInput = /^[0-9]*$/;
+    regexInput = PROPERTY_VIEWER_INTEGER_INPUT_FORMAT;
 
     constructor(variablesService: VariablesService) {
         super(variablesService);
