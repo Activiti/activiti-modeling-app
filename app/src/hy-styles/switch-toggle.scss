@@ -1,0 +1,35 @@
+body {
+    .mat-slide-toggle {
+        .mat-slide-toggle-content {
+            color: $hy-text-black;
+        }
+
+        .mat-slide-toggle-bar {
+            background-color: map-get($hy-neutral, 400);
+        }
+
+        .mat-slide-toggle-thumb {
+            background-color: $hy-text-white;
+            border: 1px solid map-get($hy-neutral, 400);
+        }
+
+        &:not(.mat-checked) .mat-ripple-element {
+            background-color: $hy-black;
+        }
+    }
+
+    .mat-slide-toggle.mat-checked {
+        .mat-slide-toggle-bar {
+            background-color: map-get($hy-primary, 200);
+        }
+
+        .mat-slide-toggle-thumb {
+            background-color: map-get($hy-primary, 700);
+            border: 1px solid map-get($hy-primary, 700);
+        }
+
+        .mat-ripple-element {
+            background-color: map-get($hy-primary, 700);
+        }
+    }
+}
