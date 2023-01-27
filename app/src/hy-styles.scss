@@ -206,19 +206,19 @@ $defaults: (
     --theme-user-initials-text: $hy-text-black,
 
     // ADF components and services
-    --adf-snackbar-error-bg-color: mat.get-color-from-palette($warn),
-    --adf-snackbar-error-action-color: white,
-    --adf-snackbar-warning-bg-color: mat.get-color-from-palette($accent),
-    --adf-snackbar-warning-action-color: white,
-    --adf-snackbar-info-bg-color: mat.get-color-from-palette($primary),
-    --adf-snackbar-info-action-color: white,
-    --adf-header-text-color:
-        mat.get-color-from-palette($primary, default-contrast),
+    --adf-snackbar-error-bg-color:  $hy-error,
+    --adf-snackbar-error-action-color: $hy-text-white,
+    --adf-snackbar-warning-bg-color:  $hy-warning,
+    --adf-snackbar-warning-action-color: $hy-text-white,
+    --adf-snackbar-info-bg-color:   map-get($hy-primary, 700),
+    --adf-snackbar-info-action-color: $hy-text-white,
+    --adf-header-text-color: mat.get-color-from-palette($primary, default-contrast),
     --adf-user-info-color: mat.get-color-from-palette($primary, 300),
+
     // hy-theme
     --theme-inactive-focused: $hy-inactive-focused,
     --theme-text-white: $hy-text-white,
-    --theme-tab-unfocused: mat.get-color-from-palette($accent, 300),
+    --theme-tab-unfocused: mat.get-color-from-palette($accent, 300)
 );
 
 // propagates SCSS variables into the CSS variables scope
@@ -231,9 +231,9 @@ $defaults: (
 body {
     @include mat.all-component-themes($theme);
     @include adf-core-theme($theme);
-    background-color: var(--adf-snackbar-info-action-color);
+    background-color:$hy-text-white;
     .mat-drawer-content {
-        background-color: var(--adf-snackbar-info-action-color);
+      background-color: $hy-text-white;
     }
 
     .monaco-editor {
@@ -262,3 +262,4 @@ body {
 @import 'hy-styles/inputs.scss';
 @import 'hy-styles/mixins.scss';
 @import 'hy-styles/switch-toggle.scss';
+@import 'hy-styles/toasts.scss';
