@@ -1,0 +1,47 @@
+body {
+    .mat-radio-button {
+        .mat-radio-label-content {
+            color:$hy-text-black;
+        }
+        &.mat-accent {
+            .mat-radio-outer-circle {
+                border-color:$hy-text-black;;
+            }
+        }
+        &.mat-accent.mat-radio-checked,
+        &.mat-radio-checked {
+            .mat-radio-inner-circle {
+                background-color: map-get($hy-primary, 700);
+            }
+            .mat-radio-outer-circle {
+                border-color: map-get($hy-primary, 700);
+            }
+        }
+
+        &.mat-radio-disabled {
+            .mat-radio-label-content {
+                color:$hy-text-disabled;
+            }
+            .mat-radio-outer-circle {
+                border-color: $hy-text-disabled;
+            }
+        }
+        &.mat-radio-disabled.mat-accent.mat-radio-checked,
+        &.mat-radio-disabled.mat-radio-checked {
+            .mat-radio-inner-circle {
+                background-color: $hy-text-disabled;
+            }
+            .mat-radio-outer-circle {
+                border-color: $hy-text-disabled;
+            }
+        }
+    }
+
+    .mat-radio-button.mat-accent .mat-radio-inner-circle,
+    .mat-radio-button.mat-accent .mat-radio-ripple
+    .mat-ripple-element:not(.mat-radio-persistent-ripple),
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+    .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+        background-color: map-get($hy-primary, 600);
+    }
+}
