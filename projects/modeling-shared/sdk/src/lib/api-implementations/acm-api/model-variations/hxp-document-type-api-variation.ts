@@ -48,11 +48,7 @@ export class HxPDocumentTypeApiVariation<M extends HxPDocumentType, C extends JS
     public createInitialContent(model: M): C {
         return <C>{
             description: model.description,
-            allOf: [
-                {
-                    $ref: '#/$defs/hxp-ootb-document-types/File'
-                }
-            ]
+            allOf: []
         };
     }
 
