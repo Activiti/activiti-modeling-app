@@ -1,0 +1,209 @@
+.mat-cell {
+    .mat-button-wrapper {
+        .mat-icon {
+            color: $hy-text-black;
+        }
+    }
+}
+
+body {
+    .mat-form-field.mat-focused.mat-primary,
+    .mat-form-field.mat-focused {
+        .mat-select-arrow {
+            color: $hy-text-black;
+        }
+    }
+
+    .mat-select-arrow {
+        color: $hy-text-black;
+    }
+
+    .adf-toolbar {
+        .mat-toolbar {
+            span,
+            .ama-model-header-standard-buttons {
+                .mat-icon-button {
+                    color: $hy-text-black;
+                    &.mat-button-disabled {
+                        color: $hy-text-disabled;
+                    }
+                }
+            }
+        }
+    }
+    .mat-button.mat-primary,
+    .mat-icon-button.mat-primary,
+    .mat-stroked-button.mat-primary,
+    .mat-button,
+    .mat-icon-button,
+    .mat-stroked-button {
+        color: $hy-text-black;
+        &.mat-button-disabled,
+        &.mat-button-disabled.mat-button-disabled {
+            color: $hy-text-disabled;
+        }
+    }
+    .mat-icon-button.modelingsdk-json-schema-custom-attributes-add-btn {
+        color: $hy-text-black;
+    }
+
+    .mat-icon,
+    .mat-icon.mat-primary {
+        color: $hy-text-black;
+    }
+
+    .mat-menu-item {
+        color: $hy-text-black;
+        .mat-icon-no-color,
+        .mat-menu-submenu-icon,
+        .mat-icon {
+            color: $hy-text-black;
+        }
+    }
+    .mat-card {
+        color: $hy-text-black;
+    }
+    .mat-flat-button,
+    .mat-raised-button,
+    .mat-fab,
+    .mat-mini-fab {
+        color: $hy-text-black;
+    }
+    .mat-drawer-container {
+        color: $hy-text-black;
+    }
+    .bjs-container {
+        .djs-popup-body,
+        .djs-context-pad {
+            .entry {
+                color: $hy-text-black;
+                &:hover {
+                    background-color: $hy-btn-basic-hover;
+                }
+                &:active {
+                    background-color: $hy-btn-basic-pressed;
+                }
+            }
+        }
+    }
+
+    .adf-dateitem-editable-controls mat-icon {
+        opacity: 1;
+    }
+
+    .mat-datetimepicker-calendar-previous-button svg,
+    .mat-datetimepicker-calendar-next-button svg {
+        fill: $hy-text-black;
+    }
+
+    date-widget {
+        .mat-icon-button.mat-button-disabled,
+        .mat-icon-button.mat-button-disabled.mat-button-disabled {
+            color: $hy-text-secondary;
+        }
+    }
+
+    date-time-widget {
+        .mat-form-field.mat-form-field-disabled
+            .mat-form-field-wrapper
+            .mat-form-field-suffix
+            .mat-icon {
+            color: $hy-text-secondary;
+        }
+    }
+
+    .dmn-decision-table-container {
+        .actionable:hover {
+            .action-icon {
+                background-color: $hy-btn-basic-hover;
+                color: $hy-text-black;
+                &:active {
+                    background-color: $hy-btn-basic-pressed;
+                }
+            }
+        }
+        .action-icon {
+            color: $hy-text-black;
+        }
+    }
+
+    .mat-icon.ama-ui-editor-help-info-tip {
+        opacity: 1;
+    }
+
+    .mat-button-disabled {
+        .mat-icon {
+            color: $hy-text-disabled;
+        }
+    }
+
+    .ama-studio-project-header-navigation {
+        button,
+        .mat-icon {
+            color: $hy-text-black;
+        }
+    }
+
+    .ama-project-collaborators .ama-collaborators-initials {
+        background-color: map-get($hy-neutral, 100);
+        &:hover {
+            background-color: map-get($hy-neutral, 200);
+        }
+    }
+
+    .ama-studio-project-header {
+        adf-notification-history {
+            .mat-badge-content {
+                background-color: map-get($hy-primary, 700);
+            }
+        }
+    }
+
+    .adf-notification-history-menu_button.mat-button:hover {
+        background-color: map-get($hy-neutral, 200);
+    }
+
+    .ama-project-tree-filter__icon.ama-filter-icon {
+        color: $hy-text-black;
+    }
+
+    .mat-tab-label-container {
+        .mat-tab-label {
+            opacity: 1;
+            &.mat-tab-label-active {
+                mat-icon {
+                    color: $hy-text-black;
+                }
+            }
+            .mat-icon {
+                color: $hy-text-secondary;
+            }
+        }
+    }
+    .ama-tab-models .ama-tab-model-dirty {
+        background: map-get($hy-primary, 700);
+    }
+}
+
+ama-process-palette .mat-card .entry-parent {
+    &:hover {
+        background-color: $hy-btn-basic-hover;
+        border-radius: 50%;
+    }
+    &:active {
+        background-color: $hy-btn-basic-pressed;
+        border-radius: 50%;
+    }
+    .entry {
+        &:hover {
+            color: $hy-text-black;
+        }
+    }
+}
+
+adf-form-field {
+    .adf-label {
+        color: $hy-text-black;
+        color: $hy-text-disabled;
+    }
+}

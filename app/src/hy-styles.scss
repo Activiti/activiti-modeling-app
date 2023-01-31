@@ -5,7 +5,7 @@
 @include mat.core($alfresco-typography);
 
 $studio-typography: mat.define-typography-config(
-    $font-family: 'Inter',
+    $font-family: 'Inter'
 );
 
 body,
@@ -77,7 +77,7 @@ $hy-functional-text-pink-bg: map-get($hy-pink, 300);
 
 // buttonState
 $hy-btn-basic-hover: #0000000a;
-$hy-btn-basic-pressed: #00000017;
+$hy-btn-basic-pressed: #00000021;
 $hy-btn-primary-hover: #0e73d80a;
 $hy-btn-primary-pressed: #0e73d81a;
 $hy-btn-warn-hover: #da15000a;
@@ -264,3 +264,4 @@ body {
 @import 'hy-styles/switch-toggle.scss';
 @import 'hy-styles/toasts.scss';
 @import 'hy-styles/radio-buttons.scss';
+@import 'hy-styles/icons.scss';
