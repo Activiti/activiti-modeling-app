@@ -518,6 +518,7 @@ describe('ConnectorEditorEffects', () => {
 
         it('should dispatch the OpenConfirmDialogAction if connector is not valid', () => {
             const error: any = new Error();
+            error.status = 400;
             error.message = JSON.stringify({ errors: [{ description: 'test' }] });
             validateConnector.mockReturnValue(throwError(error));
 
@@ -532,9 +533,10 @@ describe('ConnectorEditorEffects', () => {
             };
             const expectedLogAction = logFactory.logError(getConnectorLogInitiator(), 'test');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
-            const expected = cold('(bc)', {
-                b: new OpenConfirmDialogAction(expectedPayload),
-                c: expectedLogAction
+            const expected = cold('(bcd)', {
+                b: new SetApplicationLoadingStateAction(false),
+                c: new OpenConfirmDialogAction(expectedPayload),
+                d: expectedLogAction
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);

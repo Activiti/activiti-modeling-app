@@ -74,12 +74,10 @@ import {
     AmaState,
     BpmnElement,
     createModelName,
-    GeneralError,
     SetApplicationLoadingStateAction,
     LogFactoryService,
     ModelClosedAction,
     ModelOpenedAction,
-    OpenConfirmDialogAction,
     PROCESS,
     Process,
     ProcessModelerService,
@@ -99,17 +97,17 @@ import {
     SHOW_PROCESSES,
     ModelEntitySelectors,
     UpdateTabTitle,
-    SetLogHistoryVisibilityAction,
     TabManagerService,
     PROCESS_NAME_REGEX,
+    ValidationService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { PROCESS_MODEL_ENTITY_SELECTORS, selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';
-import { Store } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
-import { ProcessValidationResponse } from './process-editor.state';
 import { TranslationService } from '@alfresco/adf-core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export const PROCESS_CONTENT_TYPE = 'text/xml';
 export const XML_PROCESS_TAG = 'bpmn2:process';
@@ -135,8 +133,9 @@ export class ProcessEditorEffects {
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
         private entitySelector: ModelEntitySelectors,
-        private tabManagerService: TabManagerService
-    ) {}
+        private tabManagerService: TabManagerService,
+        private readonly validationService: ValidationService
+    ) { }
 
 
     showProcessesEffect = createEffect(() => this.actions$.pipe(
@@ -218,7 +217,7 @@ export class ProcessEditorEffects {
 
     updateProcessSuccessEffect = createEffect(() => this.actions$.pipe(
         ofType<UpdateProcessSuccessAction>(UPDATE_PROCESS_SUCCESS),
-        mergeMap((action) =>[
+        mergeMap((action) => [
             new UpdateTabTitle(action.payload.changes.name, action.payload.id),
             new SetApplicationLoadingStateAction(false)
         ])
@@ -234,7 +233,7 @@ export class ProcessEditorEffects {
     validateProcessEffect = createEffect(() => this.actions$.pipe(
         ofType<ValidateProcessAttemptAction>(VALIDATE_PROCESS_ATTEMPT),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
-        mergeMap(([action, projectId]) => this.validateProcess({...action.payload, projectId}))
+        mergeMap(([action, projectId]) => this.validateProcess({ ...action.payload, projectId }))
     ));
 
 
@@ -281,8 +280,8 @@ export class ProcessEditorEffects {
         mergeMap(element => zip(of(element), this.store.select(selectSelectedElement))),
         filter(([element, selected]) => (
             selected !== null &&
-                selected.id === element.id &&
-                (selected.name !== element.name || selected.type !== element.type)
+            selected.id === element.id &&
+            (selected.name !== element.name || selected.type !== element.type)
         )),
         mergeMap(([element]) => of(new SelectModelerElementAction(element)))
     ));
@@ -300,36 +299,16 @@ export class ProcessEditorEffects {
         mergeMap(([action, projectId]) => this.saveAsProcess(action.payload, action.navigateTo, projectId))
     ));
 
-    private validateProcess(payload: ValidateProcessPayload) {
-        return this.processEditorService.validate(payload.modelId, payload.modelContent, payload.projectId, payload.modelMetadata.extensions).pipe(
-            switchMap(() => [new SetApplicationLoadingStateAction(true), payload.action, new SetApplicationLoadingStateAction(false)]),
-            catchError((response) => {
-                const parsedResponse = JSON.parse(response.message);
-
-                if (parsedResponse.status !== 400) {
-                    return of(null);
-                }
-
-                const errors = this.handleProcessValidationError(parsedResponse);
-                if (payload.errorAction) {
-                    return [
-                        payload.errorAction,
-                        this.logFactory.logError(getProcessLogInitiator(), errors),
-                        new SetLogHistoryVisibilityAction(true)
-                    ];
-                }
-                return [
-                    new OpenConfirmDialogAction({
-                        dialogData: {
-                            title: payload.title || 'APP.DIALOGS.CONFIRM.TITLE',
-                            subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                            messages: errors
-                        },
-                        action: payload.action
-                    }),
-                    this.logFactory.logError(getProcessLogInitiator(), errors)
-                ];
-            })
+    private validateProcess({ modelId, modelContent, modelMetadata: { extensions }, projectId, action, errorAction, title }: ValidateProcessPayload): Observable<Action> {
+        return this.processEditorService.validate(modelId, modelContent, projectId, extensions).pipe(
+            switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
+            catchError((response: HttpErrorResponse) => this.validationService.handleErrors({
+                title,
+                response,
+                errorAction,
+                successAction: action,
+                modelType: 'process',
+            }))
         );
     }
 
@@ -361,12 +340,12 @@ export class ProcessEditorEffects {
         return zip(
             this.store.select(this.entitySelector.selectModelMetadataById(modelId)),
             this.store.select(this.entitySelector.selectModelContentById(modelId))).pipe(
-            map(([metadata, content]) => {
-                const name = createModelName(metadata.name);
-                return this.processEditorService.downloadDiagram(name, content);
-            }),
-            take(1),
-            catchError(() => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM')));
+                map(([metadata, content]) => {
+                    const name = createModelName(metadata.name);
+                    return this.processEditorService.downloadDiagram(name, content);
+                }),
+                take(1),
+                catchError(() => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM')));
     }
 
     private downloadProcessSVGImage(processName: string) {
@@ -464,13 +443,6 @@ export class ProcessEditorEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProcessValidationError(response: ProcessValidationResponse): string[] {
-        if (response.errors) {
-            return response.errors.map((error: GeneralError) => error.description);
-        }
-        return [response.message];
-    }
-
     private openSaveAsProcessDialog(data: SaveAsDialogPayload) {
         data.allowedCharacters = {
             regex: PROCESS_NAME_REGEX,
@@ -524,7 +496,7 @@ export class ProcessEditorEffects {
 
     private updateProcessPool(xmlDoc: Document, processKeyId: string, name: string) {
         if (this.getCollaborationId(xmlDoc)) {
-            Array.from(xmlDoc.getElementsByTagName(XML_PARTICIPANT_TAG)).forEach( item => {
+            Array.from(xmlDoc.getElementsByTagName(XML_PARTICIPANT_TAG)).forEach(item => {
                 if (item.getAttribute(XML_PROCESS_REFERENCE_ATTR)) {
                     item.setAttribute(XML_PROCESS_REFERENCE_ATTR, processKeyId);
                     item.setAttribute(XML_NAME_ATTRIBUTE, name);

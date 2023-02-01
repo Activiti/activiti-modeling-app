@@ -28,7 +28,6 @@ import {
     GetProjectAttemptAction,
     GET_PROJECT_ATTEMPT,
     GetProjectSuccessAction,
-    OpenInfoDialogAction,
     ExportProjectAction,
     EXPORT_PROJECT,
     ModelingJSONSchemaService,
@@ -43,7 +42,8 @@ import {
     EXPORT_PROJECT_ATTEMPT,
     ExportProjectAttemptPayload,
     TabManagerService,
-    SetLogHistoryVisibilityAction,
+    ValidationService,
+    IErrorResponse,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectEditorService } from '../../services/project-editor.service';
@@ -59,7 +59,8 @@ export class ProjectEffects {
         private logFactory: LogFactoryService,
         protected blobService: BlobService,
         private modelingJSONSchemaService: ModelingJSONSchemaService,
-        private tabManagerService: TabManagerService
+        private tabManagerService: TabManagerService,
+        private readonly validationService: ValidationService
     ) { }
 
 
@@ -149,12 +150,11 @@ export class ProjectEffects {
                 new SnackbarInfoAction('PROJECT_EDITOR.PROJECT_VALID'),
                 this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.PROJECT_VALID')
             ]),
-            catchError(response => this.getDialogData(response).pipe(
-                switchMap(dialogData => [
-                    this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
-                    new OpenInfoDialogAction({ dialogData }),
-                    new SetLogHistoryVisibilityAction(true)
-                ])
+            catchError(response => this.blobService.convert2Json(response.error.response.body).pipe(
+                switchMap((errorResponse: IErrorResponse) => this.validationService.handleErrors({
+                    response: errorResponse,
+                    modelType: 'project',
+                }))
             ))
         );
     }

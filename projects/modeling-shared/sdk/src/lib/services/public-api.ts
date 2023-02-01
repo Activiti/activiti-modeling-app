@@ -33,3 +33,4 @@ export * from './layout.service';
 export * from './editor-footer.service.interface';
 export * from './app-footer.service';
 export * from './tab-manager.service';
+export * from './validation.service';

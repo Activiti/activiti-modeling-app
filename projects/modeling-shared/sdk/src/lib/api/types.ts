@@ -20,6 +20,8 @@
 import { VariableMappingBehavior } from '../interfaces/variable-mapping-type.interface';
 
 export type PROJECT_TYPE = 'project';
+export type RELEASE_TYPE = 'release';
+export type PROJECT_MODEL_TYPE = 'project_model';
 export type CUSTOM_MODEL_TYPE = 'model';
 export type PROCESS_TYPE = 'process';
 export type FORM_TYPE = 'form';
@@ -36,9 +38,11 @@ export type HXP_DOC_TYPE_TYPE = 'hxp_doc_type';
 export type HXP_MIXIN_TYPE = 'hxp_mixin';
 export type HXP_SCHEMA_TYPE = 'hxp_schema';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
-| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE;
+| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE | PROJECT_MODEL_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
+export const RELEASE: RELEASE_TYPE = 'release';
+export const PROJECT_MODEL: PROJECT_MODEL_TYPE = 'project_model';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
 export const PROCESS: PROCESS_TYPE = 'process';
 export const FORM: FORM_TYPE = 'form';

@@ -24,7 +24,6 @@ import {
     EntityDialogForm,
     CONNECTOR,
     ModelClosedAction,
-    OpenConfirmDialogAction,
     GetConnectorAttemptAction,
     GET_CONNECTOR_ATTEMPT,
     ModelOpenedAction,
@@ -53,8 +52,8 @@ import {
     CONNECTOR_MODEL_ENTITY_SELECTORS,
     ModelEntitySelectors,
     UpdateTabTitle,
-    SetLogHistoryVisibilityAction,
-    TabManagerService
+    TabManagerService,
+    ValidationService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
@@ -95,6 +94,7 @@ import {
     DraftDeleteConnectorAction} from './connector-editor.actions';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 import { TranslationService } from '@alfresco/adf-core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class ConnectorEditorEffects {
@@ -108,7 +108,8 @@ export class ConnectorEditorEffects {
         private translationService: TranslationService,
         @Inject(CONNECTOR_MODEL_ENTITY_SELECTORS)
         private entitySelector: ModelEntitySelectors,
-        private tabManagerService: TabManagerService
+        private tabManagerService: TabManagerService,
+        private readonly validationService: ValidationService
     ) {}
 
 
@@ -254,27 +255,13 @@ export class ConnectorEditorEffects {
     private validateConnector({ modelId, modelContent, action, title, errorAction, projectId }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(modelId, modelContent, projectId).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
-            catchError(response => {
-                const errors = JSON.parse(response.message).errors.map(error => error.description);
-                if (errorAction) {
-                    return [
-                        errorAction,
-                        this.logFactory.logError(getConnectorLogInitiator(), errors),
-                        new SetLogHistoryVisibilityAction(true)
-                    ];
-                }
-                return [
-                    new OpenConfirmDialogAction({
-                        action,
-                        dialogData: {
-                            title: title || 'APP.DIALOGS.CONFIRM.TITLE',
-                            subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                            messages: errors
-                        }
-                    }),
-                    this.logFactory.logError(getConnectorLogInitiator(), errors)
-                ];
-            })
+            catchError((response: HttpErrorResponse) => this.validationService.handleErrors({
+                title,
+                response,
+                errorAction,
+                successAction: action,
+                modelType: 'connector',
+            }))
         );
     }
 
