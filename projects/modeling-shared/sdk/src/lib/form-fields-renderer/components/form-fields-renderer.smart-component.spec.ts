@@ -259,12 +259,12 @@ describe('FormFieldsRendererSmartComponent', () => {
             component.ngOnChanges({ formFields: new SimpleChange(null, mockFormGroupWithNumberField, false) });
 
             numberControl = component.formGroup.get('index');
-            numberControl.setValue(5);
+            numberControl.setValue(95);
             tick(450);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
-            expect(valueChangesSpy).toHaveBeenCalledWith({ index: 5 });
+            expect(valueChangesSpy).toHaveBeenCalledWith({ index: 95 });
         }));
     });
 
@@ -290,13 +290,15 @@ describe('FormFieldsRendererSmartComponent', () => {
             const valueChangesSpy = spyOn(component.valueChanges, 'emit');
             component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFields, false) });
 
+            const nameControl = component.formGroup.get('name');
+            nameControl.setValue('mock-name');
             const descriptionControl = component.formGroup.get('description');
             descriptionControl.setValue('new-description');
             tick(450);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
-            expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'new-description', name: '' });
+            expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'new-description', name: 'mock-name' });
         }));
     });
 
@@ -342,6 +344,40 @@ describe('FormFieldsRendererSmartComponent', () => {
             tick(50);
 
             expect(valueChangesSpy).toHaveBeenCalledWith({ drink: 1 });
+        }));
+    });
+
+    describe('Payload validation', () => {
+
+        beforeEach(() => {
+            component.formGroup = mockFormGroup;
+            component.formFields = mockFormRendererFields;
+            fixture.detectChanges();
+        });
+
+        it('should emit the form values only when the form is valid', fakeAsync(() => {
+            const valueChangesSpy = spyOn(component.valueChanges, 'emit');
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFields, false) });
+
+            const nameControl = component.formGroup.get('name');
+            nameControl.setValue('mock$name');
+
+            const descriptionControl = component.formGroup.get('description');
+            descriptionControl.setValue('mock description');
+
+            tick(450);
+            expect(valueChangesSpy).not.toHaveBeenCalled();
+
+            tick(50);
+            expect(valueChangesSpy).not.toHaveBeenCalled();
+
+            nameControl.setValue('mock-name');
+
+            tick(450);
+            expect(valueChangesSpy).not.toHaveBeenCalled();
+
+            tick(50);
+            expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'mock description', name: 'mock-name' });
         }));
     });
 });

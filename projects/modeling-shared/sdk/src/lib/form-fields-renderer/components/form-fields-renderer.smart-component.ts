@@ -72,7 +72,9 @@ export class FormFieldsRendererSmartComponent implements OnChanges {
         this.formChangesSubscription = this.formGroup.valueChanges
             .pipe(debounceTime(FormFieldsRendererSmartComponent.FORM_DEBOUNCE_TIME))
             .subscribe((formValues: FormRendererField[]) => {
-                this.valueChanges.emit(formValues);
+                if (this.formGroup.valid) {
+                    this.valueChanges.emit(formValues);
+                }
                 this.emitFormValidation();
             });
     }
