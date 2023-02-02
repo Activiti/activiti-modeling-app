@@ -59,12 +59,14 @@ import { createModelVersionProperty } from './model-version-cardview-property';
 import { createCandidateStartersProperty } from './candidate-starters-cardview-property';
 import { createCandidateStarterGroupsProperty } from './candidate-starter-groups-cardview-property';
 import { createCandidateStarterUsersProperty } from './candidate-starter-users-cardview-property';
+import { createDescriptionProperty } from './description-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
     [BpmnProperty.version]: createModelVersionProperty,
     [BpmnProperty.name]: createNameProperty,
     [BpmnProperty.documentation]: createDocumentationProperty,
+    [BpmnProperty.description]: createDescriptionProperty,
     [BpmnProperty.implementation]: createImplementationProperty,
     [BpmnProperty.decisionTask]: createDecisionTaskProperty,
     [BpmnProperty.scriptTask]: createScriptTaskProperty,

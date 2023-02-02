@@ -23,6 +23,7 @@ export enum BpmnProperty {
     name = 'name',
     modelName = 'modelName',
     documentation = 'documentation',
+    description = 'description',
     category = 'targetNamespace',
     implementation = 'implementation',
     decisionTask = 'decisionTask',
@@ -58,7 +59,7 @@ export enum BpmnProperty {
     hxpContentServiceTask = 'hxpContentServiceTask',
     inheritBusinessKey = 'inheritBusinessKey',
     candidateStarterUsers = 'candidateStarterUsers',
-    candidateStarterGroups = 'candidateStarterGroups'
+    candidateStarterGroups = 'candidateStarterGroups',
 }
 
 export enum BpmnCompositeProperty {

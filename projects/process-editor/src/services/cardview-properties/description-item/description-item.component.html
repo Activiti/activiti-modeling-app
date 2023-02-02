@@ -1,0 +1,37 @@
+<div class="ama-description-item" data-automation-id="ama-description-item">
+    <div
+        class="adf-property-label"
+        [attr.data-automation-id]="'card-description-label-' + property?.key"
+    >
+        {{ property?.label | translate }}
+    </div>
+    <div>
+        <modelingsdk-expression-code-editor
+            [expression]="property?.value || property?.default"
+            [variables]="processVariables$ | async"
+            [expressionSyntax]="ExpressionSyntax.JUEL"
+            [removeEnclosingBrackets]="false"
+            [enableInlineEditor]="false"
+            [enableDialogEditor]="property?.editable"
+            [removeLineNumbers]="true"
+            [lineWrapping]="true"
+            [nonBracketedOutput]="true"
+            [dialogRemoveLineNumbers]="true"
+            [dialogLineWrapping]="true"
+            (expressionChange)="onExpressionChange($event)"
+        ></modelingsdk-expression-code-editor>
+    </div>
+    <ng-container *ngIf="(errors$ | async) as errors">
+        <mat-error
+            [attr.data-automation-id]="'card-description-error-' + property?.key"
+            class="adf-textitem-editable-error"
+            *ngIf="errors.length"
+        >
+            <ul>
+                <li *ngFor="let error of errors">
+                    {{ error.message | translate: error }}
+                </li>
+            </ul>
+        </mat-error>
+    </ng-container>
+</div>

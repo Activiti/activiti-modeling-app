@@ -135,6 +135,7 @@ import { CardViewCandidateStartersItemComponent } from './services/cardview-prop
 import { CandidateStartersDialogComponent } from './components/candidate-starters-dialog/candidate-starters-dialog.component';
 import { ProcessCandidateStartersEffects } from './store/process-candidate-starters.effects';
 import { CandidateStartersService } from './services/cardview-properties/candidate-starters-item/candidate-starters-item.service';
+import { DescriptionItemComponent } from './services/cardview-properties/description-item/description-item.component';
 
 @NgModule({
     imports: [
@@ -209,7 +210,8 @@ import { CandidateStartersService } from './services/cardview-properties/candida
         CardProcessVersionItemComponent,
         AssignmentStrategySelectorComponent,
         CardViewCandidateStartersItemComponent,
-        CandidateStartersDialogComponent
+        CandidateStartersDialogComponent,
+        DescriptionItemComponent
     ],
     providers: [
         DeleteProcessCommand,
@@ -245,6 +247,7 @@ import { CandidateStartersService } from './services/cardview-properties/candida
         providePropertyHandler(BpmnProperty.signalRef, CardViewSignalRefItemComponent),
         providePropertyHandler(BpmnProperty.errorRef, CardViewErrorRefItemComponent),
         providePropertyHandler(BpmnProperty.calledElement, CalledElementComponent),
+        providePropertyHandler(BpmnProperty.description, DescriptionItemComponent),
         providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
         providePropertyHandler(BpmnProperty.messageRef, CardViewMessageItemComponent),
         providePropertyHandler(BpmnCompositeProperty.messages, CardViewProcessMessagesItemComponent),

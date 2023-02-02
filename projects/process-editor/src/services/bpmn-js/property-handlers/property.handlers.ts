@@ -64,6 +64,7 @@ export const handlers = {
     [BpmnProperty.modelName]: modelNameHandler,
     [BpmnProperty.name]: nameHandler,
     [BpmnProperty.documentation]: documentationHandler,
+    [BpmnProperty.description]: documentationHandler,
     [BpmnProperty.category]: categoryHandler,
     [BpmnProperty.implementation]: implementationHandler,
     [BpmnProperty.decisionTask]: decisionTaskHandler,

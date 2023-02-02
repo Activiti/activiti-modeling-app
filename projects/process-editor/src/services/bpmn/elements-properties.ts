@@ -175,7 +175,7 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnCompositeProperty.assignment,
-        BpmnProperty.documentation,
+        BpmnProperty.description,
         BpmnProperty.dueDate,
         BpmnProperty.multiInstanceType,
         BpmnProperty.priority,
