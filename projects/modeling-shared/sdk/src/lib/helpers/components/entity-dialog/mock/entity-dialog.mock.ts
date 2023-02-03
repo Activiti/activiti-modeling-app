@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModelFieldProperty } from '../../../../interfaces/model-creator.interface';
+import { FormRendererField } from '../../../../form-fields-renderer/public-api';
 import { MODELER_NAME_REGEX } from '../../../utils/create-entries-names';
 
-export const mockModelCreatorDialogFields: ModelFieldProperty[] = [
+export const mockModelCreatorDialogFields: FormRendererField[] = [
     {
         key: 'name',
         label: 'fake-name',
@@ -44,12 +43,12 @@ export const mockModelCreatorDialogFields: ModelFieldProperty[] = [
     }
 ];
 
-export const mockModelCreatorDialogFieldsWithDefaultValues: ModelFieldProperty[] = [
+export const mockModelCreatorDialogFieldsWithDefaultValues: FormRendererField[] = [
     {
         key: 'name',
         label: 'fake-name',
         type: 'text',
-        default: 'fake-default-name',
+        defaultValue: 'fake-default-name',
         validators: [
             {
                 type: 'required',
@@ -67,50 +66,8 @@ export const mockModelCreatorDialogFieldsWithDefaultValues: ModelFieldProperty[]
         key: 'description',
         label: 'fake-description',
         type: 'textarea',
-        default: 'fake-default-description'
+        defaultValue: 'fake-default-description'
     }
 ];
-
-export const mockModelCreatorDialogFieldNumberType: ModelFieldProperty[] = [
-    {
-        key: 'index',
-        label: 'fake-index',
-        type: 'number',
-        default: 99
-    }
-];
-
-export const mockModelCreatorDialogFieldEmptyNumberType: ModelFieldProperty[] = [
-    {
-        key: 'index',
-        label: 'fake-index',
-        type: 'number'
-    }
-];
-
-export const mockModelCreatorDialogFieldWithoutLabel: ModelFieldProperty[] = [
-    {
-        key: 'name',
-        label: '',
-        type: 'text',
-        validators: [
-            {
-                type: 'required',
-                value: true,
-                error: 'SDK.CREATE_DIALOG.ERROR.REQUIRED'
-            },
-            {
-                type: 'pattern',
-                value: MODELER_NAME_REGEX,
-                error: 'fake-pattern-error-message'
-            }
-        ]
-    }
-];
-
-export const mockFormGroup: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(MODELER_NAME_REGEX)]),
-    description: new FormControl('')
-});
 
 export const mockValuesProperty = { id: 'fake-values-id', name: 'fake-values-name', description: 'fake-values-description' };

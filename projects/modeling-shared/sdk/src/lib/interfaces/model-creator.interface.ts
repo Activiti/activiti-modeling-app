@@ -18,6 +18,7 @@
 import { InjectionToken } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { MODEL_TYPE } from '../api/types';
+import { FormRendererField } from '../form-fields-renderer/models/form-renderer-field.interface';
 import { AllowedCharacters } from '../helpers/common';
 
 export type ActionConstructor = new (...args: any[]) => Action;
@@ -27,7 +28,7 @@ export interface ModelCreatorDialogParams {
     nameField?: string,
     descriptionField?: string,
     allowedCharacters?: AllowedCharacters,
-    fields: ModelFieldProperty[];
+    fields: FormRendererField[];
     submitText?: string;
     action: ActionConstructor;
     callback: (param?: any) => any;
@@ -49,14 +50,6 @@ export interface FieldValidator {
     type: string;
     value: any;
     error: string;
-}
-
-export interface ModelFieldProperty {
-    key: string;
-    label: string;
-    type: string;
-    default?: any;
-    validators?: FieldValidator[];
 }
 
 export const MODEL_CREATORS = new InjectionToken<ModelCreator[]>('model-creators');

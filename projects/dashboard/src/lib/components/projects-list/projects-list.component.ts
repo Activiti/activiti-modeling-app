@@ -187,6 +187,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
                     key: 'name',
                     label: 'DASHBOARD.DIALOGS.PROJECT_NAME',
                     type: 'text',
+                    defaultValue: name,
                     validators: [
                         {
                             type: 'required',
@@ -203,7 +204,8 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
                 {
                     key: 'description',
                     label: 'DASHBOARD.DIALOGS.PROJECT_DESC',
-                    type: 'textarea'
+                    type: 'textarea',
+                    defaultValue: description
                 }
             ],
             submitText: 'DASHBOARD.DIALOGS.PROJECT_SUBMIT_TEXT',

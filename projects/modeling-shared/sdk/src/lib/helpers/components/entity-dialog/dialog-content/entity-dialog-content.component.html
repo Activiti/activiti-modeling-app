@@ -1,10 +1,12 @@
 <h2 mat-dialog-title>{{ data.title | translate }}</h2>
 
 <mat-dialog-content>
-    <modelingsdk-entity-dialog-inputs-generator
-        [formGroup]="dialogForm"
-        [fieldProperty]="data.fields">
-    </modelingsdk-entity-dialog-inputs-generator>
+    <modelingsdk-form-fields-renderer
+        [formFields]="data.fields"
+        (valueChanges)="onValueChanges($event)"
+        (validationChanges)="onValidationChanges($event)"
+        (loadingState)="onLoadingStateChanges($event)">
+    </modelingsdk-form-fields-renderer>
 
     <ng-content></ng-content>
 </mat-dialog-content>
@@ -20,7 +22,7 @@
         (click)="onSubmit()"
         data-automation-id="submit-button"
         class="ama-submit-button"
-        [disabled]="!isValid()">
+        [disabled]="isDisabled()">
         {{ submitButton | translate }}
     </button>
 </mat-dialog-actions>

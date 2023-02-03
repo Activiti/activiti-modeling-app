@@ -26,7 +26,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EntityDialogPayload, ProjectEntityDialogForm } from '../../helpers/common';
 import { EntityDialogContentComponent } from '../../helpers/components/entity-dialog/dialog-content/entity-dialog-content.component';
 import { Store } from '@ngrx/store';
-import { EntityDialogContentFormService } from '../../helpers/components/entity-dialog/service/entity-dialog-content-form.service';
 import { FormBuilder } from '@angular/forms';
 import { mockModelCreatorDialogFields, mockValuesProperty } from '../../helpers/components/entity-dialog/mock/entity-dialog.mock';
 
@@ -67,7 +66,6 @@ describe('EditProjectDialogComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: MatDialogRef, useValue: { close: jest.fn() } },
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
-                EntityDialogContentFormService,
                 FormBuilder
             ],
             schemas: [NO_ERRORS_SCHEMA]

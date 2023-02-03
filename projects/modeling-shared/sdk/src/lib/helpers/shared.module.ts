@@ -19,26 +19,40 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { CoreModule } from '@alfresco/adf-core';
 import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
 import { HeaderBreadcrumbsComponent } from './header-breadcrumbs/header-breadcrumbs.component';
 import { PaletteOverlayDirective } from './directives/palette-overlay.directive';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { EntityDialogContentComponent } from './components/entity-dialog/dialog-content/entity-dialog-content.component';
 import { ActiveClassDirective } from './directives/active-class.directive';
-import { EntityDialogContentFormService } from './components/entity-dialog/service/entity-dialog-content-form.service';
-import { EntityDialogInputsGeneratorComponent } from './components/entity-dialog/inputs-generator/entity-dialog-inputs-generator.component';
+import { FormFieldsRendererModule } from '../form-fields-renderer/form-fields-renderer.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-    imports: [CommonModule, MatIconModule, RouterModule, CoreModule.forChild()],
+    imports: [
+        TranslateModule.forRoot(),
+        CommonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatDialogModule,
+        MatButtonModule,
+        RouterModule,
+        FormFieldsRendererModule
+    ],
     declarations: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
         EntityDialogContentComponent,
         AllowedCharactersDirective,
         PaletteOverlayDirective,
-        ActiveClassDirective,
-        EntityDialogInputsGeneratorComponent,
+        ActiveClassDirective
     ],
     exports: [
         HeaderBreadcrumbsComponent,
@@ -47,9 +61,6 @@ import { EntityDialogInputsGeneratorComponent } from './components/entity-dialog
         AllowedCharactersDirective,
         PaletteOverlayDirective,
         ActiveClassDirective,
-    ],
-    providers: [
-        EntityDialogContentFormService
     ]
 })
 export class SharedModule {}

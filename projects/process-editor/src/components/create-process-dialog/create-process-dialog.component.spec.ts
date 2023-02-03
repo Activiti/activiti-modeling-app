@@ -25,10 +25,9 @@ import { By } from '@angular/platform-browser';
 import {
     AmaState,
     EntityDialogContentComponent,
-    EntityDialogContentFormService,
     EntityDialogPayload,
-    MODELER_NAME_REGEX,
-    ModelFieldProperty
+    FormRendererField,
+    MODELER_NAME_REGEX
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { CreateProcessDialogComponent } from './create-process-dialog.component';
 import { ProcessCategorySelectorComponent } from '../process-category-selector/process-category-selector.component';
@@ -49,7 +48,7 @@ describe('CreateProcessDialogComponent', () => {
 
     const mockValuesProperty = { id: 'fake-values-id', name: 'fake-values-name', description: 'fake-values-description' };
 
-    const mockModelCreatorDialogFields: ModelFieldProperty[] = [
+    const mockModelCreatorDialogFields: FormRendererField[] = [
         {
             key: 'name',
             label: 'fake-name',
@@ -105,7 +104,6 @@ describe('CreateProcessDialogComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: MatDialogRef, useValue: { close: jest.fn() } },
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogDataWithValues },
-                EntityDialogContentFormService,
                 FormBuilder
             ],
             schemas: [NO_ERRORS_SCHEMA]
@@ -131,10 +129,6 @@ describe('CreateProcessDialogComponent', () => {
     it('should dispatch action on submit', async () => {
         spyOn(store, 'dispatch');
 
-        const submitButton = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-
-        submitButton.triggerEventHandler('click', null);
-
         const payload = {
             form: {
                 name: 'fake-values-name',
@@ -143,6 +137,8 @@ describe('CreateProcessDialogComponent', () => {
             id: 'fake-values-id',
             category: ''
         };
+
+        createProcessComponent.submit({ payload, navigateTo: true, callback });
 
         expect(createProcessComponent.data.action).toHaveBeenCalledWith(payload, true, callback);
         expect(store.dispatch).toHaveBeenCalledWith(createProjectAttemptActionImplementationMock);
@@ -156,9 +152,6 @@ describe('CreateProcessDialogComponent', () => {
 
         fixture.detectChanges();
 
-        const submitButton = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        submitButton.triggerEventHandler('click', null);
-
         const payload = {
             form: {
                 name: 'fake-values-name',
@@ -167,6 +160,8 @@ describe('CreateProcessDialogComponent', () => {
             id: 'fake-values-id',
             category: newCategory
         };
+
+        createProcessComponent.submit({ payload, navigateTo: true, callback });
 
         expect(createProcessComponent.data.action).toHaveBeenCalledWith(payload, true, callback);
         expect(store.dispatch).toHaveBeenCalledWith(createProjectAttemptActionImplementationMock);

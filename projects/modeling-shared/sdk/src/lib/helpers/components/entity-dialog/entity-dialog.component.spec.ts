@@ -24,9 +24,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
-import { By } from '@angular/platform-browser';
 import { EntityDialogContentComponent } from './dialog-content/entity-dialog-content.component';
-import { EntityDialogContentFormService } from './service/entity-dialog-content-form.service';
 import { FormBuilder } from '@angular/forms';
 import { EntityDialogPayload } from '../../common';
 import { mockModelCreatorDialogFields, mockValuesProperty } from './mock/entity-dialog.mock';
@@ -61,7 +59,6 @@ describe('EntityDialogComponent', () => {
                 { provide: Store, useValue: { dispatch: jest.fn() } },
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogDataWithValues },
-                EntityDialogContentFormService,
                 FormBuilder
             ],
             schemas: [NO_ERRORS_SCHEMA]
@@ -80,10 +77,6 @@ describe('EntityDialogComponent', () => {
     it('should dispatch action on submit', async () => {
         spyOn(store, 'dispatch');
 
-        const submitButton = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-
-        submitButton.triggerEventHandler('click', null);
-
         const payload = {
             form: {
                 name: 'fake-values-name',
@@ -91,6 +84,8 @@ describe('EntityDialogComponent', () => {
             },
             id: 'fake-values-id'
         };
+
+        component.submit({ payload, navigateTo: true, callback });
 
         expect(component.data.action).toHaveBeenCalledWith(payload, true, callback);
         expect(store.dispatch).toHaveBeenCalledWith(createProjectAttemptActionImplementationMock);

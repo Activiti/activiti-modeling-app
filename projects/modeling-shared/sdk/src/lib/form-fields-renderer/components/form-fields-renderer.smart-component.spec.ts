@@ -75,6 +75,25 @@ describe('FormFieldsRendererSmartComponent', () => {
         component = fixture.componentInstance;
     });
 
+    it('should emit loading state', fakeAsync(() => {
+        component.formGroup = mockFormGroup;
+        component.formFields = mockFormRendererFields;
+        fixture.detectChanges();
+
+        const loadingStateSpy = spyOn(component.loadingState, 'emit');
+        component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFields, false) });
+
+        const nameControl: AbstractControl = component.formGroup.get('name');
+        nameControl.setValue('new-value');
+
+        tick(150);
+        expect(loadingStateSpy).toHaveBeenCalledWith(true);
+
+        tick(50);
+        expect(loadingStateSpy).toHaveBeenCalledWith(false);
+        expect(loadingStateSpy).toHaveBeenCalledTimes(2);
+    }));
+
     describe('text field', () => {
         let nameField: DebugElement;
         let nameControl: AbstractControl;
@@ -177,7 +196,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             nameControl = component.formGroup.get('name');
             nameControl.setValue('new-value');
-            tick(450);
+            tick(150);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -260,7 +279,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             numberControl = component.formGroup.get('index');
             numberControl.setValue(95);
-            tick(450);
+            tick(150);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -294,7 +313,7 @@ describe('FormFieldsRendererSmartComponent', () => {
             nameControl.setValue('mock-name');
             const descriptionControl = component.formGroup.get('description');
             descriptionControl.setValue('new-description');
-            tick(450);
+            tick(150);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -339,7 +358,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             const dropdownControl = component.formGroup.get('drink');
             dropdownControl.setValue(1);
-            tick(450);
+            tick(150);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -365,7 +384,7 @@ describe('FormFieldsRendererSmartComponent', () => {
             const descriptionControl = component.formGroup.get('description');
             descriptionControl.setValue('mock description');
 
-            tick(450);
+            tick(150);
             expect(valueChangesSpy).not.toHaveBeenCalled();
 
             tick(50);
@@ -373,7 +392,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             nameControl.setValue('mock-name');
 
-            tick(450);
+            tick(150);
             expect(valueChangesSpy).not.toHaveBeenCalled();
 
             tick(50);

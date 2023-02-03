@@ -69,8 +69,8 @@ describe('SaveAsDialogComponent', () => {
     }));
 
     it('should render input placeholders', () => {
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-model-input-name"]'));
-        const descField = fixture.debugElement.query(By.css('[data-automation-id="ama-model-input-description"]'));
+        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-input-name"]'));
+        const descField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-textarea-description"]'));
 
         expect(nameField.nativeElement.placeholder).toBe('SDK.SAVE_AS_DIALOG.FIELD_PROPERTIES.NAME');
         expect(descField.nativeElement.placeholder).toBe('SDK.SAVE_AS_DIALOG.FIELD_PROPERTIES.DESCRIPTION');
@@ -97,7 +97,7 @@ describe('SaveAsDialogComponent', () => {
 
     it('should test submit action on enter keydown of name field', () => {
         spyOn(store, 'dispatch');
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-model-input-name"]'));
+        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-input-name"]'));
         component.name = 'name';
         component.description = 'test-desc';
 
@@ -108,7 +108,7 @@ describe('SaveAsDialogComponent', () => {
 
     it('should test submit action on enter keydown of submit button', () => {
         spyOn(store, 'dispatch');
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-model-input-name"]'));
+        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-input-name"]'));
         component.name = 'name';
         component.description = 'test-desc';
 
@@ -118,7 +118,7 @@ describe('SaveAsDialogComponent', () => {
 
     it('should not submit action on enter keydown if the form is not valid', () => {
         spyOn(store, 'dispatch');
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-model-input-name"]'));
+        const nameField = fixture.debugElement.query(By.css('[data-automation-id="ama-form-fields-renderer-input-name"]'));
         component.name = 'not_valid-name';
         component.description = 'test-desc';
 

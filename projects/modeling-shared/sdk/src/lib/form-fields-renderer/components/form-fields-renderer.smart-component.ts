@@ -28,7 +28,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { InstantErrorStateMatcher } from '../../helpers/utils/instant-error-state-matcher';
 import { FormRendererField } from '../models/form-renderer-field.interface';
 import { FormFieldsRendererService } from '../service/form-fields-renderer.service';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -39,7 +39,7 @@ import { Subscription } from 'rxjs';
 })
 export class FormFieldsRendererSmartComponent implements OnChanges {
 
-    private static FORM_DEBOUNCE_TIME = 500;
+    private static FORM_DEBOUNCE_TIME = 200;
 
     @Input()
     formFields: FormRendererField[] = [];
@@ -49,6 +49,9 @@ export class FormFieldsRendererSmartComponent implements OnChanges {
 
     @Output()
     validationChanges: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    @Output()
+    loadingState: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
     formGroup: FormGroup;
     matcher = new InstantErrorStateMatcher();
@@ -70,12 +73,16 @@ export class FormFieldsRendererSmartComponent implements OnChanges {
         this.validationChanges.emit(this.formValid);
 
         this.formChangesSubscription = this.formGroup.valueChanges
-            .pipe(debounceTime(FormFieldsRendererSmartComponent.FORM_DEBOUNCE_TIME))
+            .pipe(
+                tap(() => this.loadingState.emit(true)),
+                debounceTime(FormFieldsRendererSmartComponent.FORM_DEBOUNCE_TIME)
+            )
             .subscribe((formValues: FormRendererField[]) => {
                 if (this.formGroup.valid) {
                     this.valueChanges.emit(formValues);
                 }
                 this.emitFormValidation();
+                this.loadingState.emit(false);
             });
     }
 

@@ -29,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeFilterComponent>;
@@ -44,6 +45,7 @@ describe('ProjectTreeFilterComponent ', () => {
                 MatButtonModule,
                 TranslateModule.forRoot(),
                 SharedModule,
+                HttpClientTestingModule,
                 NoopAnimationsModule,
                 MatMenuModule
             ],

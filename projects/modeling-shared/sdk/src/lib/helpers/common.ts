@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelFieldProperty } from '../interfaces/model-creator.interface';
+import { FormRendererField } from '../form-fields-renderer/models/form-renderer-field.interface';
 
 export interface EntityDialogForm {
     id?: string;
@@ -38,7 +38,7 @@ export interface EntityDialogPayload {
     title: string;
     nameField?: string;
     descriptionField?: string;
-    fields: ModelFieldProperty[];
+    fields: FormRendererField[];
     values?: EntityDialogForm;
     allowedCharacters?: AllowedCharacters;
     submitText?: string;
