@@ -45,14 +45,14 @@ import {
     HXP_DOC_TYPE,
     DECISION_TABLE,
     AUTHENTICATION,
-    CUSTOM_MODEL, SCRIPT, PROJECT_MODEL, PROJECT_TYPE, RELEASE_TYPE, RELEASE
+    CUSTOM_MODEL, SCRIPT, PROJECT_MODEL, PROJECT_TYPE, RELEASE_TYPE, RELEASE, DOWNLOAD_PROJECT_TYPE, DOWNLOAD_PROJECT
 } from '../api/types';
 
 export interface IErrorResponse extends HttpErrorResponse {
     errors?: GeneralError[]
 }
 
-type ModelType = MODEL_TYPE | PROJECT_TYPE | RELEASE_TYPE;
+type ModelType = MODEL_TYPE | PROJECT_TYPE | RELEASE_TYPE | DOWNLOAD_PROJECT_TYPE;
 
 export interface IErrorHandlerProps {
     response: IErrorResponse;
@@ -99,10 +99,17 @@ export class ValidationService {
 
         this.setLoggerProps(modelType);
 
-        if (modelType === PROJECT) {
+        if (modelType === PROJECT || modelType === DOWNLOAD_PROJECT) {
             this.setTitle(message);
             this.setErrors(errors);
+        }
+
+        if (modelType === PROJECT) {
             return this.handleProjectErrors();
+        }
+
+        if (modelType === DOWNLOAD_PROJECT) {
+            return this.handleSuccessActionLogs(successAction);
         }
 
         this.tryParseMessage(message);
@@ -169,7 +176,7 @@ export class ValidationService {
                             messages: this.generateErrorMessages()
                         }
                     }),
-                    this.logErrors(this.errors)
+                    this.logErrors()
                 ];
             } else if (this.responseHasOnlyWarnings(this.errors)) {
                 return [
@@ -186,7 +193,7 @@ export class ValidationService {
                         messages: this.generateErrorMessages()
                     }
                 }),
-                this.logErrors(this.errors),
+                this.logErrors(),
                 this.logWarnings(this.errors)
             ];
         }
@@ -204,7 +211,7 @@ export class ValidationService {
             return [
                 ...actions,
                 errorAction,
-                this.logErrors(this.errors),
+                this.logErrors(),
             ];
         } else if (this.responseHasOnlyWarnings(this.errors)) {
             return [
@@ -216,7 +223,7 @@ export class ValidationService {
             ...actions,
             errorAction,
             this.logWarnings(this.errors),
-            this.logErrors(this.errors),
+            this.logErrors(),
         ];
     }
 
@@ -239,7 +246,7 @@ export class ValidationService {
                 },
                 action: successAction
             }),
-            this.logErrors(this.errors)
+            this.logErrors()
         ];
     }
 
@@ -251,7 +258,7 @@ export class ValidationService {
         return Array.isArray(errors) && errors.length && errors.every(({ warning = false }) => !warning);
     }
 
-    private logErrors(errors: GeneralError[]): LogAction {
+    private logErrors(): LogAction {
         return this.logService.logError(this.getErrorLogInitiator(),
             this.generateErrorMessages());
     }
@@ -338,8 +345,9 @@ export class ValidationService {
                 this.logInitiatorKey = 'Content Model Editor';
                 this.logInitiatorDisplayName = 'ADV_PROJECT_MODEL_EDITOR.NAME';
                 break;
-            case PROJECT:
             case RELEASE:
+            case PROJECT:
+            case DOWNLOAD_PROJECT:
                 this.logInitiatorKey = 'Project Editor';
                 this.logInitiatorDisplayName = 'Project Editor';
                 break;

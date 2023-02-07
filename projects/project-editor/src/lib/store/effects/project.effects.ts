@@ -21,7 +21,7 @@ import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import {
-    OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
+    BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
     LeaveProjectAction,
     SnackbarInfoAction,
     getProjectEditorLogInitiator,
@@ -45,7 +45,6 @@ import {
     ValidationService,
     IErrorResponse,
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
@@ -132,16 +131,14 @@ export class ProjectEffects {
     private exportProjectAttempt(payload: ExportProjectAttemptPayload) {
         return this.projectEditorService.validateProject(payload.projectId).pipe(
             switchMap(() => this.exportProject(payload.projectId, payload.projectName)),
-            catchError(response => this.getDialogData(response).pipe(
-                switchMap(dialogData => [
-                    this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
-                    new OpenConfirmDialogAction({
-                        dialogData: dialogData,
-                        action: payload.action
-                    })
-                ])
-            )
-            ));
+            catchError(response => this.blobService.convert2Json(response.error.response.body).pipe(
+                switchMap((errorResponse: IErrorResponse) => this.validationService.handleErrors({
+                    response: errorResponse,
+                    modelType: 'download_project',
+                    successAction: payload.action
+                }))
+            ))
+        );
     }
 
     private validateProject(projectId: string) {
@@ -157,19 +154,6 @@ export class ProjectEffects {
                 }))
             ))
         );
-    }
-
-    private getDialogData(response: any): Observable<DialogData> {
-        return this.blobService.convert2Json(response.error.response.body).pipe(
-            switchMap(body => {
-                const errors = body.errors.map(error => error.description);
-                return of({
-                    title: body.message,
-                    subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                    messages: errors
-                });
-            }
-            ));
     }
 
     private handleError(userMessage: string): Observable<SnackbarErrorAction> {

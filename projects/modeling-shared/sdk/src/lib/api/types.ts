@@ -20,6 +20,7 @@
 import { VariableMappingBehavior } from '../interfaces/variable-mapping-type.interface';
 
 export type PROJECT_TYPE = 'project';
+export type DOWNLOAD_PROJECT_TYPE = 'download_project';
 export type RELEASE_TYPE = 'release';
 export type PROJECT_MODEL_TYPE = 'project_model';
 export type CUSTOM_MODEL_TYPE = 'model';
@@ -41,6 +42,7 @@ export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TA
 | FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE | PROJECT_MODEL_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
+export const DOWNLOAD_PROJECT: DOWNLOAD_PROJECT_TYPE = 'download_project';
 export const RELEASE: RELEASE_TYPE = 'release';
 export const PROJECT_MODEL: PROJECT_MODEL_TYPE = 'project_model';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';

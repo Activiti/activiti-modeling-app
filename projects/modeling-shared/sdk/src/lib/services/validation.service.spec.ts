@@ -339,5 +339,30 @@ describe('ValidationService', () => {
             expect(validationService.handleErrors(errorHandlerPropsMock))
                 .toEqual(expected);
         });
+
+        it('should download the project and display warning messages in log history panel when model type is download project', () => {
+            errorHandlerPropsMock = {
+                ...errorHandlerPropsMock,
+                response: {
+                    status: 400, message: 'Validation errors found in project models', errors: [
+                        { description: 'warning message', warning: true } as GeneralError,
+                    ]
+                } as IErrorResponse,
+                modelType: 'download_project'
+            };
+            const expectedWarningLogAction = LogService.logWarning({ key: 'Project Editor', displayName: 'Project Editor' }, 'warning message');
+            expectedWarningLogAction.log.datetime = (<any>expect).any(Date);
+            const expected = [
+                new SetApplicationLoadingStateAction(false),
+                new ValidateSuccessMockAction([
+                    new SnackbarInfoAction('Model Saved successfully.')
+                ]),
+                expectedWarningLogAction,
+                new SetLogHistoryVisibilityAction(true)
+            ];
+
+            expect(validationService.handleErrors(errorHandlerPropsMock))
+                .toEqual(expected);
+        });
     });
 });
