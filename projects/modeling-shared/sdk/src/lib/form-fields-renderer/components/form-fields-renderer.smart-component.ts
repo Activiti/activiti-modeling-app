@@ -45,7 +45,7 @@ export class FormFieldsRendererSmartComponent implements OnChanges {
     formFields: FormRendererField[] = [];
 
     @Output()
-    valueChanges: EventEmitter<FormRendererField[]> = new EventEmitter<FormRendererField[]>();
+    valueChanges: EventEmitter<any> = new EventEmitter<any>();
 
     @Output()
     validationChanges: EventEmitter<boolean> = new EventEmitter<boolean>();
