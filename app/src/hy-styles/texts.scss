@@ -1,0 +1,146 @@
+.ama-no-selection {
+    color: $hy-text-secondary !important;
+}
+
+mat-dialog-content .ama-message-dialog .ama-no-messages {
+    color: $hy-text-secondary;
+}
+
+body {
+    .mat-dialog-container {
+        color: $hy-text-black;
+    }
+
+    .mat-button,
+    .mat-button.mat-primary,
+    .mat-icon-button.mat-primary,
+    .mat-stroked-button.mat-primary {
+        color: map-get($hy-primary, 700);
+    }
+
+    .mat-drawer-container {
+        color: $hy-text-black;
+    }
+
+    .mat-form-field-appearance-legacy {
+        .mat-hint {
+            color: $hy-text-secondary;
+        }
+    }
+
+    .mat-select-value {
+        color: $hy-text-black;
+    }
+
+    .mat-hint {
+        color: $hy-text-secondary;
+    }
+
+    .mat-expansion-panel-header-title {
+        color: $hy-text-black;
+    }
+
+    .mat-expansion-panel-body {
+        p {
+            color: $hy-text-secondary;
+        }
+    }
+
+    .mat-card {
+        color: $hy-text-black;
+    }
+
+    .mat-cell,
+    .mat-footer-cell {
+        color: $hy-text-black;
+    }
+
+    .mat-paginator {
+        color: $hy-text-secondary;
+        .mat-paginator-range-actions {
+            .mat-icon-button {
+                color: $hy-text-secondary;
+            }
+        }
+    }
+
+    .mat-card-subtitle {
+        color: $hy-text-secondary;
+    }
+}
+
+modelingsdk-workbench-layout-content {
+    .cdk-drop-list::before {
+        color: $hy-text-secondary;
+    }
+}
+
+mat-tab-body.mat-tab-body {
+    .ama-authentication-details-page {
+        ama-authentication-editor-smart {
+            .ama-authentication-smart-editor {
+                .ama-authentication-editor-info {
+                    color: $hy-text-secondary;
+                }
+            }
+        }
+    }
+}
+.ama-feature-details-block .ama-features-header h3 {
+    color: $hy-text-black;
+}
+
+ama-decision-table-modeler {
+    .dmn-decision-table-container {
+        .decision-table-properties {
+            color: $hy-text-black;
+        }
+    }
+    .ama-canvas-editor .dmn-decision-table-container .tjs-table td,
+    .ama-canvas-editor .dmn-decision-table-container .tjs-table th {
+        color: $hy-text-secondary;
+    }
+}
+
+.dms-heading,
+.dms-label {
+    color: $hy-text-black;
+}
+.dms-input {
+    &::placeholder {
+        color: $hy-text-disabled;
+    }
+}
+
+.ama-script-editor {
+    .ama-script-page-info {
+        .ama-script-page-info-docs-link {
+            color: map-get($hy-primary, 700);
+        }
+        div {
+            color: $hy-text-secondary;
+        }
+    }
+}
+
+.modelingsdk-json-schema-editor-node-inputs-id.ama-parent,
+.hxp-schema-tree-component {
+    .mat-form-field.mat-form-field-disabled
+        .mat-form-field-infix
+        .mat-input-element {
+        color: $hy-text-black;
+    }
+}
+
+.adf-empty-content {
+    .adf-icon {
+        color: $hy-text-black;
+    }
+    div {
+        color: $hy-text-secondary;
+    }
+}
+
+.ama-dashboard-list .ama-dashboard-list-container .mat-header-cell {
+    color: $hy-text-secondary;
+}

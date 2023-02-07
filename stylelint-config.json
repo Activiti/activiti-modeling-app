@@ -73,7 +73,7 @@
         "max-line-length": 100,
         "linebreaks": "unix",
         "selector-class-pattern": [
-            "^_?(quick|quick|quick-|bpp-|monaco-editor|dark-theme|djs-|bjs-|bpmn-|action|adf|adf-|app|app-|ama|ama-|studio-|cdk-|dmn-|example-|demo-|mat-|material-|textLayer|canvasWrapper|page|entry|dialog|dirty|active|modelingsdk|modelingsdk-)",
+            "^_?(quick|quick|quick-|bpp-|monaco-editor|dark-theme|djs-|bjs-|bpmn-|action|adf|adf-|app|app-|ama|ama-|studio-|cdk-|dmn-|example-|demo-|dms-|dmn-|decision-|hxp-|tjs-|mat-|material-|textLayer|canvasWrapper|page|entry|dialog|dirty|active|modelingsdk|modelingsdk-)",
             {
                 "resolveNestedSelectors": true
             }
