@@ -1,8 +1,7 @@
 .mat-form-field {
-    //inactive
+
     .mat-form-field-infix {
         .mat-input-element {
-            color: map-get($hy-neutral, 500);
             color: $hy-text-black;
         }
     }
@@ -18,7 +17,7 @@
             color: map-get($hy-neutral, 500);
         }
     }
-    //disabled
+
     &.mat-form-field-disabled.adf-property-field,
     &.mat-form-field-disabled {
         .mat-form-field-infix {
@@ -39,11 +38,12 @@
             }
         }
     }
-    //active
+
     &.mat-focused {
         .mat-form-field-infix {
             .mat-input-element {
-                color: map-get($hy-primary, 700);
+                caret-color: map-get($hy-primary, 700);
+                color: $hy-text-black;
             }
         }
 
@@ -61,7 +61,7 @@
             }
         }
     }
-    //error
+
     &.adf-property-field-has-error,
     &.mat-form-field-has-error,
     & + .mat-error,
@@ -69,7 +69,7 @@
         .mat-form-field-infix {
             .ama-mat-error,
             .mat-input-element {
-                color: $hy-error;
+                color: $hy-text-black;
             }
         }
 
@@ -86,13 +86,38 @@
 
 div.adf-property-list {
     .adf-property {
-        .ama-process-properties-version-title,
-        .adf-property-label {
+        .ama-process-properties-version-title {
             color: $hy-text-black;
+        }
+        ama-card-process-category,
+        ama-process-name,
+        adf-card-view-textitem {
+            .adf-property-label {
+                color: $hy-text-black;
+            }
         }
         .ama-process-properties-version-value,
         .adf-property-value {
-            color: map-get($hy-neutral, 500);
+            color: $hy-text-black;
         }
+    }
+}
+
+.adf-property {
+    adf-card-view-item-dispatcher {
+        ama-multi-instance-item {
+            .mat-form-field-infix {
+                .adf-property-label {
+                    color: $hy-text-black;
+                }
+            }
+        }
+    }
+}
+
+.mat-form-field-label-wrapper {
+    .mat-form-field-label.mat-empty,
+    .mat-form-field-label.mat-form-field-empty {
+        color:$hy-text-disabled !important;
     }
 }
