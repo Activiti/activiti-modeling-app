@@ -53,8 +53,8 @@
 
 modelingsdk-json-schema-editor {
     .modelingsdk-json-schema-editor-component::before {
-        border-left: 1px solid map-get($hy-neutral, 500);
-        border-bottom: 1px solid map-get($hy-neutral, 500);
+        border-left: 1px solid var(--theme-schema-tree-border-color);
+        border-bottom: 1px solid var(--theme-schema-tree-border-color);
     }
     .mat-form-field .mat-form-field-infix .mat-input-element {
         color: $hy-text-black;

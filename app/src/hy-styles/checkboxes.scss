@@ -1,5 +1,4 @@
 mat-checkbox.mat-checkbox {
-    //unchecked
     .mat-checkbox-inner-container {
         .mat-checkbox-frame {
             border-color: $hy-text-black;
@@ -12,7 +11,6 @@ mat-checkbox.mat-checkbox {
         }
     }
 
-    //checked
     &.mat-checkbox-checked {
         .mat-checkbox-inner-container {
             .mat-checkbox-background {
@@ -21,7 +19,6 @@ mat-checkbox.mat-checkbox {
         }
     }
 
-    //disabled
     &.mat-checkbox-disabled {
         .mat-checkbox-inner-container {
             .mat-checkbox-frame {
@@ -34,7 +31,6 @@ mat-checkbox.mat-checkbox {
                 color: $hy-text-disabled;
             }
         }
-        //disabled & checked
         &.mat-checkbox-checked {
             .mat-checkbox-background {
                 background-color: $hy-text-disabled;
@@ -42,3 +38,16 @@ mat-checkbox.mat-checkbox {
         }
     }
 }
+
+body {
+
+    .mat-pseudo-checkbox {
+        color:$hy-text-black;
+    }
+
+    .mat-primary .mat-pseudo-checkbox-checked,
+    .mat-primary .mat-pseudo-checkbox-indeterminate {
+        background-color: map-get($hy-primary, 700);
+    }
+}
+

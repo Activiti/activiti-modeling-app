@@ -1,5 +1,5 @@
 .modelingsdk-json-schema-editor-component {
-    border-left: 1px solid var(--theme-primary-color);
+    border-left: 1px solid var(--theme-schema-tree-border-color);
     margin-left: 20px;
     position: relative;
 
@@ -121,8 +121,8 @@
     bottom: calc(100% - 37px);
     left: -1px;
     width: 25px;
-    border-left: 1px solid var(--theme-primary-color);
-    border-bottom: 1px solid var(--theme-primary-color);
+    border-left: 1px solid var(--theme-schema-tree-border-color);
+    border-bottom: 1px solid var(--theme-schema-tree-border-color);
     border-top: 0 none transparent;
     border-right: 0 none transparent;
 }

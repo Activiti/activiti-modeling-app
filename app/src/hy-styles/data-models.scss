@@ -4,10 +4,21 @@
         &:hover:not(.mat-option-disabled) {
             background-color: map-get($hy-neutral, 100);
         }
+
         &.mat-selected:not(.mat-option-disabled) {
             background-color: map-get($hy-neutral, 200);
             color: $hy-text-black;
             font-weight: bold;
+        }
+
+        &.mat-option-disabled {
+            color: $hy-text-disabled;
+            .mat-pseudo-checkbox-checked {
+                background-color: $hy-text-disabled;
+            }
+            .mat-pseudo-checkbox {
+                color: $hy-text-disabled;
+            }
         }
     }
 }

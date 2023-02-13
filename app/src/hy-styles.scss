@@ -218,7 +218,8 @@ $defaults: (
     // hy-theme
     --theme-inactive-focused: $hy-inactive-focused,
     --theme-text-white: $hy-text-white,
-    --theme-tab-unfocused: mat.get-color-from-palette($accent, 300)
+    --theme-tab-unfocused: mat.get-color-from-palette($accent, 300),
+    --theme-schema-tree-border-color: mat.get-color-from-palette($accent, 300)
 );
 
 // propagates SCSS variables into the CSS variables scope
