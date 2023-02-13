@@ -38,8 +38,13 @@ export type AUTHENTICATION_TYPE = 'authentication';
 export type HXP_DOC_TYPE_TYPE = 'hxp_doc_type';
 export type HXP_MIXIN_TYPE = 'hxp_mixin';
 export type HXP_SCHEMA_TYPE = 'hxp_schema';
+export type CONTENT_SERVICE_TYPE = 'content-service';
+export type HXP_CONTENT_SERVICE_TYPE = 'hxp-content-service';
+export type EMAIL_SERVICE_TYPE = 'email-service';
+export type DOCGEN_SERVICE_TYPE = 'docgen-service';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
-| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE | PROJECT_MODEL_TYPE;
+| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE | PROJECT_MODEL_TYPE | CONTENT_SERVICE_TYPE
+| HXP_CONTENT_SERVICE_TYPE | EMAIL_SERVICE_TYPE | DOCGEN_SERVICE_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const DOWNLOAD_PROJECT: DOWNLOAD_PROJECT_TYPE = 'download_project';
@@ -49,6 +54,8 @@ export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
 export const PROCESS: PROCESS_TYPE = 'process';
 export const FORM: FORM_TYPE = 'form';
 export const CONNECTOR: CONNECTOR_TYPE = 'connector';
+export const CONTENT_SERVICE: CONTENT_SERVICE_TYPE = 'content-service';
+export const HXP_CONTENT_SERVICE: HXP_CONTENT_SERVICE_TYPE = 'hxp-content-service';
 export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export const FILE: FILE_TYPE = 'file';
@@ -60,6 +67,8 @@ export const AUTHENTICATION: AUTHENTICATION_TYPE = 'authentication';
 export const HXP_DOC_TYPE: HXP_DOC_TYPE_TYPE = 'hxp_doc_type';
 export const HXP_MIXIN: HXP_MIXIN_TYPE = 'hxp_mixin';
 export const HXP_SCHEMA: HXP_SCHEMA_TYPE = 'hxp_schema';
+export const EMAIL_SERVICE: EMAIL_SERVICE_TYPE = 'email-service';
+export const DOCGEN_SERVICE: DOCGEN_SERVICE_TYPE = 'docgen-service';
 
 export interface Project {
     type: PROJECT_TYPE;
