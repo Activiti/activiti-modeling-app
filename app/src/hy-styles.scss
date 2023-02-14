@@ -39,7 +39,7 @@ $hy-text-secondary: $hy-coolGray-600;
 $hy-text-disabled: $hy-coolGray-500;
 
 // feedback
-$hy-informational: $hy-coolGray-500;
+$hy-informational: map-get($hy-primary, 700);
 $hy-error: $hy-red-600;
 $hy-success: map-get($hy-green, 600);
 $hy-warning: map-get($hy-yellow, 400);
@@ -206,12 +206,6 @@ $defaults: (
     --theme-user-initials-text: $hy-text-black,
 
     // ADF components and services
-    --adf-snackbar-error-bg-color:  $hy-error,
-    --adf-snackbar-error-action-color: $hy-text-white,
-    --adf-snackbar-warning-bg-color:  $hy-warning,
-    --adf-snackbar-warning-action-color: $hy-text-white,
-    --adf-snackbar-info-bg-color:   map-get($hy-primary, 700),
-    --adf-snackbar-info-action-color: $hy-text-white,
     --adf-header-text-color: mat.get-color-from-palette($primary, default-contrast),
     --adf-user-info-color: mat.get-color-from-palette($primary, 300),
 
