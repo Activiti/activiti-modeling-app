@@ -128,6 +128,33 @@ export const mockFormRendererFieldDropdownType: FormRendererField[] = [
     }
 ];
 
+export const mockFormRendererFieldDropdownGroupType: FormRendererField[] = [
+    {
+        key: 'drink',
+        label: 'Choose mock drink item',
+        type: 'dropdown',
+        options: [
+            { label: 'No drink', value: undefined }
+        ],
+        groupOptions: [
+            {
+                label: 'Soft drinks',
+                options: [
+                    { label: 'Coca cola', value: 1 },
+                    { label: 'Sprite', value: 2 }
+                ]
+            },
+            {
+                label: 'Still drinks',
+                options: [
+                    { label: 'Orange juice', value: 3 },
+                    { label: 'Lemonade', value: 4 }
+                ]
+            }
+        ]
+    }
+];
+
 export const mockFormRendererFieldDropdownTypeWithDefaultValue: FormRendererField[] = [
     {
         key: 'drink',

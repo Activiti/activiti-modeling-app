@@ -17,6 +17,7 @@
 
 import { InjectionToken } from '@angular/core';
 import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { MODEL_TYPE } from '../api/types';
 import { FormRendererField } from '../form-fields-renderer/models/form-renderer-field.interface';
 import { AllowedCharacters } from '../helpers/common';
@@ -28,7 +29,8 @@ export interface ModelCreatorDialogParams {
     nameField?: string,
     descriptionField?: string,
     allowedCharacters?: AllowedCharacters,
-    fields: FormRendererField[];
+    fields?: FormRendererField[];
+    fields$?: Observable<FormRendererField[]>;
     submitText?: string;
     action: ActionConstructor;
     callback: (param?: any) => any;

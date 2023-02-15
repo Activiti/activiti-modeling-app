@@ -1,14 +1,22 @@
 <h2 mat-dialog-title>{{ data.title | translate }}</h2>
 
 <mat-dialog-content>
-    <modelingsdk-form-fields-renderer
-        [formFields]="data.fields"
-        (valueChanges)="onValueChanges($event)"
-        (validationChanges)="onValidationChanges($event)"
-        (loadingState)="onLoadingStateChanges($event)">
-    </modelingsdk-form-fields-renderer>
+    <ng-container *ngIf="fieldsLoaded(); else loadingTemplate">
+        <modelingsdk-form-fields-renderer
+            [formFields]="data.fields"
+            (valueChanges)="onValueChanges($event)"
+            (validationChanges)="onValidationChanges($event)"
+            (loadingState)="onLoadingStateChanges($event)">
+        </modelingsdk-form-fields-renderer>
 
-    <ng-content></ng-content>
+        <ng-content></ng-content>
+    </ng-container>
+
+    <ng-template #loadingTemplate>
+        <div class="ama-entity-dialog-content-loading-spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

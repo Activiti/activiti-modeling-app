@@ -48,7 +48,7 @@ export class HxPDocumentTypeApiVariation<M extends HxPDocumentType, C extends JS
     public createInitialContent(model: M): C {
         return <C>{
             description: model.description,
-            allOf: []
+            allOf: model.parent.type ? [this.getJsonSchemaRef(model.parent.type, model.parent.name)] : []
         };
     }
 
@@ -76,5 +76,9 @@ export class HxPDocumentTypeApiVariation<M extends HxPDocumentType, C extends JS
 
     public getFileToUpload(model: Partial<M>, content: C): Blob {
         return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
+
+    private getJsonSchemaRef(type: string, name: string): JSONSchemaInfoBasics {
+        return ({ $ref: `#/$defs/${type}/${name}` });
     }
 }

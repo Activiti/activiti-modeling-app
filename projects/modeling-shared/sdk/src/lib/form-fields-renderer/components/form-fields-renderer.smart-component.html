@@ -44,6 +44,18 @@
                     *ngFor="let option of field.options" [value]="option.value">
                         {{ option.label }}
                 </mat-option>
+                <ng-container *ngIf="field.groupOptions">
+                    <mat-optgroup
+                        [attr.data-automation-id]="'ama-form-fields-renderer-dropdown-group-' + group.label"
+                        [label]="group.label | translate"
+                        *ngFor="let group of field.groupOptions">
+                        <mat-option
+                            [attr.data-automation-id]="'ama-form-fields-renderer-dropdown-group-option-' + option.label"
+                            *ngFor="let option of group.options" [value]="option.value">
+                                {{ option.label }}
+                        </mat-option>
+                    </mat-optgroup>
+                </ng-container>
             </mat-select>
 
             <mat-error *ngFor="let validator of field.validators">

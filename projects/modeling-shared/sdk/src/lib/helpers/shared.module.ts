@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     imports: [
@@ -44,7 +45,8 @@ import { MatButtonModule } from '@angular/material/button';
         MatDialogModule,
         MatButtonModule,
         RouterModule,
-        FormFieldsRendererModule
+        FormFieldsRendererModule,
+        MatProgressSpinnerModule
     ],
     declarations: [
         HeaderBreadcrumbsComponent,

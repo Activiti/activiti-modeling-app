@@ -82,7 +82,7 @@ describe('CreateProcessDialogComponent', () => {
         callback
     };
 
-    beforeEach(async () => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
@@ -113,20 +113,20 @@ describe('CreateProcessDialogComponent', () => {
 
         fixture = TestBed.createComponent(CreateProcessDialogComponent);
         createProcessComponent = fixture.componentInstance;
-        categorySelectorDebugElement = fixture.debugElement.query(By.css('ama-process-category-selector'));
 
         store = TestBed.inject(MockStore);
-
-        fixture.detectChanges();
-        await fixture.whenStable();
     });
 
     it('should create dialog', () => {
+        fixture.detectChanges();
+
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     });
 
-    it('should dispatch action on submit', async () => {
+    it('should dispatch action on submit', () => {
+        fixture.detectChanges();
+
         spyOn(store, 'dispatch');
 
         const payload = {
@@ -144,8 +144,11 @@ describe('CreateProcessDialogComponent', () => {
         expect(store.dispatch).toHaveBeenCalledWith(createProjectAttemptActionImplementationMock);
     });
 
-    it('should dispatch new category', async () => {
+    it('should dispatch new category', () => {
+        fixture.detectChanges();
+
         spyOn(store, 'dispatch');
+        categorySelectorDebugElement = fixture.debugElement.query(By.css('ama-process-category-selector'));
 
         const newCategory = 'CategoryMock';
         categorySelectorDebugElement.triggerEventHandler('categoryChange', newCategory);
@@ -167,8 +170,11 @@ describe('CreateProcessDialogComponent', () => {
         expect(store.dispatch).toHaveBeenCalledWith(createProjectAttemptActionImplementationMock);
     });
 
-    it('should listen for category change', async () => {
+    it('should listen for category change', () => {
+        fixture.detectChanges();
+
         spyOn(createProcessComponent, 'onCategoryChange');
+        categorySelectorDebugElement = fixture.debugElement.query(By.css('ama-process-category-selector'));
 
         const newCategory = 'CategoryMock';
         categorySelectorDebugElement.triggerEventHandler('categoryChange', newCategory);

@@ -151,6 +151,7 @@ export interface MinimalModelSummary {
     name: string;
     description?: string;
     prefix?: string;
+    parent?: { name: string; type: string };
 }
 
 export interface Model extends MinimalModelSummary {

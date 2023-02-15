@@ -30,6 +30,7 @@ import {
     mockFormGroup,
     mockFormGroupWithDropdownField,
     mockFormGroupWithNumberField,
+    mockFormRendererFieldDropdownGroupType,
     mockFormRendererFieldDropdownType,
     mockFormRendererFieldNumberTypeWithMinMaxValidators,
     mockFormRendererFields,
@@ -350,6 +351,30 @@ describe('FormFieldsRendererSmartComponent', () => {
             expect(options[1].nativeElement.textContent.trim()).toBe('Coca cola');
             expect(options[2].nativeElement.textContent.trim()).toBe('Orange juice');
             expect(options[3].nativeElement.textContent.trim()).toBe('Lemonade');
+        });
+
+        it('should display dropdown group options', () => {
+            component.formFields = mockFormRendererFieldDropdownGroupType;
+            fixture.detectChanges();
+
+            const dropdownTrigger = fixture.debugElement.query(By.css('.mat-select-trigger'));
+            dropdownTrigger.nativeElement.dispatchEvent(new Event('click'));
+            fixture.detectChanges();
+
+            const options = fixture.debugElement.queryAll(By.css('mat-option'));
+            const groupOptions = fixture.debugElement.queryAll(By.css('mat-optgroup'));
+
+            expect(options.length).toBe(5);
+            expect(groupOptions.length).toBe(2);
+            expect(options[0].nativeElement.textContent.trim()).toBe('No drink');
+
+            const softDrinksMockLabel = fixture.debugElement.query(By.css('#mat-optgroup-label-0'));
+            expect(softDrinksMockLabel.nativeElement.textContent.trim()).toBe('Soft drinks');
+            expect(groupOptions[0].nativeElement.textContent.trim()).toBe('Soft drinks  Coca cola  Sprite');
+
+            const stillDrinksMockLabel = fixture.debugElement.query(By.css('#mat-optgroup-label-1'));
+            expect(stillDrinksMockLabel.nativeElement.textContent.trim()).toBe('Still drinks');
+            expect(groupOptions[1].nativeElement.textContent.trim()).toBe('Still drinks  Orange juice  Lemonade');
         });
 
         it('should emit value changes', fakeAsync(() => {

@@ -26,6 +26,8 @@ import { FormBuilder } from '@angular/forms';
 import { mockModelCreatorDialogFields, mockValuesProperty } from '../mock/entity-dialog.mock';
 import { EntityDialogPayload } from '../../../common';
 import { FormFieldsRendererModule } from '../../../../form-fields-renderer/form-fields-renderer.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { of, throwError } from 'rxjs';
 
 describe('EntityDialogContentComponent', () => {
     let component: EntityDialogContentComponent;
@@ -47,7 +49,8 @@ describe('EntityDialogContentComponent', () => {
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
                 MatDialogModule,
-                FormFieldsRendererModule
+                FormFieldsRendererModule,
+                MatProgressSpinnerModule
             ],
             declarations: [EntityDialogContentComponent],
             providers: [
@@ -69,6 +72,91 @@ describe('EntityDialogContentComponent', () => {
         const formFields = fixture.debugElement.query(By.css('modelingsdk-form-fields-renderer'));
 
         expect(formFields).toBeTruthy();
+    });
+
+    it('should not display loading spinner by default', () => {
+        fixture.detectChanges();
+
+        const spinner = fixture.debugElement.query(By.css('.ama-entity-dialog-content-loading-spinner'));
+        expect(spinner).toBeFalsy();
+    });
+
+    it('should display loading spinner if fields are loading', () => {
+        spyOn(component, 'fieldsLoaded').and.returnValue(false);
+        fixture.detectChanges();
+
+        const spinner = fixture.debugElement.query(By.css('.ama-entity-dialog-content-loading-spinner'));
+        expect(spinner).toBeTruthy();
+    });
+
+    it('should call submit with empty payload if async fields are not loaded properly', () => {
+        spyOn(component.submit, 'emit');
+        spyOn(component, 'assignAsyncFields').and.callThrough();
+        component.data = {...mockDialogData, fields: null, fields$: throwError('error')};
+        fixture.detectChanges();
+
+        expect(component.submit.emit).toHaveBeenCalledWith({ payload: {}, navigateTo: false, callback: jasmine.any(Function) });
+    });
+
+    it('should enable submit button if form is valid and loaded', () => {
+        spyOn(component, 'isValid').and.returnValue(true);
+        spyOn(component, 'isLoadingFormInputs').and.returnValue(false);
+        spyOn(component, 'fieldsLoaded').and.returnValue(true);
+        fixture.detectChanges();
+
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        expect(submitBtn.nativeElement.disabled).toBe(false);
+    });
+
+    it('should disable submit button if form inputs are loading', () => {
+        spyOn(component, 'isValid').and.returnValue(true);
+        spyOn(component, 'fieldsLoaded').and.returnValue(true);
+
+        spyOn(component, 'isLoadingFormInputs').and.returnValue(true);
+        fixture.detectChanges();
+
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        expect(submitBtn.nativeElement.disabled).toBe(true);
+    });
+
+    it('should disable submit button if fields are loading', () => {
+        spyOn(component, 'isValid').and.returnValue(true);
+        spyOn(component, 'isLoadingFormInputs').and.returnValue(false);
+
+        spyOn(component, 'fieldsLoaded').and.returnValue(false);
+        fixture.detectChanges();
+
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        expect(submitBtn.nativeElement.disabled).toBe(true);
+    });
+
+    it('should disable submit button if form is NOT valid', () => {
+        spyOn(component, 'isLoadingFormInputs').and.returnValue(false);
+        spyOn(component, 'fieldsLoaded').and.returnValue(false);
+
+        spyOn(component, 'onValidationChanges').and.returnValue(false);
+        fixture.detectChanges();
+
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        expect(submitBtn.nativeElement.disabled).toBe(true);
+    });
+
+    it('should assign async fields', () => {
+        const transformAsyncFieldsSpy = spyOn(component, 'assignAsyncFields').and.callThrough();
+        component.data = {...mockDialogData, fields: null, fields$: of([{
+                key: 'index',
+                label: 'fake-index',
+                type: 'number'
+            }])};
+        fixture.detectChanges();
+
+        expect(transformAsyncFieldsSpy).toHaveBeenCalled();
+        expect(component.data.fields).toEqual([{
+            key: 'index',
+            label: 'fake-index',
+            type: 'number'
+        }]);
+        expect(component.fieldsLoaded()).toBe(true);
     });
 
     it('should emit on create entity', () => {

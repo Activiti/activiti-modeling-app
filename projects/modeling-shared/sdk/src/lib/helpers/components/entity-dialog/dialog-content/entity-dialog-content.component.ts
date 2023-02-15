@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, HostListener, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, HostListener, EventEmitter, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { FormRendererField } from '../../../../form-fields-renderer/models/form-renderer-field.interface';
 import { EntityDialogPayload, EntityDialogForm } from '../../../common';
 
@@ -39,7 +41,8 @@ export interface EntityDialogContentSubmitData {
 @Component({
     selector: 'modelingsdk-entity-dialog-content',
     templateUrl: './entity-dialog-content.component.html',
-    styleUrls: ['./entity-dialog-content.component.scss']
+    styleUrls: ['./entity-dialog-content.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntityDialogContentComponent implements OnInit {
     @Input()
@@ -50,17 +53,24 @@ export class EntityDialogContentComponent implements OnInit {
     submit = new EventEmitter<EntityDialogContentSubmitData>();
 
     submitButton: string;
-    payload: EntityDialogContentSubmitPayload = {};
 
-    valid: boolean;
-    loading: boolean;
+    private payload: EntityDialogContentSubmitPayload = {};
+    private valid: boolean;
+    private loadingFormInputs: boolean;
+    private loadingFields = false;
+
+    constructor(private readonly changeDetector: ChangeDetectorRef) {}
 
     ngOnInit(): void {
+        if (this.data?.fields$) {
+            this.assignAsyncFields();
+        }
+
         this.defineSubmitButtonText();
         this.setupDefaultPayload();
     }
 
-    onValueChanges(valuesChanged: any) {
+    onValueChanges(valuesChanged: any): void {
         if(this.data?.fields?.length) {
             this.data.fields.forEach((field: FormRendererField) => {
                 const value = valuesChanged[field.key];
@@ -78,7 +88,7 @@ export class EntityDialogContentComponent implements OnInit {
     }
 
     onLoadingStateChanges(loadingState: boolean): void {
-        this.loading = loadingState;
+        this.loadingFormInputs = loadingState;
     }
 
     onSubmit(): void {
@@ -89,6 +99,24 @@ export class EntityDialogContentComponent implements OnInit {
             navigateTo,
             callback: this.data.callback
         });
+    }
+
+    assignAsyncFields(): void {
+        this.loadingFields = true;
+        this.data.fields$.pipe(
+            catchError((error) => {
+                this.handleError();
+                return throwError(error);
+            })
+        ).subscribe((fields: FormRendererField[]) => {
+            this.data.fields = fields;
+            this.loadingFields = false;
+            this.changeDetector.detectChanges();
+        });
+    }
+
+    private handleError(): void {
+        this.submit.emit({ payload: {}, navigateTo: false, callback: () => {} });
     }
 
     private isDataValue(key: any): boolean {
@@ -111,21 +139,25 @@ export class EntityDialogContentComponent implements OnInit {
         }
     }
 
-    private isValid(): boolean {
+    isValid(): boolean {
         return this.valid;
     }
 
-    private isLoading(): boolean {
-        return this.loading;
+    isLoadingFormInputs(): boolean {
+        return this.loadingFormInputs;
+    }
+
+    fieldsLoaded(): boolean {
+        return !this.loadingFields;
     }
 
     isDisabled(): boolean {
-        return !this.isValid() || this.isLoading();
+        return !this.isValid() || this.isLoadingFormInputs() || !this.fieldsLoaded();
     }
 
     @HostListener('document:keydown.enter', ['$event.target'])
     keyEvent(): void {
-        if (this.isValid() && !this.isLoading()) {
+        if (!this.isDisabled()) {
             this.onSubmit();
         }
     }

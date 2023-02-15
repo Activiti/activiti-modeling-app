@@ -15,9 +15,14 @@
  * limitations under the License.
  */
 
-interface FieldOptions {
+export interface FieldOptions {
     label: string;
     value: any;
+}
+
+export interface FieldGroupOptions {
+    label: string;
+    options?: FieldOptions[];
 }
 
 export interface FormRendererFieldValidator {
@@ -29,8 +34,11 @@ export interface FormRendererFieldValidator {
 export interface FormRendererField {
     key: string;
     label: string;
-    type: 'text' | 'textarea' | 'number' | 'dropdown';
+    type: FormRendererFieldTypes;
     defaultValue?: any;
     options?: FieldOptions[];
+    groupOptions?: FieldGroupOptions[];
     validators?: FormRendererFieldValidator[];
 }
+
+type FormRendererFieldTypes = 'text' | 'textarea' | 'number' | 'dropdown';

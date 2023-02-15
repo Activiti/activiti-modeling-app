@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+import { Observable } from 'rxjs';
 import { FormRendererField } from '../form-fields-renderer/models/form-renderer-field.interface';
 
 export interface EntityDialogForm {
@@ -38,7 +39,8 @@ export interface EntityDialogPayload {
     title: string;
     nameField?: string;
     descriptionField?: string;
-    fields: FormRendererField[];
+    fields?: FormRendererField[];
+    fields$?: Observable<FormRendererField[]>;
     values?: EntityDialogForm;
     allowedCharacters?: AllowedCharacters;
     submitText?: string;
