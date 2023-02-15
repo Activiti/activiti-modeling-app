@@ -79,13 +79,34 @@ $hy-functional-text-pink-bg: map-get($hy-pink, 300);
 $hy-btn-basic-hover: #0000000a;
 $hy-btn-basic-pressed: #00000021;
 $hy-btn-primary-hover: #0e73d80a;
-$hy-btn-primary-pressed: #0e73d81a;
+$hy-btn-primary-pressed: #0e73d824;
 $hy-btn-warn-hover: #da15000a;
 $hy-btn-warn-pressed: #da15001a;
 $hy-flat-btn-blk-hover: #0000000a;
 $hy-flat-btn-blk-pressed: #0000001a;
 $hy-flat-btn-white-hover: #ffffff14;
 $hy-flat-btn-white-pressed: #ffffff1a;
+
+$hy-flat-btn-bg: map-get($hy-primary, 700);
+$hy-flat-btn-hover: #1466d08a;
+$hy-flat-btn-pressed: #1466d08a;
+$hy-flat-btn-disabled-bg: map-get($hy-neutral, 200);
+
+$hy-stroke-text-btn-hover: #fafcfe84;
+$hy-stroke-text-btn-pressed: #eef5fc92;
+
+$hy-stroked-btn-bg: $hy-white;
+$hy-stroked-btn-stroke: map-get($hy-neutral, 500);
+$hy-stroked-btn-color: map-get($hy-primary, 700);
+$hy-stroked-btn-hover: $hy-stroke-text-btn-hover;
+$hy-stroked-btn-pressed: $hy-stroke-text-btn-pressed;
+$hy-stroked-btn-disabled-bg: $hy-white;
+$hy-stroked-btn-disabled-stroke: map-get($hy-neutral, 300);
+
+$hy-text-btn-color: map-get($hy-primary, 700);
+$hy-text-btn-hover: $hy-stroke-text-btn-hover;
+$hy-text-btn-pressed: $hy-stroke-text-btn-pressed;
+$hy-text-btn-disabled-color: $hy-text-disabled;
 
 // background
 $hy-bg-nav: #e5e7eb;
@@ -261,3 +282,4 @@ body {
 @import 'hy-styles/radio-buttons.scss';
 @import 'hy-styles/icons.scss';
 @import 'hy-styles/texts.scss';
+@import 'hy-styles/buttons.scss';

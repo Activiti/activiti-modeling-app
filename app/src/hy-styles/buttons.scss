@@ -1,0 +1,127 @@
+@mixin hy-stroked-btn {
+    color: $hy-stroked-btn-color;
+    border: 1px solid $hy-stroked-btn-stroke;
+    background-color: $hy-stroked-btn-bg;
+    &:hover {
+        background-color: $hy-stroked-btn-hover;
+    }
+    &:active {
+        background-color: $hy-stroked-btn-pressed;
+    }
+    &.mat-button-disabled.mat-button-disabled,
+    &.mat-button-disabled,
+    &.mat-disabled.mat-disabled,
+    &.mat-disabled {
+        background-color: $hy-stroked-btn-disabled-bg;
+        border: 1px solid $hy-stroked-btn-disabled-stroke;
+        color: $hy-text-disabled;
+    }
+}
+
+@mixin hy-flat-btn {
+    background-color: $hy-flat-btn-bg;
+    border: none;
+    color: $hy-text-white;
+    &:hover {
+        background-color: $hy-flat-btn-hover;
+    }
+    &:active {
+        background-color: $hy-flat-btn-pressed;
+    }
+    &.mat-button-disabled.mat-button-disabled,
+    &.mat-button-disabled,
+    &.mat-disabled.mat-disabled,
+    &.mat-disabled {
+        background-color: $hy-flat-btn-disabled-bg;
+        color: $hy-text-disabled;
+    }
+}
+
+@mixin hy-text-btn {
+    color: $hy-text-btn-color;
+    &:hover {
+        background-color: $hy-text-btn-hover;
+    }
+    &:active {
+        background-color: $hy-text-btn-pressed;
+    }
+    &.mat-button-disabled.mat-button-disabled,
+    &.mat-button-disabled,
+    &.mat-disabled.mat-disabled,
+    &.mat-disabled {
+        color: $hy-text-btn-disabled-color;
+    }
+}
+
+body {
+    .studio-project-list-header-actions {
+        .studio-upload-button {
+            @include hy-stroked-btn;
+        }
+        .studio-create-button {
+            @include hy-flat-btn;
+        }
+    }
+
+    example-project-card {
+        .mat-button,
+        .mat-icon-button,
+        .mat-stroked-button {
+            @include hy-text-btn;
+        }
+    }
+
+    ama-script-editor-simulator-form {
+        .ama-script-simulator-button {
+            button.mat-raised-button.mat-accent {
+                @include hy-stroked-btn;
+            }
+        }
+    }
+
+    .ama-studio-project-header-action-validate.mat-flat-button {
+        @include hy-stroked-btn;
+    }
+
+    .example-detail-container
+        .example-detail-body
+        .example-detail-body-specs
+        .mat-flat-button,
+    .ama-studio-project-header-action-release.mat-flat-button {
+        @include hy-flat-btn;
+    }
+
+    .ama-cancel-button.mat-button {
+        @include hy-stroked-btn;
+    }
+
+    .ama-submit-button.mat-raised-button {
+        @include hy-flat-btn;
+    }
+
+    mat-dialog-actions {
+        .mat-button {
+            @include hy-stroked-btn;
+
+            &.studio-save-btn,
+            &.adf-dialog-action-button {
+                @include hy-flat-btn;
+            }
+            &.mat-primary {
+                @include hy-flat-btn;
+            }
+        }
+    }
+
+    .ama-connector-add-btn.mat-flat-button.mat-button-base.mat-primary {
+        @include hy-flat-btn;
+    }
+
+    ama-file-editor-upload-file-content {
+        .ama-upload-button {
+            .mat-raised-button {
+                @include hy-flat-btn;
+            }
+        }
+    }
+}

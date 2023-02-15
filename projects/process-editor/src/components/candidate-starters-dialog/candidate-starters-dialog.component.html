@@ -18,7 +18,7 @@
 
     <mat-dialog-content class="ama-candidate-starters-content">
             <ng-container *ngIf="selectedPermissionLevel === 'specific'">
-                <adf-cloud-people 
+                <adf-cloud-people
                     [preSelectUsers]="candidateStarterUsers"
                     [userChipsCtrl]="candidateStarterUsersChipsIdentityControl"
                     [searchUserCtrl]="candidateStarterUsersIdentityControl"
@@ -54,6 +54,7 @@
     <button
         *ngIf="!loadingForm"
         mat-button
+        class="studio-save-btn"
         color="primary"
         data-automation-id="ama-save-button"
         [disabled]="!candidateStartersFormEnabled"

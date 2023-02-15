@@ -62,7 +62,7 @@ describe('VariablesComponent', () => {
     });
 
     it('should have save button', () => {
-        const button = fixture.nativeElement.querySelector('.save-btn');
+        const button = fixture.nativeElement.querySelector('.studio-save-btn');
         expect(button === null).toBeFalsy();
         expect(button.innerHTML.trim()).toEqual('APP.DIALOGS.UPDATE');
     });
@@ -91,7 +91,7 @@ describe('VariablesComponent', () => {
         };
 
         component.editorContent = JSON.stringify(data, null, 2);
-        const button = fixture.nativeElement.querySelector('.save-btn');
+        const button = fixture.nativeElement.querySelector('.studio-save-btn');
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
         expect(component.data.propertiesUpdate$.next).toHaveBeenCalledWith(result);
@@ -120,7 +120,7 @@ describe('VariablesComponent', () => {
         };
 
         component.editorContent = JSON.stringify(data, null, 2);
-        const button = fixture.nativeElement.querySelector('.save-btn');
+        const button = fixture.nativeElement.querySelector('.studio-save-btn');
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
         expect(component.data.propertiesUpdate$.next).toHaveBeenCalledWith(expectedResult);
@@ -145,7 +145,7 @@ describe('VariablesComponent', () => {
         };
 
         component.editorContent = JSON.stringify(data, null, 2);
-        const button = fixture.nativeElement.querySelector('.save-btn');
+        const button = fixture.nativeElement.querySelector('.studio-save-btn');
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
         expect(component.isSaveDisabled()).toBe(false);
