@@ -1,5 +1,7 @@
+@use '@angular/material' as mat;
 @import '@alfresco/adf-core/theming';
 @import '~@angular/material/theming';
+@import './studio-typography.scss';
 
 $hy-black: #000000;
 $hy-white: #ffffff;
@@ -44,10 +46,10 @@ $hy-red-600: #da1500;
 $hy-red-700: #b71605;
 $hy-red-800: #941204;
 $hy-red-900: #720e03;
-$hy-red-A100 : #720e03;
-$hy-red-A200 : #720e03;
-$hy-red-A400 : #720e03;
-$hy-red-A700 : #720e03;
+$hy-red-A100: #720e03;
+$hy-red-A200: #720e03;
+$hy-red-A400: #720e03;
+$hy-red-A700: #720e03;
 
 $hy-primary: (
     50: $hy-blue-50,
@@ -408,12 +410,31 @@ $hy-rose: (
     900: #881337
 );
 
-$primary: mat-palette($hy-primary);
-$accent: mat-palette($hy-neutral);
-$warn: mat-palette($hy-warn);
+$primary: mat.define-palette($hy-primary);
+$accent: mat.define-palette($hy-neutral);
+$warn: mat.define-palette($hy-warn);
 $theme: mat-light-theme($primary, $accent, $warn);
+$theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $primary,
+            accent: $accent,
+            warn: $warn,
+        ),
+        typography: $studio-typography
+    )
+);
 
-$dark-primary: mat-palette($hy-primary);
-$dark-accent: mat-palette($hy-neutral);
-$dark-warn: mat-palette($hy-warn);
-$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+$dark-primary: mat.define-palette($hy-primary);
+$dark-accent: mat.define-palette($hy-neutral);
+$dark-warn: mat.define-palette($hy-warn);
+$dark-theme: mat.define-dark-theme(
+    (
+        color: (
+            primary: $dark-primary,
+            accent: $dark-accent,
+            warn: $dark-warn,
+        ),
+        typography: $studio-typography
+    )
+);
