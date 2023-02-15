@@ -3,6 +3,23 @@
 | master | [![Build Status](https://travis-ci.org/Activiti/activiti-modeling-app.svg?branch=master)](https://travis-ci.org/Activiti/activiti-modeling-app) |
 | - | - |
 
+##Project Discontinuation Announcement
+
+> ---
+> Dear valued contributors and users of the Activiti Modeling Application,
+>
+> We regret to inform you that after much consideration, we have decided to discontinue the project. This was not an easy decision, but it has become necessary due to a variety of factors such as changes in our priorities, limited resources, and technical challenges.
+>
+> We would like to express our sincerest gratitude to everyone who has been involved with the project and contributed to its growth. Your hard work and dedication will always be remembered and appreciated.
+> 
+> The project will not be maintained or evolved in the future, but we will provide resources and support for anyone who wants to continue the development of the project, or fork it for their own use.
+> 
+> We understand that this news may be disappointing, but we hope that everyone involved can look back on the project with pride and satisfaction for the accomplishments that were achieved.
+> 
+> Thank you for your understanding and support.
+> 
+> ---
+
 <p align="center">
     <img title="Activiti" width="250px" src="./app/src/assets/activiti.png" alt="Activiti">
 </p>

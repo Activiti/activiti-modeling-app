@@ -244,16 +244,6 @@
                         }
                     },
                     "defaultConfiguration": "development"
-                },
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "app/src/**/*.ts",
-                            "app/src/**/*.html"
-                        ]
-                    },
-                    "outputs": ["{options.outputFile}"]
                 }
             },
             "tags": ["scope:modeling-ce", "type:app", "category:modeling-ce"]
