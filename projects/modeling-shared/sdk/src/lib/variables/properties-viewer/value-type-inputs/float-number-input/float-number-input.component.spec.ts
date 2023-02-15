@@ -22,11 +22,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { MatInputModule } from '@angular/material/input';
 import { InputErrorDirective } from '../../input-error.directive';
-import { INPUT_TYPE_ITEM_HANDLER } from '../value-type-inputs';
+import { provideInputTypeItemHandler } from '../value-type-inputs';
 import { PropertiesViewerFloatNumberInputComponent } from './float-number-input.component';
 import { By } from '@angular/platform-browser';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
+import { ValueTypeInputComponent } from '../../value-type-input.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { PropertiesViewerEnumInputComponent } from '../enum-input/enum-input.component';
+import { MatSelectModule } from '@angular/material/select';
+import { VariableValuePipe } from '../../variable-value.pipe';
 
 describe('PropertiesViewerFloatNumberInputComponent', () => {
     let component: PropertiesViewerFloatNumberInputComponent;
@@ -39,16 +44,21 @@ describe('PropertiesViewerFloatNumberInputComponent', () => {
                 TranslateModule.forRoot(),
                 FormsModule,
                 ReactiveFormsModule,
-                MatInputModule
+                MatInputModule,
+                MatFormFieldModule,
+                MatSelectModule
             ],
             declarations: [
                 PropertiesViewerFloatNumberInputComponent,
                 InputErrorDirective,
-                AllowedCharactersDirective
+                AllowedCharactersDirective,
+                ValueTypeInputComponent,
+                PropertiesViewerEnumInputComponent,
+                VariableValuePipe
             ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: {} },
+                provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent),
                 provideMockStore({
                     initialState: {},
                 })
@@ -110,6 +120,25 @@ describe('PropertiesViewerFloatNumberInputComponent', () => {
         changeFloatInputValue('invalid');
 
         expect(component.change.emit).toHaveBeenCalledWith(null);
+    });
+
+    describe('enum input', () => {
+        beforeEach(() => {
+            component.model = {
+                enum: [1.2,1.3,1.4]
+            };
+            component.ngOnInit();
+            fixture.detectChanges();
+        });
+
+        it('should render the enum value', () => {
+            const enumInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
+            const stringInput = fixture.debugElement.query(By.css('input'));
+
+            expect(component.useEnum).toEqual(true);
+            expect(stringInput).toBeNull();
+            expect(enumInput.tagName.toLowerCase()).toEqual('mat-select');
+        });
     });
 
 });

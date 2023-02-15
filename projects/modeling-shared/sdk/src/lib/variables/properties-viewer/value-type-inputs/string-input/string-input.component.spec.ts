@@ -17,16 +17,20 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslationService, TranslationMock, CoreModule } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { PropertiesViewerStringInputComponent } from './string-input.component';
-import { INPUT_TYPE_ITEM_HANDLER } from '../value-type-inputs';
+import { provideInputTypeItemHandler } from '../value-type-inputs';
 import { InputErrorDirective } from '../../input-error.directive';
+import { ValueTypeInputComponent } from '../../value-type-input.component';
+import { PropertiesViewerEnumInputComponent } from '../enum-input/enum-input.component';
+import { VariableValuePipe } from '../../variable-value.pipe';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('PropertiesViewerStringInputComponent', () => {
     let component: PropertiesViewerStringInputComponent;
@@ -37,17 +41,23 @@ describe('PropertiesViewerStringInputComponent', () => {
             imports: [
                 NoopAnimationsModule,
                 TranslateModule.forRoot(),
-                FormsModule,
                 ReactiveFormsModule,
-                MatFormFieldModule,
-                CoreModule,
+                FormsModule,
                 CommonModule,
-                MatInputModule
+                MatFormFieldModule,
+                MatInputModule,
+                MatSelectModule
             ],
-            declarations: [PropertiesViewerStringInputComponent, InputErrorDirective],
+            declarations: [
+                PropertiesViewerStringInputComponent,
+                InputErrorDirective,
+                ValueTypeInputComponent,
+                PropertiesViewerEnumInputComponent,
+                VariableValuePipe
+            ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
+                provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent)
             ]
         });
     });
@@ -66,6 +76,7 @@ describe('PropertiesViewerStringInputComponent', () => {
         it('should render the input text', () => {
             const stringInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
 
+            expect(component.useEnum).toEqual(false);
             expect(component.useTextArea).toEqual(false);
             expect(stringInput.tagName).toEqual('INPUT');
         });
@@ -97,6 +108,7 @@ describe('PropertiesViewerStringInputComponent', () => {
         it('should render the input text if pattern does not allow new lines', () => {
             const stringInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
 
+            expect(component.useEnum).toEqual(false);
             expect(component.useTextArea).toEqual(false);
             expect(stringInput.tagName).toEqual('INPUT');
         });
@@ -108,6 +120,7 @@ describe('PropertiesViewerStringInputComponent', () => {
 
             const stringInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
 
+            expect(component.useEnum).toEqual(false);
             expect(component.useTextArea).toEqual(true);
             expect(stringInput.tagName).toEqual('TEXTAREA');
         });
@@ -167,6 +180,25 @@ describe('PropertiesViewerStringInputComponent', () => {
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_LENGTH');
+        });
+    });
+
+    describe('enum input', () => {
+        beforeEach(() => {
+            component.model = {
+                enum: ['a','b','c']
+            };
+            component.ngOnInit();
+            fixture.detectChanges();
+        });
+
+        it('should render the enum value', () => {
+            const enumInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
+            const stringInput = fixture.debugElement.query(By.css('input'));
+
+            expect(component.useEnum).toEqual(true);
+            expect(stringInput).toBeNull();
+            expect(enumInput.tagName.toLowerCase()).toEqual('mat-select');
         });
     });
 });

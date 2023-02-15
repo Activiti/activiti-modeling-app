@@ -24,10 +24,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { PropertiesViewerIntegerInputComponent } from './integer-input.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { INPUT_TYPE_ITEM_HANDLER } from '../value-type-inputs';
+import { provideInputTypeItemHandler } from '../value-type-inputs';
 import { InputErrorDirective } from '../../input-error.directive';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
+import { ValueTypeInputComponent } from '../../value-type-input.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { PropertiesViewerEnumInputComponent } from '../enum-input/enum-input.component';
+import { VariableValuePipe } from '../../variable-value.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('PropertiesViewerIntegerInputComponent', () => {
     let component: PropertiesViewerIntegerInputComponent;
@@ -40,16 +45,21 @@ describe('PropertiesViewerIntegerInputComponent', () => {
                 TranslateModule.forRoot(),
                 FormsModule,
                 ReactiveFormsModule,
-                MatInputModule
+                MatInputModule,
+                MatFormFieldModule,
+                MatSelectModule
             ],
             declarations: [
                 PropertiesViewerIntegerInputComponent,
                 InputErrorDirective,
-                AllowedCharactersDirective
+                AllowedCharactersDirective,
+                ValueTypeInputComponent,
+                PropertiesViewerEnumInputComponent,
+                VariableValuePipe
             ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: {} },
+                provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent),
                 provideMockStore({
                     initialState: {},
                 })
@@ -144,6 +154,25 @@ describe('PropertiesViewerIntegerInputComponent', () => {
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-hint div')).nativeElement;
             expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MULTIPLE_OF_VALUE');
+        });
+    });
+
+    describe('enum input', () => {
+        beforeEach(() => {
+            component.model = {
+                enum: [1,2,3]
+            };
+            component.ngOnInit();
+            fixture.detectChanges();
+        });
+
+        it('should render the enum value', () => {
+            const enumInput: HTMLInputElement = fixture.debugElement.query(By.css('[data-automation-id="variable-value"]')).nativeElement;
+            const stringInput = fixture.debugElement.query(By.css('input'));
+
+            expect(component.useEnum).toEqual(true);
+            expect(stringInput).toBeNull();
+            expect(enumInput.tagName.toLowerCase()).toEqual('mat-select');
         });
     });
 });

@@ -1,9 +1,39 @@
-<mat-form-field [floatLabel]="useTextArea ? 'auto': 'never'">
-    <input *ngIf="!useTextArea" matInput [formControl]="validatedInput" [errorStateMatcher]="matcher" data-automation-id="variable-value"
-        [readonly]="readonly" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate">
+<ng-container *ngIf="!useEnum; else enum">
+    <mat-form-field [floatLabel]="useTextArea ? 'auto' : 'never'">
+        <input
+            *ngIf="!useTextArea"
+            matInput
+            [formControl]="validatedInput"
+            [errorStateMatcher]="matcher"
+            data-automation-id="variable-value"
+            [readonly]="readonly"
+            [placeholder]="
+                (placeholder ? placeholder : 'SDK.VALUE') | translate
+            "
+        />
 
-    <textarea *ngIf="useTextArea" matInput [formControl]="validatedInput" [errorStateMatcher]="matcher" data-automation-id="variable-value"
-        [readonly]="readonly" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"></textarea>
+        <textarea
+            *ngIf="useTextArea"
+            matInput
+            [formControl]="validatedInput"
+            [errorStateMatcher]="matcher"
+            data-automation-id="variable-value"
+            [readonly]="readonly"
+            [placeholder]="
+                (placeholder ? placeholder : 'SDK.VALUE') | translate
+            "
+        ></textarea>
 
-    <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
-</mat-form-field>
+        <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
+    </mat-form-field>
+</ng-container>
+
+<ng-template #enum>
+    <modelingsdk-value-type-input
+        [type]="'enum'"
+        [formControl]="validatedInput"
+        [model]="model"
+        [placeholder]="placeholder"
+    >
+    </modelingsdk-value-type-input>
+</ng-template>

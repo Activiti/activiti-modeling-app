@@ -40,6 +40,8 @@ export abstract class PropertiesViewerModelValidatedInputComponent implements On
 
     previousValue = null;
 
+    useEnum = false;
+
     constructor(private variablesService: VariablesService) { }
 
     ngOnInit(): void {
@@ -63,6 +65,7 @@ export abstract class PropertiesViewerModelValidatedInputComponent implements On
             this.validatedInput.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(value => {
                 if (this.validatedInput.valid && this.previousValue !== value && typeof value === 'string') {
                     this.change.emit(this.transformValueToBeEmitted(value));
+                    this.previousValue = value;
                 }
             });
         }
@@ -71,6 +74,9 @@ export abstract class PropertiesViewerModelValidatedInputComponent implements On
     protected abstract transformValueToBeEmitted(value: any);
 
     private handleModel() {
+        if(this.model?.enum?.length) {
+            this.useEnum = true;
+        }
         this.validatedInput.setValidators(this.variablesService.getValidatorsFromModel(this.model, this.required));
 
         this.computeModel();

@@ -1,6 +1,26 @@
-<mat-form-field floatLabel="never">
-    <input matInput [step]="step" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"
-        [modelingsdk-allowed-characters]="regexInput" data-automation-id="variable-value" [formControl]="validatedInput"
-        [errorStateMatcher]="matcher">
-    <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
-</mat-form-field>
+<ng-container *ngIf="!useEnum; else enum">
+    <mat-form-field floatLabel="never" *ngIf="!useEnum">
+        <input
+            matInput
+            [step]="step"
+            [placeholder]="
+                (placeholder ? placeholder : 'SDK.VALUE') | translate
+            "
+            [modelingsdk-allowed-characters]="regexInput"
+            data-automation-id="variable-value"
+            [formControl]="validatedInput"
+            [errorStateMatcher]="matcher"
+        />
+        <mat-hint modelingsdk-input-error class="mat-error"></mat-hint>
+    </mat-form-field>
+</ng-container>
+
+<ng-template #enum>
+    <modelingsdk-value-type-input
+        [type]="'enum'"
+        [formControl]="validatedInput"
+        [model]="model"
+        [placeholder]="placeholder"
+    >
+    </modelingsdk-value-type-input>
+</ng-template>
