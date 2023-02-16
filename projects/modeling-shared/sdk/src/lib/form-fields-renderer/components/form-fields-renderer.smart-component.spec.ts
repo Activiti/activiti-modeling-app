@@ -230,10 +230,10 @@ describe('FormFieldsRendererSmartComponent', () => {
             component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFieldNumberTypeWithMinMaxValidators[0].defaultValue = 89, false) });
             expect(validationChangesSpy).toHaveBeenCalledWith(false);
 
-            numberControl.setValue(90);
+            numberControl.setValue('90');
             expect(numberControl.valid).toBe(true);
 
-            numberControl.setValue(89);
+            numberControl.setValue('89');
             expect(numberControl.valid).toBe(false);
         });
 
@@ -243,15 +243,15 @@ describe('FormFieldsRendererSmartComponent', () => {
             component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFieldNumberTypeWithMinMaxValidators[0].defaultValue = 101 , false) });
             expect(validationChangesSpy).toHaveBeenCalledWith(false);
 
-            numberControl.setValue(100);
+            numberControl.setValue('100');
             expect(numberControl.valid).toBe(true);
 
-            numberControl.setValue(101);
+            numberControl.setValue('101');
             expect(numberControl.valid).toBe(false);
         });
 
         it('should display min error', () => {
-            numberControl.setValue(89);
+            numberControl.setValue('89');
             expect(numberControl.valid).toBe(false);
 
             numberField.nativeElement.dispatchEvent(new Event('input'));
@@ -263,7 +263,7 @@ describe('FormFieldsRendererSmartComponent', () => {
         });
 
         it('should display max error', () => {
-            numberControl.setValue(101);
+            numberControl.setValue('101');
             expect(numberControl.valid).toBe(false);
 
             numberField.nativeElement.dispatchEvent(new Event('input'));
@@ -279,7 +279,7 @@ describe('FormFieldsRendererSmartComponent', () => {
             component.ngOnChanges({ formFields: new SimpleChange(null, mockFormGroupWithNumberField, false) });
 
             numberControl = component.formGroup.get('index');
-            numberControl.setValue(95);
+            numberControl.setValue('95');
             tick(150);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
@@ -391,7 +391,7 @@ describe('FormFieldsRendererSmartComponent', () => {
         }));
     });
 
-    describe('Payload validation', () => {
+    describe('Emit Payload', () => {
 
         beforeEach(() => {
             component.formGroup = mockFormGroup;
@@ -399,7 +399,7 @@ describe('FormFieldsRendererSmartComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should emit the form values only when the form is valid', fakeAsync(() => {
+        it('should emit the form values regardless of validation status', fakeAsync(() => {
             const valueChangesSpy = spyOn(component.valueChanges, 'emit');
             component.ngOnChanges({ formFields: new SimpleChange(null, mockFormRendererFields, false) });
 
@@ -413,14 +413,11 @@ describe('FormFieldsRendererSmartComponent', () => {
             expect(valueChangesSpy).not.toHaveBeenCalled();
 
             tick(50);
-            expect(valueChangesSpy).not.toHaveBeenCalled();
+            expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'mock description', name: 'mock$name' });
 
             nameControl.setValue('mock-name');
+            tick(200);
 
-            tick(150);
-            expect(valueChangesSpy).not.toHaveBeenCalled();
-
-            tick(50);
             expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'mock description', name: 'mock-name' });
         }));
     });

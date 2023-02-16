@@ -24,7 +24,8 @@ import {
     mockFormRendererFieldEmptyNumberType,
     mockFormRendererFieldNumberType,
     mockFormRendererFields,
-    mockFormRendererFieldsWithDefaultValues
+    mockFormRendererFieldsWithDefaultValues,
+    mockFormRendererFieldsWithNullDefaultValues
 } from '../mock/form-fields-renderer.mock';
 
 describe('FormFieldsRendererService', () => {
@@ -105,5 +106,14 @@ describe('FormFieldsRendererService', () => {
 
         expect(formGroup).toBeDefined();
         expect(formGroupControls[0].value).toBe(null);
+    });
+
+    it('should apply default values only in case of undefined (null and empty are valid values and should not be rolled back to default)', () => {
+        const formGroup = service.createForm(mockFormRendererFieldsWithNullDefaultValues);
+        const formGroupControls = Object.values(formGroup.controls);
+
+        expect(formGroupControls[0].value).toBe(null);
+        expect(formGroupControls[1].value).toBe(null);
+        expect(formGroupControls[2].value).toBe(null);
     });
 });

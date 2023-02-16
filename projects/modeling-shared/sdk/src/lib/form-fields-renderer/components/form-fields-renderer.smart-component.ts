@@ -77,13 +77,29 @@ export class FormFieldsRendererSmartComponent implements OnChanges {
                 tap(() => this.loadingState.emit(true)),
                 debounceTime(FormFieldsRendererSmartComponent.FORM_DEBOUNCE_TIME)
             )
-            .subscribe((formValues: FormRendererField[]) => {
-                if (this.formGroup.valid) {
-                    this.valueChanges.emit(formValues);
-                }
+            .subscribe((formValues: any) => {
                 this.emitFormValidation();
+                this.emitFormPayload(formValues);
                 this.loadingState.emit(false);
             });
+    }
+
+    private emitFormPayload(formValues: any) {
+        this.convertStringToNumberForNumberFields(formValues);
+        this.valueChanges.emit(formValues);
+    }
+
+    private convertStringToNumberForNumberFields(formValues: any) {
+        // An input of type number returns string as value
+        // It needs to be converted from string to a number in the payload
+
+        const numberFields = this.formFields.filter((field: FormRendererField) => field.type === 'number');
+        numberFields.forEach((numberField: FormRendererField) => {
+            if (formValues[numberField.key]) {
+                const valueAsNumber = Number(formValues[numberField.key]);
+                formValues[numberField.key] = valueAsNumber ? valueAsNumber : formValues[numberField.key];
+            }
+        });
     }
 
     private emitFormValidation() {

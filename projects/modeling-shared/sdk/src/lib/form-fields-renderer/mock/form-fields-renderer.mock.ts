@@ -201,3 +201,34 @@ export const mockFormRendererFieldNumberTypeWithMinMaxValidators: FormRendererFi
         ]
     }
 ];
+
+export const mockFormRendererFieldsWithNullDefaultValues: FormRendererField[] = [
+    {
+        key: 'name',
+        label: 'Mock name',
+        type: 'text',
+        defaultValue: null
+    },
+    {
+        key: 'height',
+        label: 'Mock height',
+        type: 'number',
+        defaultValue: null
+    },
+    {
+        key: 'isStudent',
+        label: 'Mock is student',
+        type: 'dropdown',
+        defaultValue: null,
+        options: [
+            {
+                label: 'Yes',
+                value: true
+            },
+            {
+                label: 'No',
+                value: false
+            }
+        ]
+    },
+];

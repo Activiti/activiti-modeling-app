@@ -66,11 +66,11 @@ export class FormFieldsRendererService {
         switch (type) {
             case 'text':
             case 'textarea':
-                return defaultValue ?? this.DEFAULT_STRING;
+                return defaultValue === undefined ? this.DEFAULT_STRING : defaultValue;
             case 'number':
-                return defaultValue ?? this.DEFAULT_NUMBER;
+                return defaultValue === undefined ? this.DEFAULT_NUMBER : defaultValue;
             case 'dropdown':
-                return defaultValue ?? this.DEFAULT_OPTION;
+                return defaultValue === undefined ? this.DEFAULT_OPTION : defaultValue;
         }
     }
 }
