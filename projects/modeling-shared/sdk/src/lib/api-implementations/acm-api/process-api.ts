@@ -15,19 +15,47 @@
  * limitations under the License.
  */
 
-import { Observable, from } from 'rxjs';
+import { Observable, from, forkJoin, of } from 'rxjs';
 import { Process, ProcessContent } from '../../api/types';
 import { ModelApi } from './model-api';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
 import { RequestApiHelperOptions } from './request-api.helper';
-import { concatMap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { createBlobFormDataFromStringContent } from '../../helpers/utils/create-json-blob';
+import { IErrorResponse } from '../../services/validation.service';
 
 export class ProcessAcmApi<T extends Process, S extends ProcessContent> extends ModelApi<T, S> implements ModelApiInterface<T, S> {
     public validate(modelId: string, content: S, containerId: string, modelExtensions: any): Observable<any> {
-        return super.validate(modelId, content, containerId).pipe(
-            concatMap(() => this.validateExtensions(modelId, JSON.stringify(modelExtensions)))
+
+        const errorCollection = [];
+        const modelValidationRequest = super.validate(modelId, content, containerId).pipe(
+            catchError((modelValidationErrors) => {
+                errorCollection.push(modelValidationErrors);
+                return of(modelValidationErrors);
+            }));
+        const modelExtensionValidationRequest = this.validateExtensions(modelId, JSON.stringify(modelExtensions)).pipe(
+            catchError((modelExtensionValidationErrors) => {
+                errorCollection.push(modelExtensionValidationErrors);
+                return of(modelExtensionValidationErrors);
+            }));
+
+        return forkJoin([modelValidationRequest, modelExtensionValidationRequest]).pipe(
+            tap(() =>  {
+                if(errorCollection.length > 0 ) {
+                    throw this.buildError(errorCollection);
+                }
+            })
         );
+    }
+
+    private buildError(errorCollection): IErrorResponse {
+        const validationError: IErrorResponse = <IErrorResponse>{
+            status: errorCollection[0].status,
+            message:  errorCollection[0].message,
+            errors: []
+        };
+        errorCollection.map((currentValidationError) => validationError.errors.push(...currentValidationError.response.body.errors));
+        return validationError;
     }
 
     private validateExtensions(modelId: string, modelExtensions: string) {

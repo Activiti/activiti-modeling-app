@@ -43,7 +43,7 @@ import {
     ExportProjectAttemptPayload,
     TabManagerService,
     ValidationService,
-    IErrorResponse,
+    PROJECT,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
@@ -132,9 +132,8 @@ export class ProjectEffects {
         return this.projectEditorService.validateProject(payload.projectId).pipe(
             switchMap(() => this.exportProject(payload.projectId, payload.projectName)),
             catchError(response => this.blobService.convert2Json(response.error.response.body).pipe(
-                switchMap((errorResponse: IErrorResponse) => this.validationService.handleErrors({
-                    response: errorResponse,
-                    modelType: 'download_project',
+                switchMap((validationError) => this.validationService.handleErrors({
+                    error: validationError,
                     successAction: payload.action
                 }))
             ))
@@ -148,9 +147,9 @@ export class ProjectEffects {
                 this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.PROJECT_VALID')
             ]),
             catchError(response => this.blobService.convert2Json(response.error.response.body).pipe(
-                switchMap((errorResponse: IErrorResponse) => this.validationService.handleErrors({
-                    response: errorResponse,
-                    modelType: 'project',
+                switchMap((errorResponse) => this.validationService.handleErrors({
+                    error: errorResponse,
+                    modelType: PROJECT
                 }))
             ))
         );

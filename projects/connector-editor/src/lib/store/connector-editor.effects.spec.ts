@@ -518,8 +518,12 @@ describe('ConnectorEditorEffects', () => {
 
         it('should dispatch the OpenConfirmDialogAction if connector is not valid', () => {
             const error: any = new Error();
-            error.status = 400;
-            error.message = JSON.stringify({ errors: [{ description: 'test' }] });
+            error.response = {
+                body: {
+                    status: 400, message: 'test', errors: [{ description: 'test', warning: false }]
+                },
+                modelType: CONNECTOR
+            };
             validateConnector.mockReturnValue(throwError(error));
 
             actions$ = hot('a', { a: new ValidateConnectorAttemptAction(payload) });

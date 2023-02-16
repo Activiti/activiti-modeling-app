@@ -20,9 +20,6 @@
 import { VariableMappingBehavior } from '../interfaces/variable-mapping-type.interface';
 
 export type PROJECT_TYPE = 'project';
-export type DOWNLOAD_PROJECT_TYPE = 'download_project';
-export type RELEASE_TYPE = 'release';
-export type PROJECT_MODEL_TYPE = 'project_model';
 export type CUSTOM_MODEL_TYPE = 'model';
 export type PROCESS_TYPE = 'process';
 export type FORM_TYPE = 'form';
@@ -43,13 +40,10 @@ export type HXP_CONTENT_SERVICE_TYPE = 'hxp-content-service';
 export type EMAIL_SERVICE_TYPE = 'email-service';
 export type DOCGEN_SERVICE_TYPE = 'docgen-service';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
-| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE | PROJECT_MODEL_TYPE | CONTENT_SERVICE_TYPE
+| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE | CONTENT_SERVICE_TYPE
 | HXP_CONTENT_SERVICE_TYPE | EMAIL_SERVICE_TYPE | DOCGEN_SERVICE_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
-export const DOWNLOAD_PROJECT: DOWNLOAD_PROJECT_TYPE = 'download_project';
-export const RELEASE: RELEASE_TYPE = 'release';
-export const PROJECT_MODEL: PROJECT_MODEL_TYPE = 'project_model';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
 export const PROCESS: PROCESS_TYPE = 'process';
 export const FORM: FORM_TYPE = 'form';

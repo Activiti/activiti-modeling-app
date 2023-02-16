@@ -274,11 +274,8 @@ describe('ProcessEditorEffects', () => {
             expect(effects.updateProcessEffect).toBeObservable(expected);
         });
 
-        it('should handle general general string error message', () => {
-            const error: any = new Error();
-            error.status = 400;
-            error.message = validateError;
-            processEditorService.validate = jest.fn().mockReturnValue(throwError(error));
+        it('should handle general string error message', () => {
+            processEditorService.validate = jest.fn().mockReturnValue(throwError(validateError));
             actions$ = hot('a', { a: new ValidateProcessAttemptAction(mockValidatePayload) });
             const expectedLogAction = logFactory.logError(getProcessLogInitiator(), ['Parse Error']);
             expectedLogAction.log.datetime = (<any>expect).any(Date);

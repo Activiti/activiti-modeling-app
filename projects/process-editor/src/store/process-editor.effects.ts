@@ -107,7 +107,6 @@ import { PROCESS_MODEL_ENTITY_SELECTORS, selectProcessesLoaded, selectSelectedEl
 import { Action, Store } from '@ngrx/store';
 import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
 import { TranslationService } from '@alfresco/adf-core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 export const PROCESS_CONTENT_TYPE = 'text/xml';
 export const XML_PROCESS_TAG = 'bpmn2:process';
@@ -302,12 +301,12 @@ export class ProcessEditorEffects {
     private validateProcess({ modelId, modelContent, modelMetadata: { extensions }, projectId, action, errorAction, title }: ValidateProcessPayload): Observable<Action> {
         return this.processEditorService.validate(modelId, modelContent, projectId, extensions).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
-            catchError((response: HttpErrorResponse) => this.validationService.handleErrors({
+            catchError((error) => this.validationService.handleErrors({
                 title,
-                response,
                 errorAction,
                 successAction: action,
-                modelType: 'process',
+                error,
+                modelType: PROCESS
             }))
         );
     }

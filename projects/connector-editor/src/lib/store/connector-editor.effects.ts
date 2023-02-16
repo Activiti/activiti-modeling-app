@@ -94,7 +94,6 @@ import {
     DraftDeleteConnectorAction} from './connector-editor.actions';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 import { TranslationService } from '@alfresco/adf-core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class ConnectorEditorEffects {
@@ -255,12 +254,12 @@ export class ConnectorEditorEffects {
     private validateConnector({ modelId, modelContent, action, title, errorAction, projectId }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(modelId, modelContent, projectId).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
-            catchError((response: HttpErrorResponse) => this.validationService.handleErrors({
+            catchError((validationError) => this.validationService.handleErrors({
                 title,
-                response,
                 errorAction,
                 successAction: action,
-                modelType: 'connector',
+                error: validationError.response?.body,
+                modelType: CONNECTOR
             }))
         );
     }
