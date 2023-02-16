@@ -286,6 +286,17 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             expect(valueChangesSpy).toHaveBeenCalledWith({ index: 95 });
         }));
+
+        it('should be able to handle number 0 as an acceptable value of a number field', fakeAsync(() => {
+            const valueChangesSpy = spyOn(component.valueChanges, 'emit');
+            component.ngOnChanges({ formFields: new SimpleChange(null, mockFormGroupWithNumberField, false) });
+
+            numberControl = component.formGroup.get('index');
+            numberControl.setValue('0');
+            tick(200);
+
+            expect(valueChangesSpy).toHaveBeenCalledWith({ index: 0 });
+        }));
     });
 
     describe('textarea field', () => {

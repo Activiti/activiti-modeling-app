@@ -42,7 +42,7 @@
                 <mat-option
                     [attr.data-automation-id]="'ama-form-fields-renderer-dropdown-option-' + option.label"
                     *ngFor="let option of field.options" [value]="option.value">
-                        {{ option.label }}
+                        {{ option.label | translate }}
                 </mat-option>
                 <ng-container *ngIf="field.groupOptions">
                     <mat-optgroup
@@ -52,7 +52,7 @@
                         <mat-option
                             [attr.data-automation-id]="'ama-form-fields-renderer-dropdown-group-option-' + option.label"
                             *ngFor="let option of group.options" [value]="option.value">
-                                {{ option.label }}
+                                {{ option.label | translate }}
                         </mat-option>
                     </mat-optgroup>
                 </ng-container>

@@ -89,15 +89,17 @@ export class FormFieldsRendererSmartComponent implements OnChanges {
         this.valueChanges.emit(formValues);
     }
 
+    /**
+     * An input of type number returns string as value
+     * The string value needs to be converted to a number
+     * in the payload.
+     */
     private convertStringToNumberForNumberFields(formValues: any) {
-        // An input of type number returns string as value
-        // It needs to be converted from string to a number in the payload
-
         const numberFields = this.formFields.filter((field: FormRendererField) => field.type === 'number');
         numberFields.forEach((numberField: FormRendererField) => {
             if (formValues[numberField.key]) {
                 const valueAsNumber = Number(formValues[numberField.key]);
-                formValues[numberField.key] = valueAsNumber ? valueAsNumber : formValues[numberField.key];
+                formValues[numberField.key] = isNaN(valueAsNumber) ? formValues[numberField.key] : valueAsNumber;
             }
         });
     }
