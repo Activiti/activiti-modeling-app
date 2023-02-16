@@ -77,6 +77,16 @@ describe('PreferProjectButton', () => {
         expect(star.textContent).toBe('star');
     });
 
+    it('should show the empty star if isPreferred is not passed in input', () => {
+        const changes: SimpleChanges = {
+            isPreferred: null
+        };
+        component.ngOnChanges(changes);
+        fixture.detectChanges();
+        const star: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="projectId-toggle-prefer-project"] mat-icon');
+        expect(star.textContent).toBe('star_border');
+    });
+
     it('should show the star icon for preferred projects', () => {
         const changes: SimpleChanges = {
             isPreferred: {

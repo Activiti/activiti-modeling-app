@@ -39,7 +39,7 @@ export class PreferProjectButtonComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.icon = changes.isPreferred.currentValue ? 'star' : 'star_border';
+        this.icon = changes?.isPreferred?.currentValue ? 'star' : 'star_border';
     }
 
     togglePreferredProject() {
