@@ -45,7 +45,6 @@
     "@alfresco/adf-core": "6.0.0-A.2-8243",
     "@alfresco/adf-extensions": "6.0.0-A.2-8243",
     "@alfresco/adf-office-services-ext": "4.0.0-A.2-10122",
-    "@alfresco/adf-process-services": "6.0.0-A.2-8243",
     "@alfresco/adf-process-services-cloud": "6.0.0-A.2-8243",
     "@alfresco/js-api": "5.4.0-619",
     "@angular/animations": "14.1.3",
