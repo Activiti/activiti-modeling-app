@@ -49,24 +49,67 @@
             </ng-container>
         </div>
     </mat-expansion-panel>
-    <div class="ama-add-more-container" [class.ama-add-more-container-visible]="isMenuOpen" *ngIf="isAllowed(filter.type)">
-        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
-            [attr.data-automation-id]="'menu-' + filter.type" (menuOpened)="isMenuOpen=true" (menuClosed)="isMenuOpen=false"
-            [disableRipple]="false">
+    <div
+        class="ama-add-more-container"
+        [class.ama-add-more-container-visible]="isMenuOpen"
+        *ngIf="isAllowed(filter.type)"
+    >
+        <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            #menuTrigger="matMenuTrigger"
+            [attr.data-automation-id]="'menu-' + filter.type"
+            (menuOpened)="isMenuOpen=true"
+            (menuClosed)="isMenuOpen=false"
+            [disableRipple]="false"
+        >
             <mat-icon>more_vert</mat-icon>
         </button>
 
         <mat-menu #menu="matMenu" overlapTrigger="false">
             <span (mouseleave)="menuTrigger.closeMenu()">
-                <button mat-menu-item class="ama-project-tree-filter__create_button"
-                    [attr.data-automation-id]="'add-' + filter.type" *ngIf="isAllowed(filter.type)" [disableRipple]="true"
-                    (click)="openModelCreationModal($event); menuTrigger.closeMenu()"
-                    [title]="'PROJECT_EDITOR.CREATE_NEW' | translate" [class]="'add-new-' + filter.type">
-                    <mat-icon>add</mat-icon>
-                    <span>Create</span>
-                </button>
-                <button *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)"
-                        mat-menu-item [disableRipple]="true" class="ama-project-tree-filter__upload_button">
+                <ng-container *ngIf="filter.childMenus">
+                    <ng-container *ngFor="let childMenu of filter.childMenus">
+                        <button
+                            mat-menu-item
+                            class="ama-project-tree-filter__create_button"
+                            [attr.data-automation-id]="'add-' + filter.type"
+                            *ngIf="isAllowed(filter.type)"
+                            [disableRipple]="true"
+                            (click)="onChildMenuClick($event, childMenu); menuTrigger.closeMenu()"
+                            [title]="'PROJECT_EDITOR.CREATE_NEW' | translate"
+                            [class]="'add-new-' + filter.type"
+                        >
+                            <mat-icon>{{childMenu.icon}}</mat-icon>
+                            <span>{{childMenu.name | translate}}</span>
+                        </button>
+                    </ng-container>
+
+                </ng-container>
+
+                <ng-container *ngIf="!filter.childMenus">
+                    <button
+                        mat-menu-item
+                        class="ama-project-tree-filter__create_button"
+                        [attr.data-automation-id]="'add-' + filter.type"
+                        *ngIf="isAllowed(filter.type)"
+                        [disableRipple]="true"
+                        (click)="openModelCreationModal($event);
+                        menuTrigger.closeMenu()"
+                        [title]="'PROJECT_EDITOR.CREATE_NEW' | translate"
+                        [class]="'add-new-' + filter.type"
+                    >
+                        <mat-icon>add</mat-icon>
+                        <span>Create</span>
+                    </button>
+                </ng-container>
+
+                <button
+                    *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)"
+                    mat-menu-item
+                    [disableRipple]="true"
+                    class="ama-project-tree-filter__upload_button"
+                >
                     <ama-upload-file-button [attr.data-automation-id]="'upload-' + filter.type" [projectId]="projectId"
                         [type]="filter.type">
                     </ama-upload-file-button>

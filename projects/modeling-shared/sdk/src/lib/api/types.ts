@@ -30,6 +30,7 @@ export type FILE_TYPE = 'file';
 export type SCRIPT_TYPE = 'script';
 export type TRIGGER_TYPE = 'trigger';
 export type FORM_WIDGET_TYPE = 'custom-form-widget';
+export type CUSTOM_UI_TYPE = 'custom-ui';
 export type DATA_TYPE = 'data';
 export type AUTHENTICATION_TYPE = 'authentication';
 export type HXP_DOC_TYPE_TYPE = 'hxp_doc_type';
@@ -41,7 +42,7 @@ export type EMAIL_SERVICE_TYPE = 'email-service';
 export type DOCGEN_SERVICE_TYPE = 'docgen-service';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
 | FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE | HXP_DOC_TYPE_TYPE | HXP_MIXIN_TYPE | HXP_SCHEMA_TYPE | CONTENT_SERVICE_TYPE
-| HXP_CONTENT_SERVICE_TYPE | EMAIL_SERVICE_TYPE | DOCGEN_SERVICE_TYPE;
+| HXP_CONTENT_SERVICE_TYPE | EMAIL_SERVICE_TYPE | DOCGEN_SERVICE_TYPE | CUSTOM_UI_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -56,6 +57,7 @@ export const FILE: FILE_TYPE = 'file';
 export const SCRIPT: SCRIPT_TYPE = 'script';
 export const TRIGGER: TRIGGER_TYPE = 'trigger';
 export const FORM_WIDGET: FORM_WIDGET_TYPE = 'custom-form-widget';
+export const CUSTOM_UI: CUSTOM_UI_TYPE = 'custom-ui';
 export const DATA: DATA_TYPE = 'data';
 export const AUTHENTICATION: AUTHENTICATION_TYPE = 'authentication';
 export const HXP_DOC_TYPE: HXP_DOC_TYPE_TYPE = 'hxp_doc_type';
@@ -405,6 +407,11 @@ export interface UiPlugin {
     order: string;
 }
 
+export interface CustomUiPlugin {
+    name: string;
+    version: string;
+    order: string;
+}
 export interface UiContent {
     id: string;
     name: string;
@@ -413,7 +420,15 @@ export interface UiContent {
     plugins: UiPlugin[];
     configs?: any;
     extension?: UiContentExtension;
+
+    uiType?: 'custom';
+    customUI?: string;
+    customUIfileId?: string;
 }
+
+export type CustomUiContent = Omit<UiContent, 'adf-template'> & {
+    uiType: string;
+};
 
 export interface UiContentExtension {
     $id: string;

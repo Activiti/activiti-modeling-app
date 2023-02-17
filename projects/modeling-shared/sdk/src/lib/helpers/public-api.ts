@@ -17,6 +17,7 @@
 
 export * from './common';
 export * from './utils/create-entries-names';
+export * from './utils/sanitize-file-name';
 export * from './shared.module';
 export * from './utils/empty-diagram';
 export * from './utils/empty-decision-table';

@@ -23,6 +23,8 @@
         "UPLOAD": "Upload",
         "IMPORT": "Import",
         "CREATE_NEW": "Create new",
+        "CREATE_DEFAULT_UI": "Create Default UI",
+        "CREATE_CUSTOM_UI": "Create Custom UI",
         "SEARCH": "Search",
         "UPLOAD_FILE_SUCCESS": "File uploaded",
         "NO_CONTENT": "<empty>",
@@ -41,7 +43,8 @@
                 "CREATE_PROCESS": "Process",
                 "CREATE_CONNECTOR": "Connector",
                 "CREATE_FORM": "Form",
-                "CREATE_UI": "UI",
+                "CREATE_DEFAULT_UI": "Default UI",
+                "CREATE_CUSTOM_UI": "Custom UI",
                 "CREATE_DATA": "Data object",
                 "CREATE_DECISION_TABLE": "Decision Table",
                 "CREATE_FILE": "File",
@@ -101,13 +104,18 @@
         },
         "UI_DIALOG": {
             "TITLE_CREATE": "Create UI",
+            "CREATE_CUSTOM_UI": "Create Custom UI",
             "TITLE_UPDATE": "Update UI",
             "UI_NAME": "UI name",
+            "CUSTOM_UI_NAME": "Custom UI Name",
             "UI_DESC": "UI description",
+            "CUSTOM_UI_DESC": "Custom UI description",
             "UI_CREATED": "UI created",
+            "CUSTOM_UI_CREATED": "Custom UI created",
             "UI_DELETED": "UI deleted",
             "UI_UPDATED": "UI saved",
-            "UI_SUBMIT_TEXT": "Create UI"
+            "UI_SUBMIT_TEXT": "Create UI",
+            "CUSTOM_UI_SUBMIT_TEXT": "Create Custom UI"
         },
         "DATA_DIALOG": {
             "TITLE_CREATE": "Create Data Object",

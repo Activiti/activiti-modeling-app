@@ -17,11 +17,21 @@
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
 import {
-    MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, CONNECTOR, AUTHENTICATION, Filter, DEFAULT_CATEGORIES
+    MODEL_TYPE,
+    ModelFilter,
+    ModelCreator,
+    AmaState,
+    MODEL_CREATORS,
+    OpenEntityDialogAction,
+    ModelScope,
+    CONNECTOR,
+    AUTHENTICATION,
+    Filter,
+    DEFAULT_CATEGORIES,
+    ModelFilterChildMenu,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { AppConfigService, ItemsByCategory, SortByCategoryMapperService } from '@alfresco/adf-core';
-
 @Component({
     selector: 'ama-project-tree-filter',
     templateUrl: './project-tree-filter.component.html',
@@ -29,9 +39,9 @@ import { AppConfigService, ItemsByCategory, SortByCategoryMapperService } from '
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class ProjectTreeFilterComponent implements OnInit, OnChanges {
     isMenuOpen = false;
+
     @Input() projectId: string;
     @Input() filter: ModelFilter;
     @Input() contents: Partial<Filter>[];
@@ -48,8 +58,7 @@ export class ProjectTreeFilterComponent implements OnInit, OnChanges {
     constructor(
         private store: Store<AmaState>,
         @Optional()
-        @Inject(MODEL_CREATORS)
-        private creators: ModelCreator[],
+        @Inject(MODEL_CREATORS) private creators: ModelCreator[],
         private appConfig: AppConfigService,
         private categoryMapper: SortByCategoryMapperService<Filter>
     ) {}
@@ -93,6 +102,17 @@ export class ProjectTreeFilterComponent implements OnInit, OnChanges {
         event.stopPropagation();
         if (this.creators && this.creators.length > 0) {
             const modelCreator = this.creators.find(creator => creator.type === this.filter.type);
+
+            if (modelCreator) {
+                this.store.dispatch(new OpenEntityDialogAction(modelCreator.dialog));
+            }
+        }
+    }
+
+    onChildMenuClick(event: Event, menu: ModelFilterChildMenu): void {
+        event.stopPropagation();
+        if (this.creators && this.creators.length > 0) {
+            const modelCreator = this.creators.find(creator => creator.type === menu.type);
 
             if (modelCreator) {
                 this.store.dispatch(new OpenEntityDialogAction(modelCreator.dialog));

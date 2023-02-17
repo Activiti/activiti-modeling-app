@@ -22,6 +22,7 @@ export enum MODEL_SCHEMA_TYPE {
     CONNECTOR = 'CONNECTOR',
     FORM = 'FORM',
     UI = 'UI',
+    CUSTOM_UI = 'CUSTOM_UI',
     FILE = 'FILE',
     SCRIPT = 'SCRIPT',
     TRIGGER = 'TRIGGER',

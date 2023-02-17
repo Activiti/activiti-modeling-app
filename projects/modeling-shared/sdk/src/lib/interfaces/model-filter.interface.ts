@@ -26,12 +26,17 @@ export interface FilterDataAdapter {
     load(projectId: string): void;
 }
 
+export type ModelFilterChildMenu = Omit<ModelFilter, 'order'> & {
+    type: string;
+};
+
 export interface ModelFilter {
     type: MODEL_TYPE;
     name: string;
     icon: string;
     adapter: FilterDataAdapter;
     order: number;
+    childMenus?: ModelFilterChildMenu[];
 }
 
 export const MODEL_FILTERS = new InjectionToken<ModelFilter[]>('model-filters');
