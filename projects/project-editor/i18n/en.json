@@ -25,6 +25,7 @@
         "CREATE_NEW": "Create new",
         "CREATE_DEFAULT_UI": "Create Default UI",
         "CREATE_CUSTOM_UI": "Create Custom UI",
+        "UPLOAD_CUSTOM_UI": "UPLOAD",
         "SEARCH": "Search",
         "UPLOAD_FILE_SUCCESS": "File uploaded",
         "NO_CONTENT": "<empty>",
