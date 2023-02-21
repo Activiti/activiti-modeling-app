@@ -3,7 +3,7 @@
 </div>
 <ng-container *ngIf="hierarchy">
     <mat-form-field floatLabel="never">
-        <span [matMenuTriggerFor]="menu.childMenu">
+        <span class="ama-property-type-selector-container" [matMenuTriggerFor]="menu.childMenu">
             <div class="ama-property-type-selector-input-icon">
                 <mat-icon *ngIf="displayedIcon && !displayedCustomIcon">{{displayedIcon}}</mat-icon>
                 <span *ngIf="displayedIcon && displayedCustomIcon"
