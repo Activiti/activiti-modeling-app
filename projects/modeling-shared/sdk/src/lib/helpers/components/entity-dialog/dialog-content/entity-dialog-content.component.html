@@ -1,36 +1,37 @@
 <h2 mat-dialog-title>{{ data.title | translate }}</h2>
 
-<mat-dialog-content>
-    <ng-container *ngIf="fieldsLoaded(); else loadingTemplate">
+<ng-container *ngIf="fieldsLoaded(); else loadingTemplate">
+    <mat-dialog-content>
         <modelingsdk-form-fields-renderer
             [formFields]="data.fields"
+            [formDebounceTime]="formDebounceTime"
             (valueChanges)="onValueChanges($event)"
-            (validationChanges)="onValidationChanges($event)"
-            (loadingState)="onLoadingStateChanges($event)">
+            (validationChanges)="onValidationChanges($event)">
         </modelingsdk-form-fields-renderer>
 
         <ng-content></ng-content>
-    </ng-container>
+    </mat-dialog-content>
 
-    <ng-template #loadingTemplate>
-        <div class="ama-entity-dialog-content-loading-spinner">
-            <mat-spinner></mat-spinner>
-        </div>
-    </ng-template>
-</mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <span class="adf-fill-remaining-space"></span>
 
-<mat-dialog-actions align="end">
-    <span class="adf-fill-remaining-space"></span>
+        <button mat-button mat-dialog-close class="ama-cancel-button">
+            {{ 'APP.DIALOGS.CANCEL' | translate }}
+        </button>
 
-    <button mat-flat-button mat-dialog-close class="ama-cancel-button">
-        {{ 'APP.DIALOGS.CANCEL' | translate }}
-    </button>
+        <button mat-raised-button
+            (click)="onSubmit()"
+            data-automation-id="submit-button"
+            class="ama-submit-button"
+            [disabled]="isDisabled()">
+            {{ submitButton | translate }}
+        </button>
+    </mat-dialog-actions>
 
-    <button mat-raised-button
-        (click)="onSubmit()"
-        data-automation-id="submit-button"
-        class="ama-submit-button"
-        [disabled]="isDisabled()">
-        {{ submitButton | translate }}
-    </button>
-</mat-dialog-actions>
+</ng-container>
+
+<ng-template #loadingTemplate>
+    <div class="ama-entity-dialog-content-loading-spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

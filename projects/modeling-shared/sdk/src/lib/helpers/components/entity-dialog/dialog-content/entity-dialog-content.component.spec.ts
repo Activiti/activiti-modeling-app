@@ -100,7 +100,6 @@ describe('EntityDialogContentComponent', () => {
 
     it('should enable submit button if form is valid and loaded', () => {
         spyOn(component, 'isValid').and.returnValue(true);
-        spyOn(component, 'isLoadingFormInputs').and.returnValue(false);
         spyOn(component, 'fieldsLoaded').and.returnValue(true);
         fixture.detectChanges();
 
@@ -108,37 +107,14 @@ describe('EntityDialogContentComponent', () => {
         expect(submitBtn.nativeElement.disabled).toBe(false);
     });
 
-    it('should disable submit button if form inputs are loading', () => {
-        spyOn(component, 'isValid').and.returnValue(true);
-        spyOn(component, 'fieldsLoaded').and.returnValue(true);
-
-        spyOn(component, 'isLoadingFormInputs').and.returnValue(true);
-        fixture.detectChanges();
-
-        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        expect(submitBtn.nativeElement.disabled).toBe(true);
-    });
-
-    it('should disable submit button if fields are loading', () => {
-        spyOn(component, 'isValid').and.returnValue(true);
-        spyOn(component, 'isLoadingFormInputs').and.returnValue(false);
-
-        spyOn(component, 'fieldsLoaded').and.returnValue(false);
-        fixture.detectChanges();
-
-        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        expect(submitBtn.nativeElement.disabled).toBe(true);
-    });
-
-    it('should disable submit button if form is NOT valid', () => {
-        spyOn(component, 'isLoadingFormInputs').and.returnValue(false);
+    it('should NOT display submit button if form is NOT valid', () => {
         spyOn(component, 'fieldsLoaded').and.returnValue(false);
 
         spyOn(component, 'onValidationChanges').and.returnValue(false);
         fixture.detectChanges();
 
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        expect(submitBtn.nativeElement.disabled).toBe(true);
+        expect(submitBtn).toBeFalsy();
     });
 
     it('should assign async fields', () => {
@@ -214,9 +190,10 @@ describe('EntityDialogContentComponent', () => {
         expect(component.submit.emit).not.toHaveBeenCalled();
     });
 
-    it('should not emit on enter keydown if the form is loading', () => {
+    it('should not emit on enter keydown if the form is NOT loaded', () => {
         fixture.detectChanges();
         spyOn(component.submit, 'emit');
+        spyOn(component, 'fieldsLoaded').and.returnValue(false);
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
 
         component.onValueChanges({
@@ -224,7 +201,6 @@ describe('EntityDialogContentComponent', () => {
             description: 'fake-description'
         });
         component.onValidationChanges(true);
-        component.onLoadingStateChanges(true);
 
         submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
 

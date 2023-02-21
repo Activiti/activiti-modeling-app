@@ -39,10 +39,11 @@ import { Subscription } from 'rxjs';
 })
 export class FormFieldsRendererSmartComponent implements OnChanges {
 
-    private static FORM_DEBOUNCE_TIME = 200;
-
     @Input()
     formFields: FormRendererField[] = [];
+
+    @Input()
+    formDebounceTime = 300;
 
     @Output()
     valueChanges: EventEmitter<any> = new EventEmitter<any>();
@@ -75,7 +76,7 @@ export class FormFieldsRendererSmartComponent implements OnChanges {
         this.formChangesSubscription = this.formGroup.valueChanges
             .pipe(
                 tap(() => this.loadingState.emit(true)),
-                debounceTime(FormFieldsRendererSmartComponent.FORM_DEBOUNCE_TIME)
+                debounceTime(this.formDebounceTime)
             )
             .subscribe((formValues: any) => {
                 this.emitFormValidation();

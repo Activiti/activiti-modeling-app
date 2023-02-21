@@ -113,6 +113,10 @@ body {
             &.mat-primary {
                 @include hy-flat-btn;
             }
+            &.ama-cancel-button {
+                @include hy-text-btn;
+                border:none;
+            }
         }
     }
     .ama-projecteditor-add-collaborator-btn,

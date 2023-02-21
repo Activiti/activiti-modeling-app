@@ -53,10 +53,10 @@ export class EntityDialogContentComponent implements OnInit {
     submit = new EventEmitter<EntityDialogContentSubmitData>();
 
     submitButton: string;
+    formDebounceTime = 0;
 
     private payload: EntityDialogContentSubmitPayload = {};
     private valid: boolean;
-    private loadingFormInputs: boolean;
     private loadingFields = false;
 
     constructor(private readonly changeDetector: ChangeDetectorRef) {}
@@ -85,10 +85,6 @@ export class EntityDialogContentComponent implements OnInit {
 
     onValidationChanges(validationChanged: boolean): void {
         this.valid = validationChanged;
-    }
-
-    onLoadingStateChanges(loadingState: boolean): void {
-        this.loadingFormInputs = loadingState;
     }
 
     onSubmit(): void {
@@ -143,16 +139,12 @@ export class EntityDialogContentComponent implements OnInit {
         return this.valid;
     }
 
-    isLoadingFormInputs(): boolean {
-        return this.loadingFormInputs;
-    }
-
     fieldsLoaded(): boolean {
         return !this.loadingFields;
     }
 
     isDisabled(): boolean {
-        return !this.isValid() || this.isLoadingFormInputs() || !this.fieldsLoaded();
+        return !this.isValid() || !this.fieldsLoaded();
     }
 
     @HostListener('document:keydown.enter', ['$event.target'])

@@ -44,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
 describe('FormFieldsRendererSmartComponent', () => {
     let component: FormFieldsRendererSmartComponent;
     let fixture: ComponentFixture<FormFieldsRendererSmartComponent>;
+    let defaultDebounceTime: number;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -74,6 +75,7 @@ describe('FormFieldsRendererSmartComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FormFieldsRendererSmartComponent);
         component = fixture.componentInstance;
+        defaultDebounceTime = component.formDebounceTime;
     });
 
     it('should emit loading state', fakeAsync(() => {
@@ -87,7 +89,7 @@ describe('FormFieldsRendererSmartComponent', () => {
         const nameControl: AbstractControl = component.formGroup.get('name');
         nameControl.setValue('new-value');
 
-        tick(150);
+        tick(defaultDebounceTime - 50);
         expect(loadingStateSpy).toHaveBeenCalledWith(true);
 
         tick(50);
@@ -197,7 +199,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             nameControl = component.formGroup.get('name');
             nameControl.setValue('new-value');
-            tick(150);
+            tick(defaultDebounceTime - 50);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -280,7 +282,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             numberControl = component.formGroup.get('index');
             numberControl.setValue('95');
-            tick(150);
+            tick(defaultDebounceTime - 50);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -293,7 +295,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             numberControl = component.formGroup.get('index');
             numberControl.setValue('0');
-            tick(200);
+            tick(defaultDebounceTime);
 
             expect(valueChangesSpy).toHaveBeenCalledWith({ index: 0 });
         }));
@@ -325,7 +327,7 @@ describe('FormFieldsRendererSmartComponent', () => {
             nameControl.setValue('mock-name');
             const descriptionControl = component.formGroup.get('description');
             descriptionControl.setValue('new-description');
-            tick(150);
+            tick(defaultDebounceTime - 50);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -394,7 +396,7 @@ describe('FormFieldsRendererSmartComponent', () => {
 
             const dropdownControl = component.formGroup.get('drink');
             dropdownControl.setValue(1);
-            tick(150);
+            tick(defaultDebounceTime - 50);
             expect(valueChangesSpy).not.toHaveBeenCalled();
             tick(50);
 
@@ -420,14 +422,14 @@ describe('FormFieldsRendererSmartComponent', () => {
             const descriptionControl = component.formGroup.get('description');
             descriptionControl.setValue('mock description');
 
-            tick(150);
+            tick(defaultDebounceTime - 50);
             expect(valueChangesSpy).not.toHaveBeenCalled();
 
             tick(50);
             expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'mock description', name: 'mock$name' });
 
             nameControl.setValue('mock-name');
-            tick(200);
+            tick(defaultDebounceTime);
 
             expect(valueChangesSpy).toHaveBeenCalledWith({ description: 'mock description', name: 'mock-name' });
         }));
