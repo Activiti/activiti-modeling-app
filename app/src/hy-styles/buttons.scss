@@ -35,6 +35,9 @@
         background-color: $hy-flat-btn-disabled-bg;
         color: $hy-text-disabled;
     }
+    .mat-icon {
+        color: $hy-text-white;
+    }
 }
 
 @mixin hy-text-btn {
@@ -112,7 +115,7 @@ body {
             }
         }
     }
-
+    .ama-projecteditor-add-collaborator-btn,
     .ama-connector-add-btn.mat-flat-button.mat-button-base.mat-primary {
         @include hy-flat-btn;
     }
@@ -123,5 +126,34 @@ body {
                 @include hy-flat-btn;
             }
         }
+    }
+
+    .mat-button.cdk-program-focused {
+        opacity: 1;
+    }
+    .mat-button-focus-overlay {
+        background: none;
+    }
+
+    .ama-form-widget-icon {
+        .mat-raised-button.mat-primary {
+            @include hy-flat-btn;
+        }
+    }
+    ama-connector-advanced-editor-feature-form {
+        .mat-raised-button.mat-primary {
+            @include hy-flat-btn;
+        }
+    }
+
+    .mat-flat-button,
+    .ama-expression-code-editor .ama-expression-code-editor-edit-button,
+    .ama-modeling-action-selector .mat-mini-fab,
+    .ama-add-modeling-action-btn,
+    .ama-add-rule-btn,
+    .ama-delete-btn,
+    .ama-add-btn,
+    .ama-add-feature-btn {
+        @include hy-flat-btn;
     }
 }
