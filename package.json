@@ -95,7 +95,7 @@
     "ngx-monaco-editor": "7.0.0",
     "ngx-xml2json": "1.0.2",
     "path": "^0.12.7",
-    "pdfjs-dist": "2.5.207",
+    "pdfjs-dist": "3.3.122",
     "rxjs": "6.6.6",
     "subscriptions-transport-ws": "^0.9.18",
     "tslib": "^2.0.0",
