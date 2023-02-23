@@ -4,9 +4,13 @@
 
 @include mat.core;
 
-$typography: mat.define-typography-config(
-    $font-family: 'Inter'
-);
+$foreground: map-get($theme, foreground);
+$background: map-get($theme, background);
+$warn: map-get($theme, warn);
+$accent: map-get($theme, accent);
+$primary: map-get($theme, primary);
+$typography: map-get($theme, typography);
+
 
 body, html {
     margin: 0;
@@ -23,11 +27,6 @@ body {
 
 .adf-full-width { width: 100%; }
 
-$foreground: map-get($theme, foreground);
-$background: map-get($theme, background);
-$warn: map-get($theme, warn);
-$accent: map-get($theme, accent);
-$primary: map-get($theme, primary);
 
 // map SCSS variables to expose as CSS variables
 $defaults: (

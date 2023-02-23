@@ -4,14 +4,21 @@
 
 @include mat.core();
 
+$foreground: map-get($theme, foreground);
+$background: map-get($theme, background);
+$warn: map-get($theme, warn);
+$accent: map-get($theme, accent);
+$primary: map-get($theme, primary);
+$typography: map-get($theme, typography);
+
 body,
 html {
     margin: 0;
     height: 100%;
     overflow: hidden;
-    font-size: mat.font-size($studio-typography, body-1);
-    font-family: mat.font-family($studio-typography);
-    line-height: mat.line-height($studio-typography, body-1);
+    font-size: mat.font-size($typography, body-1);
+    font-family: mat.font-family($typography);
+    line-height: mat.line-height($typography, body-1);
 }
 
 body {
@@ -21,12 +28,6 @@ body {
 .adf-full-width {
     width: 100%;
 }
-
-$foreground: map-get($theme, foreground);
-$background: map-get($theme, background);
-$warn: map-get($theme, warn);
-$accent: map-get($theme, accent);
-$primary: map-get($theme, primary);
 
 // text
 $hy-text-black: $hy-coolGray-900;
@@ -184,15 +185,15 @@ $defaults: (
     --theme-disabled-bg-color:
         mat.get-color-from-palette($foreground, text, 0.05),
     --theme-hint-bg-color: mat.get-color-from-palette($foreground, text, 0.5),
-    --theme-font-family: mat.font-family($studio-typography),
-    --theme-body-1-font-size: mat.font-size($studio-typography, body-1),
-    --theme-body-1-line-height: mat.line-height($studio-typography, body-1),
-    --theme-caption-font-size: mat.font-size($studio-typography, caption),
-    --theme-title-font-size: mat.font-size($studio-typography, title),
+    --theme-font-family: mat.font-family($typography),
+    --theme-body-1-font-size: mat.font-size($typography, body-1),
+    --theme-body-1-line-height: mat.line-height($typography, body-1),
+    --theme-caption-font-size: mat.font-size($typography, caption),
+    --theme-title-font-size: mat.font-size($typography, title),
     --theme-subheading-2-font-size:
-        mat.font-size($studio-typography, subheading-2),
+        mat.font-size($typography, subheading-2),
     --theme-headline-line-height:
-        mat.line-height($studio-typography, headline),
+        mat.line-height($typography, headline),
     --theme-card-bg-color: mat.get-color-from-palette($background, card),
     --theme-colors-mat-grey-dark:
         mat.get-color-from-palette(mat.$grey-palette, A400),

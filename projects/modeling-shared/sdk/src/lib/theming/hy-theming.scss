@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 @import '@alfresco/adf-core/theming';
 @import '~@angular/material/theming';
-@import './studio-typography.scss';
+@import './hy-typography.scss';
 
 $hy-black: #000000;
 $hy-white: #ffffff;
@@ -421,7 +421,7 @@ $theme: mat.define-light-theme(
             accent: $accent,
             warn: $warn,
         ),
-        typography: $studio-typography
+        typography: $hy-typography
     )
 );
 
@@ -435,6 +435,6 @@ $dark-theme: mat.define-dark-theme(
             accent: $dark-accent,
             warn: $dark-warn,
         ),
-        typography: $studio-typography
+        typography: $hy-typography
     )
 );
