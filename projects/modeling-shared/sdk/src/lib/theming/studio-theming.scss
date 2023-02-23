@@ -1,5 +1,7 @@
+@use '@angular/material' as mat;
 @import '@alfresco/adf-core/theming';
 @import '~@angular/material/theming';
+@import './studio-typography.scss';
 
 $studio-background: rgba(33, 33, 33, 0.12);
 $studio-light-gray: rgba(33, 33, 33, 0.05);
@@ -107,9 +109,27 @@ $studio-dark-warn: (
 $primary: mat-palette($studio-orange);
 $accent: mat-palette($mat-grey);
 $warn: mat-palette($studio-light-warn);
-$theme: mat-light-theme($primary, $accent, $warn);
+$theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $primary,
+            accent: $accent,
+            warn: $warn,
+        ),
+        typography: $studio-typography
+    )
+);
 
 $dark-primary: mat-palette($studio-orange);
 $dark-accent: mat-palette($mat-grey);
 $dark-warn: mat-palette($studio-dark-warn);
-$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+$dark-theme: mat.define-dark-theme(
+    (
+        color: (
+            primary: $dark-primary,
+            accent: $dark-accent,
+            warn: $dark-warn,
+        ),
+        typography: $studio-typography
+    )
+);
