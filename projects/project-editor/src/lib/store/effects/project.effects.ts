@@ -133,6 +133,7 @@ export class ProjectEffects {
             switchMap(() => this.exportProject(payload.projectId, payload.projectName)),
             catchError(response => this.blobService.convert2Json(response.error.response.body).pipe(
                 switchMap((validationError) => this.validationService.handleErrors({
+                    title: validationError.message,
                     error: validationError,
                     successAction: payload.action
                 }))
@@ -148,6 +149,7 @@ export class ProjectEffects {
             ]),
             catchError(response => this.blobService.convert2Json(response.error.response.body).pipe(
                 switchMap((errorResponse) => this.validationService.handleErrors({
+                    title: errorResponse.message,
                     error: errorResponse,
                     modelType: PROJECT
                 }))
