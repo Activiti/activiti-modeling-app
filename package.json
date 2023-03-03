@@ -86,7 +86,7 @@
     "intl": "1.2.5",
     "lodash": "^4.17.21",
     "memoizee": "^0.4.15",
-    "minimatch": "3.0.4",
+    "minimatch": "3.0.5",
     "minimatch-browser": "1.0.0",
     "moment": "2.24.0",
     "moment-es6": "1.0.0",
