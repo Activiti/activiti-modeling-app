@@ -102,10 +102,10 @@ Use one of the following commands to run the application:
 
 ```bash
 # develop server
-npm start
+npm start modeling-ce
 
 # Production server
-npm start -- --prod
+npm start modeling-ce -- --prod
 ```
 
 ### Building the application
@@ -114,10 +114,10 @@ Use one of the following commands to build the application:
 
 ```bash
 # develop build
-npm run build
+npm run build modeling-ce
 
 # Production build
-npm run build -- --prod
+npm run build modeling-ce -- --prod
 ```
 
 ### Running unit tests

@@ -25,6 +25,7 @@
 .settings/
 *.sublime-workspace
 .history
+.angular
 
 # IDE - VSCode
 .vscode/*
@@ -47,6 +48,7 @@ testem.log
 /envs/
 .env
 **/versions.json
+app/.tmp
 
 # e2e
 /e2e/*.map
